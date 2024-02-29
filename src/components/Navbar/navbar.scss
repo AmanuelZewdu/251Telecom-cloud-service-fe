@@ -1,61 +1,56 @@
+.container {
+  // background-color: #d7b74d;
+  height: 100px;
+  width: 100%;
+  border-radius: 5%;
+  display: flex;
+}
+.menu {
+  // background-color: white;
+  width: 100%;
+  height: 100%;
+  // margin-left: 4px;
 
-  .container {
-   // background-color: #d7b74d;
-    height: 100px;
-    width: 100%;
-    border-radius: 5%;
-    display: flex;
-  
-    
-    
-  }
-  .menu{
-   // background-color: white;
-    width: 100%;
-    height:100% ;
-   // margin-left: 4px;
-    
-   // overflow: hidden; /* Clip overflowing content */
-   position: relative; /* Enable positioning of the pseudo-element */
-    
-  }
-  .menu::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100px; /* Adjust the width based on desired curvature */
-    height: 100%; /* Adjust the height based on menu height */
-    background-color: white; /* Inherit background color from menu */
-    border-radius: 0  50% 50% 0; /* Create the half-circle shape */
-  }
+  // overflow: hidden; /* Clip overflowing content */
+  position: relative; /* Enable positioning of the pseudo-element */
+}
+// .menu::before {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100px; /* Adjust the width based on desired curvature */
+//   height: 100%; /* Adjust the height based on menu height */
+//   background-color: white; /* Inherit background color from menu */
+//   border-radius: 0 50% 50% 0; /* Create the half-circle shape */
+// }
 
-  .nav-link{
-    color:#000000 ;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  .nav-link .active { /* Target the active link using a more specific selector */
-    text-decoration: underline;
-    /* Increase underline thickness */
-    text-decoration-thickness: 4px; /* Adjust the value as desired */
-    text-decoration-color: #f5d91b; /* Adjust the color as needed */
-    border: 2px solid red;
-  }
-  .logo-container {
-    width: 150px; /* Adjust the width based on your logo size */
-    height: 150px; /* Adjust the height based on your logo size */
-    border-radius: 50%; /* Make the container circular */
-    background-color: #fff; /* Optional: Set the background color */
-    display: flex; /* Center the logo inside the container */
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .logo-container img {
-    max-width: 100%; /* Allow the image to scale to fit container */
-    max-height: 100%; /* Allow the image to scale to fit container */
-  }
-  .nav-list{
-    justify-content: end;
-  }
+// .nav-link{
+//   color:#000000 ;
+//   font-weight: bold;
+//   text-decoration: none;
+// }
+// .nav-link .active { /* Target the active link using a more specific selector */
+//   text-decoration: underline;
+//   /* Increase underline thickness */
+//   text-decoration-thickness: 4px; /* Adjust the value as desired */
+//   text-decoration-color: #f5d91b; /* Adjust the color as needed */
+//   border: 2px solid red;
+// }
+// .logo-container {
+//   width: 150px; /* Adjust the width based on your logo size */
+//   height: 150px; /* Adjust the height based on your logo size */
+//   border-radius: 50%; /* Make the container circular */
+//   background-color: #fff; /* Optional: Set the background color */
+//   display: flex; /* Center the logo inside the container */
+//   justify-content: center;
+//   align-items: center;
+// }
+
+.logo-container img {
+  max-width: 100%; /* Allow the image to scale to fit container */
+  max-height: 100%; /* Allow the image to scale to fit container */
+}
+// .nav-list {
+//   justify-content: end;
+// }

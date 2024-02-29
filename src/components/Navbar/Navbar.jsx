@@ -18,13 +18,7 @@ const Navbar = () => {
   const Link = ({ path, label, isActive }) => {
     return (
       <li key={path}>
-        <a
-          href={path}
-          style={{
-            textDecoration: isActive ? "underline" : "none",
-            color: isActive ? "blue" : "black",
-          }}
-        >
+        <a className="text-white" href={path}>
           {label}
         </a>
       </li>
@@ -32,13 +26,13 @@ const Navbar = () => {
   };
   return (
     <div className="">
-      <nav className="relative w-full flex justify-between items-center z-20 p-2 max-w-[1500px] mx-auto bg-mainColor/50 backdrop-blur-sm shadow-xl lg:sticky lg:bg-transparent lg:backdrop-blur-none lg:shadow-none">
-        <div className="w-[80px] h-[80px] rounded-full flex justify-center items-center">
-          {" "}
-          {/* Container for the logo */}
+      <nav className="relative w-full flex justify-between items-center z-20 p-2 xl:px-[10rem] mx-auto bg-mainColor/50 backdrop-blur-sm shadow-xl lg:sticky bg-amber-500 lg:backdrop-blur-none lg:shadow-none">
+        {" "}
+        {/* Container for the logo */}
+        <div className="w-[250px]">
           <img
-            className=""
-            src={require("../../shared/images/logo.png")}
+            className="max-w-full"
+            src={require("../../shared/images/251Logo.png")}
             alt="Your Company Logo"
           />
         </div>
@@ -64,11 +58,11 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="">
-          <div className="md:hidden">
+          <div className="md:hidden text-white">
             <MenuIcon onClick={handleNav} />
           </div>
           <div
-            className={`fixed gap-4 bg-yellow-300 top-0
+            className={`slider fixed gap-4 bg-amber-500 top-0
            right-0 cursor-pointer transition-transform w-full duration-500 ease-in-out text-white  
         ${navIsOpen ? "translate-y-20" : "-translate-y-full"}
         flex flex-col p-4 items-center`}
@@ -76,7 +70,7 @@ const Navbar = () => {
             {/* <div className=" w-full flex justify-end">
               <CloseIcon onClick={() => setNavIsOpen(false)} />
             </div> */}
-            <ul className="flex flex-col">
+            <ul className="flex flex-col gap-4 text-center">
               {navigationLinks.map((link) => (
                 <li key={link.path} style={{ marginRight: "10px" }}>
                   {" "}

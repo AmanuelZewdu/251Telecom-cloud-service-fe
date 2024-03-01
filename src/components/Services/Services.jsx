@@ -17,6 +17,7 @@ const Services = () => {
               className="border border-gray-200 rounded-lg flex flex-col items-center justify-between p-2 max-w-[20em] 
               transition-shadow duration-300 ease-in-out
               shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)]
+              hover:shadow-none
               "
             >
               <div className="w-[10em]">
@@ -30,7 +31,20 @@ const Services = () => {
                 <h2 className="text-xl">{service.serviceName}</h2>
                 <div className="font-light">{service.description}</div>
                 <div>
-                  <Button variant="outlined" className="w-full hover:border ">
+                  <Button
+                    variant="outlined"
+                    className="w-full"
+                    sx={{
+                      borderColor: "#f59e0b",
+                      color: "#f59e0b",
+                      fontWeight: "semibold",
+                      "&:hover": {
+                        borderColor: "transparent",
+                        backgroundColor: "#f6ae31",
+                        color: "#fff",
+                      },
+                    }}
+                  >
                     {" "}
                     <a href={service.path}>Purchase</a>
                   </Button>

@@ -1,8 +1,14 @@
-import React from "react";
-
 import "./navbar.scss";
+import { useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Navbar = () => {
+  const [navIsOpen, setNavIsOpen] = useState(false);
+
+  const handleNav = () => {
+    setNavIsOpen(!navIsOpen);
+  };
   // const navigate = useNavigate();
   const navigationLinks = [
     { path: "/", label: "Home" },
@@ -12,32 +18,27 @@ const Navbar = () => {
   const Link = ({ path, label, isActive }) => {
     return (
       <li key={path}>
-        <a
-          href={path}
-          style={{
-            textDecoration: isActive ? "underline" : "none",
-            color: isActive ? "blue" : "black",
-          }}
-        >
+        <a className="text-white" href={path}>
           {label}
         </a>
       </li>
     );
   };
   return (
-    <div>
-      <nav className="container">
-        <div className="logo-container">
-          {" "}
-          {/* Container for the logo */}
+    <div className="">
+      <nav className="relative w-full flex justify-between items-center z-20 p-2 xl:px-[10rem] mx-auto bg-mainColor/50 backdrop-blur-sm shadow-xl lg:sticky bg-amber-500 lg:backdrop-blur-none lg:shadow-none">
+        {" "}
+        {/* Container for the logo */}
+        <div className="w-[250px]">
           <img
-            src={require("../../shared/images/251logo.png")}
+            className="max-w-full"
+            src={require("../../shared/images/251Logo.png")}
             alt="Your Company Logo"
           />
         </div>
-        <div className="menu">
+        <div className="hidden md:block w-full">
           <ul
-            className="nav-list"
+            className="justify-end"
             style={{ listStyle: "none", display: "flex" }}
           >
             {navigationLinks.map((link) => (
@@ -55,6 +56,38 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
+        </div>
+        <div className="">
+          <div className="md:hidden text-white">
+            <MenuIcon onClick={handleNav} />
+          </div>
+          <div
+            className={`slider fixed gap-4 bg-amber-500 top-0
+           right-0 cursor-pointer transition-transform w-full duration-500 ease-in-out text-white  
+        ${navIsOpen ? "translate-y-20" : "-translate-y-full"}
+        flex flex-col p-4 items-center`}
+          >
+            {/* <div className=" w-full flex justify-end">
+              <CloseIcon onClick={() => setNavIsOpen(false)} />
+            </div> */}
+            <ul className="flex flex-col gap-4 text-center">
+              {navigationLinks.map((link) => (
+                <li key={link.path} style={{ marginRight: "10px" }}>
+                  {" "}
+                  {/* <Link to={link.path} className="nav-link">
+                  {link.label}
+                </Link> */}
+                  <Link
+                    key={link.path}
+                    path={link.path}
+                    label={link.label}
+                    isActive={link.active}
+                    onClick={handleNav}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </nav>
     </div>

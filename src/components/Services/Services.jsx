@@ -4,9 +4,12 @@ import { Button } from "@mui/material";
 const Services = () => {
   return (
     <div>
-      <div className="flex flex-col text-center p-2">
-        <h1 className="">Our services</h1>
-        <div className="w-full p-3 flex flex-wrap gap-8">
+      <div className="flex flex-col  text-center p-2 gap-6">
+        <div className="flex flex-col gap-2 items-center">
+          <h1 className="text-2xl">Our services</h1>
+          <p className="font-light">Here are service we are offering </p>
+        </div>
+        <div className="w-full p-3 flex items-center justify-center flex-wrap gap-8">
           {services.map((service) => (
             <a
               href={service.path}
@@ -27,7 +30,7 @@ const Services = () => {
                 <h2 className="text-xl">{service.serviceName}</h2>
                 <div className="font-light">{service.description}</div>
                 <div>
-                  <Button variant="outlined">
+                  <Button variant="outlined" className="w-full hover:border ">
                     {" "}
                     <a href={service.path}>Purchase</a>
                   </Button>

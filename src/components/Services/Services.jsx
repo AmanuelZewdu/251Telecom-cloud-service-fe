@@ -15,21 +15,29 @@ const Services = () => {
               href={service.path}
               key={service.id}
               className="border border-gray-200 rounded-lg flex flex-col items-center justify-between p-2 max-w-[20em] 
-              transition-shadow duration-300 ease-in-out
-              shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)]
-              hover:shadow-none
+              transition-all duration-500 ease-in-out
+              shadow-lg
+              hover:shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)]
+              hover:scale-105  
               "
             >
               <div className="w-[10em]">
                 <img
+                  className="mix-blend-color-burn"
                   src={service.image}
                   alt="service"
-                  className="transition-all duration-300 ease-in-out hover:scale-125 mix-blend-color-burn"
                 />
               </div>
               <div className="flex flex-col gap-3">
-                <h2 className="text-xl">{service.serviceName}</h2>
-                <div className="font-light">{service.description}</div>
+                <h2 className="text-xl font-montserrat">
+                  {service.serviceName}
+                </h2>
+                <div
+                  className="font-light
+                "
+                >
+                  {service.description}
+                </div>
                 <div>
                   <Button
                     variant="outlined"

@@ -14,8 +14,14 @@ const Hero = () => {
             possibilities. Experience innovation, tailored for you
           </p>
           <Button
+            sx={{
+              backgroundColor: "#f59e0b",
+              "&:hover": {
+                backgroundColor: "#d28602",
+              },
+            }}
             variant="contained"
-            className="heroButton w-[120px] rounded-none"
+            className="w-[120px] rounded-none"
           >
             CTA
           </Button>

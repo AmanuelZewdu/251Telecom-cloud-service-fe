@@ -25,7 +25,7 @@ const Navbar = () => {
   };
   return (
     <div className="">
-      <nav className="relative w-full flex justify-between items-center z-20 p-2 xl:px-[10rem] mx-auto bg-mainColor/50 backdrop-blur-sm shadow-xl lg:sticky bg-amber-500 lg:backdrop-blur-none lg:shadow-none">
+      <nav className="fixed w-full flex justify-between items-center z-20 p-2 xl:px-[10rem] mx-auto bg-mainColor/50 shadow-xl bg-amber-500">
         {" "}
         {/* Container for the logo */}
         <div className="w-[250px]">

@@ -17,7 +17,7 @@ const Services = () => {
             <a
               href={service.path}
               key={service.id}
-              className="border border-gray-200 rounded-lg flex flex-col items-center justify-between p-2 max-w-[20em] 
+              className="border border-gray-200 rounded-lg flex flex-col items-center justify-between p-4 gap-2 max-w-[22em] 
               transition-all duration-500 ease-in-out
               shadow-lg
               hover:shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)]
@@ -41,10 +41,10 @@ const Services = () => {
                 >
                   {service.description}
                 </div>
-                <div>
+                <div className="mt-4">
                   <Button
                     variant="outlined"
-                    className="w-full"
+                    className="w-full "
                     sx={{
                       borderColor: "#f59e0b",
                       color: "#f59e0b",

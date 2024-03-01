@@ -1,9 +1,22 @@
 import "./navbar.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const Navbar = () => {
   const [navIsOpen, setNavIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleNav = () => {
     setNavIsOpen(!navIsOpen);
@@ -25,7 +38,11 @@ const Navbar = () => {
   };
   return (
     <div className="">
-      <nav className="fixed w-full flex justify-between items-center z-20 p-2 xl:px-[10rem] mx-auto bg-mainColor/50 shadow-xl bg-amber-500">
+      <nav
+        className={`fixed w-full flex justify-between items-center z-20 p-2 xl:px-[10rem] mx-auto shadow-xl bg-amber-500 ${
+          scrolled ? "bg-amber-500/80 backdrop-blur-sm" : ""
+        }`}
+      >
         {" "}
         {/* Container for the logo */}
         <div className="w-[250px]">

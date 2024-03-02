@@ -39,7 +39,7 @@ const Navbar = () => {
   return (
     <div className="">
       <nav
-        className={`fixed w-full flex justify-between items-center z-20 p-2 xl:px-[10rem] mx-auto shadow-xl bg-amber-500 ${
+        className={`relative w-full flex justify-between items-center z-20 p-2 xl:px-[10rem] mx-auto shadow-xl bg-amber-500 ${
           scrolled ? "bg-amber-500/80 backdrop-blur-sm" : ""
         }`}
       >

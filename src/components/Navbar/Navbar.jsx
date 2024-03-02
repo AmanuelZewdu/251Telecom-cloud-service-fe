@@ -39,7 +39,7 @@ const Navbar = () => {
   return (
     <div className="">
       <nav
-        className={`fixed w-full flex justify-between items-center z-20 p-2 xl:px-[10rem] mx-auto shadow-xl bg-amber-500 ${
+        className={`fixed w-full flex justify-between items-center z-20 p-3 xl:px-[10rem] mx-auto shadow-xl bg-amber-500 ${
           scrolled ? "bg-amber-500/80 backdrop-blur-sm" : ""
         }`}
       >
@@ -75,7 +75,7 @@ const Navbar = () => {
         </div>
         <div className="">
           <div className="md:hidden text-white">
-            <MenuIcon onClick={handleNav} />
+            <MenuIcon sx={{ fontSize: 32 }} onClick={handleNav} />
           </div>
           <div
             className={`slider fixed gap-4 bg-amber-500 top-0

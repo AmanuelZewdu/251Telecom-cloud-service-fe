@@ -1,3 +1,4 @@
+import CallUs from "../CallUs/CallUs";
 import "./hero.scss";
 import { Button } from "@mui/material";
 const Hero = () => {
@@ -34,6 +35,7 @@ const Hero = () => {
           />
         </div>
       </div>
+      <CallUs />
     </div>
   );
 };

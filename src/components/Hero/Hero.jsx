@@ -1,8 +1,9 @@
+import CallUs from "../CallUs/CallUs";
 import "./hero.scss";
 import { Button } from "@mui/material";
 const Hero = () => {
   return (
-    <div className="hero-wrapper w-full relative bg-no-repeat bg-cover bg-center flex items-center justify-center h-screen md:h-[30em] -mt-[5em] md:-mt-[4em]">
+    <div className="hero-wrapper w-full relative bg-no-repeat bg-cover bg-center flex items-center justify-center h-svh md:h-[30em]">
       <div className="absolute bg-black opacity-40 inset-0"></div>
       <div className="flex flex-col-reverse items-center lg:flex-row ">
         <div className="relative flex flex-col gap-4 text-white p-2 lg:mt-10 text-center items-center lg:items-start lg:text-left justify-center lg:ml-20">
@@ -34,6 +35,7 @@ const Hero = () => {
           />
         </div>
       </div>
+      <CallUs />
     </div>
   );
 };

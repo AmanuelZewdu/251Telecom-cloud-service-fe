@@ -20,7 +20,7 @@ export const services = [
   {
     id: 3,
     image:
-      "https://img.freepik.com/free-vector/cloud-connection-abstract-concept-illustration_335657-3873.jpg?t=st=1709288253~exp=1709291853~hmac=ab41542d2428067bbc018ac3e75e724f7ddaf324ca5d52be87a31f4984f449ca&w=826",
+      "https://img.freepik.com/free-vector/cloud-information-storage-collocated-cloud-computing-data-synchronization-harmonization-available-accesssible-digital-connected-backup-vector-isolated-concept-metaphor-illustration_335657-2791.jpg?t=st=1709322547~exp=1709326147~hmac=e386d1b40db2724fcc6132be66d344f043709ba7f111870b28a35d47b1cee099&w=826",
     serviceName: "Array storage",
     description:
       "Maximize efficiency and performance with our array storage service, designed to handle vast amounts of data with ease. Our array storage solution provides unmatched reliability and speed for your storage needs.",

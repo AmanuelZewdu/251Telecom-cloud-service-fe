@@ -61,7 +61,7 @@ const ProductNav = ({ onSelectComponent }) => {
       </div>
 
       {/* This is the nav that's displayed when the screen is greater than mid */}
-      <div className="fixed hidden md:flex w-[12em] justify-center border h-screen shadow-lg pt-4  ">
+      <div className="relative hidden md:flex w-[12em] justify-center border h-screen shadow-lg pt-4  ">
         <ul className="flex flex-col items-start gap-3">
           {links.map((link, index) => (
             <li

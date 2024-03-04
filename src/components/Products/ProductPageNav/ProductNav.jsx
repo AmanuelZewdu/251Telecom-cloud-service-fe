@@ -20,6 +20,7 @@ const ProductNav = ({ onSelectComponent }) => {
 
   return (
     <div className="">
+      {/* This is the black overlay */}
       {navIsOpen && (
         <div
           onClick={() => setNavIsOpen(handleNav)}
@@ -28,7 +29,7 @@ const ProductNav = ({ onSelectComponent }) => {
       )}
 
       <div
-        className={`absolute h-screen w-1/2 flex justify-center pt-[2em] text-center bg-white z-10 transition-all duration-500 ease-in-out ${
+        className={`fixed h-screen w-1/2 flex justify-center pt-[2em] text-center bg-white z-10 transition-all duration-500 ease-in-out ${
           navIsOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -52,7 +53,7 @@ const ProductNav = ({ onSelectComponent }) => {
         <ListIcon sx={{ fontSize: 42 }} onClick={() => setNavIsOpen(true)} />
       </div>
 
-      <div className="hidden md:block w-[12em] border h-screen shadow-lg pt-4">
+      <div className="fixed hidden md:block w-[12em] border h-screen shadow-lg pt-4">
         <ul className="flex flex-col items-center justify-center">
           {links.map((link, index) => (
             <li key={index} onClick={() => onSelectComponent(link.component)}>

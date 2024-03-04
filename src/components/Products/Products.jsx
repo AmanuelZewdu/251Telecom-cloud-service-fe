@@ -1,22 +1,8 @@
-// import ProductNav from "./ProductPageNav/ProductNav";
-
-// const Products = () => {
-//   return (
-//     <div className="w-full h-screen bg-red-500 relative top-[5em]">
-//       <div className="">
-//         <ProductNav />
-//       </div>
-//       <div className="main"></div>
-//     </div>
-//   );
-// };
-// export default Products;
-
 import { useState } from "react";
 import ProductNav from "./ProductPageNav/ProductNav";
-import VirtualMachine from "./VirtualMachine.jsx";
-import ObjectStorage from "./ObjectStorage.jsx";
-import ArrayStorage from "./ArrayStorage.jsx";
+import VirtualMachine from "./MainProducts/VirtualMachine.jsx";
+import ObjectStorage from "./MainProducts/ObjectStorage.jsx";
+import ArrayStorage from "./MainProducts/ArrayStorage.jsx";
 
 const Products = () => {
   const [selectedComponent, setSelectedComponent] = useState(null);

@@ -1,5 +1,5 @@
+import "./productNav.scss";
 import { useState } from "react";
-import ListIcon from "@mui/icons-material/List";
 import NotesOutlinedIcon from "@mui/icons-material/NotesOutlined";
 
 const ProductNav = ({ onSelectComponent }) => {
@@ -62,10 +62,10 @@ const ProductNav = ({ onSelectComponent }) => {
 
       {/* This is the nav that's displayed when the screen is greater than mid */}
       <div className="relative hidden md:flex w-[12em] justify-center border h-screen shadow-lg pt-4  ">
-        <ul className="flex flex-col items-start gap-3">
+        <ul className="relative flex flex-col items-start gap-3">
           {links.map((link, index) => (
             <li
-              className="cursor-pointer"
+              className="relative cursor-pointer text-lg test"
               key={index}
               onClick={() => onSelectComponent(link.component)}
             >

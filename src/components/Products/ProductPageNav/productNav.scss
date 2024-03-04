@@ -1,0 +1,16 @@
+.test::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: -2px;
+  left: 0;
+  background-color: #f59e0b;
+  border-radius: 0.15em;
+  transform: scale(0);
+  transition: transform 0.3s ease;
+}
+
+.test:hover::after {
+  transform: scaleX(1);
+}

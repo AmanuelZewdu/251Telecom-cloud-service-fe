@@ -8,11 +8,9 @@ const ProductNav = ({ onSelectComponent }) => {
   };
 
   const links = [
-    { name: "Test", component: "Test" },
-    { name: "Test2", component: "Test2" },
-    // { name: "Virtual machine", component: "VirtualMachine" },
-    // { name: "Object storage", component: "ObjectStorage" },
-    // { name: "Array storage", component: "ArrayStorage" },
+    { name: "Virtual machine", component: "VirtualMachine" },
+    { name: "Object storage", component: "ObjectStorage" },
+    { name: "Array storage", component: "ArrayStorage" },
   ];
 
   const handleComponentClick = (componentName) => {

@@ -14,8 +14,9 @@
 
 import { useState } from "react";
 import ProductNav from "./ProductPageNav/ProductNav";
-import Test from "./Test.jsx";
-import Test2 from "./Test2.jsx";
+import VirtualMachine from "./VirtualMachine.jsx";
+import ObjectStorage from "./ObjectStorage.jsx";
+import ArrayStorage from "./ArrayStorage.jsx";
 
 const Products = () => {
   const [selectedComponent, setSelectedComponent] = useState(null);
@@ -30,8 +31,9 @@ const Products = () => {
         <ProductNav onSelectComponent={handleSelectComponent} />
       </div>
       <div className="w-full">
-        {selectedComponent === "Test" && <Test />}
-        {selectedComponent === "Test2" && <Test2 />}
+        {selectedComponent === "VirtualMachine" && <VirtualMachine />}
+        {selectedComponent === "ObjectStorage" && <ObjectStorage />}
+        {selectedComponent === "ArrayStorage" && <ArrayStorage />}
       </div>
     </div>
   );

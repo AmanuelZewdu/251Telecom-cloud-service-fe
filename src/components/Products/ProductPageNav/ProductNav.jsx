@@ -28,12 +28,13 @@ const ProductNav = ({ onSelectComponent }) => {
         ></div>
       )}
 
+      {/* This is the nav that's displayed when the screen is less than mid */}
       <div
         className={`fixed h-screen w-1/2 flex justify-center pt-[2em] text-center bg-white z-10 transition-all duration-500 ease-in-out ${
           navIsOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <ul>
+        <ul className="flex flex-col items-start gap-3">
           {links.map((link, index) => (
             <li
               key={index}
@@ -45,6 +46,7 @@ const ProductNav = ({ onSelectComponent }) => {
         </ul>
       </div>
 
+      {/* This is the icon that toggles the sidebar */}
       <div
         className={`fixed p-2 h-screen md:hidden ${
           navIsOpen ? "hidden" : "inline"
@@ -53,8 +55,9 @@ const ProductNav = ({ onSelectComponent }) => {
         <ListIcon sx={{ fontSize: 42 }} onClick={() => setNavIsOpen(true)} />
       </div>
 
-      <div className="fixed hidden md:block w-[12em] border h-screen shadow-lg pt-4">
-        <ul className="flex flex-col items-center justify-center">
+      {/* This is the nav that's displayed when the screen is greater than mid */}
+      <div className="fixed hidden md:flex w-[12em] justify-center border h-screen shadow-lg pt-4  ">
+        <ul className="flex flex-col items-start gap-3">
           {links.map((link, index) => (
             <li key={index} onClick={() => onSelectComponent(link.component)}>
               {link.name}

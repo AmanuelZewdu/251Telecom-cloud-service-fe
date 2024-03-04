@@ -17,6 +17,7 @@ const Products = () => {
         <ProductNav onSelectComponent={handleSelectComponent} />
       </div>
       <div className="w-full">
+        {selectedComponent === null && <VirtualMachine />}
         {selectedComponent === "VirtualMachine" && <VirtualMachine />}
         {selectedComponent === "ObjectStorage" && <ObjectStorage />}
         {selectedComponent === "ArrayStorage" && <ArrayStorage />}

@@ -37,10 +37,10 @@ const ProductNav = ({ onSelectComponent }) => {
           navIsOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <ul className="flex flex-col items-start gap-3">
+        <ul className="flex flex-col items-start gap-5">
           {links.map((link, index) => (
             <li
-              className={`relative cursor-pointer border-r-2 border-transparent text-lg pr-2 ${
+              className={`relative cursor-pointer border-b-2 border-transparent text-xl ${
                 index === activeLink ? "active-link" : ""
               }`}
               key={index}
@@ -54,23 +54,25 @@ const ProductNav = ({ onSelectComponent }) => {
 
       {/* This is the icon that toggles the sidebar */}
       <div
-        className={`fixed px-4 py-6 h-screen md:hidden text-gray-700 ${
+        className={`fixed px-2 py-5 h-screen md:hidden text-gray-600 ${
           navIsOpen ? "hidden" : "inline"
         } `}
       >
         {/* <ListIcon sx={{ fontSize: 42 }} onClick={() => setNavIsOpen(true)} /> */}
-        <NotesOutlinedIcon
-          sx={{ fontSize: 38 }}
-          onClick={() => setNavIsOpen(true)}
-        />
+        <div className="border-2 border-gray-600 p-1 rounded-md">
+          <NotesOutlinedIcon
+            sx={{ fontSize: 38 }}
+            onClick={() => setNavIsOpen(true)}
+          />
+        </div>
       </div>
 
       {/* This is the nav that's displayed when the screen is greater than mid */}
       <div className="relative hidden md:flex w-[12em] justify-center border h-screen shadow-lg pt-4  ">
-        <ul className="relative flex flex-col items-start gap-2">
+        <ul className="relative flex flex-col items-start gap-4">
           {links.map((link, index) => (
             <li
-              className={`relative cursor-pointer border-r-2 border-transparent text-lg pr-2 hoverEff ${
+              className={`relative cursor-pointer border-b-2 border-transparent text-xl hoverEff ${
                 index === activeLink ? "active-link" : ""
               }`}
               key={index}

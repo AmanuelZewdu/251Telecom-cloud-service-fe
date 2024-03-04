@@ -40,7 +40,7 @@ const ProductNav = ({ onSelectComponent }) => {
         <ul className="flex flex-col items-start gap-5">
           {links.map((link, index) => (
             <li
-              className={`relative cursor-pointer border-r-2 border-transparent text-xl pr-2 ${
+              className={`relative cursor-pointer border-b-2 border-transparent text-xl ${
                 index === activeLink ? "active-link" : ""
               }`}
               key={index}
@@ -72,7 +72,7 @@ const ProductNav = ({ onSelectComponent }) => {
         <ul className="relative flex flex-col items-start gap-4">
           {links.map((link, index) => (
             <li
-              className={`relative cursor-pointer border-r-2 border-transparent text-xl pr-2 hoverEff ${
+              className={`relative cursor-pointer border-b-2 border-transparent text-xl hoverEff ${
                 index === activeLink ? "active-link" : ""
               }`}
               key={index}

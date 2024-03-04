@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ListIcon from "@mui/icons-material/List";
+import NotesOutlinedIcon from "@mui/icons-material/NotesOutlined";
 
 const ProductNav = ({ onSelectComponent }) => {
   const [navIsOpen, setNavIsOpen] = useState(false);
@@ -48,18 +49,26 @@ const ProductNav = ({ onSelectComponent }) => {
 
       {/* This is the icon that toggles the sidebar */}
       <div
-        className={`fixed p-2 h-screen md:hidden ${
+        className={`fixed px-4 py-6 h-screen md:hidden text-gray-700 ${
           navIsOpen ? "hidden" : "inline"
         } `}
       >
-        <ListIcon sx={{ fontSize: 42 }} onClick={() => setNavIsOpen(true)} />
+        {/* <ListIcon sx={{ fontSize: 42 }} onClick={() => setNavIsOpen(true)} /> */}
+        <NotesOutlinedIcon
+          sx={{ fontSize: 38 }}
+          onClick={() => setNavIsOpen(true)}
+        />
       </div>
 
       {/* This is the nav that's displayed when the screen is greater than mid */}
       <div className="fixed hidden md:flex w-[12em] justify-center border h-screen shadow-lg pt-4  ">
         <ul className="flex flex-col items-start gap-3">
           {links.map((link, index) => (
-            <li key={index} onClick={() => onSelectComponent(link.component)}>
+            <li
+              className="cursor-pointer"
+              key={index}
+              onClick={() => onSelectComponent(link.component)}
+            >
               {link.name}
             </li>
           ))}

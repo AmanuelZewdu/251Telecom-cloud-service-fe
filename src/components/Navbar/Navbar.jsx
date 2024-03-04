@@ -40,17 +40,20 @@ const Navbar = () => {
 
   return (
     <div>
+      {/* This is the black overlay */}
       {navIsOpen && (
         <div
           onClick={() => setNavIsOpen(!navIsOpen)}
           className="fixed top-0 left-0 w-full h-screen bg-black/50 z-10"
         ></div>
       )}
+
       <nav
         className={`fixed w-full flex justify-between items-center z-20 p-3 xl:px-[10rem] mx-auto shadow-xl bg-amber-500 ${
           scrolled ? "bg-amber-500/80 backdrop-blur-sm" : ""
         }`}
       >
+        {/* This is the logo */}
         <div className="w-[250px]">
           <img
             className="max-w-full"
@@ -58,6 +61,8 @@ const Navbar = () => {
             alt="Your Company Logo"
           />
         </div>
+
+        {/* This is the nav that's displayed when the screen is greater than mid */}
         <div className="hidden md:block w-full">
           <ul className="flex justify-end gap-4" style={{ listStyle: "none" }}>
             {navigationLinks.map((link) => (
@@ -65,6 +70,8 @@ const Navbar = () => {
             ))}
           </ul>
         </div>
+
+        {/* This is the nav that's displayed when the screen is less than mid */}
         <div className="">
           <div className="md:hidden text-white">
             <MenuIcon sx={{ fontSize: 32 }} onClick={handleNav} />

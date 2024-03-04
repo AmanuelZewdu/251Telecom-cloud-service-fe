@@ -4,6 +4,7 @@ import NotesOutlinedIcon from "@mui/icons-material/NotesOutlined";
 
 const ProductNav = ({ onSelectComponent }) => {
   const [navIsOpen, setNavIsOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState(false);
   const handleNav = () => {
     setNavIsOpen(!navIsOpen);
   };
@@ -14,8 +15,9 @@ const ProductNav = ({ onSelectComponent }) => {
     { name: "Array storage", component: "ArrayStorage" },
   ];
 
-  const handleComponentClick = (componentName) => {
+  const handleComponentClick = (componentName, index) => {
     onSelectComponent(componentName);
+    setActiveLink(index);
     handleNav();
   };
 
@@ -38,8 +40,11 @@ const ProductNav = ({ onSelectComponent }) => {
         <ul className="flex flex-col items-start gap-3">
           {links.map((link, index) => (
             <li
+              className={`relative cursor-pointer border-r-2 border-transparent text-lg pr-2 ${
+                index === activeLink ? "active-link" : ""
+              }`}
               key={index}
-              onClick={() => handleComponentClick(link.component)}
+              onClick={() => handleComponentClick(link.component, index)}
             >
               {link.name}
             </li>
@@ -62,12 +67,17 @@ const ProductNav = ({ onSelectComponent }) => {
 
       {/* This is the nav that's displayed when the screen is greater than mid */}
       <div className="relative hidden md:flex w-[12em] justify-center border h-screen shadow-lg pt-4  ">
-        <ul className="relative flex flex-col items-start gap-3">
+        <ul className="relative flex flex-col items-start gap-2">
           {links.map((link, index) => (
             <li
-              className="relative cursor-pointer text-lg test"
+              className={`relative cursor-pointer border-r-2 border-transparent text-lg pr-2 hoverEff ${
+                index === activeLink ? "active-link" : ""
+              }`}
               key={index}
-              onClick={() => onSelectComponent(link.component)}
+              onClick={() => {
+                onSelectComponent(link.component);
+                setActiveLink(index);
+              }}
             >
               {link.name}
             </li>

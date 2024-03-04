@@ -55,11 +55,16 @@ const Navbar = () => {
       >
         {/* This is the logo */}
         <div className="w-[250px]">
-          <img
-            className="max-w-full"
-            src={require("../../shared/images/251Logo.png")}
-            alt="Your Company Logo"
-          />
+          <a
+            href="/
+          "
+          >
+            <img
+              className="max-w-full"
+              src={require("../../shared/images/251Logo.png")}
+              alt="Your Company Logo"
+            />
+          </a>
         </div>
 
         {/* This is the nav that's displayed when the screen is greater than mid */}

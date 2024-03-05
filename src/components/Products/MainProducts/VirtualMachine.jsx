@@ -16,7 +16,7 @@ const VirtualMachine = () => {
   return (
     <div className="h-screen w-full pt-6 text-center flex flex-col gap-8 p-2 md:text-left">
       <h1 className="text-2xl">Virtual Machine</h1>
-      <div className="border bg-gray-200 w-fit rounded-md p-1">
+      <div className="border bg-gray-200 w-fit rounded-md p-[4px] mx-auto md:mx-0">
         <Button
           sx={activeButton === "Default" ? style : { color: "gray" }}
           onClick={() => handleButtonClick("Default")}

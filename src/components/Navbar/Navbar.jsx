@@ -30,7 +30,7 @@ const Navbar = () => {
 
   const Link = ({ path, label }) => {
     return (
-      <li>
+      <li className="relative nav-hover">
         <a href={path}>{label}</a>
       </li>
     );
@@ -72,7 +72,9 @@ const Navbar = () => {
               <Link key={link.path} path={link.path} label={link.label} />
             ))}
           </ul>
-          <a href="/log-in">Log in</a>
+          <a className="relative nav-hover" href="/log-in">
+            Log in
+          </a>
         </div>
 
         {/* This is the nav that's displayed when the screen is less than mid */}

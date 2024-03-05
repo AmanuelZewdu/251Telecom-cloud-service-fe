@@ -1,3 +1,4 @@
+import "./logIn.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -18,22 +19,28 @@ const LogIn = () => {
     },
   });
   return (
-    <div className="w-full flex h-screen items-center justify-center gap-24 p-2">
-      <div className="hidden w-[30em] md:flex ">
+    <div className="w-full flex h-svh items-center justify-center p-2 login">
+      <div className="hidden w-[30em] lg:flex overflow-hidden">
         <img
           className="h-full w-full"
           src={require("../../shared/images/heroRightImage.png")}
           alt=""
         />
       </div>
-      <div className="flex-grow max-w-[30em] max-h-[30em]  border border-gray-500 p-4 rounded-lg">
-        <div className="flex flex-col gap-4">
-          <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
+      <div className="flex-grow max-w-[30em] max-h-[30em] bg-white rounded-sm">
+        <div className="flex flex-col gap-4 p-6">
+          <h1 className="text-xl font-medium text-gray-700">LOGIN</h1>
+          <hr className="border border-black/30" />
+          <form
+            onSubmit={formik.handleSubmit}
+            className="flex flex-col gap-4 text-black"
+          >
             <div className="w-full">
-              <label htmlFor="email">Email:</label>
+              {/* <label htmlFor="email">Email:</label> */}
               <input
-                className="w-full p-2 border border-gray-400 rounded-sm"
+                className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
                 id="email"
+                placeholder="Email"
                 type="email"
                 {...formik.getFieldProps("email")}
               />
@@ -42,10 +49,11 @@ const LogIn = () => {
               ) : null}
             </div>
             <div className="w-full">
-              <label htmlFor="password">Password</label>
+              {/* <label htmlFor="password">Password:</label> */}
               <input
-                className="w-full p-2 border border-gray-400 rounded-sm"
+                className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
                 id="password"
+                placeholder="Password"
                 type="password"
                 {...formik.getFieldProps("password")}
               />
@@ -60,11 +68,15 @@ const LogIn = () => {
               Log in
             </button>
           </form>
-
-          <div className="relative flex gap-2">
-            <p className="">Don't have an account?</p>
-            <a href="/sign-up" className="text-blue-700">
-              Sign up
+          <div className="relative flex flex-col-reverse md:flex-row justify-between gap-2">
+            <div className="flex gap-2">
+              <p className="">Don't have an account?</p>
+              <a href="/sign-up" className="text-blue-700">
+                Sign up
+              </a>
+            </div>
+            <a href="/forgot-password" className="text-gray-500">
+              Forgot password?
             </a>
           </div>
         </div>

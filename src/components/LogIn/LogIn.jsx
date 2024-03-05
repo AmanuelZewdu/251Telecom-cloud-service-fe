@@ -1,8 +1,17 @@
 import "./logIn.scss";
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const LogIn = () => {
+  const [visible, setVisibile] = useState(false);
+
+  const handleVisibility = () => {
+    setVisibile(!visible);
+  };
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -48,8 +57,9 @@ const LogIn = () => {
                 <div className="text-red-500">{formik.errors.email}</div>
               ) : null}
             </div>
-            <div className="w-full">
+            <div className="relative w-full">
               {/* <label htmlFor="password">Password:</label> */}
+
               <input
                 className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
                 id="password"
@@ -57,6 +67,18 @@ const LogIn = () => {
                 type="password"
                 {...formik.getFieldProps("password")}
               />
+              {visible ? (
+                <VisibilityIcon
+                  onClick={handleVisibility}
+                  className="absolute top-5 right-3 transform -translate-y-1/2 text-gray-500"
+                />
+              ) : (
+                <VisibilityOffIcon
+                  onClick={handleVisibility}
+                  className="absolute top-5 right-3 transform -translate-y-1/2 text-gray-500"
+                />
+              )}
+
               {formik.touched.password && formik.errors.password ? (
                 <div className="text-red-500">{formik.errors.password}</div>
               ) : null}

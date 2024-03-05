@@ -4,7 +4,7 @@ import NotesOutlinedIcon from "@mui/icons-material/NotesOutlined";
 
 const ProductNav = ({ onSelectComponent }) => {
   const [navIsOpen, setNavIsOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState(false);
+  const [activeLink, setActiveLink] = useState(0);
   const handleNav = () => {
     setNavIsOpen(!navIsOpen);
   };

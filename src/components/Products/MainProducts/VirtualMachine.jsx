@@ -30,7 +30,7 @@ const VirtualMachine = () => {
           Customize
         </Button>
       </div>
-      <div>
+      <div className="flex flex-col gap-4">
         <div className="border shadow-md flex text-left flex-col p-2 gap-2">
           <h2 className="text-lg font-semibold font-montserrat">
             Product details
@@ -40,6 +40,11 @@ const VirtualMachine = () => {
               Product type: <span className="font-medium">Virtual Machine</span>
             </h4>
           </div>
+        </div>
+        <div>
+          <Button href="/log-in" variant="contained">
+            Submit
+          </Button>
         </div>
       </div>
     </div>

@@ -31,9 +31,7 @@ const Navbar = () => {
   const Link = ({ path, label }) => {
     return (
       <li>
-        <a className="text-white" href={path}>
-          {label}
-        </a>
+        <a href={path}>{label}</a>
       </li>
     );
   };
@@ -68,12 +66,13 @@ const Navbar = () => {
         </div>
 
         {/* This is the nav that's displayed when the screen is greater than mid */}
-        <div className="hidden md:block w-full">
+        <div className="hidden md:flex w-full justify-end items-center gap-4 text-white">
           <ul className="flex justify-end gap-4" style={{ listStyle: "none" }}>
             {navigationLinks.map((link) => (
               <Link key={link.path} path={link.path} label={link.label} />
             ))}
           </ul>
+          <a href="/log-in">Log in</a>
         </div>
 
         {/* This is the nav that's displayed when the screen is less than mid */}
@@ -96,6 +95,7 @@ const Navbar = () => {
                 />
               ))}
             </ul>
+            <a href="/log-in">Log in</a>
           </div>
         </div>
       </nav>

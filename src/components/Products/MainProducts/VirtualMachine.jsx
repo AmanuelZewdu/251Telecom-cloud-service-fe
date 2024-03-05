@@ -43,7 +43,7 @@ const VirtualMachine = () => {
         </div>
         <div>
           <Button href="/log-in" variant="contained">
-            Submit
+            Purchase
           </Button>
         </div>
       </div>

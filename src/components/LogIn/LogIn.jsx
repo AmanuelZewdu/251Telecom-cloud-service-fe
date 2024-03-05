@@ -64,7 +64,7 @@ const LogIn = () => {
                 className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
                 id="password"
                 placeholder="Password"
-                type="password"
+                type={visible ? "text" : "password"}
                 {...formik.getFieldProps("password")}
               />
               {visible ? (

@@ -35,9 +35,25 @@ const SignUp = () => {
         .oneOf([Yup.ref("password"), null], "Passwords must match")
         .required("Password confirmation is required*"),
     }),
-    onSubmit: (values, { resetForm }) => {
-      console.log(values);
-      resetForm();
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        const res = await fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to submit form");
+        }
+
+        resetForm();
+        console.log("Form submitted successful");
+      } catch (error) {
+        console.error("Error:", error);
+      }
     },
   });
 
@@ -195,7 +211,7 @@ const SignUp = () => {
               className="w-full rounded-sm bg-primary-medium p-2 text-white hover:bg-primary-light"
               type="submit"
             >
-              Log in
+              Sign up
             </button>
           </form>
           <div className="flex flex-col-reverse md:flex-row justify-between gap-2">

@@ -1,11 +1,11 @@
-import "./logIn.scss";
+import "./signUp.scss";
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const LogIn = () => {
+const SignUp = () => {
   const [visible, setVisibile] = useState(false);
 
   const handleVisibility = () => {
@@ -14,10 +14,17 @@ const LogIn = () => {
 
   const formik = useFormik({
     initialValues: {
+      accountType: "",
+      fullName: "",
+      PhoneNumber: "",
       email: "",
       password: "",
+      ConfirmPassword: "",
     },
     validationSchema: Yup.object({
+      accountType: Yup.string().required("Please choose account type"),
+      fullName: Yup.string().required("Required"),
+      PhoneNumber: Yup.string().required("Required"),
       email: Yup.string().email("Invalid email address").required("Required"),
       password: Yup.string()
         .min(8, "Must be 8 characters or more")
@@ -28,7 +35,7 @@ const LogIn = () => {
     },
   });
   return (
-    <div className="w-full flex h-svh items-center justify-center p-2 login">
+    <div className="w-full flex h-svh items-center justify-center p-2 signup">
       <div className="hidden w-[30em] lg:flex overflow-hidden">
         <img
           className="h-full w-full"
@@ -36,14 +43,69 @@ const LogIn = () => {
           alt=""
         />
       </div>
-      <div className="flex-grow max-w-[30em] max-h-[30em] bg-white rounded-sm">
+      <div className="flex-grow max-w-[30em]  bg-white rounded-sm">
         <div className="flex flex-col gap-4 p-6">
-          <h1 className="text-xl font-medium text-gray-700">LOGIN</h1>
+          <h1 className="text-xl font-medium text-gray-700">SIGN UP</h1>
           <hr className="border border-black/30" />
+          <div className="flex items-center gap-4">
+            <div>
+              <input
+                className="mr-2"
+                type="radio"
+                id="personal"
+                name="accountType"
+                value="personal"
+                checked={formik.values.accountType === "personal"}
+                onChange={formik.handleChange}
+              />
+              <label htmlFor="personal">Personal</label>
+            </div>
+            <div>
+              <input
+                className="mr-2"
+                type="radio"
+                id="business"
+                name="accountType"
+                value="business"
+                checked={formik.values.accountType === "business"}
+                onChange={formik.handleChange}
+              />
+              <label htmlFor="business">Business</label>
+            </div>
+            {formik.touched.accountType && formik.errors.accountType ? (
+              <div className="text-red-500">{formik.errors.accountType}</div>
+            ) : null}
+          </div>
           <form
             onSubmit={formik.handleSubmit}
             className="flex flex-col gap-4 text-black"
           >
+            <div className="w-full">
+              {/* <label htmlFor="email">Email:</label> */}
+              <input
+                className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
+                id="fullName"
+                placeholder="Full name"
+                type="text"
+                {...formik.getFieldProps("fullName")}
+              />
+              {formik.touched.fullName && formik.errors.fullName ? (
+                <div className="text-red-500">{formik.errors.fullName}</div>
+              ) : null}
+            </div>
+            <div className="w-full">
+              {/* <label htmlFor="email">Email:</label> */}
+              <input
+                className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
+                id="PhoneNumber"
+                placeholder="Phone number"
+                type="number"
+                {...formik.getFieldProps("PhoneNumber")}
+              />
+              {formik.touched.PhoneNumber && formik.errors.PhoneNumber ? (
+                <div className="text-red-500">{formik.errors.PhoneNumber}</div>
+              ) : null}
+            </div>
             <div className="w-full">
               {/* <label htmlFor="email">Email:</label> */}
               <input
@@ -90,11 +152,11 @@ const LogIn = () => {
               Log in
             </button>
           </form>
-          <div className="relative flex flex-col-reverse md:flex-row justify-between gap-2">
+          <div className="flex flex-col-reverse md:flex-row justify-between gap-2">
             <div className="flex gap-2">
-              <p className="">Don't have an account?</p>
-              <a href="/sign-up" className="text-blue-700">
-                Sign up
+              <p className="">Already have an account?</p>
+              <a href="/log-in" className="text-blue-700">
+                Log in
               </a>
             </div>
             <a href="/forgot-password" className="text-gray-500">
@@ -106,4 +168,4 @@ const LogIn = () => {
     </div>
   );
 };
-export default LogIn;
+export default SignUp;

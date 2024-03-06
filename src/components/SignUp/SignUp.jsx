@@ -31,11 +31,15 @@ const SignUp = () => {
       password: Yup.string()
         .min(8, "Password must be 8 characters or more")
         .required("Password is required*"),
+      ConfirmPassword: Yup.string()
+        .oneOf([Yup.ref("password"), null], "Passwords must match")
+        .required("Password confirmation is required*"),
     }),
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      console.log(values);
     },
   });
+
   return (
     <div className="w-full flex h-svh items-center justify-center p-2 signup">
       <div className="hidden w-[30em] lg:flex overflow-hidden">
@@ -154,6 +158,35 @@ const SignUp = () => {
               {formik.touched.password && formik.errors.password ? (
                 <div className="text-red-600 text-xs mt-1">
                   {formik.errors.password}
+                </div>
+              ) : null}
+            </div>
+            <div className="relative w-full">
+              {/* <label htmlFor="password">Password:</label> */}
+
+              <input
+                className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
+                id="ConfirmPassword"
+                placeholder="ConfirmPassword"
+                type={visible ? "text" : "password"}
+                {...formik.getFieldProps("ConfirmPassword")}
+              />
+              {visible ? (
+                <VisibilityIcon
+                  onClick={handleVisibility}
+                  className="absolute top-5 right-3 transform -translate-y-1/2 text-gray-500"
+                />
+              ) : (
+                <VisibilityOffIcon
+                  onClick={handleVisibility}
+                  className="absolute top-5 right-3 transform -translate-y-1/2 text-gray-500"
+                />
+              )}
+
+              {formik.touched.ConfirmPassword &&
+              formik.errors.ConfirmPassword ? (
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.ConfirmPassword}
                 </div>
               ) : null}
             </div>

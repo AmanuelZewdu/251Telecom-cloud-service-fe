@@ -35,8 +35,9 @@ const SignUp = () => {
         .oneOf([Yup.ref("password"), null], "Passwords must match")
         .required("Password confirmation is required*"),
     }),
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       console.log(values);
+      resetForm();
     },
   });
 

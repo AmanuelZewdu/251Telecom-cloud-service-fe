@@ -22,13 +22,15 @@ const SignUp = () => {
       ConfirmPassword: "",
     },
     validationSchema: Yup.object({
-      accountType: Yup.string().required("Please choose account type"),
-      fullName: Yup.string().required("Required"),
-      PhoneNumber: Yup.string().required("Required"),
-      email: Yup.string().email("Invalid email address").required("Required"),
+      accountType: Yup.string().required("Please choose account type*"),
+      fullName: Yup.string().required("Full name is required*"),
+      PhoneNumber: Yup.string().required("Phone number is required*"),
+      email: Yup.string()
+        .email("Invalid email address")
+        .required("Email address is required*"),
       password: Yup.string()
-        .min(8, "Must be 8 characters or more")
-        .required("Required"),
+        .min(8, "Password must be 8 characters or more")
+        .required("Password is required*"),
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
@@ -73,7 +75,9 @@ const SignUp = () => {
               <label htmlFor="business">Business</label>
             </div>
             {formik.touched.accountType && formik.errors.accountType ? (
-              <div className="text-red-500">{formik.errors.accountType}</div>
+              <div className="text-red-600 text-xs mt-1">
+                {formik.errors.accountType}
+              </div>
             ) : null}
           </div>
           <form
@@ -90,7 +94,9 @@ const SignUp = () => {
                 {...formik.getFieldProps("fullName")}
               />
               {formik.touched.fullName && formik.errors.fullName ? (
-                <div className="text-red-500">{formik.errors.fullName}</div>
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.fullName}
+                </div>
               ) : null}
             </div>
             <div className="w-full">
@@ -103,7 +109,9 @@ const SignUp = () => {
                 {...formik.getFieldProps("PhoneNumber")}
               />
               {formik.touched.PhoneNumber && formik.errors.PhoneNumber ? (
-                <div className="text-red-500">{formik.errors.PhoneNumber}</div>
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.PhoneNumber}
+                </div>
               ) : null}
             </div>
             <div className="w-full">
@@ -116,7 +124,9 @@ const SignUp = () => {
                 {...formik.getFieldProps("email")}
               />
               {formik.touched.email && formik.errors.email ? (
-                <div className="text-red-500">{formik.errors.email}</div>
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.email}
+                </div>
               ) : null}
             </div>
             <div className="relative w-full">
@@ -142,7 +152,9 @@ const SignUp = () => {
               )}
 
               {formik.touched.password && formik.errors.password ? (
-                <div className="text-red-500">{formik.errors.password}</div>
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.password}
+                </div>
               ) : null}
             </div>
             <button

@@ -18,10 +18,12 @@ const LogIn = () => {
       password: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().email("Invalid email address").required("Required"),
+      email: Yup.string()
+        .email("Invalid email address")
+        .required("Email address is required*"),
       password: Yup.string()
-        .min(8, "Must be 8 characters or more")
-        .required("Required"),
+        .min(8, "Password must be 8 characters or more")
+        .required("Password is required*"),
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
@@ -54,7 +56,9 @@ const LogIn = () => {
                 {...formik.getFieldProps("email")}
               />
               {formik.touched.email && formik.errors.email ? (
-                <div className="text-red-500">{formik.errors.email}</div>
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.email}
+                </div>
               ) : null}
             </div>
             <div className="relative w-full">
@@ -80,7 +84,9 @@ const LogIn = () => {
               )}
 
               {formik.touched.password && formik.errors.password ? (
-                <div className="text-red-500">{formik.errors.password}</div>
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.password}
+                </div>
               ) : null}
             </div>
             <button

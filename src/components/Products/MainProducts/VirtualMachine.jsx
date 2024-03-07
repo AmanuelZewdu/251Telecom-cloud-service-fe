@@ -119,7 +119,7 @@ const VirtualMachine = () => {
           </div>
           <TableContainer
             component={Paper}
-            style={{ maxHeight: "20em", width: "60em" }}
+            style={{ maxHeight: "20em", maxWidth: "60em" }}
           >
             <Table
               sx={{ maxWidth: "50em" }}

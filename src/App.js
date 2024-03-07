@@ -4,6 +4,8 @@ import Home from "./components/Home/Home";
 import Console from "./components/Console/Console";
 import Products from "./components/Products/Products";
 import Navbar from "../src/components/Navbar/Navbar";
+import LogIn from "./components/LogIn/LogIn";
+import SignUp from "./components/SignUp/SignUp";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
               <Route index element={<Home />} />
               <Route path="console" element={<Console />} />
               <Route path="products" element={<Products />} />
+              <Route path="log-in" element={<LogIn />} />
+              <Route path="/sign-up" element={<SignUp />} />
             </Route>
           </Routes>
         </BrowserRouter>

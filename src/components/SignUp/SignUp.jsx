@@ -22,18 +22,41 @@ const SignUp = () => {
       ConfirmPassword: "",
     },
     validationSchema: Yup.object({
-      accountType: Yup.string().required("Please choose account type"),
-      fullName: Yup.string().required("Required"),
-      PhoneNumber: Yup.string().required("Required"),
-      email: Yup.string().email("Invalid email address").required("Required"),
+      accountType: Yup.string().required("Please choose account type*"),
+      fullName: Yup.string().required("Full name is required*"),
+      PhoneNumber: Yup.string().required("Phone number is required*"),
+      email: Yup.string()
+        .email("Invalid email address")
+        .required("Email address is required*"),
       password: Yup.string()
-        .min(8, "Must be 8 characters or more")
-        .required("Required"),
+        .min(8, "Password must be 8 characters or more")
+        .required("Password is required*"),
+      ConfirmPassword: Yup.string()
+        .oneOf([Yup.ref("password"), null], "Passwords must match")
+        .required("Password confirmation is required*"),
     }),
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        const res = await fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to submit form");
+        }
+
+        resetForm();
+        console.log("Form submitted successful");
+      } catch (error) {
+        console.error("Error:", error);
+      }
     },
   });
+
   return (
     <div className="w-full flex h-svh items-center justify-center p-2 signup">
       <div className="hidden w-[30em] lg:flex overflow-hidden">
@@ -73,7 +96,9 @@ const SignUp = () => {
               <label htmlFor="business">Business</label>
             </div>
             {formik.touched.accountType && formik.errors.accountType ? (
-              <div className="text-red-500">{formik.errors.accountType}</div>
+              <div className="text-red-600 text-xs mt-1">
+                {formik.errors.accountType}
+              </div>
             ) : null}
           </div>
           <form
@@ -90,7 +115,9 @@ const SignUp = () => {
                 {...formik.getFieldProps("fullName")}
               />
               {formik.touched.fullName && formik.errors.fullName ? (
-                <div className="text-red-500">{formik.errors.fullName}</div>
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.fullName}
+                </div>
               ) : null}
             </div>
             <div className="w-full">
@@ -103,7 +130,9 @@ const SignUp = () => {
                 {...formik.getFieldProps("PhoneNumber")}
               />
               {formik.touched.PhoneNumber && formik.errors.PhoneNumber ? (
-                <div className="text-red-500">{formik.errors.PhoneNumber}</div>
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.PhoneNumber}
+                </div>
               ) : null}
             </div>
             <div className="w-full">
@@ -116,7 +145,9 @@ const SignUp = () => {
                 {...formik.getFieldProps("email")}
               />
               {formik.touched.email && formik.errors.email ? (
-                <div className="text-red-500">{formik.errors.email}</div>
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.email}
+                </div>
               ) : null}
             </div>
             <div className="relative w-full">
@@ -142,14 +173,45 @@ const SignUp = () => {
               )}
 
               {formik.touched.password && formik.errors.password ? (
-                <div className="text-red-500">{formik.errors.password}</div>
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.password}
+                </div>
+              ) : null}
+            </div>
+            <div className="relative w-full">
+              {/* <label htmlFor="password">Password:</label> */}
+
+              <input
+                className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
+                id="ConfirmPassword"
+                placeholder="ConfirmPassword"
+                type={visible ? "text" : "password"}
+                {...formik.getFieldProps("ConfirmPassword")}
+              />
+              {visible ? (
+                <VisibilityIcon
+                  onClick={handleVisibility}
+                  className="absolute top-5 right-3 transform -translate-y-1/2 text-gray-500"
+                />
+              ) : (
+                <VisibilityOffIcon
+                  onClick={handleVisibility}
+                  className="absolute top-5 right-3 transform -translate-y-1/2 text-gray-500"
+                />
+              )}
+
+              {formik.touched.ConfirmPassword &&
+              formik.errors.ConfirmPassword ? (
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.ConfirmPassword}
+                </div>
               ) : null}
             </div>
             <button
               className="w-full rounded-sm bg-primary-medium p-2 text-white hover:bg-primary-light"
               type="submit"
             >
-              Log in
+              Sign up
             </button>
           </form>
           <div className="flex flex-col-reverse md:flex-row justify-between gap-2">

@@ -7,7 +7,7 @@ const style = {
 };
 
 const VirtualMachine = () => {
-  const [activeButton, setActiveButton] = useState("Default");
+  const [activeButton, setActiveButton] = useState("General Purpose");
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName === activeButton ? null : buttonName);
@@ -16,22 +16,28 @@ const VirtualMachine = () => {
   return (
     <div className="h-screen w-full pt-6 text-center flex flex-col gap-8 p-2 md:text-left">
       <h1 className="text-2xl">Virtual Machine</h1>
-      <div className="border bg-gray-200 w-fit rounded-md p-[4px] mx-auto md:mx-0">
-        <Button
-          sx={activeButton === "Default" ? style : { color: "gray" }}
-          onClick={() => handleButtonClick("Default")}
-        >
-          Default
-        </Button>
-        <Button
-          sx={activeButton === "Customize" ? style : { color: "gray" }}
-          onClick={() => handleButtonClick("Customize")}
-        >
-          Customize
-        </Button>
-      </div>
+      <details>
+        <summary>What is VM?</summary>
+        <p>
+          {" "}
+          Virtual machines represent a cornerstone of modern computing
+          infrastructure, offering unparalleled flexibility and scalability for
+          a diverse range of applications. Our virtual machine service provides
+          users with the ability to deploy and manage virtualized computing
+          environments effortlessly. Whether you're a small business or a large
+          enterprise, virtual machines empower you to run multiple operating
+          systems and applications on a single physical server, optimizing
+          resource utilization and reducing infrastructure costs. Enjoy seamless
+          migration, robust security features, and reliable performance as you
+          leverage the power of virtualization to streamline your operations and
+          drive innovation. With our virtual machine service, you can
+          confidently scale your computing resources to meet the evolving needs
+          of your business, ensuring maximum efficiency and agility in today's
+          dynamic digital landscape.
+        </p>
+      </details>
       <div className="flex flex-col gap-4">
-        <div className="border shadow-md flex text-left flex-col p-2 gap-2">
+        <form className="border shadow-md flex text-left flex-col p-2 gap-2">
           <h2 className="text-lg font-semibold font-montserrat">
             Product details
           </h2>
@@ -40,7 +46,49 @@ const VirtualMachine = () => {
               Product type: <span className="font-medium">Virtual Machine</span>
             </h4>
           </div>
-        </div>
+          <div className="flex items-center gap-1">
+            <h2 className="">VM type:</h2>
+            <div className="flex border bg-gray-100 w-fit rounded-md p-[0.25em] gap-3 md:mx-0">
+              <button
+                style={
+                  activeButton === "General Purpose" ? style : { color: "gray" }
+                }
+                onClick={() => handleButtonClick("General Purpose")}
+              >
+                General Purpose
+              </button>
+              <button
+                style={
+                  activeButton === "Memory-Optimized"
+                    ? style
+                    : { color: "gray" }
+                }
+                onClick={() => handleButtonClick("Memory-Optimized")}
+              >
+                General Purpose
+              </button>
+            </div>
+          </div>
+          <div className="flex gap-3 flex-wrap">
+            <h4>VM specifications:</h4>
+            <div className="flex gap-2">
+              <h4>vCPU</h4>
+              <select className="p-1">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+              </select>
+            </div>
+            <div className="flex gap-2">
+              <h4>Memory</h4>
+              <select className="p-1">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+              </select>
+            </div>
+          </div>
+        </form>
         <div>
           <Button href="/log-in" variant="contained">
             Purchase

@@ -1,35 +1,85 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
+import { memories, vCPUs } from "../../../shared/data/data.js";
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Checkbox from "@mui/material/Checkbox";
 
-const style = {
-  borderBottom: "1px solid #f59e0b",
-  color: "#f59e0b",
-};
+function createData(name, calories, fat, carbs, protein) {
+  return { name, calories, fat, carbs, protein };
+}
+
+const rows = [
+  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+  createData("Eclair", 262, 16.0, 24, 6.0),
+  createData("Cupcake", 305, 3.7, 67, 4.3),
+  createData("Gingerbread", 356, 16.0, 49, 3.9),
+  createData("air", 262, 16.0, 24, 6.0),
+  createData("Cake", 305, 3.7, 67, 4.3),
+  createData("Gingerbre", 356, 16.0, 49, 3.9),
+  createData("Eair", 262, 16.0, 24, 6.0),
+  createData("upcake", 305, 3.7, 67, 4.3),
+  createData("ngerbread", 356, 16.0, 49, 3.9),
+  createData("Ecir", 262, 16.0, 24, 6.0),
+  createData("Cupke", 305, 3.7, 67, 4.3),
+  createData("Gingbread", 356, 16.0, 49, 3.9),
+];
 
 const VirtualMachine = () => {
-  const [activeButton, setActiveButton] = useState("Default");
+  const [selectedRow, setSelectedRow] = useState(null);
 
-  const handleButtonClick = (buttonName) => {
-    setActiveButton(buttonName === activeButton ? null : buttonName);
+  const handleCheckboxClick = (name, row) => {
+    setSelectedRow(row);
+    console.log(selectedRow);
   };
 
+  const selectedRowIndex = selectedRow !== null ? selectedRow : -1;
+  const selectedRowData =
+    selectedRowIndex !== -1 ? rows[selectedRowIndex] : null;
+
+  let selectedRowJSON = null;
+
+  if (selectedRowData) {
+    selectedRowJSON = {
+      name: selectedRowData.name,
+      calories: selectedRowData.calories,
+      fat: selectedRowData.fat,
+      carbs: selectedRowData.carbs,
+      protein: selectedRowData.protein,
+    };
+  }
+
+  console.log(selectedRowJSON);
   return (
     <div className="h-screen w-full pt-6 text-center flex flex-col gap-8 p-2 md:text-left">
       <h1 className="text-2xl">Virtual Machine</h1>
-      <div className="border bg-gray-200 w-fit rounded-md p-[4px] mx-auto md:mx-0">
-        <Button
-          sx={activeButton === "Default" ? style : { color: "gray" }}
-          onClick={() => handleButtonClick("Default")}
-        >
-          Default
-        </Button>
-        <Button
-          sx={activeButton === "Customize" ? style : { color: "gray" }}
-          onClick={() => handleButtonClick("Customize")}
-        >
-          Customize
-        </Button>
-      </div>
+      <details>
+        <summary>What is VM?</summary>
+        <p>
+          {" "}
+          Virtual machines represent a cornerstone of modern computing
+          infrastructure, offering unparalleled flexibility and scalability for
+          a diverse range of applications. Our virtual machine service provides
+          users with the ability to deploy and manage virtualized computing
+          environments effortlessly. Whether you're a small business or a large
+          enterprise, virtual machines empower you to run multiple operating
+          systems and applications on a single physical server, optimizing
+          resource utilization and reducing infrastructure costs. Enjoy seamless
+          migration, robust security features, and reliable performance as you
+          leverage the power of virtualization to streamline your operations and
+          drive innovation. With our virtual machine service, you can
+          confidently scale your computing resources to meet the evolving needs
+          of your business, ensuring maximum efficiency and agility in today's
+          dynamic digital landscape.
+        </p>
+      </details>
       <div className="flex flex-col gap-4">
         <div className="border shadow-md flex text-left flex-col p-2 gap-2">
           <h2 className="text-lg font-semibold font-montserrat">
@@ -40,6 +90,79 @@ const VirtualMachine = () => {
               Product type: <span className="font-medium">Virtual Machine</span>
             </h4>
           </div>
+          <div className="flex gap-3 items-center flex-wrap">
+            <h4>VM specifications:</h4>
+            <div className="flex items-center gap-2">
+              <h4>vCPU</h4>
+              {
+                <select className="w-[8em] p-2 bg-gray-100 rounded-md">
+                  {vCPUs.map((vCPU) => (
+                    <option value={vCPU.name} key={vCPU.name}>
+                      {vCPU.name}
+                    </option>
+                  ))}
+                </select>
+              }
+            </div>
+            <div className="flex items-center gap-2">
+              <h4>Memory</h4>
+              {
+                <select className="w-[8em] p-2 bg-gray-100 rounded-md">
+                  {memories.map((memory) => (
+                    <option value={memory.size} key={memory.size}>
+                      {memory.size}
+                    </option>
+                  ))}
+                </select>
+              }
+            </div>
+          </div>
+          <TableContainer
+            component={Paper}
+            style={{ maxHeight: "20em", maxWidth: "60em" }}
+          >
+            <Table
+              sx={{ maxWidth: "50em" }}
+              size="small"
+              aria-label="a dense table"
+            >
+              <TableHead>
+                <TableRow>
+                  <TableCell padding="checkbox">
+                    <Checkbox color="primary" disabled />
+                  </TableCell>
+                  <TableCell>Dessert (100g serving)</TableCell>
+                  <TableCell align="right">Calories</TableCell>
+                  <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                  <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+                  <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row, index) => (
+                  <TableRow
+                    key={row.name}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell padding="checkbox">
+                      <Checkbox
+                        color="primary"
+                        checked={selectedRow === index}
+                        onChange={() => handleCheckboxClick(row.name, index)}
+                      />
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell align="right">{row.calories}</TableCell>
+                    <TableCell align="right">{row.fat}</TableCell>
+                    <TableCell align="right">{row.carbs}</TableCell>
+                    <TableCell align="right">{row.protein}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
         <div>
           <Button href="/log-in" variant="contained">

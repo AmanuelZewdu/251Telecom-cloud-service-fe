@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
-
+import { vCPUs, memories } from "../../../shared/data/data.js";
 const style = {
   borderBottom: "1px solid #f59e0b",
   color: "#f59e0b",
@@ -69,23 +69,31 @@ const VirtualMachine = () => {
               </button>
             </div>
           </div>
-          <div className="flex gap-3 flex-wrap">
+          <div className="flex gap-3 items-center flex-wrap">
             <h4>VM specifications:</h4>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               <h4>vCPU</h4>
-              <select className="p-1">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-              </select>
+              {
+                <select className="w-[6em] p-2 bg-gray-100 rounded-md">
+                  {vCPUs.map((vCPU) => (
+                    <option value={vCPU.name} key={vCPU.name}>
+                      {vCPU.name}
+                    </option>
+                  ))}
+                </select>
+              }
             </div>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               <h4>Memory</h4>
-              <select className="p-1">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-              </select>
+              {
+                <select className="w-[6em] p-2 bg-gray-100 rounded-md">
+                  {memories.map((memory) => (
+                    <option value={memory.size} key={memory.size}>
+                      {memory.size}
+                    </option>
+                  ))}
+                </select>
+              }
             </div>
           </div>
         </form>

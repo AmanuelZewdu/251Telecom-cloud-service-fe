@@ -27,3 +27,70 @@ export const services = [
     path: "/array-storage",
   },
 ];
+
+// vCPUS for product page
+export const vCPUs = [
+  { name: "Select" },
+  { name: "1 vCPU" },
+  { name: "2 vCPU" },
+  { name: "4 vCPU" },
+  { name: "8 vCPU" },
+  { name: "12 vCPU" },
+  { name: "16 vCPU" },
+  { name: "24 vCPU" },
+  { name: "32 vCPU" },
+  { name: "48 vCPU" },
+  { name: "64 vCPU" },
+  { name: "96 vCPU" },
+];
+
+// Memoru sizes for products page
+export const memories = [
+  { size: "Select" },
+  { size: "2 GB" },
+  { size: "4 GB" },
+  { size: "8 GB" },
+  { size: "16 GB" },
+  { size: "24 GB" },
+  { size: "32 GB" },
+  { size: "48 GB" },
+  { size: "64 GB" },
+  { size: "96 GB" },
+  { size: "128 GB" },
+  { size: "256 GB" },
+  { size: "384 GB" },
+];
+
+// Prodcts table
+export const headCells = [
+  {
+    id: "name",
+    numeric: false,
+    disablePadding: true,
+    label: "Dessert (100g serving)",
+  },
+  {
+    id: "calories",
+    numeric: true,
+    disablePadding: false,
+    label: "Calories",
+  },
+  {
+    id: "fat",
+    numeric: true,
+    disablePadding: false,
+    label: "Fat (g)",
+  },
+  {
+    id: "carbs",
+    numeric: true,
+    disablePadding: false,
+    label: "Carbs (g)",
+  },
+  {
+    id: "protein",
+    numeric: true,
+    disablePadding: false,
+    label: "Protein (g)",
+  },
+];

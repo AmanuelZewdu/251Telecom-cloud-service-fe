@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
-import { vCPUs, memories } from "../../../shared/data/data.js";
+import { memories, vCPUs } from "../../../shared/data/data.js";
 const style = {
   borderBottom: "1px solid #f59e0b",
   color: "#f59e0b",
@@ -37,7 +37,7 @@ const VirtualMachine = () => {
         </p>
       </details>
       <div className="flex flex-col gap-4">
-        <form className="border shadow-md flex text-left flex-col p-2 gap-2">
+        <div className="border shadow-md flex text-left flex-col p-2 gap-2">
           <h2 className="text-lg font-semibold font-montserrat">
             Product details
           </h2>
@@ -46,9 +46,9 @@ const VirtualMachine = () => {
               Product type: <span className="font-medium">Virtual Machine</span>
             </h4>
           </div>
-          <div className="flex items-center gap-1">
-            <h2 className="">VM type:</h2>
-            <div className="flex border bg-gray-100 w-fit rounded-md p-[0.25em] gap-3 md:mx-0">
+          <div className="flex items-center gap-3">
+            <h2 className="">VM type</h2>
+            <div className="border flex bg-gray-100 w-fit rounded-md p-[0.5em] gap-4 md:mx-0">
               <button
                 style={
                   activeButton === "General Purpose" ? style : { color: "gray" }
@@ -65,7 +65,7 @@ const VirtualMachine = () => {
                 }
                 onClick={() => handleButtonClick("Memory-Optimized")}
               >
-                General Purpose
+                Memory-Optimized
               </button>
             </div>
           </div>
@@ -74,7 +74,7 @@ const VirtualMachine = () => {
             <div className="flex items-center gap-2">
               <h4>vCPU</h4>
               {
-                <select className="w-[6em] p-2 bg-gray-100 rounded-md">
+                <select className="w-[8em] p-2 bg-gray-100 rounded-md">
                   {vCPUs.map((vCPU) => (
                     <option value={vCPU.name} key={vCPU.name}>
                       {vCPU.name}
@@ -86,7 +86,7 @@ const VirtualMachine = () => {
             <div className="flex items-center gap-2">
               <h4>Memory</h4>
               {
-                <select className="w-[6em] p-2 bg-gray-100 rounded-md">
+                <select className="w-[8em] p-2 bg-gray-100 rounded-md">
                   {memories.map((memory) => (
                     <option value={memory.size} key={memory.size}>
                       {memory.size}
@@ -96,7 +96,7 @@ const VirtualMachine = () => {
               }
             </div>
           </div>
-        </form>
+        </div>
         <div>
           <Button href="/log-in" variant="contained">
             Purchase

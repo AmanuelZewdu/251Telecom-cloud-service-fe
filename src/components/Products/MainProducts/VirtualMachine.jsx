@@ -23,6 +23,7 @@ const VirtualMachine = () => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [duration, setDuration] = useState("");
+  const [filteredRows, setFilteredRows] = useState(rows);
 
   // Selecting table row function starts here
   const handleCheckboxClick = (name, row) => {
@@ -42,7 +43,6 @@ const VirtualMachine = () => {
       vCPUs_memory: selectedRowData.vCPUs_memory,
     };
   }
-
   // Selecting table row function ends here
 
   // Radio buttons style start here
@@ -65,7 +65,6 @@ const VirtualMachine = () => {
     }
     return <StyledFormControlLabel checked={checked} {...props} />;
   }
-
   // Radio ends
 
   const addQuantity = () => {
@@ -88,6 +87,24 @@ const VirtualMachine = () => {
     setDuration(event.target.value);
   };
 
+  const handlevCPUFilter = (event) => {
+    const selectedvCPU = event.target.value;
+    console.log(selectedvCPU);
+    const newFilteredRows = rows.filter((row) =>
+      row.vCPUs_memory.includes(selectedvCPU)
+    );
+    setFilteredRows(newFilteredRows);
+  };
+
+  // Event handler for Memory select
+  const handleMemoryFilter = (event) => {
+    const selectedMemory = event.target.value;
+    console.log(selectedMemory);
+    const newFilteredRows = rows.filter((row) =>
+      row.vCPUs_memory.includes(selectedMemory)
+    );
+    setFilteredRows(newFilteredRows);
+  };
   return (
     <div className="h-screen w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left">
       <h1 className="text-2xl">Virtual Machine</h1>
@@ -127,20 +144,32 @@ const VirtualMachine = () => {
             <h4>VM specifications:</h4>
             <div className="flex items-center gap-2">
               <h4>vCPU</h4>
-              {
-                <select className="w-[8em] p-2 bg-gray-100 rounded-md">
-                  {vCPUs.map((vCPU) => (
-                    <option value={vCPU.name} key={vCPU.name}>
-                      {vCPU.name}
-                    </option>
-                  ))}
-                </select>
-              }
+              <select
+                className="w-[8em] p-2 bg-gray-100 rounded-md"
+                defaultValue="" // Set defaultValue to an empty string for "Select" option
+                onChange={handlevCPUFilter}
+              >
+                <option value="" disabled hidden>
+                  Select
+                </option>
+                {vCPUs.map((vCPU) => (
+                  <option value={vCPU.name} key={vCPU.name}>
+                    {vCPU.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="flex items-center gap-2">
               <h4>Memory</h4>
               {
-                <select className="w-[8em] p-2 bg-gray-100 rounded-md">
+                <select
+                  className="w-[8em] p-2 bg-gray-100 rounded-md"
+                  defaultValue=""
+                  onChange={handleMemoryFilter}
+                >
+                  <option value="" disabled hidden>
+                    Select
+                  </option>
                   {memories.map((memory) => (
                     <option value={memory.size} key={memory.size}>
                       {memory.size}
@@ -167,7 +196,7 @@ const VirtualMachine = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row, index) => (
+                {filteredRows.map((row, index) => (
                   <TableRow
                     key={row.name}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

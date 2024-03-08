@@ -13,11 +13,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
-import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import RadioGroup, { useRadioGroup } from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 function createData(name, vCPUS_memory) {
   return { name, vCPUS_memory };
@@ -43,6 +44,8 @@ const rows = [
 const VirtualMachine = () => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [duration, setDuration] = useState("");
+
   // Selecting table row function starts here
   const handleCheckboxClick = (name, row) => {
     setSelectedRow(row);
@@ -101,6 +104,10 @@ const VirtualMachine = () => {
     if (!isNaN(newValue) && newValue >= 0) {
       setQuantity(newValue);
     }
+  };
+
+  const handleChange = (event) => {
+    setDuration(event.target.value);
   };
 
   return (
@@ -228,32 +235,65 @@ const VirtualMachine = () => {
         </div>
         <div className="border shadow-md flex text-left flex-col p-2 gap-2">
           <h4 className="text-lg font-semibold font-montserrat">Quantity</h4>
-          <div className="w-full border border-gray-200 flex items-center justify-between rounded-md overflow-hidden md:w-[20em]">
+          <div className="w-full border flex items-center justify-between rounded-md overflow-hidden md:w-[15em]">
             <div
               onClick={reduceQuanntity}
-              className="p-3 bg-gray-300 cursor-pointer"
+              className="p-1 bg-gray-200 cursor-pointer"
             >
-              <RemoveIcon className="text-gray-600" />
+              <RemoveIcon className="text-black" />
             </div>
             <input
               type="number"
               value={quantity}
               onChange={handleQuantityChange}
-              className="text-center outline-none  w-full p- md:w-[10em]"
+              className="text-center outline-none  w-full md:w-[10em]"
             />
-            <div className="p-3 bg-gray-300 cursor-pointer">
-              <AddIcon className="text-gray-600" onClick={addQuantity} />
+            <div className="p-1 bg-gray-200 cursor-pointer">
+              <AddIcon className="text-black" onClick={addQuantity} />
             </div>
           </div>
-          <div className="flex gap-2">
-            <label>Duration</label>
-            <select name="duration" className="w-[6em]">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
+          <div className="flex gap-4 items-center">
+            <div className="flex gap-2">
+              <label>Duration</label>
+              <h2>text</h2>
+              <select name="duration" className="w-[6em]">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+            <FormControl>
+              <RadioGroup
+                row
+                aria-labelledby="demo-controlled-radio-buttons-group"
+                name="controlled-radio-buttons-group"
+                value={duration}
+                onChange={handleChange}
+              >
+                <button
+                  className={`${
+                    duration === "month"
+                      ? "bg-primary-medium text-white"
+                      : "bg-slate-200"
+                  } p-1 text-sm w-[5em] rounded-l-md md:text-base`}
+                  onClick={() => setDuration("month")}
+                >
+                  Month
+                </button>
+                <button
+                  className={`${
+                    duration === "year"
+                      ? "bg-primary-medium text-white"
+                      : "bg-gray-200"
+                  } p-1 text-sm w-[5em] rounded-r-md md:text-base border-gray-400 border-s`}
+                  onClick={() => setDuration("year")}
+                >
+                  Year
+                </button>
+              </RadioGroup>
+            </FormControl>
           </div>
         </div>
         <div>

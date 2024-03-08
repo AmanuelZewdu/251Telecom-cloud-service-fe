@@ -87,24 +87,50 @@ const VirtualMachine = () => {
     setDuration(event.target.value);
   };
 
+  // const handlevCPUFilter = (event) => {
+  //   const selectedvCPU = event.target.value;
+  //   console.log(selectedvCPU);
+  //   const newFilteredRows = rows.filter((row) =>
+  //     row.vCPUs_memory.includes(selectedvCPU)
+  //   );
+  //   setFilteredRows(newFilteredRows);
+  // };
+
+  // // Event handler for Memory select
+  // const handleMemoryFilter = (event) => {
+  //   const selectedMemory = event.target.value;
+  //   console.log(selectedMemory);
+  //   const newFilteredRows = rows.filter((row) =>
+  //     row.vCPUs_memory.includes(selectedMemory)
+  //   );
+  //   setFilteredRows(newFilteredRows);
+  // };
   const handlevCPUFilter = (event) => {
     const selectedvCPU = event.target.value;
-    console.log(selectedvCPU);
-    const newFilteredRows = rows.filter((row) =>
-      row.vCPUs_memory.includes(selectedvCPU)
+    const selectedMemory = document.getElementById("memorySelect").value;
+
+    const newFilteredRows = rows.filter(
+      (row) =>
+        row.vCPUs_memory.includes(selectedvCPU) &&
+        row.vCPUs_memory.includes(selectedMemory)
     );
+
     setFilteredRows(newFilteredRows);
   };
 
-  // Event handler for Memory select
   const handleMemoryFilter = (event) => {
     const selectedMemory = event.target.value;
-    console.log(selectedMemory);
-    const newFilteredRows = rows.filter((row) =>
-      row.vCPUs_memory.includes(selectedMemory)
+    const selectedvCPU = document.getElementById("vCPUSelect").value;
+
+    const newFilteredRows = rows.filter(
+      (row) =>
+        row.vCPUs_memory.includes(selectedvCPU) &&
+        row.vCPUs_memory.includes(selectedMemory)
     );
+
     setFilteredRows(newFilteredRows);
   };
+
   return (
     <div className="h-screen w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left">
       <h1 className="text-2xl">Virtual Machine</h1>
@@ -145,8 +171,9 @@ const VirtualMachine = () => {
             <div className="flex items-center gap-2">
               <h4>vCPU</h4>
               <select
+                id="vCPUSelect"
                 className="w-[8em] p-2 bg-gray-100 rounded-md"
-                defaultValue="" // Set defaultValue to an empty string for "Select" option
+                defaultValue=""
                 onChange={handlevCPUFilter}
               >
                 <option value="" disabled hidden>
@@ -163,6 +190,7 @@ const VirtualMachine = () => {
               <h4>Memory</h4>
               {
                 <select
+                  id="memorySelect"
                   className="w-[8em] p-2 bg-gray-100 rounded-md"
                   defaultValue=""
                   onChange={handleMemoryFilter}

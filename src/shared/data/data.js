@@ -94,3 +94,19 @@ export const headCells = [
     label: "Protein (g)",
   },
 ];
+
+export const rows = [
+  { name: "rozen", vCPUs_memory: 159 },
+  { name: "Ice cream sandwich", vCPUs_memory: "237" },
+  { name: "Eclair", vCPUs_memory: "262" },
+  { name: "Cupcake", vCPUs_memory: "305" },
+  { name: "air", vCPUs_memory: "262" },
+  { name: "Cake", vCPUs_memory: "305" },
+  { name: "Gingerbre", vCPUs_memory: "356" },
+  { name: "Eair", vCPUs_memory: "262" },
+  { name: "upcake", vCPUs_memory: "305" },
+  { name: "ngerbread", vCPUs_memory: "356" },
+  { name: "Ecir", vCPUs_memory: "262" },
+  { name: "Cupke", vCPUs_memory: "305" },
+  { name: "Gingbread", vCPUs_memory: "356" },
+];

@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useState } from "react";
-import { memories, vCPUs } from "../../../shared/data/data.js";
+import { memories, vCPUs, rows } from "../../../shared/data/data.js";
 import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -20,26 +20,15 @@ import Radio from "@mui/material/Radio";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 
-function createData(name, vCPUS_memory) {
-  return { name, vCPUS_memory };
+function createData(name, vCPUs_memory) {
+  const rowData = rows.find((row) => row.name === name && row.vCPUs_memory);
+  if (rowData) {
+    return {
+      name,
+      vCPUs_memory,
+    };
+  }
 }
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-  createData("air", 262, 16.0, 24, 6.0),
-  createData("Cake", 305, 3.7, 67, 4.3),
-  createData("Gingerbre", 356, 16.0, 49, 3.9),
-  createData("Eair", 262, 16.0, 24, 6.0),
-  createData("upcake", 305, 3.7, 67, 4.3),
-  createData("ngerbread", 356, 16.0, 49, 3.9),
-  createData("Ecir", 262, 16.0, 24, 6.0),
-  createData("Cupke", 305, 3.7, 67, 4.3),
-  createData("Gingbread", 356, 16.0, 49, 3.9),
-];
 
 const VirtualMachine = () => {
   const [selectedRow, setSelectedRow] = useState(null);
@@ -61,7 +50,7 @@ const VirtualMachine = () => {
   if (selectedRowData) {
     selectedRowJSON = {
       name: selectedRowData.name,
-      vCPUS_memory: selectedRowData.vCPUS_memory,
+      vCPUs_memory: selectedRowData.vCPUs_memory,
     };
   }
 
@@ -185,7 +174,7 @@ const VirtualMachine = () => {
                 <TableRow>
                   <TableCell></TableCell>
                   <TableCell>Flavor name</TableCell>
-                  <TableCell align="left">vCPUS_memory</TableCell>
+                  <TableCell align="left">vCPUs_memory</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -204,7 +193,7 @@ const VirtualMachine = () => {
                     <TableCell component="th" scope="row">
                       {row.name}
                     </TableCell>
-                    <TableCell align="left">{row.vCPUS_memory}</TableCell>
+                    <TableCell align="left">{row.vCPUs_memory}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

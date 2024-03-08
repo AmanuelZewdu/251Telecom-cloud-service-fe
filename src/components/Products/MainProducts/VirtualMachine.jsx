@@ -18,17 +18,6 @@ import RadioGroup, { useRadioGroup } from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-
-function createData(name, vCPUs_memory) {
-  const rowData = rows.find((row) => row.name === name && row.vCPUs_memory);
-  if (rowData) {
-    return {
-      name,
-      vCPUs_memory,
-    };
-  }
-}
 
 const VirtualMachine = () => {
   const [selectedRow, setSelectedRow] = useState(null);

@@ -113,7 +113,6 @@ const VirtualMachine = () => {
   return (
     <div className="h-screen w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left">
       <h1 className="text-2xl">Virtual Machine</h1>
-
       <details className="open:bg-white dark:open:bg-gray-100 p-2 open:shadow-lg  rounded-md">
         <summary className="text-sm leading-6 text-slate-900 select-none">
           What is VM?
@@ -136,7 +135,6 @@ const VirtualMachine = () => {
           dynamic digital landscape.
         </p>
       </details>
-
       <div className="flex flex-col gap-4">
         <div className="border shadow-md flex text-left flex-col p-2 gap-2">
           <h2 className="text-lg font-semibold font-montserrat">
@@ -212,11 +210,13 @@ const VirtualMachine = () => {
               </TableBody>
             </Table>
           </TableContainer>
-          <div className="flex flex-col w-full gap-2">
+        </div>
+        <div className="border shadow-md flex text-left flex-col p-2 gap-2">
+          <div className="mt-4 flex flex-col w-ful">
             <h4 className="text-lg font-semibold font-montserrat">
               Image Management
             </h4>
-            <div className="flex gap-4 items-center ">
+            <div className="flex gap-2 items-center ">
               <h4>Image:</h4>
               <RadioGroup row name="use-radio-group" defaultValue="windows">
                 <MyFormControlLabel
@@ -232,15 +232,13 @@ const VirtualMachine = () => {
               </RadioGroup>
             </div>
           </div>
-        </div>
-        <div className="border shadow-md flex text-left flex-col p-2 gap-2">
           <h4 className="text-lg font-semibold font-montserrat">Quantity</h4>
           <div className="w-full border flex items-center justify-between rounded-md overflow-hidden md:w-[15em]">
             <div
               onClick={reduceQuanntity}
               className="p-1 bg-gray-200 cursor-pointer"
             >
-              <RemoveIcon className="text-black" />
+              <RemoveIcon className="text-gray-500" />
             </div>
             <input
               type="number"
@@ -249,14 +247,17 @@ const VirtualMachine = () => {
               className="text-center outline-none  w-full md:w-[10em]"
             />
             <div className="p-1 bg-gray-200 cursor-pointer">
-              <AddIcon className="text-black" onClick={addQuantity} />
+              <AddIcon className="text-gray-500" onClick={addQuantity} />
             </div>
           </div>
-          <div className="flex gap-4 items-center">
+          <div className="mt-4 flex gap-4 items-center">
             <div className="flex gap-2">
-              <label>Duration</label>
-              <h2>text</h2>
-              <select name="duration" className="w-[6em]">
+              <label>Duration:</label>
+
+              <select
+                name="duration"
+                className="w-[8em] p-2 bg-gray-100 rounded-md"
+              >
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -276,7 +277,7 @@ const VirtualMachine = () => {
                   className={`${
                     duration === "month"
                       ? "bg-primary-medium text-white"
-                      : "bg-slate-200"
+                      : "bg-slate-200 text-gray-500"
                   } p-1 text-sm w-[5em] rounded-l-md md:text-base`}
                   onClick={() => setDuration("month")}
                 >
@@ -286,7 +287,7 @@ const VirtualMachine = () => {
                   className={`${
                     duration === "year"
                       ? "bg-primary-medium text-white"
-                      : "bg-gray-200"
+                      : "bg-slate-200 text-gray-500"
                   } p-1 text-sm w-[5em] rounded-r-md md:text-base border-gray-400 border-s`}
                   onClick={() => setDuration("year")}
                 >
@@ -294,6 +295,14 @@ const VirtualMachine = () => {
                 </button>
               </RadioGroup>
             </FormControl>
+          </div>
+          <div className="flex gap-2">
+            <label htmlFor="auto_renewal">Auto-Renewal:</label>
+            <input
+              className="accent-primary-medium caret-white"
+              type="checkbox"
+              name="auto_renewal"
+            />
           </div>
         </div>
         <div>

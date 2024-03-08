@@ -124,8 +124,8 @@ const VirtualMachine = () => {
 
     const newFilteredRows = rows.filter(
       (row) =>
-        row.vCPUs_memory.includes(selectedvCPU) &&
-        row.vCPUs_memory.includes(selectedMemory)
+        row.vCPUs_memory.includes(selectedMemory) &&
+        row.vCPUs_memory.includes(selectedvCPU)
     );
 
     setFilteredRows(newFilteredRows);

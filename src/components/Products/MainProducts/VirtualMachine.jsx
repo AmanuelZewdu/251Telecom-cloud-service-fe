@@ -1,4 +1,7 @@
+import "./mainProducts.scss";
 import { Button } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import { useState } from "react";
 import { memories, vCPUs } from "../../../shared/data/data.js";
 import * as React from "react";
@@ -39,7 +42,8 @@ const rows = [
 
 const VirtualMachine = () => {
   const [selectedRow, setSelectedRow] = useState(null);
-
+  const [quantity, setQuantity] = useState(1);
+  // Selecting table row function starts here
   const handleCheckboxClick = (name, row) => {
     setSelectedRow(row);
     console.log(selectedRow);
@@ -58,28 +62,46 @@ const VirtualMachine = () => {
     };
   }
 
+  // Selecting table row function ends here
+
   // Radio buttons style start here
-  const StyledFormControlLabel = styled((props) => (
-    <FormControlLabel {...props} />
-  ))(({ theme, checked }) => ({
-    ".MuiFormControlLabel-label": checked && {
-      color: "#f59e0b",
-    },
-  }));
+  const StyledFormControlLabel = styled(FormControlLabel)(
+    ({ theme, checked }) => ({
+      ".MuiRadio-root": {
+        color: checked ? "#f59e0b" : "inherit", // Change radio color to yellow when checked
+      },
+      ".MuiFormControlLabel-label": {
+        color: checked ? "#f59e0b" : "inherit", // Change label color to yellow when checked
+      },
+    })
+  );
 
   function MyFormControlLabel(props) {
     const radioGroup = useRadioGroup();
-
     let checked = false;
-
     if (radioGroup) {
       checked = radioGroup.value === props.value;
     }
-
     return <StyledFormControlLabel checked={checked} {...props} />;
   }
 
   // Radio ends
+
+  const addQuantity = () => {
+    setQuantity((prev) => prev + 1);
+    console.log("clicked");
+  };
+
+  const reduceQuanntity = () => {
+    setQuantity((prev) => prev - 1);
+  };
+
+  const handleQuantityChange = (event) => {
+    const newValue = parseInt(event.target.value);
+    if (!isNaN(newValue) && newValue >= 0) {
+      setQuantity(newValue);
+    }
+  };
 
   return (
     <div className="h-screen w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left">
@@ -187,21 +209,51 @@ const VirtualMachine = () => {
             <h4 className="text-lg font-semibold font-montserrat">
               Image Management
             </h4>
-            <div className="flex gap-4">
+            <div className="flex gap-4 items-center ">
               <h4>Image:</h4>
-              <RadioGroup name="use-radio-group" defaultValue="first">
+              <RadioGroup row name="use-radio-group" defaultValue="windows">
                 <MyFormControlLabel
-                  value="first"
-                  label="First"
+                  value="windows"
+                  label="Windows"
                   control={<Radio />}
                 />
                 <MyFormControlLabel
-                  value="second"
-                  label="Second"
+                  value="linux"
+                  label="Linux"
                   control={<Radio />}
                 />
               </RadioGroup>
             </div>
+          </div>
+        </div>
+        <div className="border shadow-md flex text-left flex-col p-2 gap-2">
+          <h4 className="text-lg font-semibold font-montserrat">Quantity</h4>
+          <div className="w-full border border-gray-200 flex items-center justify-between rounded-md overflow-hidden md:w-[20em]">
+            <div
+              onClick={reduceQuanntity}
+              className="p-3 bg-gray-300 cursor-pointer"
+            >
+              <RemoveIcon className="text-gray-600" />
+            </div>
+            <input
+              type="number"
+              value={quantity}
+              onChange={handleQuantityChange}
+              className="text-center outline-none  w-full p- md:w-[10em]"
+            />
+            <div className="p-3 bg-gray-300 cursor-pointer">
+              <AddIcon className="text-gray-600" onClick={addQuantity} />
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <label>Duration</label>
+            <select name="duration" className="w-[6em]">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
           </div>
         </div>
         <div>

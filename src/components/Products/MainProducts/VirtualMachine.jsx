@@ -10,9 +10,14 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
+import PropTypes from "prop-types";
+import { styled } from "@mui/material/styles";
+import RadioGroup, { useRadioGroup } from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Radio from "@mui/material/Radio";
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(name, vCPUS_memory) {
+  return { name, vCPUS_memory };
 }
 
 const rows = [
@@ -49,20 +54,42 @@ const VirtualMachine = () => {
   if (selectedRowData) {
     selectedRowJSON = {
       name: selectedRowData.name,
-      calories: selectedRowData.calories,
-      fat: selectedRowData.fat,
-      carbs: selectedRowData.carbs,
-      protein: selectedRowData.protein,
+      vCPUS_memory: selectedRowData.vCPUS_memory,
     };
   }
 
-  console.log(selectedRowJSON);
+  // Radio buttons style start here
+  const StyledFormControlLabel = styled((props) => (
+    <FormControlLabel {...props} />
+  ))(({ theme, checked }) => ({
+    ".MuiFormControlLabel-label": checked && {
+      color: "#f59e0b",
+    },
+  }));
+
+  function MyFormControlLabel(props) {
+    const radioGroup = useRadioGroup();
+
+    let checked = false;
+
+    if (radioGroup) {
+      checked = radioGroup.value === props.value;
+    }
+
+    return <StyledFormControlLabel checked={checked} {...props} />;
+  }
+
+  // Radio ends
+
   return (
-    <div className="h-screen w-full pt-6 text-center flex flex-col gap-8 p-2 md:text-left">
+    <div className="h-screen w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left">
       <h1 className="text-2xl">Virtual Machine</h1>
-      <details>
-        <summary>What is VM?</summary>
-        <p>
+
+      <details className="open:bg-white dark:open:bg-gray-100 p-2 open:shadow-lg  rounded-md">
+        <summary className="text-sm leading-6 text-slate-900 select-none">
+          What is VM?
+        </summary>
+        <p className="mt-3 text-sm leading-6 text-slate-900">
           {" "}
           Virtual machines represent a cornerstone of modern computing
           infrastructure, offering unparalleled flexibility and scalability for
@@ -80,6 +107,7 @@ const VirtualMachine = () => {
           dynamic digital landscape.
         </p>
       </details>
+
       <div className="flex flex-col gap-4">
         <div className="border shadow-md flex text-left flex-col p-2 gap-2">
           <h2 className="text-lg font-semibold font-montserrat">
@@ -119,7 +147,7 @@ const VirtualMachine = () => {
           </div>
           <TableContainer
             component={Paper}
-            style={{ maxHeight: "20em", maxWidth: "60em" }}
+            style={{ maxHeight: "20em", maxWidth: "40em" }}
           >
             <Table
               sx={{ maxWidth: "50em" }}
@@ -128,14 +156,9 @@ const VirtualMachine = () => {
             >
               <TableHead>
                 <TableRow>
-                  <TableCell padding="checkbox">
-                    <Checkbox color="primary" disabled />
-                  </TableCell>
-                  <TableCell>Dessert (100g serving)</TableCell>
-                  <TableCell align="right">Calories</TableCell>
-                  <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                  <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                  <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                  <TableCell></TableCell>
+                  <TableCell>Flavor name</TableCell>
+                  <TableCell align="left">vCPUS_memory</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -154,15 +177,32 @@ const VirtualMachine = () => {
                     <TableCell component="th" scope="row">
                       {row.name}
                     </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
+                    <TableCell align="left">{row.vCPUS_memory}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </TableContainer>
+          <div className="flex flex-col w-full gap-2">
+            <h4 className="text-lg font-semibold font-montserrat">
+              Image Management
+            </h4>
+            <div className="flex gap-4">
+              <h4>Image:</h4>
+              <RadioGroup name="use-radio-group" defaultValue="first">
+                <MyFormControlLabel
+                  value="first"
+                  label="First"
+                  control={<Radio />}
+                />
+                <MyFormControlLabel
+                  value="second"
+                  label="Second"
+                  control={<Radio />}
+                />
+              </RadioGroup>
+            </div>
+          </div>
         </div>
         <div>
           <Button href="/log-in" variant="contained">

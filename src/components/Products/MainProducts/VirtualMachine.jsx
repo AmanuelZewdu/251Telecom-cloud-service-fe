@@ -136,7 +136,7 @@ const VirtualMachine = () => {
         </p>
       </details>
       <div className="flex flex-col gap-4">
-        <div className="border shadow-md flex text-left flex-col p-2 gap-2">
+        <div className="border shadow-md flex text-left flex-col p-4 gap-2">
           <h2 className="text-lg font-semibold font-montserrat">
             Product details
           </h2>
@@ -211,7 +211,7 @@ const VirtualMachine = () => {
             </Table>
           </TableContainer>
         </div>
-        <div className="border shadow-md flex text-left flex-col p-2 gap-2">
+        <div className="border shadow-md flex text-left flex-col p-4 gap-6">
           <div className="mt-4 flex flex-col w-ful">
             <h4 className="text-lg font-semibold font-montserrat">
               Image Management
@@ -232,22 +232,24 @@ const VirtualMachine = () => {
               </RadioGroup>
             </div>
           </div>
-          <h4 className="text-lg font-semibold font-montserrat">Quantity</h4>
-          <div className="w-full border flex items-center justify-between rounded-md overflow-hidden md:w-[15em]">
-            <div
-              onClick={reduceQuanntity}
-              className="p-1 bg-gray-200 cursor-pointer"
-            >
-              <RemoveIcon className="text-gray-500" />
-            </div>
-            <input
-              type="number"
-              value={quantity}
-              onChange={handleQuantityChange}
-              className="text-center outline-none  w-full md:w-[10em]"
-            />
-            <div className="p-1 bg-gray-200 cursor-pointer">
-              <AddIcon className="text-gray-500" onClick={addQuantity} />
+          <div className="flex flex-col gap-2">
+            <h4 className="text-lg font-semibold font-montserrat">Quantity</h4>
+            <div className="w-full border flex items-center justify-between rounded-md overflow-hidden md:w-[15em]">
+              <div
+                onClick={reduceQuanntity}
+                className="p-1 bg-gray-200 cursor-pointer"
+              >
+                <RemoveIcon className="text-gray-500" />
+              </div>
+              <input
+                type="number"
+                value={quantity}
+                onChange={handleQuantityChange}
+                className="text-center outline-none  w-full md:w-[10em]"
+              />
+              <div className="p-1 bg-gray-200 cursor-pointer">
+                <AddIcon className="text-gray-500" onClick={addQuantity} />
+              </div>
             </div>
           </div>
           <div className="mt-4 flex gap-4 items-center">
@@ -305,7 +307,7 @@ const VirtualMachine = () => {
             />
           </div>
         </div>
-        <div>
+        <div className="p-4">
           <Button href="/log-in" variant="contained">
             Purchase
           </Button>

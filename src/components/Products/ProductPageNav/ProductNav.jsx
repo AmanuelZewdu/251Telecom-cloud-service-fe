@@ -75,18 +75,16 @@ const ProductNav = ({ onSelectComponent }) => {
       </div>
 
       {/* This is the icon that toggles the sidebar */}
+
       <div
-        className={`fixed mx-2 my-5  md:hidden text-gray-600 bg-white ${
+        className={`fixed mx-2 my-5  md:hidden text-gray-600 bg-white  border border-gray-600 p-1 rounded-md ${
           scrolled ? "hidden" : ""
-        } `}
+        }`}
       >
-        {/* <ListIcon sx={{ fontSize: 42 }} onClick={() => setNavIsOpen(true)} /> */}
-        <div className="border-2 border-gray-600 p-1 rounded-md">
-          <NotesOutlinedIcon
-            sx={{ fontSize: 38 }}
-            onClick={() => setNavIsOpen(true)}
-          />
-        </div>
+        <NotesOutlinedIcon
+          sx={{ fontSize: 38 }}
+          onClick={() => setNavIsOpen(true)}
+        />
       </div>
 
       {/* This is the nav that's displayed when the screen is greater than mid */}

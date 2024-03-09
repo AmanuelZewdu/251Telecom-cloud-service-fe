@@ -132,13 +132,13 @@ const VirtualMachine = () => {
   };
 
   return (
-    <div className="h-screen w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left">
+    <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left">
       <h1 className="text-2xl">Virtual Machine</h1>
       <details className="open:bg-white dark:open:bg-gray-100 p-2 open:shadow-lg  rounded-md">
         <summary className="text-sm leading-6 text-slate-900 select-none">
           What is VM?
         </summary>
-        <p className="mt-3 text-sm leading-6 text-slate-900">
+        <p className="mt-3 text-sm leading-7 text-slate-900">
           {" "}
           Virtual machines represent a cornerstone of modern computing
           infrastructure, offering unparalleled flexibility and scalability for

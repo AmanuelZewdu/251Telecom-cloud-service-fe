@@ -22,7 +22,7 @@ const ProductNav = ({ onSelectComponent }) => {
   };
 
   return (
-    <div className="">
+    <div className="h-full">
       {/* This is the black overlay */}
       {navIsOpen && (
         <div
@@ -68,7 +68,7 @@ const ProductNav = ({ onSelectComponent }) => {
       </div>
 
       {/* This is the nav that's displayed when the screen is greater than mid */}
-      <div className="relative hidden md:flex w-[12em] justify-center border h-screen shadow-lg pt-4  ">
+      <div className="relative hidden md:flex w-[12em] justify-center border h-full shadow-lg pt-4  ">
         <ul className="relative flex flex-col items-start gap-4">
           {links.map((link, index) => (
             <li

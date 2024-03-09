@@ -20,29 +20,46 @@ import Radio from "@mui/material/Radio";
 import FormControl from "@mui/material/FormControl";
 
 const VirtualMachine = () => {
+  // const [purchaseItem, setPurchaseItem] = useState({});
   const [selectedRow, setSelectedRow] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [duration, setDuration] = useState("");
   const [filteredRows, setFilteredRows] = useState(rows);
 
   // Selecting table row function starts here
-  const handleCheckboxClick = (name, row) => {
-    setSelectedRow(row);
-    console.log(selectedRow);
+
+  const handleCheckboxClick = (rowIndex) => {
+    setSelectedRow(rowIndex);
   };
 
-  const selectedRowIndex = selectedRow !== null ? selectedRow : -1;
-  const selectedRowData =
-    selectedRowIndex !== -1 ? rows[selectedRowIndex] : null;
+  const selectedRowData = selectedRow !== null ? rows[selectedRow] : null;
 
-  let selectedRowJSON = null;
+  const selectedRowJSON = selectedRowData
+    ? {
+        name: selectedRowData.name,
+        vCPUs_memory: selectedRowData.vCPUs_memory,
+      }
+    : null;
 
-  if (selectedRowData) {
-    selectedRowJSON = {
-      name: selectedRowData.name,
-      vCPUs_memory: selectedRowData.vCPUs_memory,
-    };
-  }
+  console.log(selectedRowJSON);
+
+  // const handleCheckboxClick = (name, row) => {
+  //   setSelectedRow(row);
+  // };
+
+  // const selectedRowIndex = selectedRow !== null ? selectedRow : -1;
+  // const selectedRowData =
+  //   selectedRowIndex !== -1 ? rows[selectedRowIndex] : null;
+
+  // let selectedRowJSON = null;
+
+  // if (selectedRowData) {
+  //   selectedRowJSON = {
+  //     name: selectedRowData.name,
+  //     vCPUs_memory: selectedRowData.vCPUs_memory,
+  //   };
+  // }
+  // console.log(selectedRowJSON);
   // Selecting table row function ends here
 
   // Radio buttons style start here
@@ -217,7 +234,7 @@ const VirtualMachine = () => {
                       <Checkbox
                         color="primary"
                         checked={selectedRow === index}
-                        onChange={() => handleCheckboxClick(row.name, index)}
+                        onChange={() => handleCheckboxClick(index)}
                       />
                     </TableCell>
                     <TableCell component="th" scope="row">

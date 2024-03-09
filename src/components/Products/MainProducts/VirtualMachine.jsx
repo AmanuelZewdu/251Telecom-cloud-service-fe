@@ -73,7 +73,9 @@ const VirtualMachine = () => {
   };
 
   const reduceQuanntity = () => {
-    setQuantity((prev) => prev - 1);
+    if (quantity > 0) {
+      setQuantity((prev) => prev - 1);
+    } else return;
   };
 
   const handleQuantityChange = (event) => {
@@ -87,24 +89,6 @@ const VirtualMachine = () => {
     setDuration(event.target.value);
   };
 
-  // const handlevCPUFilter = (event) => {
-  //   const selectedvCPU = event.target.value;
-  //   console.log(selectedvCPU);
-  //   const newFilteredRows = rows.filter((row) =>
-  //     row.vCPUs_memory.includes(selectedvCPU)
-  //   );
-  //   setFilteredRows(newFilteredRows);
-  // };
-
-  // // Event handler for Memory select
-  // const handleMemoryFilter = (event) => {
-  //   const selectedMemory = event.target.value;
-  //   console.log(selectedMemory);
-  //   const newFilteredRows = rows.filter((row) =>
-  //     row.vCPUs_memory.includes(selectedMemory)
-  //   );
-  //   setFilteredRows(newFilteredRows);
-  // };
   const handlevCPUFilter = (event) => {
     const selectedvCPU = event.target.value;
     const selectedMemory = document.getElementById("memorySelect").value;
@@ -278,6 +262,7 @@ const VirtualMachine = () => {
               </div>
               <input
                 type="number"
+                min="0"
                 value={quantity}
                 onChange={handleQuantityChange}
                 className="text-center outline-none  w-full md:w-[10em]"

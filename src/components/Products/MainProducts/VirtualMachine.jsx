@@ -2,7 +2,7 @@ import "./mainProducts.scss";
 import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { memories, vCPUs, rows } from "../../../shared/data/data.js";
 import * as React from "react";
 import Table from "@mui/material/Table";
@@ -20,11 +20,12 @@ import Radio from "@mui/material/Radio";
 import FormControl from "@mui/material/FormControl";
 
 const VirtualMachine = () => {
-  // const [purchaseItem, setPurchaseItem] = useState({});
+  const [purchaseItem, setPurchaseItem] = useState({});
   const [selectedRow, setSelectedRow] = useState(null);
   const [selectedImage, setSelectedImage] = useState("windows");
   const [quantity, setQuantity] = useState(1);
   const [duration, setDuration] = useState("");
+  const [durationNumber, setDurationNumber] = useState("");
   const [filteredRows, setFilteredRows] = useState(rows);
 
   // Selecting table row function starts here
@@ -40,7 +41,7 @@ const VirtualMachine = () => {
         name: selectedRowData.name,
         vCPUs_memory: selectedRowData.vCPUs_memory,
       }
-    : null;
+    : null; // This is selected row valye in json format
 
   // Radio buttons style start here
   const StyledFormControlLabel = styled(FormControlLabel)(
@@ -66,8 +67,7 @@ const VirtualMachine = () => {
   const handleImageChange = (e) => {
     setSelectedImage(e.target.value); // this is selected image type value
   };
-
-  // Radio ends
+  // Radio ends here
 
   const addQuantity = () => {
     setQuantity((prev) => (prev === "" ? 1 : prev + 1));
@@ -84,6 +84,10 @@ const VirtualMachine = () => {
     if (newValue === "" || (newValue >= 0 && newValue <= 999)) {
       setQuantity(newValue === "" ? "" : parseInt(newValue));
     }
+  };
+
+  const handleDurationNumChange = (event) => {
+    setDurationNumber(event.target.value); // This is duration time in numbers
   };
 
   const handleDurationChange = (event) => {
@@ -115,6 +119,21 @@ const VirtualMachine = () => {
 
     setFilteredRows(newFilteredRows);
   };
+
+  const purchaseHandler = () => {
+    const purchaseData = {
+      ...selectedRowJSON,
+      selectedImage: selectedImage,
+      quantity: quantity,
+      durationNumber: durationNumber,
+      duration: duration,
+    };
+    setPurchaseItem(purchaseData);
+  };
+
+  useEffect(() => {
+    console.log(purchaseItem);
+  }, [purchaseItem]);
 
   return (
     <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left">
@@ -285,12 +304,14 @@ const VirtualMachine = () => {
               <select
                 name="duration"
                 className="w-[8em] p-2 bg-gray-100 rounded-md"
+                value={durationNumber}
+                onChange={handleDurationNumChange}
               >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                {Array.from({ length: 12 }, (_, index) => (
+                  <option key={index + 1} value={index + 1}>
+                    {index + 1}
+                  </option>
+                ))}
               </select>
             </div>
             <FormControl>
@@ -333,11 +354,34 @@ const VirtualMachine = () => {
             />
           </div>
         </div>
-        <div className="p-4">
+        <div className="flex gap-4 p-4">
           <Button href="/log-in" variant="contained">
             Purchase
           </Button>
         </div>
+      </div>
+      <div className="flex flex-col gap-3 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat">
+        <div className="flex gap-2">
+          <h3 className="">VM type:</h3>
+          <span>{selectedRowJSON?.name || ""}</span>-
+          <span>{selectedRowJSON?.vCPUs_memory || ""}</span>
+        </div>
+        <div className="flex gap-2">
+          <h3 className="">Selected image:</h3>
+          <span>{selectedImage || ""}</span>
+        </div>
+        <div className="flex gap-2">
+          <h3 className="">Selected quantity:</h3>
+          <span>{quantity || ""}</span>
+        </div>
+        <div className="flex gap-2">
+          <h3 className="">Duration time:</h3>
+          <span>{durationNumber}</span>
+          <span>{duration === "year" ? duration : "month"}</span>
+        </div>
+        <Button variant="contained" onClick={purchaseHandler}>
+          Buy
+        </Button>
       </div>
     </div>
   );

@@ -22,7 +22,7 @@ import FormControl from "@mui/material/FormControl";
 const VirtualMachine = () => {
   const [purchaseItem, setPurchaseItem] = useState({});
   const [selectedRow, setSelectedRow] = useState(null);
-  const [selectedImage, setSelectedImage] = useState("windows");
+  const [selectedImage, setSelectedImage] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
@@ -363,16 +363,16 @@ const VirtualMachine = () => {
         </div>
         <div className="flex gap-2">
           <h3 className="">Selected image:</h3>
-          <span>{selectedImage || ""}</span>
+          <span>{selectedImage || "-"}</span>
         </div>
         <div className="flex gap-2">
           <h3 className="">Selected quantity:</h3>
-          <span>{quantity || ""}</span>
+          <span>{quantity}</span>
         </div>
         <div className="flex gap-2">
           <h3 className="">Duration time:</h3>
-          <span>{durationNumber}</span>
-          <span>{duration === "year" ? duration : "month"}</span>
+          <span>{durationNumber ? durationNumber : "-"}</span>
+          <span>{duration ? duration : "-"}</span>
         </div>
         <Button
           style={{

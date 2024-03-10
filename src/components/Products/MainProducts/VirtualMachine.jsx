@@ -70,7 +70,7 @@ const VirtualMachine = () => {
   // Radio ends
 
   const addQuantity = () => {
-    setQuantity((prev) => prev + 1);
+    setQuantity((prev) => (prev === "" ? 1 : prev + 1));
   };
 
   const reduceQuanntity = () => {

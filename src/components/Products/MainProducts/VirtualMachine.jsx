@@ -22,6 +22,7 @@ import FormControl from "@mui/material/FormControl";
 const VirtualMachine = () => {
   // const [purchaseItem, setPurchaseItem] = useState({});
   const [selectedRow, setSelectedRow] = useState(null);
+  const [selectedImage, setSelectedImage] = useState("windows");
   const [quantity, setQuantity] = useState(1);
   const [duration, setDuration] = useState("");
   const [filteredRows, setFilteredRows] = useState(rows);
@@ -40,27 +41,6 @@ const VirtualMachine = () => {
         vCPUs_memory: selectedRowData.vCPUs_memory,
       }
     : null;
-
-  console.log(selectedRowJSON);
-
-  // const handleCheckboxClick = (name, row) => {
-  //   setSelectedRow(row);
-  // };
-
-  // const selectedRowIndex = selectedRow !== null ? selectedRow : -1;
-  // const selectedRowData =
-  //   selectedRowIndex !== -1 ? rows[selectedRowIndex] : null;
-
-  // let selectedRowJSON = null;
-
-  // if (selectedRowData) {
-  //   selectedRowJSON = {
-  //     name: selectedRowData.name,
-  //     vCPUs_memory: selectedRowData.vCPUs_memory,
-  //   };
-  // }
-  // console.log(selectedRowJSON);
-  // Selecting table row function ends here
 
   // Radio buttons style start here
   const StyledFormControlLabel = styled(FormControlLabel)(
@@ -82,11 +62,15 @@ const VirtualMachine = () => {
     }
     return <StyledFormControlLabel checked={checked} {...props} />;
   }
+
+  const handleImageChange = (e) => {
+    setSelectedImage(e.target.value); // this is selected image type value
+  };
+
   // Radio ends
 
   const addQuantity = () => {
     setQuantity((prev) => prev + 1);
-    console.log("clicked");
   };
 
   const reduceQuanntity = () => {
@@ -96,14 +80,14 @@ const VirtualMachine = () => {
   };
 
   const handleQuantityChange = (event) => {
-    const newValue = parseInt(event.target.value);
-    if (!isNaN(newValue) && newValue >= 0) {
-      setQuantity(newValue);
+    const newValue = event.target.value;
+    if (newValue === "" || (newValue >= 0 && newValue <= 999)) {
+      setQuantity(newValue === "" ? "" : parseInt(newValue));
     }
   };
 
-  const handleChange = (event) => {
-    setDuration(event.target.value);
+  const handleDurationChange = (event) => {
+    setDuration(event.target.value); // this is selected duration period value
   };
 
   const handlevCPUFilter = (event) => {
@@ -254,7 +238,12 @@ const VirtualMachine = () => {
             </h4>
             <div className="flex gap-2 items-center ">
               <h4>Image:</h4>
-              <RadioGroup row name="use-radio-group" defaultValue="windows">
+              <RadioGroup
+                row
+                name="use-radio-group"
+                value={selectedImage}
+                onChange={handleImageChange}
+              >
                 <MyFormControlLabel
                   value="windows"
                   label="Windows"
@@ -310,7 +299,7 @@ const VirtualMachine = () => {
                 aria-labelledby="demo-controlled-radio-buttons-group"
                 name="controlled-radio-buttons-group"
                 value={duration}
-                onChange={handleChange}
+                onChange={handleDurationChange}
               >
                 <button
                   className={`${

@@ -354,11 +354,6 @@ const VirtualMachine = () => {
             />
           </div>
         </div>
-        <div className="flex gap-4 p-4">
-          <Button href="/log-in" variant="contained">
-            Purchase
-          </Button>
-        </div>
       </div>
       <div className="flex flex-col gap-3 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat">
         <div className="flex gap-2">
@@ -379,7 +374,16 @@ const VirtualMachine = () => {
           <span>{durationNumber}</span>
           <span>{duration === "year" ? duration : "month"}</span>
         </div>
-        <Button variant="contained" onClick={purchaseHandler}>
+        <Button
+          style={{
+            fontSize: "12px",
+            backgroundColor: "#f59e0b",
+          }}
+          className="md:w-[10em]"
+          variant="contained"
+          href="/log-in"
+          onClick={purchaseHandler}
+        >
           Buy
         </Button>
       </div>

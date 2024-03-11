@@ -18,6 +18,7 @@ import RadioGroup, { useRadioGroup } from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import FormControl from "@mui/material/FormControl";
+import ReusableModal from "../../ResuableModal/ReusableModal.jsx";
 
 const VirtualMachine = () => {
   const [purchaseItem, setPurchaseItem] = useState({});
@@ -355,7 +356,7 @@ const VirtualMachine = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-3 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat">
+      <div className="flex sticky flex-col gap-1 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat">
         <div className="flex gap-2">
           <h3 className="">VM type:</h3>
           <span>{selectedRowJSON?.name || ""}</span>-
@@ -374,18 +375,31 @@ const VirtualMachine = () => {
           <span>{durationNumber ? durationNumber : "-"}</span>
           <span>{duration ? duration : "-"}</span>
         </div>
-        <Button
-          style={{
-            fontSize: "12px",
-            backgroundColor: "#f59e0b",
-          }}
-          className="md:w-[10em]"
-          variant="contained"
-          href="/log-in"
-          onClick={purchaseHandler}
-        >
-          Buy
-        </Button>
+        <div className="flex gap-4">
+          <ReusableModal
+            button_style={{
+              border: "1px solid #f59e0b",
+              color: "#f59e0b",
+              fontSize: "12px",
+              backgroundColor: "#fff",
+            }}
+            className="md:w-[15em]"
+            variant="contained"
+            button_text="Add to cart"
+          />
+          <Button
+            style={{
+              fontSize: "12px",
+              backgroundColor: "#f59e0b",
+            }}
+            className="md:w-[15em]"
+            variant="contained"
+            href="/log-in"
+            onClick={purchaseHandler}
+          >
+            Buy
+          </Button>
+        </div>
       </div>
     </div>
   );

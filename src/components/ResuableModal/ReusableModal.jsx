@@ -16,14 +16,21 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal() {
+export default function BasicModal({ button_text, button_style }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button
+        style={button_style}
+        className="md:w-[15em]"
+        variant="contained"
+        onClick={handleOpen}
+      >
+        {button_text}
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}

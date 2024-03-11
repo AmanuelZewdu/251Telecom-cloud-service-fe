@@ -1,13 +1,35 @@
 import "./productNav.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NotesOutlinedIcon from "@mui/icons-material/NotesOutlined";
 
 const ProductNav = ({ onSelectComponent }) => {
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
   const handleNav = () => {
     setNavIsOpen(!navIsOpen);
   };
+
+  useEffect(() => {
+    let lastScrollTop =
+      window.pageYOffset || document.documentElement.scrollTop;
+
+    const handleScroll = () => {
+      const currentScrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScrollTop > lastScrollTop) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+      lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For Mobile or negative scrolling
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const links = [
     { name: "Virtual machine", component: "VirtualMachine" },
@@ -22,7 +44,7 @@ const ProductNav = ({ onSelectComponent }) => {
   };
 
   return (
-    <div className="">
+    <div className="h-full">
       {/* This is the black overlay */}
       {navIsOpen && (
         <div
@@ -53,22 +75,20 @@ const ProductNav = ({ onSelectComponent }) => {
       </div>
 
       {/* This is the icon that toggles the sidebar */}
+
       <div
-        className={`fixed px-2 py-5 h-screen md:hidden text-gray-600 ${
-          navIsOpen ? "hidden" : "inline"
-        } `}
+        className={`fixed mx-2 my-5  md:hidden text-gray-600 bg-white  border border-gray-600 p-1 rounded-md ${
+          scrolled ? "hidden" : ""
+        }`}
       >
-        {/* <ListIcon sx={{ fontSize: 42 }} onClick={() => setNavIsOpen(true)} /> */}
-        <div className="border-2 border-gray-600 p-1 rounded-md">
-          <NotesOutlinedIcon
-            sx={{ fontSize: 38 }}
-            onClick={() => setNavIsOpen(true)}
-          />
-        </div>
+        <NotesOutlinedIcon
+          sx={{ fontSize: 38 }}
+          onClick={() => setNavIsOpen(true)}
+        />
       </div>
 
       {/* This is the nav that's displayed when the screen is greater than mid */}
-      <div className="relative hidden md:flex w-[12em] justify-center border h-screen shadow-lg pt-4  ">
+      <div className="relative hidden md:flex w-[12em] justify-center border h-full shadow-lg pt-4  ">
         <ul className="relative flex flex-col items-start gap-4">
           {links.map((link, index) => (
             <li

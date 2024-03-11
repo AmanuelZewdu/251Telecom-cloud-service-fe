@@ -12,7 +12,7 @@ const Products = () => {
   };
 
   return (
-    <div className="w-full h-screen flex relative top-[5em] border-3 border-blue-800">
+    <div className="w-full flex relative top-[5em] border-3">
       <div className="">
         <ProductNav onSelectComponent={handleSelectComponent} />
       </div>

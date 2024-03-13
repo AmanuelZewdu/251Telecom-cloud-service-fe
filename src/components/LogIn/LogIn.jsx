@@ -40,7 +40,7 @@ const LogIn = () => {
       </div>
       <div className="flex-grow max-w-[30em] max-h-[30em] bg-white rounded-sm">
         <div className="flex flex-col gap-4 p-6">
-          <h1 className="text-xl font-medium text-gray-700">LOGIN</h1>
+          <h1 className="text-xl font-medium text-gray-700">SIGN IN</h1>
           <hr className="border border-black/30" />
           <form
             onSubmit={formik.handleSubmit}
@@ -93,7 +93,7 @@ const LogIn = () => {
               className="w-full rounded-sm bg-primary-medium p-2 text-white hover:bg-primary-light"
               type="submit"
             >
-              Log in
+              Sign in
             </button>
           </form>
           <div className="relative flex flex-col-reverse md:flex-row justify-between gap-2">

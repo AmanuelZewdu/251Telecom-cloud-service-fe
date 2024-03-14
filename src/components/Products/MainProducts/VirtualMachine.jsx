@@ -210,6 +210,7 @@ const VirtualMachine = () => {
             </div>
           </div>
           <TableContainer
+            className="-z-0"
             component={Paper}
             style={{ maxHeight: "20em", maxWidth: "40em" }}
           >
@@ -353,7 +354,7 @@ const VirtualMachine = () => {
           </div>
         </div>
       </div>
-      <div className="sticky flex flex-col gap-3 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat z-10">
+      <div className="sticky flex flex-col gap-3 rounded-sm w-full bottom-0 bg-white shadow-[0px_-6px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat">
         {error && (
           <span className="text-xs text-red-500">
             Please make sure you have selected al available options*

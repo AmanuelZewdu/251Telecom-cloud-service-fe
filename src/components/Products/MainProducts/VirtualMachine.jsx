@@ -3,7 +3,12 @@ import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useState, useEffect } from "react";
-import { memories, vCPUs, rows } from "../../../shared/data/data.js";
+import {
+  memories,
+  vCPUs,
+  rows,
+  vpsDescription,
+} from "../../../shared/data/data.js";
 import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -143,21 +148,7 @@ const VirtualMachine = () => {
           What is VM?
         </summary>
         <p className="mt-3 text-sm leading-7 text-slate-900">
-          {" "}
-          Virtual machines represent a cornerstone of modern computing
-          infrastructure, offering unparalleled flexibility and scalability for
-          a diverse range of applications. Our virtual machine service provides
-          users with the ability to deploy and manage virtualized computing
-          environments effortlessly. Whether you're a small business or a large
-          enterprise, virtual machines empower you to run multiple operating
-          systems and applications on a single physical server, optimizing
-          resource utilization and reducing infrastructure costs. Enjoy seamless
-          migration, robust security features, and reliable performance as you
-          leverage the power of virtualization to streamline your operations and
-          drive innovation. With our virtual machine service, you can
-          confidently scale your computing resources to meet the evolving needs
-          of your business, ensuring maximum efficiency and agility in today's
-          dynamic digital landscape.
+          {vpsDescription}
         </p>
       </details>
       <div className="flex flex-col gap-4">

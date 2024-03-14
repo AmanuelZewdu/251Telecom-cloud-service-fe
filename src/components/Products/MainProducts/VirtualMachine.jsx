@@ -25,7 +25,6 @@ import Radio from "@mui/material/Radio";
 import FormControl from "@mui/material/FormControl";
 
 const VirtualMachine = () => {
-  const [purchaseItem, setPurchaseItem] = useState({});
   const [selectedRow, setSelectedRow] = useState(null);
   const [selectedImage, setSelectedImage] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -343,7 +342,6 @@ const VirtualMachine = () => {
                 </button>
               </RadioGroup>
             </FormControl>
-            {duration}
           </div>
           <div className="flex gap-2">
             <label htmlFor="auto_renewal">Auto-Renewal:</label>

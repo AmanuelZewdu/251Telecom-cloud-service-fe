@@ -32,6 +32,7 @@ const VirtualMachine = () => {
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
   const [filteredRows, setFilteredRows] = useState(rows);
+  const [error, setError] = useState(false);
 
   // Selecting table row function starts here
 
@@ -126,19 +127,26 @@ const VirtualMachine = () => {
   };
 
   const purchaseHandler = () => {
-    const purchaseData = {
+    const purchaseItem = {
       ...selectedRowJSON,
       selectedImage: selectedImage,
       quantity: quantity,
       durationNumber: durationNumber,
       duration: duration,
     };
-    setPurchaseItem(purchaseData);
-  };
 
-  useEffect(() => {
-    console.log(purchaseItem);
-  }, [purchaseItem]);
+    if (
+      !selectedRow ||
+      !selectedImage ||
+      !quantity ||
+      !durationNumber ||
+      !duration
+    ) {
+      setError(true);
+    } else {
+      console.log(purchaseItem);
+    }
+  };
 
   return (
     <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left">
@@ -335,6 +343,7 @@ const VirtualMachine = () => {
                 </button>
               </RadioGroup>
             </FormControl>
+            {duration}
           </div>
           <div className="flex gap-2">
             <label htmlFor="auto_renewal">Auto-Renewal:</label>
@@ -346,7 +355,13 @@ const VirtualMachine = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-3 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat">
+      <div className="sticky flex flex-col gap-3 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat z-10">
+        {error && (
+          <span className="text-xs text-red-500">
+            Please make sure you have selected al available options*
+          </span>
+        )}
+
         <div className="flex gap-2">
           <h3 className="">VM type:</h3>
           <span>{selectedRowJSON?.name || ""}</span>-
@@ -372,7 +387,7 @@ const VirtualMachine = () => {
           }}
           className="md:w-[10em]"
           variant="contained"
-          href="/log-in"
+          // href="/log-in"
           onClick={purchaseHandler}
         >
           Buy

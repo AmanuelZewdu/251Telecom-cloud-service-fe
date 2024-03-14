@@ -1,6 +1,7 @@
 import "./navbar.scss";
 import { useEffect, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const Navbar = () => {
   const [navIsOpen, setNavIsOpen] = useState(false);
@@ -71,6 +72,9 @@ const Navbar = () => {
             {navigationLinks.map((link) => (
               <Link key={link.path} path={link.path} label={link.label} />
             ))}
+            <span className="transition-all duration-300 ease-in-out hover:scale-110">
+              <ShoppingCartIcon className="" />
+            </span>
           </ul>
           <a className="relative nav-hover" href="/log-in">
             Log in

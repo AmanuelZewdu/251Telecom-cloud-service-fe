@@ -30,23 +30,21 @@ export const services = [
 
 // vCPUS for product page
 export const vCPUs = [
-  { name: "Select" },
-  { name: "1 vCPU" },
-  { name: "2 vCPU" },
-  { name: "4 vCPU" },
-  { name: "8 vCPU" },
-  { name: "12 vCPU" },
-  { name: "16 vCPU" },
-  { name: "24 vCPU" },
-  { name: "32 vCPU" },
-  { name: "48 vCPU" },
-  { name: "64 vCPU" },
-  { name: "96 vCPU" },
+  { name: "1 vCPUs" },
+  { name: "2 vCPUs" },
+  { name: "4 vCPUs" },
+  { name: "8 vCPUs" },
+  { name: "12 vCPUs" },
+  { name: "16 vCPUs" },
+  { name: "24 vCPUs" },
+  { name: "32 vCPUs" },
+  { name: "48 vCPUs" },
+  { name: "64 vCPUs" },
+  { name: "96 vCPUs" },
 ];
 
 // Memoru sizes for products page
 export const memories = [
-  { size: "Select" },
   { size: "2 GB" },
   { size: "4 GB" },
   { size: "8 GB" },
@@ -93,4 +91,20 @@ export const headCells = [
     disablePadding: false,
     label: "Protein (g)",
   },
+];
+
+export const rows = [
+  { name: "s3.medium.2", vCPUs_memory: "1 vCPUs | 2 GB" },
+  { name: "s3.medium.4", vCPUs_memory: "1 vCPUs | 4 GB" },
+  { name: "s2.large.3", vCPUs_memory: "2 vCPUs | 4 GB" },
+  { name: "s2.large.4", vCPUs_memory: "2 vCPUs | 8 GB" },
+  { name: "s2.xlarge.2", vCPUs_memory: "4 vCPUs | 8 GB" },
+  { name: "s2.xlarge.4", vCPUs_memory: "4 vCPUs| 16 GB" },
+  { name: "s2.2xlarge.21", vCPUs_memory: "4 vCPUs | 16 GB" },
+  { name: "s2.2xlarge.12", vCPUs_memory: "8 vCPUs | 16 GB" },
+  { name: "s2.2xlarge.2", vCPUs_memory: "8 vCPUs | 32 GB" },
+  { name: "s2.4xlarge.2", vCPUs_memory: "16 vCPUs | 32 GB" },
+  { name: "s2.4xlarge.4", vCPUs_memory: "16 vCPUs | 64 GB" },
+  { name: "s2.8xlarge.2", vCPUs_memory: "32 vCPUs | 64 GB" },
+  { name: "s2.8xlarge.4", vCPUs_memory: "32 vCPUs | 128 GB" },
 ];

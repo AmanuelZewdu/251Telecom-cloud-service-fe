@@ -22,7 +22,6 @@ const VirtualMachine = () => {
   const [purchaseItem, setPurchaseItem] = useState({});
   const [selectedRow, setSelectedRow] = useState(null);
   const [selectedImage, setSelectedImage] = useState("");
-  const [quantity, setQuantity] = useState(1);
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
   const [filteredRows, setFilteredRows] = useState(rows);
@@ -68,23 +67,6 @@ const VirtualMachine = () => {
   };
   // Radio ends here
 
-  const addQuantity = () => {
-    setQuantity((prev) => (prev === "" ? 1 : prev + 1));
-  };
-
-  const reduceQuanntity = () => {
-    if (quantity > 0) {
-      setQuantity((prev) => prev - 1);
-    } else return;
-  };
-
-  const handleQuantityChange = (event) => {
-    const newValue = event.target.value;
-    if (newValue === "" || (newValue >= 0 && newValue <= 999)) {
-      setQuantity(newValue === "" ? "" : parseInt(newValue));
-    }
-  };
-
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
   };
@@ -123,7 +105,6 @@ const VirtualMachine = () => {
     const purchaseData = {
       ...selectedRowJSON,
       selectedImage: selectedImage,
-      quantity: quantity,
       durationNumber: durationNumber,
       duration: duration,
     };
@@ -344,11 +325,7 @@ const VirtualMachine = () => {
           <span>{selectedImage || "-"}</span>
         </div>
         <div className="flex gap-2">
-          <h3 className="">Selected quantity:</h3>
-          <span>{quantity}</span>
-        </div>
-        <div className="flex gap-2">
-          <h3 className="">Duration time:</h3>
+          <h3 className="">Duration:</h3>
           <span>{durationNumber ? durationNumber : "-"}</span>
           <span>{duration ? duration : "-"}</span>
         </div>
@@ -371,7 +348,7 @@ const VirtualMachine = () => {
             }}
             className="md:w-[15em]"
             variant="contained"
-            href="/log-in"
+            // href="/log-in"
             onClick={purchaseHandler}
           >
             Buy

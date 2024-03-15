@@ -1,7 +1,5 @@
 import "./mainProducts.scss";
 import { Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
 import { useState, useEffect } from "react";
 import { memories, vCPUs, rows } from "../../../shared/data/data.js";
 import * as React from "react";
@@ -275,27 +273,6 @@ const VirtualMachine = () => {
                   control={<Radio />}
                 />
               </RadioGroup>
-            </div>
-          </div>
-          <div className="flex flex-col gap-2">
-            <h4 className="text-lg font-semibold font-montserrat">Quantity</h4>
-            <div className="w-full border flex items-center justify-between rounded-md overflow-hidden md:w-[15em]">
-              <div
-                onClick={reduceQuanntity}
-                className="p-1 bg-gray-200 cursor-pointer"
-              >
-                <RemoveIcon className="text-gray-500" />
-              </div>
-              <input
-                type="number"
-                min="0"
-                value={quantity}
-                onChange={handleQuantityChange}
-                className="text-center outline-none  w-full md:w-[10em]"
-              />
-              <div className="p-1 bg-gray-200 cursor-pointer">
-                <AddIcon className="text-gray-500" onClick={addQuantity} />
-              </div>
             </div>
           </div>
           <div className="mt-4 flex gap-4 items-center">

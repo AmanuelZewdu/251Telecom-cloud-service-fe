@@ -21,7 +21,6 @@ import RadioGroup, { useRadioGroup } from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import FormControl from "@mui/material/FormControl";
-// import ReusableModal from "../../CartModal/CartModal.jsx";
 
 const VirtualMachine = () => {
   const [selectedRow, setSelectedRow] = useState(null);
@@ -336,35 +335,30 @@ const VirtualMachine = () => {
           <span>{duration ? duration : "-"}</span>
         </div>
         <div className="flex gap-4 items-center">
-          {/* <ReusableModal
-            button_style={{
-              border: "1px solid #f59e0b",
-              color: "#f59e0b",
-              fontSize: "12px",
-              backgroundColor: "#fff",
-            }}
-            className="md:w-[15em]"
-            variant="contained"
-            button_text="Add to cart"
-          /> */}
           <Button
             style={{
               fontSize: "12px",
               backgroundColor: "#f59e0b",
             }}
-            className="md:w-[15em]"
+            className="md:w-[10em]"
             variant="contained"
-            // href="/log-in"
+            href="/log-in"
             onClick={purchaseHandler}
           >
             Buy
           </Button>
-          <button
-            className="p-2 w-[8em] bg-slate-500 text-white rounded-md"
+          <Button
             onClick={purchaseHandler}
+            style={{
+              fontSize: "12px",
+              backgroundColor: "transparent",
+              border: "1px solid #f59e0b",
+              color: "#f59e0b",
+            }}
+            variant="contained"
           >
-            Test
-          </button>
+            Add to Cart
+          </Button>
         </div>
       </div>
     </div>

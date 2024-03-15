@@ -19,9 +19,9 @@ const CartModal = ({ open, onClose }) => {
     <div
       className={`fixed right-0 z-50 overflow-hidden ${
         open ? "translate-x-0" : "translate-x-full"
-      } transition-transform duration-500 shadow-[0px_0px_18px_2px_#c9c9c9]`}
+      } transition-transform duration-500 shadow-[0px_0px_18px_2px_#c9c9c9] h-screen`}
     >
-      <div className="flex inset-y-0  flex-col min-w-[20em] bg-white h-screen p-4">
+      <div className="flex flex-col min-w-[20em] bg-white h-full p-4">
         <div className="flex mb-4 items-center justify-between">
           <h2 className="text-lg text-[#111111] font-semibold ">Your Cart</h2>
           <button className="text-[#111111]" onClick={onClose}>
@@ -35,9 +35,12 @@ const CartModal = ({ open, onClose }) => {
               className="flex bg-gray-50 items-center justify-between p-2 rounded-md"
               key={index}
             >
-              <div>
-                <h4 className="text-xl">{item.name}</h4>
-                <span className="font-light">{item.vCPUs_memory}</span>
+              <div className="flex gap-2 items-center">
+                ({index + 1})
+                <div>
+                  <h4 className="text-xl">{item.name}</h4>
+                  <span className="font-light">{item.vCPUs_memory}</span>
+                </div>
               </div>
               <DeleteIcon
                 className="cursor-pointer"
@@ -47,6 +50,7 @@ const CartModal = ({ open, onClose }) => {
             </li>
           ))}
         </ul>
+        <div className=""></div>
       </div>
     </div>
   );

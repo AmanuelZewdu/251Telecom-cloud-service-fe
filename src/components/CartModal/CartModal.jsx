@@ -1,26 +1,49 @@
-import React from "react";
+import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const CartModal = ({ open, onClose }) => {
-  const cartItems = JSON.parse(localStorage.getItem("purchaseItems")) || [];
+  const [cartItems, setCartItems] = useState(
+    JSON.parse(localStorage.getItem("purchaseItems")) || []
+  );
+
+  const handleRemoveItem = (indexToRemove) => {
+    const updatedCartItems = cartItems.filter(
+      (_, index) => index !== indexToRemove
+    );
+    setCartItems(updatedCartItems);
+    localStorage.setItem("purchaseItems", JSON.stringify(updatedCartItems));
+  };
 
   return (
     <div
       className={`fixed right-0 z-50 overflow-hidden ${
         open ? "translate-x-0" : "translate-x-full"
-      } transition-transform duration-500`}
+      } transition-transform duration-500 shadow-[0px_0px_18px_2px_#c9c9c9]`}
     >
-      <div className="flex flex-col min-w-[20em] bg-gray-500 h-screen p-4 gap-8">
-        <div className="flex items-center bg-red-300 justify-between">
-          <h2 className="text-lg font-semibold ">Your Cart</h2>
-          <button className="text-white" onClick={onClose}>
+      <div className="flex inset-y-0  flex-col min-w-[20em] bg-white h-screen p-4">
+        <div className="flex mb-4 items-center justify-between">
+          <h2 className="text-lg text-[#111111] font-semibold ">Your Cart</h2>
+          <button className="text-[#111111]" onClick={onClose}>
             <CloseIcon />
           </button>
         </div>
-        <ul>
+        <hr />
+        <ul className="flex mt-4 flex-col gap-2">
           {cartItems.map((item, index) => (
-            <li key={index} className="mb-2">
-              {item.name}
+            <li
+              className="flex bg-gray-50 items-center justify-between p-2 rounded-md"
+              key={index}
+            >
+              <div>
+                <h4 className="text-xl">{item.name}</h4>
+                <span className="font-light">{item.vCPUs_memory}</span>
+              </div>
+              <DeleteIcon
+                className="cursor-pointer"
+                color="error"
+                onClick={() => handleRemoveItem(index)}
+              />
             </li>
           ))}
         </ul>

@@ -27,7 +27,6 @@ import FormControl from "@mui/material/FormControl";
 const VirtualMachine = () => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [selectedImage, setSelectedImage] = useState("");
-  const [quantity, setQuantity] = useState(1);
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
   const [filteredRows, setFilteredRows] = useState(rows);
@@ -74,23 +73,6 @@ const VirtualMachine = () => {
   };
   // Radio ends here
 
-  const addQuantity = () => {
-    setQuantity((prev) => (prev === "" ? 1 : prev + 1));
-  };
-
-  const reduceQuanntity = () => {
-    if (quantity > 0) {
-      setQuantity((prev) => prev - 1);
-    } else return;
-  };
-
-  const handleQuantityChange = (event) => {
-    const newValue = event.target.value;
-    if (newValue === "" || (newValue >= 0 && newValue <= 999)) {
-      setQuantity(newValue === "" ? "" : parseInt(newValue));
-    }
-  };
-
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
   };
@@ -129,18 +111,12 @@ const VirtualMachine = () => {
     const purchaseItem = {
       ...selectedRowJSON,
       selectedImage: selectedImage,
-      quantity: quantity,
+
       durationNumber: durationNumber,
       duration: duration,
     };
 
-    if (
-      !selectedRow ||
-      !selectedImage ||
-      !quantity ||
-      !durationNumber ||
-      !duration
-    ) {
+    if (!selectedRow || !selectedImage || !durationNumber || !duration) {
       setError(true);
     } else {
       console.log(purchaseItem);
@@ -275,31 +251,9 @@ const VirtualMachine = () => {
               </RadioGroup>
             </div>
           </div>
-          <div className="flex flex-col gap-2">
-            <h4 className="text-lg font-semibold font-montserrat">Quantity</h4>
-            <div className="w-full border flex items-center justify-between rounded-md overflow-hidden md:w-[15em]">
-              <div
-                onClick={reduceQuanntity}
-                className="p-1 bg-gray-200 cursor-pointer"
-              >
-                <RemoveIcon className="text-gray-500" />
-              </div>
-              <input
-                type="number"
-                min="0"
-                value={quantity}
-                onChange={handleQuantityChange}
-                className="text-center outline-none  w-full md:w-[10em]"
-              />
-              <div className="p-1 bg-gray-200 cursor-pointer">
-                <AddIcon className="text-gray-500" onClick={addQuantity} />
-              </div>
-            </div>
-          </div>
           <div className="mt-4 flex gap-4 items-center">
             <div className="flex gap-2">
               <label>Duration:</label>
-
               <select
                 name="duration"
                 className="w-[8em] p-2 bg-gray-100 rounded-md"
@@ -369,10 +323,6 @@ const VirtualMachine = () => {
         <div className="flex gap-2">
           <h3 className="">Selected image:</h3>
           <span>{selectedImage || "-"}</span>
-        </div>
-        <div className="flex gap-2">
-          <h3 className="">Selected quantity:</h3>
-          <span>{quantity}</span>
         </div>
         <div className="flex gap-2">
           <h3 className="">Duration time:</h3>

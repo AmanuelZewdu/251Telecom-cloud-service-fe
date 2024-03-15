@@ -1,7 +1,12 @@
 import "./mainProducts.scss";
 import { Button } from "@mui/material";
-import { useState, useEffect } from "react";
-import { memories, vCPUs, rows } from "../../../shared/data/data.js";
+import { useState } from "react";
+import {
+  memories,
+  vCPUs,
+  rows,
+  vmDescription,
+} from "../../../shared/data/data.js";
 import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -17,17 +22,17 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import FormControl from "@mui/material/FormControl";
 import ReusableModal from "../../ResuableModal/ReusableModal.jsx";
+import { useCart } from "../../CartContext/CartContext.jsx";
 
 const VirtualMachine = () => {
-  const [purchaseItem, setPurchaseItem] = useState({});
   const [selectedRow, setSelectedRow] = useState(null);
   const [selectedImage, setSelectedImage] = useState("");
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
   const [filteredRows, setFilteredRows] = useState(rows);
-
+  const [error, setError] = useState(false);
+  const { addToCart } = useCart();
   // Selecting table row function starts here
-
   const handleCheckboxClick = (rowIndex) => {
     setSelectedRow(rowIndex);
   };
@@ -102,18 +107,21 @@ const VirtualMachine = () => {
   };
 
   const purchaseHandler = () => {
-    const purchaseData = {
+    const purchaseItem = {
       ...selectedRowJSON,
       selectedImage: selectedImage,
       durationNumber: durationNumber,
       duration: duration,
     };
-    setPurchaseItem(purchaseData);
+    console.log(selectedRowJSON);
+    if (!selectedRow || !selectedImage || !durationNumber || !duration) {
+      setError(true);
+    } else {
+      localStorage.setItem("purchaseItem", JSON.stringify(purchaseItem));
+      addToCart();
+      console.log("Saved to localStorage");
+    }
   };
-
-  useEffect(() => {
-    console.log(purchaseItem);
-  }, [purchaseItem]);
 
   return (
     <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left">
@@ -122,23 +130,7 @@ const VirtualMachine = () => {
         <summary className="text-sm leading-6 text-slate-900 select-none">
           What is VM?
         </summary>
-        <p className="mt-3 text-sm leading-7 text-slate-900">
-          {" "}
-          Virtual machines represent a cornerstone of modern computing
-          infrastructure, offering unparalleled flexibility and scalability for
-          a diverse range of applications. Our virtual machine service provides
-          users with the ability to deploy and manage virtualized computing
-          environments effortlessly. Whether you're a small business or a large
-          enterprise, virtual machines empower you to run multiple operating
-          systems and applications on a single physical server, optimizing
-          resource utilization and reducing infrastructure costs. Enjoy seamless
-          migration, robust security features, and reliable performance as you
-          leverage the power of virtualization to streamline your operations and
-          drive innovation. With our virtual machine service, you can
-          confidently scale your computing resources to meet the evolving needs
-          of your business, ensuring maximum efficiency and agility in today's
-          dynamic digital landscape.
-        </p>
+        <p className="mt-3 text-sm leading-7 text-slate-900">{vmDescription}</p>
       </details>
       <div className="flex flex-col gap-4">
         <div className="border shadow-md flex text-left flex-col p-4 gap-2">
@@ -315,6 +307,11 @@ const VirtualMachine = () => {
         </div>
       </div>
       <div className="flex sticky flex-col gap-1 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat">
+        {error && (
+          <span className=" text-left text-red-500">
+            Please make sure you have selected al available options*
+          </span>
+        )}
         <div className="flex gap-2">
           <h3 className="">VM type:</h3>
           <span>{selectedRowJSON?.name || ""}</span>-
@@ -329,7 +326,7 @@ const VirtualMachine = () => {
           <span>{durationNumber ? durationNumber : "-"}</span>
           <span>{duration ? duration : "-"}</span>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 items-center">
           <ReusableModal
             button_style={{
               border: "1px solid #f59e0b",
@@ -353,6 +350,12 @@ const VirtualMachine = () => {
           >
             Buy
           </Button>
+          <button
+            className="p-2 w-[8em] bg-slate-500 text-white rounded-md"
+            onClick={purchaseHandler}
+          >
+            Test
+          </button>
         </div>
       </div>
     </div>

@@ -1,13 +1,13 @@
 import "./navbar.scss";
 import { useEffect, useState } from "react";
-import { useCart } from "../CartContext/CartContext.jsx";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const Navbar = () => {
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { cartCount } = useCart();
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 0);
@@ -18,6 +18,11 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    const cartItems = JSON.parse(localStorage.getItem("purchaseItems")) || [];
+    setCartItemsCount(cartItems.length);
   }, []);
 
   const handleNav = () => {
@@ -75,7 +80,7 @@ const Navbar = () => {
             ))}
             <span className="transition-all duration-300 ease-in-out hover:scale-110">
               <ShoppingCartIcon className="" />
-              <span>{cartCount}</span>
+              <span>{cartItemsCount}</span>
             </span>
           </ul>
           <a className="relative nav-hover" href="/log-in">

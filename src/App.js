@@ -6,29 +6,26 @@ import Products from "./components/Products/Products";
 import Navbar from "../src/components/Navbar/Navbar";
 import LogIn from "./components/LogIn/LogIn";
 import SignUp from "./components/SignUp/SignUp";
-import { CartProvider } from "./components/CartContext/CartContext.jsx";
 
 function App() {
   return (
     <>
-      <CartProvider>
-        <div>
-          <Navbar />
-        </div>
-        <div className="wrapper">
-          <BrowserRouter>
-            <Routes>
-              <Route path="/">
-                <Route index element={<Home />} />
-                <Route path="console" element={<Console />} />
-                <Route path="products" element={<Products />} />
-                <Route path="log-in" element={<LogIn />} />
-                <Route path="/sign-up" element={<SignUp />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </div>
-      </CartProvider>
+      <div>
+        <Navbar />
+      </div>
+      <div className="wrapper">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/">
+              <Route index element={<Home />} />
+              <Route path="console" element={<Console />} />
+              <Route path="products" element={<Products />} />
+              <Route path="log-in" element={<LogIn />} />
+              <Route path="/sign-up" element={<SignUp />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
     </>
   );
 }

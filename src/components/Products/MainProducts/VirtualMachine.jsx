@@ -22,7 +22,6 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import FormControl from "@mui/material/FormControl";
 import ReusableModal from "../../ResuableModal/ReusableModal.jsx";
-import { useCart } from "../../CartContext/CartContext.jsx";
 
 const VirtualMachine = () => {
   const [selectedRow, setSelectedRow] = useState(null);
@@ -31,7 +30,7 @@ const VirtualMachine = () => {
   const [durationNumber, setDurationNumber] = useState("");
   const [filteredRows, setFilteredRows] = useState(rows);
   const [error, setError] = useState(false);
-  const { addToCart } = useCart();
+
   // Selecting table row function starts here
   const handleCheckboxClick = (rowIndex) => {
     setSelectedRow(rowIndex);
@@ -113,12 +112,22 @@ const VirtualMachine = () => {
       durationNumber: durationNumber,
       duration: duration,
     };
-    console.log(selectedRowJSON);
-    if (!selectedRow || !selectedImage || !durationNumber || !duration) {
+
+    if (
+      selectedRow === null ||
+      !selectedImage ||
+      !durationNumber ||
+      !duration
+    ) {
       setError(true);
     } else {
-      localStorage.setItem("purchaseItem", JSON.stringify(purchaseItem));
-      addToCart();
+      const existingItems =
+        JSON.parse(localStorage.getItem("purchaseItems")) || [];
+
+      const updatedItems = [...existingItems, purchaseItem];
+
+      localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
+
       console.log("Saved to localStorage");
     }
   };

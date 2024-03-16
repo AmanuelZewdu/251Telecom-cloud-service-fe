@@ -132,8 +132,8 @@ const VirtualMachine = () => {
   };
 
   return (
-    <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left">
-      <h1 className="text-2xl">Virtual Machine</h1>
+    <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left font-montserrat">
+      <h1 className="text-2xl tracking-wide">Virtual Machine</h1>
       <details className="open:bg-white dark:open:bg-gray-100 p-2 open:shadow-lg  rounded-md">
         <summary className="text-sm leading-6 text-slate-900 select-none">
           What is VM?

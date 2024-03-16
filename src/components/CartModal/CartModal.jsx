@@ -44,7 +44,7 @@ const CartModal = ({ open, onClose }) => {
 
   return (
     <div
-      className={`absolute right-0 z-50 overflow-hidden ${
+      className={`fixed right-0 z-50 overflow-hidden ${
         open ? "translate-x-0" : "translate-x-full"
       } transition-transform duration-500 shadow-[0px_0px_18px_2px_#c9c9c9] h-screen`}
     >

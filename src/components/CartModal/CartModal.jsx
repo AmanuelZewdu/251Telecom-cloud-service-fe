@@ -26,8 +26,8 @@ const CartModal = ({ open, onClose }) => {
       (_, index) => index !== indexToRemove
     );
     setCartItems(updatedCartItems);
-    window.dispatchEvent(new Event("storage"));
     localStorage.setItem("purchaseItems", JSON.stringify(updatedCartItems));
+    window.dispatchEvent(new Event("storage"));
   };
 
   return (

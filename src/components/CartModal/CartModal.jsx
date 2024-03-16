@@ -38,7 +38,7 @@ const CartModal = ({ open, onClose }) => {
     >
       <div className="flex flex-col min-w-[20em] bg-white h-full p-4">
         <div className="flex mb-4 items-center justify-between">
-          <h2 className="text-lg text-[#111111] font-semibold ">Your Cart</h2>
+          <h2 className="text-lg text-[#111111] font-poppins">Your Cart</h2>
           <button className="text-[#111111]" onClick={onClose}>
             <CloseIcon />
           </button>
@@ -53,8 +53,10 @@ const CartModal = ({ open, onClose }) => {
               <div className="flex gap-2 items-center">
                 ({index + 1})
                 <div>
-                  <h4 className="text-xl">{item.name}</h4>
-                  <span className="font-light">{item.vCPUs_memory}</span>
+                  <h4 className="text-xl font-montserrat ">{item.name}</h4>
+                  <span className="font-light font-poppins">
+                    {item.vCPUs_memory}
+                  </span>
                 </div>
               </div>
               <DeleteIcon

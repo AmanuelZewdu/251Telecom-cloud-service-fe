@@ -6,7 +6,6 @@ const CartModal = ({ open, onClose }) => {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    // Function to handle changes in localStorage
     const handleStorageChange = () => {
       const updatedCartItems =
         JSON.parse(localStorage.getItem("purchaseItems")) || [];

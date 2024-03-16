@@ -20,11 +20,13 @@ const CartModal = ({ open, onClose }) => {
       window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
+
   const handleRemoveItem = (indexToRemove) => {
     const updatedCartItems = cartItems.filter(
       (_, index) => index !== indexToRemove
     );
     setCartItems(updatedCartItems);
+    window.dispatchEvent(new Event("storage"));
     localStorage.setItem("purchaseItems", JSON.stringify(updatedCartItems));
   };
 

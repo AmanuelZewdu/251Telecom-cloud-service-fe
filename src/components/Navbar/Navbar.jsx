@@ -22,9 +22,24 @@ const Navbar = () => {
     };
   }, []);
 
+  // useEffect(() => {
+  //   const cartItems = JSON.parse(localStorage.getItem("purchaseItems")) || [];
+  //   setCartItemsCount(cartItems.length);
+  // }, []);
+
   useEffect(() => {
-    const cartItems = JSON.parse(localStorage.getItem("purchaseItems")) || [];
-    setCartItemsCount(cartItems.length);
+    const handleCartItemsCount = () => {
+      const cartItems = JSON.parse(localStorage.getItem("purchaseItems")) || [];
+      setCartItemsCount(cartItems.length);
+    };
+
+    window.addEventListener("storage", handleCartItemsCount);
+
+    handleCartItemsCount();
+
+    return () => {
+      window.removeEventListener("storage", handleCartItemsCount);
+    };
   }, []);
 
   const handleNav = () => {

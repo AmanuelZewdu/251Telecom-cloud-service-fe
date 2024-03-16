@@ -1,12 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const CartModal = ({ open, onClose }) => {
-  const [cartItems, setCartItems] = useState(
-    JSON.parse(localStorage.getItem("purchaseItems")) || []
-  );
+  const [cartItems, setCartItems] = useState([]);
 
+  useEffect(() => {
+    // Function to handle changes in localStorage
+    const handleStorageChange = () => {
+      const updatedCartItems =
+        JSON.parse(localStorage.getItem("purchaseItems")) || [];
+      setCartItems(updatedCartItems);
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    handleStorageChange();
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
   const handleRemoveItem = (indexToRemove) => {
     const updatedCartItems = cartItems.filter(
       (_, index) => index !== indexToRemove

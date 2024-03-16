@@ -126,7 +126,7 @@ const VirtualMachine = () => {
       const updatedItems = [...existingItems, purchaseItem];
 
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
-
+      window.dispatchEvent(new Event("storage"));
       console.log("Saved to localStorage");
     }
   };

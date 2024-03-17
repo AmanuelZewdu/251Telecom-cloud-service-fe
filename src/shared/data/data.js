@@ -108,3 +108,6 @@ export const rows = [
   { name: "s2.8xlarge.2", vCPUs_memory: "32 vCPUs | 64 GB" },
   { name: "s2.8xlarge.4", vCPUs_memory: "32 vCPUs | 128 GB" },
 ];
+
+export const vmDescription =
+  "Virtual machines represent a cornerstone of modern computinginfrastructure, offering unparalleled flexibility and scalability for a diverse range of applications. Our virtual machine service provides users with the ability to deploy and manage virtualized computing environments effortlessly. Whether you're a small business or a large enterprise, virtual machines empower you to run multiple operating systems and applications on a single physical server, optimizing resource utilization and reducing infrastructure costs. Enjoy seamless migration, robust security features, and reliable performance as you leverage the power of virtualization to streamline your operations and drive innovation. With our virtual machine service, you can confidently scale your computing resources to meet the evolving needs of your business, ensuring maximum efficiency and agility in today's dynamic digital landscape.";

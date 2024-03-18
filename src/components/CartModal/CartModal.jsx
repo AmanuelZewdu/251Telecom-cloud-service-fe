@@ -23,6 +23,16 @@ const CartModal = ({ open, onClose }) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (open) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    return () => document.body.classList.remove("overflow-hidden");
+  });
+
   const handleRemoveItem = (indexToRemove) => {
     const updatedCartItems = cartItems.filter(
       (_, index) => index !== indexToRemove

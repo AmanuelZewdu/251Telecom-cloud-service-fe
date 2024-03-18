@@ -369,9 +369,9 @@ const VirtualMachine = () => {
       </div>
       {isItemAdded && (
         <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/10">
-          <div className="border border-green-500 bg-white p-3 mx-auto rounded-md shadow-md flex gap-2 mt-8 animate-bounce">
+          <div className="border border-green-500 bg-white p-3 mx-auto rounded-md shadow-md flex items-center justify-center gap-2 mt-8 animate-bounce">
             <CheckCircleIcon className="text-green-600" />
-            <p className="text-green-600 text-lg font-poppins">
+            <p className="text-green-600 text-sm font-medium font-poppins">
               Item added to the cart!
             </p>
           </div>

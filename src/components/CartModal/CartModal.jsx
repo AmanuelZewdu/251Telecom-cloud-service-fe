@@ -64,11 +64,20 @@ const CartModal = ({ open, onClose }) => {
             >
               <div className="flex gap-2 items-center">
                 ({index + 1})
-                <div>
+                <div className="flex flex-col gap-2">
                   <h4 className="text-xl font-montserrat ">{item.name}</h4>
                   <span className="font-light font-poppins">
                     {item.vCPUs_memory}
                   </span>
+                  <span className="font-medium text-sm font-poppins">
+                    Qty: 1
+                  </span>
+                  <h2 className="font-light font-poppins">
+                    Price:{" "}
+                    <span className="font-medium text-sm font-poppins">
+                      $2500/mo
+                    </span>
+                  </h2>
                 </div>
               </div>
               <DeleteIcon
@@ -79,7 +88,22 @@ const CartModal = ({ open, onClose }) => {
             </li>
           ))}
         </ul>
-        <div className=""></div>
+        {cartItems.length > 0 && (
+          <div className="flex flex-col gap-2 mt-4">
+            <h2 className="font-poppins">
+              Items: <span className="font-medium">{cartItems.length}</span>
+            </h2>
+            <h2 className="font-poppins">
+              SubTotal:{" "}
+              <span className="font-medium">
+                $2500/mo + $2500/mo = $5000/mo
+              </span>
+            </h2>
+            <h1 className="font-poppins">
+              Total: <span className="font-medium">$5000/mo</span>
+            </h1>
+          </div>
+        )}
       </div>
     </div>
   );

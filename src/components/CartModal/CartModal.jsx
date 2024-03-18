@@ -49,7 +49,7 @@ const CartModal = ({ open, onClose }) => {
       } transition-transform duration-500 shadow-[0px_0px_18px_2px_#c9c9c9] h-screen`}
     >
       <div className="cartModal flex flex-col w-[20em] md:min-w-[26em] bg-white h-full p-4 gap-4 overflow-y-auto">
-        <div className="flex mb-4 items-center justify-between">
+        <div className="flex items-center justify-between">
           <h2 className="text-lg text-[#111111] font-poppins">Your Cart</h2>
           <button className="text-[#111111]" onClick={onClose}>
             <CloseIcon />

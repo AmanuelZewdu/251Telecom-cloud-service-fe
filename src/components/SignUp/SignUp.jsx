@@ -1,6 +1,6 @@
 import "./signUp.scss";
 import { useState } from "react";
-import { Form, Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";

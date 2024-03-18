@@ -129,7 +129,7 @@ const VirtualMachine = () => {
 
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
       window.dispatchEvent(new Event("storage"));
-      console.log("Saved to localStorage");
+      setError(false);
       setIsItemAdded(true);
       setTimeout(() => {
         setIsItemAdded(false);

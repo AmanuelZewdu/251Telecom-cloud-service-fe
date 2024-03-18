@@ -56,64 +56,74 @@ const CartModal = ({ open, onClose }) => {
           </button>
         </div>
         <hr />
-        <ul className="flex mt-4 flex-col gap-2 ">
-          {cartItems.map((item, index) => (
-            <li
-              className="flex bg-gray-50 items-center justify-between p-2 rounded-md shadow-md"
-              key={index}
-            >
-              <div className="flex gap-2 items-center">
-                ({index + 1})
-                <div className="flex flex-col gap-2">
-                  <h4 className="text-xl font-montserrat ">{item.name}</h4>
-                  <span className="font-light font-poppins">
-                    {item.vCPUs_memory}
+        {cartItems.length > 0 ? (
+          <>
+            <ul className="flex mt-4 flex-col gap-2 ">
+              {cartItems.map((item, index) => (
+                <li
+                  className="flex bg-gray-50 items-center justify-between p-2 rounded-md shadow-md"
+                  key={index}
+                >
+                  <div className="flex gap-2 items-center">
+                    ({index + 1})
+                    <div className="flex flex-col gap-2">
+                      <h4 className="text-xl font-montserrat ">{item.name}</h4>
+                      <span className="font-light font-poppins">
+                        {item.vCPUs_memory}
+                      </span>
+                      <span className="font-medium text-sm font-poppins">
+                        Qty: 1
+                      </span>
+                      <h2 className="font-light font-poppins">
+                        Price:{" "}
+                        <span className="font-medium text-sm font-poppins">
+                          $2500/mo
+                        </span>
+                      </h2>
+                    </div>
+                  </div>
+                  <DeleteIcon
+                    className="cursor-pointer"
+                    color="error"
+                    onClick={() => handleRemoveItem(index)}
+                  />
+                </li>
+              ))}
+            </ul>{" "}
+            {cartItems.length > 0 && (
+              <div className="flex flex-col gap-2">
+                <h2 className="font-poppins">
+                  Items: <span className="font-medium">{cartItems.length}</span>
+                </h2>
+                <h2 className="font-poppins">
+                  SubTotal:{" "}
+                  <span className="font-medium">
+                    $2500/mo + $2500/mo = $5000/mo
                   </span>
-                  <span className="font-medium text-sm font-poppins">
-                    Qty: 1
-                  </span>
-                  <h2 className="font-light font-poppins">
-                    Price:{" "}
-                    <span className="font-medium text-sm font-poppins">
-                      $2500/mo
-                    </span>
-                  </h2>
-                </div>
+                </h2>
+                <h1 className="font-poppins">
+                  Total: <span className="font-medium">$5000/mo</span>
+                </h1>
               </div>
-              <DeleteIcon
-                className="cursor-pointer"
-                color="error"
-                onClick={() => handleRemoveItem(index)}
-              />
-            </li>
-          ))}
-        </ul>
-        {cartItems.length > 0 && (
-          <div className="flex flex-col gap-2">
-            <h2 className="font-poppins">
-              Items: <span className="font-medium">{cartItems.length}</span>
-            </h2>
-            <h2 className="font-poppins">
-              SubTotal:{" "}
-              <span className="font-medium">
-                $2500/mo + $2500/mo = $5000/mo
-              </span>
-            </h2>
-            <h1 className="font-poppins">
-              Total: <span className="font-medium">$5000/mo</span>
-            </h1>
-          </div>
+            )}
+            {cartItems.length > 0 && (
+              <Button
+                variant="contained"
+                style={{
+                  backgroundColor: "#f59e0b",
+                  padding: "0.5em",
+                  color: "#fff",
+                }}
+              >
+                <a href="/checkout">Proceed to checkout</a>
+              </Button>
+            )}
+          </>
+        ) : (
+          <p className="text-black/50 text-xl font-light">
+            Your cart it empty{" "}
+          </p>
         )}
-        <Button
-          variant="contained"
-          style={{
-            backgroundColor: "#f59e0b",
-            padding: "0.5em",
-            color: "#fff",
-          }}
-        >
-          <a href="/checkout">Proceed to checkout</a>
-        </Button>
       </div>
     </div>
   );

@@ -21,6 +21,7 @@ import RadioGroup, { useRadioGroup } from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import FormControl from "@mui/material/FormControl";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const VirtualMachine = () => {
   const [selectedRow, setSelectedRow] = useState(null);
@@ -29,6 +30,7 @@ const VirtualMachine = () => {
   const [durationNumber, setDurationNumber] = useState("");
   const [filteredRows, setFilteredRows] = useState(rows);
   const [error, setError] = useState(false);
+  const [isItemAdded, setIsItemAdded] = useState(false);
 
   // Selecting table row function starts here
   const handleCheckboxClick = (rowIndex) => {
@@ -127,7 +129,11 @@ const VirtualMachine = () => {
 
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
       window.dispatchEvent(new Event("storage"));
-      console.log("Saved to localStorage");
+      setError(false);
+      setIsItemAdded(true);
+      setTimeout(() => {
+        setIsItemAdded(false);
+      }, 2000);
     }
   };
 
@@ -361,6 +367,16 @@ const VirtualMachine = () => {
           </Button>
         </div>
       </div>
+      {isItemAdded && (
+        <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/10">
+          <div className="border border-green-500 bg-white p-3 mx-auto rounded-md shadow-md flex items-center justify-center gap-2 mt-8 animate-bounce">
+            <CheckCircleIcon className="text-green-600" />
+            <p className="text-green-600 text-sm font-medium font-poppins">
+              Item added to the cart!
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

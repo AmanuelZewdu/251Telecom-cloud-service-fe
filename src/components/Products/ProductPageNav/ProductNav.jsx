@@ -57,7 +57,7 @@ const ProductNav = ({ onSelectComponent }) => {
       <div
         className={`fixed h-screen w-1/2 flex justify-center pt-[2em] text-center bg-white z-10 transition-all duration-500 ease-in-out ${
           navIsOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        } font-montserrat`}
       >
         <ul className="flex flex-col items-start gap-5">
           {links.map((link, index) => (
@@ -88,7 +88,7 @@ const ProductNav = ({ onSelectComponent }) => {
       </div>
 
       {/* This is the nav that's displayed when the screen is greater than mid */}
-      <div className="relative hidden md:flex w-[12em] justify-center border h-full shadow-lg pt-4  ">
+      <div className="relative hidden md:flex w-[12em] justify-center border h-full shadow-lg pt-4 font-montserrat">
         <ul className="relative flex flex-col items-start gap-4">
           {links.map((link, index) => (
             <li

@@ -1,11 +1,14 @@
 import "./navbar.scss";
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import CartModal from "../CartModal/CartModal";
 
 const Navbar = () => {
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,22 +22,37 @@ const Navbar = () => {
     };
   }, []);
 
+  // useEffect(() => {
+  //   const cartItems = JSON.parse(localStorage.getItem("purchaseItems")) || [];
+  //   setCartItemsCount(cartItems.length);
+  // }, []);
+
+  useEffect(() => {
+    const handleCartItemsCount = () => {
+      const cartItems = JSON.parse(localStorage.getItem("purchaseItems")) || [];
+      setCartItemsCount(cartItems.length);
+    };
+
+    window.addEventListener("storage", handleCartItemsCount);
+
+    handleCartItemsCount();
+
+    return () => {
+      window.removeEventListener("storage", handleCartItemsCount);
+    };
+  }, []);
+
   const handleNav = () => {
     setNavIsOpen(!navIsOpen);
   };
 
-  const navigationLinks = [
-    { path: "/", label: "Home" },
-    { path: "/console", label: "Console" },
-    { path: "/products", label: "Products" },
-  ];
+  const handleCartIconClick = () => {
+    setIsCartModalOpen(true);
+    setNavIsOpen(false);
+  };
 
-  const Link = ({ path, label }) => {
-    return (
-      <li className="relative nav-hover">
-        <a href={path}>{label}</a>
-      </li>
-    );
+  const closeCartModal = () => {
+    setIsCartModalOpen(false);
   };
 
   return (
@@ -54,10 +72,7 @@ const Navbar = () => {
       >
         {/* This is the logo */}
         <div className="w-[250px]">
-          <a
-            href="/
-          "
-          >
+          <a href="/">
             <img
               className="max-w-full"
               src={require("../../shared/images/251Logo.png")}
@@ -69,12 +84,24 @@ const Navbar = () => {
         {/* This is the nav that's displayed when the screen is greater than mid */}
         <div className="hidden md:flex w-full justify-end items-center gap-4 text-white">
           <ul className="flex justify-end gap-4" style={{ listStyle: "none" }}>
-            {navigationLinks.map((link) => (
-              <Link key={link.path} path={link.path} label={link.label} />
-            ))}
-            <span className="transition-all duration-300 ease-in-out hover:scale-110">
-              <ShoppingCartIcon className="" />
-            </span>
+            <li className="relative nav-hover">
+              <a href="/">Home</a>
+            </li>
+            <li className="relative nav-hover">
+              <a href="/console">Console</a>
+            </li>
+            <li className="relative nav-hover">
+              <a href="/products">Products</a>
+            </li>
+            <li
+              onClick={handleCartIconClick}
+              className="flex relative nav-hover"
+            >
+              <ShoppingCartIcon className="cursor-pointer" />
+              <span className="absolute -right-2 -top-2 flex items-center justify-center bg-red-600 rounded-full cursor-pointer cartCounter">
+                {cartItemsCount}
+              </span>
+            </li>
           </ul>
           <a className="relative nav-hover" href="/log-in">
             Log in
@@ -92,19 +119,30 @@ const Navbar = () => {
         flex flex-col p-4 items-center`}
           >
             <ul className="flex flex-col gap-4 text-center">
-              {navigationLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  path={link.path}
-                  label={link.label}
-                  onClick={handleNav}
-                />
-              ))}
+              <li className="relative nav-hover">
+                <a href="/">Home</a>
+              </li>
+              <li className="relative nav-hover">
+                <a href="/console">Console</a>
+              </li>
+              <li className="relative nav-hover">
+                <a href="/products">Products</a>
+              </li>
+              <li
+                onClick={handleCartIconClick}
+                className="flex relative nav-hover items-center w-fit m-auto justify-center cursor-pointer"
+              >
+                <ShoppingCartIcon className="cursor-pointer" />
+                <span className="absolute -right-2 -top-2 flex items-center justify-center bg-red-600 rounded-full cartCounter">
+                  {cartItemsCount}
+                </span>
+              </li>
             </ul>
             <a href="/log-in">Log in</a>
           </div>
         </div>
       </nav>
+      <CartModal open={isCartModalOpen} onClose={closeCartModal} />
     </div>
   );
 };

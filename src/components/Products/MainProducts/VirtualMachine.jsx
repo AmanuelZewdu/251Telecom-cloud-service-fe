@@ -21,12 +21,14 @@ import FormControl from "@mui/material/FormControl";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const VirtualMachine = () => {
+  const [vmName, setVmName] = useState("");
   const [selectedRow, setSelectedRow] = useState(null);
   const [selectedImage, setSelectedImage] = useState("");
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
   const [filteredRows, setFilteredRows] = useState(rows);
   const [error, setError] = useState(false);
+  const [vmNameError, setVMNameError] = useState(false);
   const [isItemAdded, setIsItemAdded] = useState(false);
 
   // Selecting table row function starts here
@@ -84,12 +86,18 @@ const VirtualMachine = () => {
   const purchaseHandler = () => {
     const purchaseItem = {
       ...selectedRowJSON,
+      vmName: vmName,
       selectedImage: selectedImage,
       durationNumber: durationNumber,
       duration: duration,
     };
 
+    if (!vmName) {
+      setVMNameError(true);
+    }
+
     if (
+      !vmName ||
       selectedRow === null ||
       !selectedImage ||
       !durationNumber ||
@@ -101,7 +109,6 @@ const VirtualMachine = () => {
         JSON.parse(localStorage.getItem("purchaseItems")) || [];
 
       const updatedItems = [...existingItems, purchaseItem];
-      alert(JSON.stringify(updatedItems, null, 2));
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
       window.dispatchEvent(new Event("storage"));
       setError(false);
@@ -109,6 +116,7 @@ const VirtualMachine = () => {
       setTimeout(() => {
         setIsItemAdded(false);
       }, 2000);
+      alert(JSON.stringify(updatedItems, null, 2));
     }
   };
 
@@ -129,14 +137,20 @@ const VirtualMachine = () => {
               Product type: <span className="font-medium">Virtual Machine</span>
             </h4>
           </div>
-          <div className="flex items-end gap-2">
+          <div className="flex flex-col gap-2">
             <input
+              title="You can name it whatever you want"
               placeholder="VM name"
               type="text"
               name="vmName"
               id="vmName"
-              className="border-b outline-none border-gray-400 placeholder:text-gray-400"
+              value={vmName}
+              onChange={(e) => setVmName(e.target.value)}
+              className="border-b w-[13em] outline-none border-gray-400 placeholder:text-gray-400"
             />
+            {vmNameError && (
+              <p className="text-xs text-red-500">Please proivde a vm name</p>
+            )}
           </div>
           <div className="flex gap-3 items-center flex-wrap">
             <h4>VM specifications:</h4>

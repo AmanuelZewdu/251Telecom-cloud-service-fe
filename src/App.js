@@ -6,6 +6,7 @@ import Products from "./components/Products/Products";
 import Navbar from "../src/components/Navbar/Navbar";
 import LogIn from "./components/LogIn/LogIn";
 import SignUp from "./components/SignUp/SignUp";
+import VmPurchase from "./components/Products/VmPurchase";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
               <Route index element={<Home />} />
               <Route path="console" element={<Console />} />
               <Route path="products" element={<Products />} />
+              <Route path="virtual-machine" element={<VmPurchase />} />
+
               <Route path="log-in" element={<LogIn />} />
               <Route path="/sign-up" element={<SignUp />} />
             </Route>

@@ -310,12 +310,18 @@ const VirtualMachine = () => {
           </div>
         </div>
       </div>
-      <div className="flex sticky flex-col gap-1 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat">
+      <div className="flex sticky flex-col gap-1 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat overflow-hidden">
         {error && (
           <span className=" text-left text-red-500">
             Please make sure you have selected al available options*
           </span>
         )}
+        <div className="background">
+          <img
+            src="https://img.freepik.com/free-vector/cloud-connection-abstract-concept-illustration_335657-3873.jpg?t=st=1709288253~exp=1709291853~hmac=ab41542d2428067bbc018ac3e75e724f7ddaf324ca5d52be87a31f4984f449ca&w=826"
+            alt=""
+          />
+        </div>
         <div className="flex gap-2">
           <h3 className="">VM type:</h3>
           <span>{selectedRowJSON?.name || ""}</span>-
@@ -330,13 +336,13 @@ const VirtualMachine = () => {
           <span>{durationNumber ? durationNumber : "-"}</span>
           <span>{duration ? duration : "-"}</span>
         </div>
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 items-center z-50">
           <Button
             style={{
               fontSize: "12px",
               backgroundColor: "#f59e0b",
             }}
-            className="md:w-[10em]"
+            className="w-[7em] md:w-[10em]"
             variant="contained"
             href="/log-in"
             onClick={purchaseHandler}

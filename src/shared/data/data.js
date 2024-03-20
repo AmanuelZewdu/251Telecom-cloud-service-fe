@@ -94,19 +94,19 @@ export const headCells = [
 ];
 
 export const rows = [
-  { name: "s3.medium.2", vCPUs_memory: "1 vCPUs | 2 GB" },
-  { name: "s3.medium.4", vCPUs_memory: "1 vCPUs | 4 GB" },
-  { name: "s2.large.3", vCPUs_memory: "2 vCPUs | 4 GB" },
-  { name: "s2.large.4", vCPUs_memory: "2 vCPUs | 8 GB" },
-  { name: "s2.xlarge.2", vCPUs_memory: "4 vCPUs | 8 GB" },
-  { name: "s2.xlarge.4", vCPUs_memory: "4 vCPUs| 16 GB" },
-  { name: "s2.2xlarge.21", vCPUs_memory: "4 vCPUs | 16 GB" },
-  { name: "s2.2xlarge.12", vCPUs_memory: "8 vCPUs | 16 GB" },
-  { name: "s2.2xlarge.2", vCPUs_memory: "8 vCPUs | 32 GB" },
-  { name: "s2.4xlarge.2", vCPUs_memory: "16 vCPUs | 32 GB" },
-  { name: "s2.4xlarge.4", vCPUs_memory: "16 vCPUs | 64 GB" },
-  { name: "s2.8xlarge.2", vCPUs_memory: "32 vCPUs | 64 GB" },
-  { name: "s2.8xlarge.4", vCPUs_memory: "32 vCPUs | 128 GB" },
+  { instanceType: "s3.medium.2", vCPUs_memory: "1 vCPUs | 2 GB" },
+  { instanceType: "s3.medium.4", vCPUs_memory: "1 vCPUs | 4 GB" },
+  { instanceType: "s2.large.3", vCPUs_memory: "2 vCPUs | 4 GB" },
+  { instanceType: "s2.large.4", vCPUs_memory: "2 vCPUs | 8 GB" },
+  { instanceType: "s2.xlarge.2", vCPUs_memory: "4 vCPUs | 8 GB" },
+  { instanceType: "s2.xlarge.4", vCPUs_memory: "4 vCPUs| 16 GB" },
+  { instanceType: "s2.2xlarge.21", vCPUs_memory: "4 vCPUs | 16 GB" },
+  { instanceType: "s2.2xlarge.12", vCPUs_memory: "8 vCPUs | 16 GB" },
+  { instanceType: "s2.2xlarge.2", vCPUs_memory: "8 vCPUs | 32 GB" },
+  { instanceType: "s2.4xlarge.2", vCPUs_memory: "16 vCPUs | 32 GB" },
+  { instanceType: "s2.4xlarge.4", vCPUs_memory: "16 vCPUs | 64 GB" },
+  { instanceType: "s2.8xlarge.2", vCPUs_memory: "32 vCPUs | 64 GB" },
+  { instanceType: "s2.8xlarge.4", vCPUs_memory: "32 vCPUs | 128 GB" },
 ];
 
 export const vmDescription =

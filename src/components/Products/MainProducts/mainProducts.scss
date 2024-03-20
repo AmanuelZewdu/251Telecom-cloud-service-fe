@@ -3,3 +3,11 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.background {
+  width: 10em;
+  height: 10em;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}

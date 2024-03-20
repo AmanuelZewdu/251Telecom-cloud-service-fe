@@ -38,12 +38,12 @@ const VirtualMachine = () => {
 
   const selectedRowData = selectedRow !== null ? rows[selectedRow] : null;
 
-  const selectedRowJSON = selectedRowData
-    ? {
-        name: selectedRowData.name,
-        vCPUs_memory: selectedRowData.vCPUs_memory,
-      }
-    : null; // This is selected row valye in json format
+  // const selectedRowJSON = selectedRowData
+  //   ? {
+  //       instanceType: selectedRowData.instanceType,
+  //       vCPUs_memory: selectedRowData.vCPUs_memory,
+  //     }
+  //   : null; // This is selected row valye in json format
 
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
@@ -85,11 +85,12 @@ const VirtualMachine = () => {
 
   const purchaseHandler = () => {
     const purchaseItem = {
-      ...selectedRowJSON,
-      vmName: vmName,
-      selectedImage: selectedImage,
-      durationNumber: durationNumber,
-      duration: duration,
+      instanceType: selectedRowData.instanceType,
+      itemvCPU_memory: selectedRowData.vCPUs_memory,
+      name: vmName,
+      imageId: selectedImage,
+      // durationNumber: durationNumber,
+      // duration: duration,
     };
 
     if (!vmName) {
@@ -212,7 +213,7 @@ const VirtualMachine = () => {
               <TableBody>
                 {filteredRows.map((row, index) => (
                   <TableRow
-                    key={row.name}
+                    key={row.instanceType + index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell padding="checkbox">
@@ -223,7 +224,7 @@ const VirtualMachine = () => {
                       />
                     </TableCell>
                     <TableCell component="th" scope="row">
-                      {row.name}
+                      {row.instanceType}
                     </TableCell>
                     <TableCell align="left">{row.vCPUs_memory}</TableCell>
                   </TableRow>
@@ -324,8 +325,8 @@ const VirtualMachine = () => {
         </div>
         <div className="flex gap-2">
           <h3 className="">VM type:</h3>
-          <span>{selectedRowJSON?.name || ""}</span>-
-          <span>{selectedRowJSON?.vCPUs_memory || ""}</span>
+          <span>{selectedRowData?.instanceType || ""}</span>-
+          <span>{selectedRowData?.vCPUs_memory || ""}</span>
         </div>
         <div className="flex gap-2">
           <h3 className="">Selected image:</h3>

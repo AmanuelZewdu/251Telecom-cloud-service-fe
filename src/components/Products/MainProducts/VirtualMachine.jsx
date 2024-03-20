@@ -224,13 +224,14 @@ const VirtualMachine = () => {
                 <TableRow>
                   <TableCell></TableCell>
                   <TableCell>Flavor name</TableCell>
-                  <TableCell align="left">vCPUs_memory</TableCell>
+                  <TableCell align="left">vCPUs</TableCell>
+                  <TableCell align="left">Memory</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filteredRows.map((row, index) => (
+                {instanceTypes.map((instanceType, index) => (
                   <TableRow
-                    key={row.instanceType + index}
+                    key={instanceType.name + index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell padding="checkbox">
@@ -241,9 +242,17 @@ const VirtualMachine = () => {
                       />
                     </TableCell>
                     <TableCell component="th" scope="row">
-                      {row.instanceType}
+                      {instanceType.name}
                     </TableCell>
-                    <TableCell align="left">{row.vCPUs_memory}</TableCell>
+                    <TableCell align="left">
+                      <span className="flex items-center">
+                        {" "}
+                        {instanceType.vcpus} <p className="text-xs"> vCPU</p>
+                      </span>
+                    </TableCell>
+                    <TableCell align="left">
+                      {instanceType.memory_mb / 1000} GB
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

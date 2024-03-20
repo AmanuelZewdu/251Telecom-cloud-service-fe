@@ -1,6 +1,7 @@
 import "./mainProducts.scss";
 import { Button } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import {
   memories,
   vCPUs,
@@ -19,6 +20,7 @@ import Checkbox from "@mui/material/Checkbox";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import services from "../../../Services/services";
 
 const VirtualMachine = () => {
   const [vmName, setVmName] = useState("");
@@ -30,6 +32,11 @@ const VirtualMachine = () => {
   const [error, setError] = useState(false);
   const [vmNameError, setVMNameError] = useState(false);
   const [isItemAdded, setIsItemAdded] = useState(false);
+  const [instanceTypes, setInstanceTypes] = useState([]);
+
+  useEffect(() => {
+    fetchInstanceType();
+  }, []);
 
   // Selecting table row function starts here
   const handleCheckboxClick = (rowIndex) => {
@@ -118,6 +125,16 @@ const VirtualMachine = () => {
         setIsItemAdded(false);
       }, 2000);
       alert(JSON.stringify(updatedItems, null, 2));
+    }
+  };
+
+  const fetchInstanceType = async () => {
+    try {
+      const response = await services.getInstanceType();
+      setInstanceTypes(response);
+    } catch (error) {
+      setError(error);
+    } finally {
     }
   };
 

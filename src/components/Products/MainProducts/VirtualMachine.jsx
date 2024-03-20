@@ -123,13 +123,20 @@ const VirtualMachine = () => {
       </details>
       <div className="flex flex-col gap-4">
         <div className="border shadow-md flex text-left flex-col p-4 gap-2">
-          <h2 className="text-lg font-semibold font-montserrat">
-            Product details
-          </h2>
+          <h2 className="text-lg font-medium font-poppins">Product details</h2>
           <div className="flex items-start">
             <h4>
               Product type: <span className="font-medium">Virtual Machine</span>
             </h4>
+          </div>
+          <div className="flex items-end gap-2">
+            <input
+              placeholder="VM name"
+              type="text"
+              name="vmName"
+              id="vmName"
+              className="border-b outline-none border-gray-400 placeholder:text-gray-400"
+            />
           </div>
           <div className="flex gap-3 items-center flex-wrap">
             <h4>VM specifications:</h4>
@@ -213,7 +220,7 @@ const VirtualMachine = () => {
         </div>
         <div className="border shadow-md flex text-left flex-col p-4 gap-6">
           <div className="mt-4 flex flex-col w-ful">
-            <h4 className="text-lg font-semibold font-montserrat">
+            <h4 className="text-lg font-medium font-poppins">
               Image Management
             </h4>
             <div className="flex items-center gap-2">

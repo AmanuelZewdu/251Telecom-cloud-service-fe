@@ -2,12 +2,7 @@ import "./mainProducts.scss";
 import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
 
-import {
-  memories,
-  vCPUs,
-  rows,
-  vmDescription,
-} from "../../../shared/data/data.js";
+import { memories, rows, vmDescription } from "../../../shared/data/data.js";
 import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -44,13 +39,6 @@ const VirtualMachine = () => {
   };
 
   const selectedRowData = selectedRow !== null ? rows[selectedRow] : null;
-
-  // const selectedRowJSON = selectedRowData
-  //   ? {
-  //       instanceType: selectedRowData.instanceType,
-  //       vCPUs_memory: selectedRowData.vCPUs_memory,
-  //     }
-  //   : null; // This is selected row valye in json format
 
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
@@ -138,6 +126,30 @@ const VirtualMachine = () => {
     }
   };
 
+  const uniquevCPUs = instanceTypes.reduce((acc, current) => {
+    const vCPUs = acc.find((item) => item.vcpus === current.vcpus);
+    if (!vCPUs) {
+      return acc.concat([current]);
+    } else {
+      return acc;
+    }
+  }, []);
+
+  const sortedUniquevCPUs = uniquevCPUs.sort((a, b) => a.vcpus - b.vcpus);
+
+  const uniqueMemories = instanceTypes.reduce((acc, current) => {
+    const memories = acc.find((item) => item.memory_mb === current.memory_mb);
+    if (!memories) {
+      return acc.concat([current]);
+    } else {
+      return acc;
+    }
+  }, []);
+
+  const sortedMemories = uniqueMemories.sort(
+    (a, b) => a.memory_mb - b.memory_mb
+  );
+
   return (
     <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left font-montserrat">
       <h1 className="text-2xl tracking-wide">Virtual Machine</h1>
@@ -183,9 +195,9 @@ const VirtualMachine = () => {
                 <option value="" disabled hidden>
                   Select
                 </option>
-                {vCPUs.map((vCPU) => (
-                  <option value={vCPU.name} key={vCPU.name}>
-                    {vCPU.name}
+                {sortedUniquevCPUs.map((instancevCPUs) => (
+                  <option value={instancevCPUs.name} key={instancevCPUs.name}>
+                    {instancevCPUs.vcpus}
                   </option>
                 ))}
               </select>
@@ -202,9 +214,9 @@ const VirtualMachine = () => {
                   <option value="" disabled hidden>
                     Select
                   </option>
-                  {memories.map((memory) => (
-                    <option value={memory.size} key={memory.size}>
-                      {memory.size}
+                  {sortedMemories.map((memory) => (
+                    <option value={memory.memory_mb} key={memory.memory_mb}>
+                      {memory.memory_mb / 1000} GB
                     </option>
                   ))}
                 </select>

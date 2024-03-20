@@ -1,6 +1,14 @@
 import CallUs from "../CallUs/CallUs";
 import "./hero.scss";
+import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
+
+const HeroButton = styled(Button)({
+  textTransform: "none",
+  fontSize: "1em",
+  fontWeight: "semi-bold",
+});
+
 const Hero = () => {
   return (
     <div className="hero-wrapper w-full relative bg-no-repeat bg-cover bg-center flex items-center justify-center h-svh md:h-[35em]">
@@ -15,18 +23,23 @@ const Hero = () => {
             possibilities. Experience innovation, tailored for you
           </p>
           <div className="p-2">
-            <Button
-              sx={{
-                backgroundColor: "#f59e0b",
-                "&:hover": {
-                  backgroundColor: "#d28602",
-                },
-              }}
-              variant="contained"
-              className="w-[120px]"
+            <a
+              href="/products
+            "
             >
-              CTA
-            </Button>
+              <HeroButton
+                sx={{
+                  backgroundColor: "#f59e0b",
+                  "&:hover": {
+                    backgroundColor: "#d28602",
+                  },
+                }}
+                variant="contained"
+                className=""
+              >
+                Lets get started ...
+              </HeroButton>
+            </a>
           </div>
         </div>
         <div className="md:w-[15em] lg:w-[25em] md:mt-20 hidden md:flex items-center justify-center">

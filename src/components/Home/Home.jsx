@@ -1,5 +1,5 @@
 import Hero from "../Hero/Hero";
-import Services from "../Services/Services";
+import Services from "../OurServices/OurServices";
 import "./home.scss";
 
 const Home = () => {

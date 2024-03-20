@@ -129,6 +129,11 @@ const VirtualMachine = () => {
     (a, b) => a.memory_mb - b.memory_mb
   );
 
+  const mbToGBConverter = (memory_mb) => {
+    const memoryInGB = memory_mb / 1000;
+    return `${memoryInGB} GB`;
+  };
+
   return (
     <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left font-montserrat">
       <h1 className="text-2xl tracking-wide">Virtual Machine</h1>
@@ -215,7 +220,7 @@ const VirtualMachine = () => {
               <TableHead>
                 <TableRow>
                   <TableCell></TableCell>
-                  <TableCell>Flavor name</TableCell>
+                  <TableCell>Instance name</TableCell>
                   <TableCell align="left">vCPUs</TableCell>
                   <TableCell align="left">Memory</TableCell>
                 </TableRow>
@@ -243,7 +248,7 @@ const VirtualMachine = () => {
                       </span>
                     </TableCell>
                     <TableCell align="left">
-                      {instanceType.memory_mb / 1000} GB
+                      {mbToGBConverter(instanceType.memory_mb)}
                     </TableCell>
                   </TableRow>
                 ))}

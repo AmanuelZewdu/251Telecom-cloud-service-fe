@@ -69,7 +69,8 @@ const CartModal = ({ open, onClose }) => {
                     <div className="flex flex-col gap-2">
                       <h4 className="text-xl font-montserrat ">{item.name}</h4>
                       <span className="font-light font-poppins">
-                        {item.itemvCPU_memory}
+                        {item.vcpus ? `${item.vcpus} vCPU` : ""}{" "}
+                        {item.memory_mb ? `${item.memory_mb} GB` : ""}
                       </span>
                       <span className="font-medium text-sm font-poppins">
                         Qty: 1

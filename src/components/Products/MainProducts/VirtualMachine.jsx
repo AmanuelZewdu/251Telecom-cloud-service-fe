@@ -2,7 +2,7 @@ import "./mainProducts.scss";
 import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
 
-import { memories, rows, vmDescription } from "../../../shared/data/data.js";
+import { vmDescription } from "../../../shared/data/data.js";
 import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -23,7 +23,6 @@ const VirtualMachine = () => {
   const [selectedImage, setSelectedImage] = useState("");
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
-  const [filteredRows, setFilteredRows] = useState(rows);
   const [error, setError] = useState(false);
   const [vmNameError, setVMNameError] = useState(false);
   const [isItemAdded, setIsItemAdded] = useState(false);
@@ -38,7 +37,13 @@ const VirtualMachine = () => {
     setSelectedRow(rowIndex);
   };
 
-  const selectedRowData = selectedRow !== null ? rows[selectedRow] : null;
+  const selectedRowData =
+    selectedRow !== null
+      ? {
+          vcpus: instanceTypes[selectedRow].vcpus,
+          memory_mb: instanceTypes[selectedRow].memory_mb / 1000,
+        }
+      : null;
 
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
@@ -52,36 +57,10 @@ const VirtualMachine = () => {
     setSelectedImage(event.target.value); // this is selected image string
   };
 
-  const handlevCPUFilter = (event) => {
-    const selectedvCPU = event.target.value;
-    const selectedMemory = document.getElementById("memorySelect").value;
-
-    const newFilteredRows = rows.filter(
-      (row) =>
-        row.vCPUs_memory.includes(selectedvCPU) &&
-        row.vCPUs_memory.includes(selectedMemory)
-    );
-
-    setFilteredRows(newFilteredRows);
-  };
-
-  const handleMemoryFilter = (event) => {
-    const selectedMemory = event.target.value;
-    const selectedvCPU = document.getElementById("vCPUSelect").value;
-
-    const newFilteredRows = rows.filter(
-      (row) =>
-        row.vCPUs_memory.includes(selectedMemory) &&
-        row.vCPUs_memory.includes(selectedvCPU)
-    );
-
-    setFilteredRows(newFilteredRows);
-  };
-
   const purchaseHandler = () => {
     const purchaseItem = {
-      instanceType: selectedRowData.instanceType,
-      itemvCPU_memory: selectedRowData.vCPUs_memory,
+      vcpus: selectedRowData.vcpus,
+      memory_mb: selectedRowData.memory_mb,
       name: vmName,
       imageId: selectedImage,
       // durationNumber: durationNumber,
@@ -190,14 +169,16 @@ const VirtualMachine = () => {
                 id="vCPUSelect"
                 className="w-[8em] p-2 bg-gray-100 rounded-md"
                 defaultValue=""
-                onChange={handlevCPUFilter}
               >
                 <option value="" disabled hidden>
                   Select
                 </option>
-                {sortedUniquevCPUs.map((instancevCPUs) => (
-                  <option value={instancevCPUs.name} key={instancevCPUs.name}>
-                    {instancevCPUs.vcpus}
+                {sortedUniquevCPUs.map((instancevCPUs, index) => (
+                  <option
+                    value={instancevCPUs.vcpus}
+                    key={instancevCPUs.name + index}
+                  >
+                    {instancevCPUs.vcpus} vCPU
                   </option>
                 ))}
               </select>
@@ -209,7 +190,6 @@ const VirtualMachine = () => {
                   id="memorySelect"
                   className="w-[8em] p-2 bg-gray-100 rounded-md"
                   defaultValue=""
-                  onChange={handleMemoryFilter}
                 >
                   <option value="" disabled hidden>
                     Select
@@ -363,8 +343,15 @@ const VirtualMachine = () => {
         </div>
         <div className="flex gap-2">
           <h3 className="">VM type:</h3>
-          <span>{selectedRowData?.instanceType || ""}</span>-
-          <span>{selectedRowData?.vCPUs_memory || ""}</span>
+          <span>
+            {selectedRowData?.vcpus ? `${selectedRowData.vcpus} vCPUs` : ""}
+          </span>
+          -
+          <span>
+            {selectedRowData?.memory_mb
+              ? `${selectedRowData.memory_mb} GB`
+              : ""}
+          </span>
         </div>
         <div className="flex gap-2">
           <h3 className="">Selected image:</h3>

@@ -16,10 +16,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
-import { styled } from "@mui/material/styles";
-import RadioGroup, { useRadioGroup } from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
@@ -46,38 +43,16 @@ const VirtualMachine = () => {
       }
     : null; // This is selected row valye in json format
 
-  // Radio buttons style start here
-  const StyledFormControlLabel = styled(FormControlLabel)(
-    ({ theme, checked }) => ({
-      ".MuiRadio-root": {
-        color: checked ? "#f59e0b" : "inherit", // Change radio color to yellow when checked
-      },
-      ".MuiFormControlLabel-label": {
-        color: checked ? "#f59e0b" : "inherit", // Change label color to yellow when checked
-      },
-    })
-  );
-
-  function MyFormControlLabel(props) {
-    const radioGroup = useRadioGroup();
-    let checked = false;
-    if (radioGroup) {
-      checked = radioGroup.value === props.value;
-    }
-    return <StyledFormControlLabel checked={checked} {...props} />;
-  }
-
-  const handleImageChange = (e) => {
-    setSelectedImage(e.target.value); // this is selected image type value
-  };
-  // Radio ends here
-
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
   };
 
   const handleDurationChange = (event) => {
     setDuration(event.target.value); // this is selected duration period value
+  };
+
+  const handleImageChange = (event) => {
+    setSelectedImage(event.target.value); // this is selected image string
   };
 
   const handlevCPUFilter = (event) => {
@@ -126,7 +101,7 @@ const VirtualMachine = () => {
         JSON.parse(localStorage.getItem("purchaseItems")) || [];
 
       const updatedItems = [...existingItems, purchaseItem];
-
+      alert(JSON.stringify(updatedItems, null, 2));
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
       window.dispatchEvent(new Event("storage"));
       setError(false);
@@ -241,31 +216,25 @@ const VirtualMachine = () => {
             <h4 className="text-lg font-semibold font-montserrat">
               Image Management
             </h4>
-            <div className="flex gap-2 items-center ">
-              <h4>Image:</h4>
-              <RadioGroup
-                row
-                name="use-radio-group"
+            <div className="flex items-center gap-2">
+              <label>Image:</label>
+              <select
+                name="image"
+                className="w-[12em] p-2 bg-gray-100 rounded-md"
                 value={selectedImage}
                 onChange={handleImageChange}
               >
-                <MyFormControlLabel
-                  value="windows"
-                  label="Windows"
-                  control={<Radio />}
-                />
-                <MyFormControlLabel
-                  value="linux"
-                  label="Linux"
-                  control={<Radio />}
-                />
-              </RadioGroup>
+                {Array.from({ length: 20 }, (_, index) => (
+                  <option key={index + 1} value={index + 1}>
+                    {index + 1}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <div className="mt-4 flex gap-4 items-center">
             <div className="flex gap-2">
               <label>Duration:</label>
-
               <select
                 name="duration"
                 className="w-[8em] p-2 bg-gray-100 rounded-md"

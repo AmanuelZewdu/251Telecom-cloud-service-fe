@@ -196,6 +196,9 @@ const VirtualMachine = () => {
   };
 
   const priceCalculator = (vcpus, memory) => {
+    if (!vcpus || !memory) {
+      return "-";
+    }
     const vcpusPrice = vcpus * 0.035;
     console.log(vcpusPrice);
     const memoryValue = (memory / 1024) * 0.00375;

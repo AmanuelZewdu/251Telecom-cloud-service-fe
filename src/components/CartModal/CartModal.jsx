@@ -42,6 +42,32 @@ const CartModal = ({ open, onClose }) => {
     window.dispatchEvent(new Event("storage"));
   };
 
+  const calculateSubtotal = () => {
+    const subtotal = cartItems.reduce((total, item) => {
+      const price = parseFloat(item.price.replace(/[^\d.]/g, ""));
+      return total + price;
+    }, 0);
+
+    const additionRepresentation = cartItems.map((item, index) => {
+      return index === cartItems.length - 1
+        ? `$${parseFloat(item.price.replace(/[^\d.]/g, ""))}`
+        : `$${parseFloat(item.price.replace(/[^\d.]/g, ""))} + `;
+    });
+
+    return `${additionRepresentation.join(" ")} = $${subtotal.toFixed(2)}`;
+  };
+
+  const calculateTotal = () => {
+    const total = cartItems.reduce((acc, item) => {
+      const price = parseFloat(item.price.replace(/[^\d.]/g, ""));
+      return acc + price;
+    }, 0);
+    return total.toFixed(2);
+  };
+
+  const subtotal = calculateSubtotal();
+  const total = calculateTotal();
+
   return (
     <div
       className={`fixed right-0 z-50  ${
@@ -95,13 +121,10 @@ const CartModal = ({ open, onClose }) => {
                   Items: <span className="font-medium">{cartItems.length}</span>
                 </h2>
                 <h2 className="font-poppins">
-                  SubTotal:{" "}
-                  <span className="font-medium">
-                    $2500/mo + $2500/mo = $5000/mo
-                  </span>
+                  SubTotal: <span className="font-medium">{subtotal}</span>
                 </h2>
                 <h1 className="font-poppins">
-                  Total: <span className="font-medium">$5000/mo</span>
+                  Total: <span className="font-medium">${total}/mo</span>
                 </h1>
               </div>
             )}

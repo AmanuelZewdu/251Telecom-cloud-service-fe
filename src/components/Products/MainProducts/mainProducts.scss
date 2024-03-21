@@ -11,3 +11,14 @@ input::-webkit-inner-spin-button {
   right: 0;
   bottom: 0;
 }
+
+.rotate {
+  transform: rotate(0deg);
+  animation: rotate 0.3s linear;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(-360deg);
+  }
+}

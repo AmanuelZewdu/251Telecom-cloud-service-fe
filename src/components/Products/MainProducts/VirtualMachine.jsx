@@ -14,6 +14,7 @@ import Checkbox from "@mui/material/Checkbox";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import services from "../../../Services/services";
 import TablePagination from "@mui/material/TablePagination";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -52,7 +53,6 @@ const VirtualMachine = () => {
         }
       : null;
 
-  console.log(selectedRowData);
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
   };
@@ -164,6 +164,11 @@ const VirtualMachine = () => {
     setSelectedMemory(event.target.value);
   };
 
+  const resetFilter = () => {
+    document.getElementById("rotateButton").classList.toggle("rotate");
+    setSelectedVCPU("");
+    setSelectedMemory("");
+  };
   // this func returns the instance types which are paginated and filtering logic is included in it.
   const filterAndSliceInstanceTypes = () => {
     const filteredInstanceTypes = instanceTypes.filter((instanceType) => {
@@ -264,10 +269,20 @@ const VirtualMachine = () => {
                 </select>
               }
             </div>
+            <button
+              onClick={resetFilter}
+              id="rotateButton"
+              className="flex items-center transition-colors duration-500 ease-in-out text-gray-600 hover:bg-gray-200 border border-transparent p-2 rounded-full reset"
+            >
+              <RestartAltIcon />
+            </button>
           </div>
           <TableContainer
             component={Paper}
-            style={{ minHeight: "30em", maxHeight: "20em", maxWidth: "50em" }}
+            style={{
+              minHeight: "30em",
+              maxWidth: "50em",
+            }}
           >
             <Table
               sx={{ minHeight: "26.9em" }}

@@ -165,11 +165,22 @@ const VirtualMachine = () => {
     setSelectedMemory(event.target.value);
   };
 
+  // This func resets filtered table to default
   const resetFilter = () => {
-    document.getElementById("rotateButton").classList.toggle("rotate");
     setSelectedVCPU("");
     setSelectedMemory("");
+
+    const vCPUSelect = document.getElementById("vCPUSelect");
+    if (vCPUSelect) {
+      vCPUSelect.value = "";
+    }
+
+    const memorySelect = document.getElementById("memorySelect");
+    if (memorySelect) {
+      memorySelect.value = "";
+    }
   };
+
   // this func returns the instance types which are paginated and filtering logic is included in it.
   const filterAndSliceInstanceTypes = () => {
     const filteredInstanceTypes = instanceTypes.filter((instanceType) => {

@@ -66,15 +66,6 @@ const VirtualMachine = () => {
   };
 
   const purchaseHandler = () => {
-    const purchaseItem = {
-      vcpus: selectedRowData.vcpus,
-      memory_mb: mbToGBConverter(selectedRowData.memory_mb),
-      name: vmName,
-      imageId: selectedImage,
-      // durationNumber: durationNumber,
-      // duration: duration,
-    };
-
     if (!vmName) {
       setVMNameError(true);
     }
@@ -91,6 +82,14 @@ const VirtualMachine = () => {
       const existingItems =
         JSON.parse(localStorage.getItem("purchaseItems")) || [];
 
+      const purchaseItem = {
+        vcpus: selectedRowData.vcpus,
+        memory_mb: mbToGBConverter(selectedRowData.memory_mb),
+        name: vmName,
+        imageId: selectedImage,
+        // durationNumber: durationNumber,
+        // duration: duration,
+      };
       const updatedItems = [...existingItems, purchaseItem];
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
       window.dispatchEvent(new Event("storage"));

@@ -72,13 +72,11 @@ const CartModal = ({ open, onClose }) => {
                         {item.vcpus ? `${item.vcpus} vCPU | ` : ""}
                         {item.memory_mb ? `${item.memory_mb}` : ""}
                       </span>
-                      <span className="font-medium text-sm font-poppins">
-                        Qty: 1
-                      </span>
+                      <span className="font-medium  font-poppins">Qty: 1</span>
                       <h2 className="font-light font-poppins">
                         Price:{" "}
                         <span className="font-medium text-sm font-poppins">
-                          $2500/mo
+                          {item.price}
                         </span>
                       </h2>
                     </div>

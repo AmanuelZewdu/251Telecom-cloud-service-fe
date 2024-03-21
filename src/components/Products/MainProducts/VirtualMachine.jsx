@@ -69,7 +69,10 @@ const VirtualMachine = () => {
     if (!vmName) {
       setVMNameError(true);
     }
-
+    const price = priceCalculator(
+      selectedRowData.vcpus,
+      selectedRowData.memory_mb
+    );
     if (
       !vmName ||
       selectedRow === null ||
@@ -87,6 +90,7 @@ const VirtualMachine = () => {
         memory_mb: mbToGBConverter(selectedRowData.memory_mb),
         name: vmName,
         imageId: selectedImage,
+        price: price,
         // durationNumber: durationNumber,
         // duration: duration,
       };

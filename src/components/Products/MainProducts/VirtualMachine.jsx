@@ -30,6 +30,8 @@ const VirtualMachine = () => {
   const [instanceTypes, setInstanceTypes] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [selectedVCPU, setSelectedVCPU] = useState("");
+  const [selectedMemory, setSelectedMemory] = useState("");
 
   useEffect(() => {
     fetchInstanceType();
@@ -146,10 +148,42 @@ const VirtualMachine = () => {
     setPage(0);
   };
 
-  const paginatedInstanceTypes = instanceTypes.slice(
-    page * rowsPerPage,
-    page * rowsPerPage + rowsPerPage
-  );
+  // const paginatedInstanceTypes = instanceTypes.slice(
+  //   page * rowsPerPage,
+  //   page * rowsPerPage + rowsPerPage
+  // );
+
+  const handleVCPUChange = (event) => {
+    setSelectedVCPU(event.target.value);
+  };
+
+  const handleMemoryChange = (event) => {
+    setSelectedMemory(event.target.value);
+  };
+
+  const filterAndSliceInstanceTypes = () => {
+    const filteredInstanceTypes = instanceTypes.filter((instanceType) => {
+      if (selectedVCPU && selectedMemory) {
+        return (
+          instanceType.vcpus === parseInt(selectedVCPU) &&
+          instanceType.memory_mb === parseInt(selectedMemory)
+        );
+      } else if (selectedVCPU) {
+        return instanceType.vcpus === parseInt(selectedVCPU);
+      } else if (selectedMemory) {
+        return instanceType.memory_mb === parseInt(selectedMemory);
+      } else {
+        return true;
+      }
+    });
+
+    const slicedInstanceTypes = filteredInstanceTypes.slice(
+      page * rowsPerPage,
+      page * rowsPerPage + rowsPerPage
+    );
+
+    return slicedInstanceTypes;
+  };
 
   return (
     <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left font-montserrat">
@@ -191,6 +225,7 @@ const VirtualMachine = () => {
                 id="vCPUSelect"
                 className="w-[8em] p-2 bg-gray-100 rounded-md"
                 defaultValue=""
+                onChange={handleVCPUChange}
               >
                 <option value="" disabled hidden>
                   Select
@@ -212,6 +247,7 @@ const VirtualMachine = () => {
                   id="memorySelect"
                   className="w-[8em] p-2 bg-gray-100 rounded-md"
                   defaultValue=""
+                  onChange={handleMemoryChange}
                 >
                   <option value="" disabled hidden>
                     Select
@@ -243,7 +279,7 @@ const VirtualMachine = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {paginatedInstanceTypes.map((instanceType, index) => (
+                {filterAndSliceInstanceTypes().map((instanceType, index) => (
                   <TableRow
                     key={instanceType.name + index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -261,7 +297,7 @@ const VirtualMachine = () => {
                     <TableCell align="left">
                       <span className="flex items-center">
                         {" "}
-                        {instanceType.vcpus} <p className="text-xs"> vCPU</p>
+                        {`${instanceType.vcpus} vCPU`}
                       </span>
                     </TableCell>
                     <TableCell align="left">

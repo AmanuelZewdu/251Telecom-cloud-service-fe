@@ -16,6 +16,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import services from "../../../Services/services";
+import TablePagination from "@mui/material/TablePagination";
 
 const VirtualMachine = () => {
   const [vmName, setVmName] = useState("");
@@ -27,6 +28,8 @@ const VirtualMachine = () => {
   const [vmNameError, setVMNameError] = useState(false);
   const [isItemAdded, setIsItemAdded] = useState(false);
   const [instanceTypes, setInstanceTypes] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(() => {
     fetchInstanceType();
@@ -130,9 +133,23 @@ const VirtualMachine = () => {
   );
 
   const mbToGBConverter = (memory_mb) => {
-    const memoryInGB = memory_mb / 1000;
+    const memoryInGB = memory_mb / 1024;
     return `${memoryInGB} GB`;
   };
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const paginatedInstanceTypes = instanceTypes.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  );
 
   return (
     <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left font-montserrat">
@@ -201,7 +218,7 @@ const VirtualMachine = () => {
                   </option>
                   {sortedMemories.map((memory) => (
                     <option value={memory.memory_mb} key={memory.memory_mb}>
-                      {memory.memory_mb / 1000} GB
+                      {mbToGBConverter(memory.memory_mb)}
                     </option>
                   ))}
                 </select>
@@ -218,7 +235,7 @@ const VirtualMachine = () => {
               aria-label="a dense table"
             >
               <TableHead>
-                <TableRow>
+                <TableRow className="bg-gray-200 ">
                   <TableCell></TableCell>
                   <TableCell>Instance name</TableCell>
                   <TableCell align="left">vCPUs</TableCell>
@@ -226,7 +243,7 @@ const VirtualMachine = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {instanceTypes.map((instanceType, index) => (
+                {paginatedInstanceTypes.map((instanceType, index) => (
                   <TableRow
                     key={instanceType.name + index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -254,6 +271,16 @@ const VirtualMachine = () => {
                 ))}
               </TableBody>
             </Table>
+            <TablePagination
+              className="bg-gray-200 w-full flex items-center justify-center"
+              rowsPerPageOptions={[10, 25, 50]}
+              component="div"
+              count={instanceTypes.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
           </TableContainer>
         </div>
         <div className="border shadow-md flex text-left flex-col p-4 gap-6">

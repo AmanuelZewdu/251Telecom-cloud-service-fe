@@ -94,6 +94,7 @@ const VirtualMachine = () => {
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
       window.dispatchEvent(new Event("storage"));
       setError(false);
+      setVMNameError(true);
       setIsItemAdded(true);
       setTimeout(() => {
         setIsItemAdded(false);
@@ -192,6 +193,17 @@ const VirtualMachine = () => {
     );
 
     return slicedInstanceTypes;
+  };
+
+  const priceCalculator = (vcpus, memory) => {
+    const vcpusPrice = vcpus * 0.035;
+    console.log(vcpusPrice);
+    const memoryValue = (memory / 1024) * 0.00375;
+    console.log(memory);
+    console.log(memoryValue);
+    const totalPrice = (vcpusPrice + memoryValue) * 730;
+    console.log(totalPrice);
+    return `$${totalPrice}`;
   };
 
   return (
@@ -456,6 +468,15 @@ const VirtualMachine = () => {
           <h3 className="">Duration:</h3>
           <span>{durationNumber ? durationNumber : "-"}</span>
           <span>{duration ? duration : "-"}</span>
+        </div>
+        <div className="flex gap-2">
+          <h3>Price:</h3>
+          <span className="font-semibold">
+            {priceCalculator(
+              selectedRowData?.vcpus,
+              selectedRowData?.memory_mb
+            )}
+          </span>
         </div>
         <div className="flex gap-4 items-center z-50">
           <Button

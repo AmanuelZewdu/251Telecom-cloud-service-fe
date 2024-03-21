@@ -48,10 +48,11 @@ const VirtualMachine = () => {
     selectedRow !== null
       ? {
           vcpus: instanceTypes[selectedRow].vcpus,
-          memory_mb: instanceTypes[selectedRow].memory_mb / 1000,
+          memory_mb: instanceTypes[selectedRow].memory_mb,
         }
       : null;
 
+  console.log(selectedRowData);
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
   };
@@ -67,7 +68,7 @@ const VirtualMachine = () => {
   const purchaseHandler = () => {
     const purchaseItem = {
       vcpus: selectedRowData.vcpus,
-      memory_mb: selectedRowData.memory_mb,
+      memory_mb: mbToGBConverter(selectedRowData.memory_mb),
       name: vmName,
       imageId: selectedImage,
       // durationNumber: durationNumber,
@@ -424,12 +425,12 @@ const VirtualMachine = () => {
         <div className="flex gap-2">
           <h3 className="">VM type:</h3>
           <span>
-            {selectedRowData?.vcpus ? `${selectedRowData.vcpus} vCPUs` : ""}
+            {selectedRowData?.vcpus ? `${selectedRowData.vcpus} vCPU` : ""}
           </span>
           -
           <span>
             {selectedRowData?.memory_mb
-              ? `${selectedRowData.memory_mb} GB`
+              ? `${mbToGBConverter(selectedRowData.memory_mb)}`
               : ""}
           </span>
         </div>

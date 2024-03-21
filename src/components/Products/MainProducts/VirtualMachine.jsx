@@ -1,7 +1,6 @@
 import "./mainProducts.scss";
 import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
-
 import { vmDescription } from "../../../shared/data/data.js";
 import * as React from "react";
 import Table from "@mui/material/Table";
@@ -17,6 +16,7 @@ import FormControl from "@mui/material/FormControl";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import services from "../../../Services/services";
 import TablePagination from "@mui/material/TablePagination";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const VirtualMachine = () => {
   const [vmName, setVmName] = useState("");
@@ -32,7 +32,9 @@ const VirtualMachine = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedVCPU, setSelectedVCPU] = useState("");
   const [selectedMemory, setSelectedMemory] = useState("");
+  const [loading, setLoading] = useState(true);
 
+  // side effect that fetches the instance types
   useEffect(() => {
     fetchInstanceType();
   }, []);
@@ -104,6 +106,7 @@ const VirtualMachine = () => {
     try {
       const response = await services.getInstanceType();
       setInstanceTypes(response);
+      setLoading(false);
     } catch (error) {
       setError(error);
     } finally {
@@ -161,6 +164,7 @@ const VirtualMachine = () => {
     setSelectedMemory(event.target.value);
   };
 
+  // this func returns the instance types which are paginated and filtering logic is included in it.
   const filterAndSliceInstanceTypes = () => {
     const filteredInstanceTypes = instanceTypes.filter((instanceType) => {
       if (selectedVCPU && selectedMemory) {
@@ -263,10 +267,10 @@ const VirtualMachine = () => {
           </div>
           <TableContainer
             component={Paper}
-            style={{ maxHeight: "20em", maxWidth: "40em" }}
+            style={{ minHeight: "30em", maxHeight: "20em", maxWidth: "50em" }}
           >
             <Table
-              sx={{ maxWidth: "50em" }}
+              sx={{ minHeight: "26.9em" }}
               size="small"
               aria-label="a dense table"
             >
@@ -279,32 +283,40 @@ const VirtualMachine = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filterAndSliceInstanceTypes().map((instanceType, index) => (
-                  <TableRow
-                    key={instanceType.name + index}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        color="primary"
-                        checked={selectedRow === index}
-                        onChange={() => handleCheckboxClick(index)}
-                      />
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      {instanceType.name}
-                    </TableCell>
-                    <TableCell align="left">
-                      <span className="flex items-center">
-                        {" "}
-                        {`${instanceType.vcpus} vCPU`}
-                      </span>
-                    </TableCell>
-                    <TableCell align="left">
-                      {mbToGBConverter(instanceType.memory_mb)}
+                {loading ? (
+                  <TableRow>
+                    <TableCell colSpan={4} align="center">
+                      <CircularProgress />
                     </TableCell>
                   </TableRow>
-                ))}
+                ) : (
+                  filterAndSliceInstanceTypes().map((instanceType, index) => (
+                    <TableRow
+                      key={instanceType.name + index}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell padding="checkbox">
+                        <Checkbox
+                          color="primary"
+                          checked={selectedRow === index}
+                          onChange={() => handleCheckboxClick(index)}
+                        />
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        {instanceType.name}
+                      </TableCell>
+                      <TableCell align="left">
+                        <span className="flex items-center">
+                          {" "}
+                          {`${instanceType.vcpus} vCPU`}
+                        </span>
+                      </TableCell>
+                      <TableCell align="left">
+                        {mbToGBConverter(instanceType.memory_mb)}
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
               </TableBody>
             </Table>
             <TablePagination

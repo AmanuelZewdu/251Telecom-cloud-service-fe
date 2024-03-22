@@ -1,13 +1,7 @@
 import "./mainProducts.scss";
 import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
-
-import {
-  memories,
-  vCPUs,
-  rows,
-  vmDescription,
-} from "../../../shared/data/data.js";
+import { vmDescription } from "../../../shared/data/data.js";
 import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -20,7 +14,10 @@ import Checkbox from "@mui/material/Checkbox";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import services from "../../../Services/services";
+import TablePagination from "@mui/material/TablePagination";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const VirtualMachine = () => {
   const [vmName, setVmName] = useState("");
@@ -28,12 +25,17 @@ const VirtualMachine = () => {
   const [selectedImage, setSelectedImage] = useState("");
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
-  const [filteredRows, setFilteredRows] = useState(rows);
   const [error, setError] = useState(false);
   const [vmNameError, setVMNameError] = useState(false);
   const [isItemAdded, setIsItemAdded] = useState(false);
   const [instanceTypes, setInstanceTypes] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [selectedVCPU, setSelectedVCPU] = useState("");
+  const [selectedMemory, setSelectedMemory] = useState("");
+  const [loading, setLoading] = useState(true);
 
+  // side effect that fetches the instance types
   useEffect(() => {
     fetchInstanceType();
   }, []);
@@ -43,14 +45,13 @@ const VirtualMachine = () => {
     setSelectedRow(rowIndex);
   };
 
-  const selectedRowData = selectedRow !== null ? rows[selectedRow] : null;
-
-  // const selectedRowJSON = selectedRowData
-  //   ? {
-  //       instanceType: selectedRowData.instanceType,
-  //       vCPUs_memory: selectedRowData.vCPUs_memory,
-  //     }
-  //   : null; // This is selected row valye in json format
+  const selectedRowData =
+    selectedRow !== null
+      ? {
+          vcpus: instanceTypes[selectedRow].vcpus,
+          memory_mb: instanceTypes[selectedRow].memory_mb,
+        }
+      : null;
 
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
@@ -64,46 +65,14 @@ const VirtualMachine = () => {
     setSelectedImage(event.target.value); // this is selected image string
   };
 
-  const handlevCPUFilter = (event) => {
-    const selectedvCPU = event.target.value;
-    const selectedMemory = document.getElementById("memorySelect").value;
-
-    const newFilteredRows = rows.filter(
-      (row) =>
-        row.vCPUs_memory.includes(selectedvCPU) &&
-        row.vCPUs_memory.includes(selectedMemory)
-    );
-
-    setFilteredRows(newFilteredRows);
-  };
-
-  const handleMemoryFilter = (event) => {
-    const selectedMemory = event.target.value;
-    const selectedvCPU = document.getElementById("vCPUSelect").value;
-
-    const newFilteredRows = rows.filter(
-      (row) =>
-        row.vCPUs_memory.includes(selectedMemory) &&
-        row.vCPUs_memory.includes(selectedvCPU)
-    );
-
-    setFilteredRows(newFilteredRows);
-  };
-
   const purchaseHandler = () => {
-    const purchaseItem = {
-      instanceType: selectedRowData.instanceType,
-      itemvCPU_memory: selectedRowData.vCPUs_memory,
-      name: vmName,
-      imageId: selectedImage,
-      // durationNumber: durationNumber,
-      // duration: duration,
-    };
-
     if (!vmName) {
       setVMNameError(true);
     }
-
+    const price = priceCalculator(
+      selectedRowData.vcpus,
+      selectedRowData.memory_mb
+    );
     if (
       !vmName ||
       selectedRow === null ||
@@ -116,10 +85,20 @@ const VirtualMachine = () => {
       const existingItems =
         JSON.parse(localStorage.getItem("purchaseItems")) || [];
 
+      const purchaseItem = {
+        vcpus: selectedRowData.vcpus,
+        memory_mb: mbToGBConverter(selectedRowData.memory_mb),
+        name: vmName,
+        imageId: selectedImage,
+        price: price,
+        // durationNumber: durationNumber,
+        // duration: duration,
+      };
       const updatedItems = [...existingItems, purchaseItem];
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
       window.dispatchEvent(new Event("storage"));
       setError(false);
+      setVMNameError(true);
       setIsItemAdded(true);
       setTimeout(() => {
         setIsItemAdded(false);
@@ -132,10 +111,117 @@ const VirtualMachine = () => {
     try {
       const response = await services.getInstanceType();
       setInstanceTypes(response);
+      setLoading(false);
     } catch (error) {
       setError(error);
     } finally {
     }
+  };
+
+  const uniquevCPUs = instanceTypes.reduce((acc, current) => {
+    const vCPUs = acc.find((item) => item.vcpus === current.vcpus);
+    if (!vCPUs) {
+      return acc.concat([current]);
+    } else {
+      return acc;
+    }
+  }, []);
+
+  const sortedUniquevCPUs = uniquevCPUs.sort((a, b) => a.vcpus - b.vcpus);
+
+  const uniqueMemories = instanceTypes.reduce((acc, current) => {
+    const memories = acc.find((item) => item.memory_mb === current.memory_mb);
+    if (!memories) {
+      return acc.concat([current]);
+    } else {
+      return acc;
+    }
+  }, []);
+
+  const sortedMemories = uniqueMemories.sort(
+    (a, b) => a.memory_mb - b.memory_mb
+  );
+
+  const mbToGBConverter = (memory_mb) => {
+    const memoryInGB = memory_mb / 1024;
+    return `${memoryInGB} GB`;
+  };
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  // const paginatedInstanceTypes = instanceTypes.slice(
+  //   page * rowsPerPage,
+  //   page * rowsPerPage + rowsPerPage
+  // );
+
+  const handleVCPUChange = (event) => {
+    setSelectedVCPU(event.target.value);
+  };
+
+  const handleMemoryChange = (event) => {
+    setSelectedMemory(event.target.value);
+  };
+
+  // This func resets filtered table to default
+  const resetFilter = () => {
+    setSelectedVCPU("");
+    setSelectedMemory("");
+
+    const vCPUSelect = document.getElementById("vCPUSelect");
+    if (vCPUSelect) {
+      vCPUSelect.value = "";
+    }
+
+    const memorySelect = document.getElementById("memorySelect");
+    if (memorySelect) {
+      memorySelect.value = "";
+    }
+  };
+
+  // this func returns the instance types which are paginated and filtering logic is included in it.
+  const filterAndSliceInstanceTypes = () => {
+    const filteredInstanceTypes = instanceTypes.filter((instanceType) => {
+      if (selectedVCPU && selectedMemory) {
+        return (
+          instanceType.vcpus === parseInt(selectedVCPU) &&
+          instanceType.memory_mb === parseInt(selectedMemory)
+        );
+      } else if (selectedVCPU) {
+        return instanceType.vcpus === parseInt(selectedVCPU);
+      } else if (selectedMemory) {
+        return instanceType.memory_mb === parseInt(selectedMemory);
+      } else {
+        return true;
+      }
+    });
+
+    const slicedInstanceTypes = filteredInstanceTypes.slice(
+      page * rowsPerPage,
+      page * rowsPerPage + rowsPerPage
+    );
+
+    return slicedInstanceTypes;
+  };
+
+  const priceCalculator = (vcpus, memory) => {
+    if (!vcpus || !memory) {
+      return "-";
+    }
+    const vcpusPrice = vcpus * 0.035;
+    console.log(vcpusPrice);
+    const memoryValue = (memory / 1024) * 0.00375;
+    console.log(memory);
+    console.log(memoryValue);
+    const totalPrice = (vcpusPrice + memoryValue) * 730;
+    console.log(totalPrice);
+    return `$${totalPrice}`;
   };
 
   return (
@@ -178,14 +264,17 @@ const VirtualMachine = () => {
                 id="vCPUSelect"
                 className="w-[8em] p-2 bg-gray-100 rounded-md"
                 defaultValue=""
-                onChange={handlevCPUFilter}
+                onChange={handleVCPUChange}
               >
                 <option value="" disabled hidden>
                   Select
                 </option>
-                {vCPUs.map((vCPU) => (
-                  <option value={vCPU.name} key={vCPU.name}>
-                    {vCPU.name}
+                {sortedUniquevCPUs.map((instancevCPUs, index) => (
+                  <option
+                    value={instancevCPUs.vcpus}
+                    key={instancevCPUs.name + index}
+                  >
+                    {instancevCPUs.vcpus} vCPU
                   </option>
                 ))}
               </select>
@@ -197,57 +286,94 @@ const VirtualMachine = () => {
                   id="memorySelect"
                   className="w-[8em] p-2 bg-gray-100 rounded-md"
                   defaultValue=""
-                  onChange={handleMemoryFilter}
+                  onChange={handleMemoryChange}
                 >
                   <option value="" disabled hidden>
                     Select
                   </option>
-                  {memories.map((memory) => (
-                    <option value={memory.size} key={memory.size}>
-                      {memory.size}
+                  {sortedMemories.map((memory) => (
+                    <option value={memory.memory_mb} key={memory.memory_mb}>
+                      {mbToGBConverter(memory.memory_mb)}
                     </option>
                   ))}
                 </select>
               }
             </div>
+            <button
+              onClick={resetFilter}
+              id="rotateButton"
+              className="flex items-center transition-colors duration-500 ease-in-out text-gray-600 hover:bg-gray-200 border border-transparent p-2 rounded-full reset"
+            >
+              <RestartAltIcon />
+            </button>
           </div>
           <TableContainer
             component={Paper}
-            style={{ maxHeight: "20em", maxWidth: "40em" }}
+            style={{
+              minHeight: "30em",
+              maxWidth: "50em",
+            }}
           >
             <Table
-              sx={{ maxWidth: "50em" }}
+              sx={{ minHeight: "26.9em" }}
               size="small"
               aria-label="a dense table"
             >
               <TableHead>
-                <TableRow>
+                <TableRow className="bg-gray-200 ">
                   <TableCell></TableCell>
-                  <TableCell>Flavor name</TableCell>
-                  <TableCell align="left">vCPUs_memory</TableCell>
+                  <TableCell>Instance name</TableCell>
+                  <TableCell align="left">vCPUs</TableCell>
+                  <TableCell align="left">Memory</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filteredRows.map((row, index) => (
-                  <TableRow
-                    key={row.instanceType + index}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        color="primary"
-                        checked={selectedRow === index}
-                        onChange={() => handleCheckboxClick(index)}
-                      />
+                {loading ? (
+                  <TableRow>
+                    <TableCell colSpan={4} align="center">
+                      <CircularProgress />
                     </TableCell>
-                    <TableCell component="th" scope="row">
-                      {row.instanceType}
-                    </TableCell>
-                    <TableCell align="left">{row.vCPUs_memory}</TableCell>
                   </TableRow>
-                ))}
+                ) : (
+                  filterAndSliceInstanceTypes().map((instanceType, index) => (
+                    <TableRow
+                      key={instanceType.name + index}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell padding="checkbox">
+                        <Checkbox
+                          color="primary"
+                          checked={selectedRow === index}
+                          onChange={() => handleCheckboxClick(index)}
+                        />
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        {instanceType.name}
+                      </TableCell>
+                      <TableCell align="left">
+                        <span className="flex items-center">
+                          {" "}
+                          {`${instanceType.vcpus} vCPU`}
+                        </span>
+                      </TableCell>
+                      <TableCell align="left">
+                        {mbToGBConverter(instanceType.memory_mb)}
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
               </TableBody>
             </Table>
+            <TablePagination
+              className="bg-gray-200 w-full flex items-center justify-center"
+              rowsPerPageOptions={[10, 25, 50]}
+              component="div"
+              count={instanceTypes.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
           </TableContainer>
         </div>
         <div className="border shadow-md flex text-left flex-col p-4 gap-6">
@@ -342,8 +468,15 @@ const VirtualMachine = () => {
         </div>
         <div className="flex gap-2">
           <h3 className="">VM type:</h3>
-          <span>{selectedRowData?.instanceType || ""}</span>-
-          <span>{selectedRowData?.vCPUs_memory || ""}</span>
+          <span>
+            {selectedRowData?.vcpus ? `${selectedRowData.vcpus} vCPU` : ""}
+          </span>
+          -
+          <span>
+            {selectedRowData?.memory_mb
+              ? `${mbToGBConverter(selectedRowData.memory_mb)}`
+              : ""}
+          </span>
         </div>
         <div className="flex gap-2">
           <h3 className="">Selected image:</h3>
@@ -353,6 +486,15 @@ const VirtualMachine = () => {
           <h3 className="">Duration:</h3>
           <span>{durationNumber ? durationNumber : "-"}</span>
           <span>{duration ? duration : "-"}</span>
+        </div>
+        <div className="flex gap-2">
+          <h3>Price:</h3>
+          <span className="font-semibold">
+            {priceCalculator(
+              selectedRowData?.vcpus,
+              selectedRowData?.memory_mb
+            )}
+          </span>
         </div>
         <div className="flex gap-4 items-center z-50">
           <Button

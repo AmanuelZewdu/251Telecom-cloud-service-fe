@@ -23,15 +23,15 @@ const CartModal = ({ open, onClose }) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (open) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
+  // useEffect(() => {
+  //   if (open) {
+  //     document.body.classList.add("overflow-hidden");
+  //   } else {
+  //     document.body.classList.remove("overflow-hidden");
+  //   }
 
-    return () => document.body.classList.remove("overflow-hidden");
-  });
+  //   return () => document.body.classList.remove("overflow-hidden");
+  // });
 
   const handleRemoveItem = (indexToRemove) => {
     const updatedCartItems = cartItems.filter(
@@ -41,6 +41,32 @@ const CartModal = ({ open, onClose }) => {
     localStorage.setItem("purchaseItems", JSON.stringify(updatedCartItems));
     window.dispatchEvent(new Event("storage"));
   };
+
+  const calculateSubtotal = () => {
+    const subtotal = cartItems.reduce((total, item) => {
+      const price = parseFloat(item.price.replace(/[^\d.]/g, ""));
+      return total + price;
+    }, 0);
+
+    const additionRepresentation = cartItems.map((item, index) => {
+      return index === cartItems.length - 1
+        ? `$${parseFloat(item.price.replace(/[^\d.]/g, ""))}`
+        : `$${parseFloat(item.price.replace(/[^\d.]/g, ""))} + `;
+    });
+
+    return `${additionRepresentation.join(" ")} = $${subtotal.toFixed(2)}`;
+  };
+
+  const calculateTotal = () => {
+    const total = cartItems.reduce((acc, item) => {
+      const price = parseFloat(item.price.replace(/[^\d.]/g, ""));
+      return acc + price;
+    }, 0);
+    return total.toFixed(2);
+  };
+
+  const subtotal = calculateSubtotal();
+  const total = calculateTotal();
 
   return (
     <div
@@ -69,15 +95,14 @@ const CartModal = ({ open, onClose }) => {
                     <div className="flex flex-col gap-2">
                       <h4 className="text-xl font-montserrat ">{item.name}</h4>
                       <span className="font-light font-poppins">
-                        {item.itemvCPU_memory}
+                        {item.vcpus ? `${item.vcpus} vCPU | ` : ""}
+                        {item.memory_mb ? `${item.memory_mb}` : ""}
                       </span>
-                      <span className="font-medium text-sm font-poppins">
-                        Qty: 1
-                      </span>
+                      <span className="font-medium  font-poppins">Qty: 1</span>
                       <h2 className="font-light font-poppins">
                         Price:{" "}
                         <span className="font-medium text-sm font-poppins">
-                          $2500/mo
+                          {item.price}
                         </span>
                       </h2>
                     </div>
@@ -96,13 +121,10 @@ const CartModal = ({ open, onClose }) => {
                   Items: <span className="font-medium">{cartItems.length}</span>
                 </h2>
                 <h2 className="font-poppins">
-                  SubTotal:{" "}
-                  <span className="font-medium">
-                    $2500/mo + $2500/mo = $5000/mo
-                  </span>
+                  SubTotal: <span className="font-medium">{subtotal}</span>
                 </h2>
                 <h1 className="font-poppins">
-                  Total: <span className="font-medium">$5000/mo</span>
+                  Total: <span className="font-medium">${total}/mo</span>
                 </h1>
               </div>
             )}

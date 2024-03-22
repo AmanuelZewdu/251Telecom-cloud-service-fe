@@ -9,7 +9,7 @@ const getInstanceType = async () => {
     .get(API_UR_VMS)
     .then((response) => {
       if (response) {
-        console.log("Instance types==", response.data);
+        // console.log("Instance types==", response.data);
         return response.data;
       }
     })

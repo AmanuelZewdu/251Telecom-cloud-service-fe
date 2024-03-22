@@ -29,6 +29,7 @@ const VirtualMachine = () => {
   const [vmNameError, setVMNameError] = useState(false);
   const [isItemAdded, setIsItemAdded] = useState(false);
   const [instanceTypes, setInstanceTypes] = useState([]);
+  const [machineImages, setMachineImages] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedVCPU, setSelectedVCPU] = useState("");
@@ -38,6 +39,7 @@ const VirtualMachine = () => {
   // side effect that fetches the instance types
   useEffect(() => {
     fetchInstanceType();
+    fetchMachineImages();
   }, []);
 
   // Selecting table row function starts here
@@ -115,6 +117,16 @@ const VirtualMachine = () => {
     } catch (error) {
       setError(error);
     } finally {
+    }
+  };
+
+  const fetchMachineImages = async () => {
+    try {
+      const response = await services.getMachineImages();
+      setMachineImages(response);
+    } catch (error) {
+      console.log(error);
+      console.log(error.message);
     }
   };
 

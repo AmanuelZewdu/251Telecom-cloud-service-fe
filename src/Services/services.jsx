@@ -21,7 +21,7 @@ const getInstanceType = async () => {
 const getMachineImages = async () => {
   return axios.get(API_UR_IMAGES).then((response) => {
     if (response) {
-      console.log("IMAGES LIST = ", response.data);
+      // console.log("IMAGES LIST = ", response.data);
       return response.data;
     }
   });

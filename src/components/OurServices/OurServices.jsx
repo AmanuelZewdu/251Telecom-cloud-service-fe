@@ -10,7 +10,7 @@ const Services = () => {
             Our{" "}
             <span className="relative text-primary-light line">services</span>{" "}
           </h1>
-          <p className="font-light">Here are service we are offering </p>
+          <p className="font-light">Here are services we are offering </p>
         </div>
         <div className="w-full p-3 flex items-stretch justify-center flex-wrap gap-8">
           {services.map((service) => (

@@ -32,6 +32,7 @@ const SignUp = () => {
     validationSchema: Yup.object().shape({
       accountType: Yup.string().required("Please choose account type*"),
       firstName: Yup.string().required("First name is required*"),
+      middleName: Yup.string().required("Middle name is required*"),
       lastName: Yup.string().required("Last name is required*"),
       companyName: Yup.string().when("accountType", {
         is: "business",

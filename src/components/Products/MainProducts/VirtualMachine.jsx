@@ -71,10 +71,6 @@ const VirtualMachine = () => {
     if (!vmName) {
       setVMNameError(true);
     }
-    const price = priceCalculator(
-      selectedRowData.vcpus,
-      selectedRowData.memory_mb
-    );
     if (
       !vmName ||
       selectedRow === null ||
@@ -84,6 +80,10 @@ const VirtualMachine = () => {
     ) {
       setError(true);
     } else {
+      const price = priceCalculator(
+        selectedRowData.vcpus,
+        selectedRowData.memory_mb
+      );
       const existingItems =
         JSON.parse(localStorage.getItem("purchaseItems")) || [];
 
@@ -227,12 +227,11 @@ const VirtualMachine = () => {
       return "-";
     }
     const vcpusPrice = vcpus * 0.035;
-    console.log(vcpusPrice);
+
     const memoryValue = (memory / 1024) * 0.00375;
-    console.log(memory);
-    console.log(memoryValue);
+
     const totalPrice = (vcpusPrice + memoryValue) * 730;
-    console.log(totalPrice);
+
     return `$${totalPrice}`;
   };
 
@@ -473,7 +472,7 @@ const VirtualMachine = () => {
       <div className="flex sticky flex-col gap-1 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat overflow-hidden text-left">
         {error && (
           <span className=" text-left text-red-500">
-            Please make sure you have selected al available options*
+            Please make sure you have selected all available options*
           </span>
         )}
         <div className="background">

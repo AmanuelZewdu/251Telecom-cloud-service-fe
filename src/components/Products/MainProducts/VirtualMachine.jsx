@@ -29,6 +29,7 @@ const VirtualMachine = () => {
   const [vmNameError, setVMNameError] = useState(false);
   const [isItemAdded, setIsItemAdded] = useState(false);
   const [instanceTypes, setInstanceTypes] = useState([]);
+  const [machineImages, setMachineImages] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedVCPU, setSelectedVCPU] = useState("");
@@ -38,6 +39,7 @@ const VirtualMachine = () => {
   // side effect that fetches the instance types
   useEffect(() => {
     fetchInstanceType();
+    fetchMachineImages();
   }, []);
 
   // Selecting table row function starts here
@@ -69,10 +71,6 @@ const VirtualMachine = () => {
     if (!vmName) {
       setVMNameError(true);
     }
-    const price = priceCalculator(
-      selectedRowData.vcpus,
-      selectedRowData.memory_mb
-    );
     if (
       !vmName ||
       selectedRow === null ||
@@ -82,6 +80,10 @@ const VirtualMachine = () => {
     ) {
       setError(true);
     } else {
+      const price = priceCalculator(
+        selectedRowData.vcpus,
+        selectedRowData.memory_mb
+      );
       const existingItems =
         JSON.parse(localStorage.getItem("purchaseItems")) || [];
 
@@ -98,7 +100,7 @@ const VirtualMachine = () => {
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
       window.dispatchEvent(new Event("storage"));
       setError(false);
-      setVMNameError(true);
+      setVMNameError(false);
       setIsItemAdded(true);
       setTimeout(() => {
         setIsItemAdded(false);
@@ -115,6 +117,16 @@ const VirtualMachine = () => {
     } catch (error) {
       setError(error);
     } finally {
+    }
+  };
+
+  const fetchMachineImages = async () => {
+    try {
+      const response = await services.getMachineImages();
+      setMachineImages(response);
+    } catch (error) {
+      console.log(error);
+      console.log(error.message);
     }
   };
 
@@ -215,12 +227,10 @@ const VirtualMachine = () => {
       return "-";
     }
     const vcpusPrice = vcpus * 0.035;
-    console.log(vcpusPrice);
+
     const memoryValue = (memory / 1024) * 0.00375;
-    console.log(memory);
-    console.log(memoryValue);
-    const totalPrice = (vcpusPrice + memoryValue) * 730;
-    console.log(totalPrice);
+
+    const totalPrice = Math.round((vcpusPrice + memoryValue) * 730);
     return `$${totalPrice}`;
   };
 
@@ -307,6 +317,7 @@ const VirtualMachine = () => {
               <RestartAltIcon />
             </button>
           </div>
+
           <TableContainer
             component={Paper}
             style={{
@@ -389,9 +400,12 @@ const VirtualMachine = () => {
                 value={selectedImage}
                 onChange={handleImageChange}
               >
-                {Array.from({ length: 20 }, (_, index) => (
-                  <option key={index + 1} value={index + 1}>
-                    {index + 1}
+                <option value="" disabled hidden>
+                  Select image{" "}
+                </option>
+                {machineImages.map((machineImage, index) => (
+                  <option key={machineImage.id + index}>
+                    {machineImage.name}
                   </option>
                 ))}
               </select>
@@ -454,16 +468,17 @@ const VirtualMachine = () => {
           </div>
         </div>
       </div>
-      <div className="flex sticky flex-col gap-1 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat overflow-hidden">
+      <div className="flex sticky flex-col gap-1 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat overflow-hidden text-left">
         {error && (
           <span className=" text-left text-red-500">
-            Please make sure you have selected al available options*
+            Please make sure you have selected all available options*
           </span>
         )}
         <div className="background">
           <img
-            src="https://img.freepik.com/free-vector/cloud-connection-abstract-concept-illustration_335657-3873.jpg?t=st=1709288253~exp=1709291853~hmac=ab41542d2428067bbc018ac3e75e724f7ddaf324ca5d52be87a31f4984f449ca&w=826"
-            alt=""
+            className="max-w-full"
+            src={require("../../../shared/images/vmImage.png")}
+            alt="Your Company Logo"
           />
         </div>
         <div className="flex gap-2">
@@ -513,7 +528,7 @@ const VirtualMachine = () => {
             onClick={purchaseHandler}
             style={{
               fontSize: "12px",
-              backgroundColor: "transparent",
+              backgroundColor: "white",
               border: "1px solid #f59e0b",
               color: "#f59e0b",
             }}

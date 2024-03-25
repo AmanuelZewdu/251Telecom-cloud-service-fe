@@ -15,9 +15,11 @@ const SignUp = () => {
   const formik = useFormik({
     initialValues: {
       accountType: "",
-      fullName: "",
+      firstName: "",
+      middleName: "",
+      lastName: "",
       companyName: "",
-      PhoneNumber: "",
+      phoneNumber: "",
       email: "",
       userName: "",
       country: "",
@@ -29,13 +31,14 @@ const SignUp = () => {
     },
     validationSchema: Yup.object().shape({
       accountType: Yup.string().required("Please choose account type*"),
-      fullName: Yup.string().required("Full name is required*"),
+      firstName: Yup.string().required("First name is required*"),
+      lastName: Yup.string().required("Last name is required*"),
       companyName: Yup.string().when("accountType", {
         is: "business",
         then: () => Yup.string().required("Company name is required*"),
         otherwise: () => Yup.string().notRequired(),
       }),
-      PhoneNumber: Yup.string().required("Phone number is required*"),
+      phoneNumber: Yup.string().required("Phone number is required*"),
       email: Yup.string()
         .email("Invalid email address")
         .required("Email address is required*"),
@@ -129,7 +132,6 @@ const SignUp = () => {
           >
             {formik.values.accountType === "business" && (
               <div className="w-full">
-                {/* <label htmlFor="email">Email:</label> */}
                 <input
                   className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
                   id="companyName"
@@ -145,37 +147,62 @@ const SignUp = () => {
               </div>
             )}
             <div className="w-full">
-              {/* <label htmlFor="email">Email:</label> */}
               <input
                 className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
-                id="fullName"
-                placeholder="Full name"
+                id="firstName"
+                placeholder="First name"
                 type="text"
-                {...formik.getFieldProps("fullName")}
+                {...formik.getFieldProps("firstName")}
               />
-              {formik.touched.fullName && formik.errors.fullName ? (
+              {formik.touched.firstName && formik.errors.firstName ? (
                 <div className="text-red-600 text-xs mt-1">
-                  {formik.errors.fullName}
+                  {formik.errors.firstName}
                 </div>
               ) : null}
             </div>
             <div className="w-full">
-              {/* <label htmlFor="email">Email:</label> */}
               <input
                 className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
-                id="PhoneNumber"
+                id="middleName"
+                placeholder="Middle name"
+                type="text"
+                {...formik.getFieldProps("middleName")}
+              />
+              {formik.touched.middleName && formik.errors.middleName ? (
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.middleName}
+                </div>
+              ) : null}
+            </div>
+            <div className="w-full">
+              <input
+                className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
+                id="lastName"
+                placeholder="Last name"
+                type="text"
+                {...formik.getFieldProps("lastName")}
+              />
+              {formik.touched.lastName && formik.errors.lastName ? (
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.lastName}
+                </div>
+              ) : null}
+            </div>
+            <div className="w-full">
+              <input
+                className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
+                id="phoneNumber"
                 placeholder="Phone number"
                 type="number"
                 {...formik.getFieldProps("PhoneNumber")}
               />
-              {formik.touched.PhoneNumber && formik.errors.PhoneNumber ? (
+              {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
                 <div className="text-red-600 text-xs mt-1">
-                  {formik.errors.PhoneNumber}
+                  {formik.errors.phoneNumber}
                 </div>
               ) : null}
             </div>
             <div className="w-full">
-              {/* <label htmlFor="email">Email:</label> */}
               <input
                 className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
                 id="email"
@@ -190,7 +217,6 @@ const SignUp = () => {
               ) : null}
             </div>
             <div className="w-full">
-              {/* <label htmlFor="email">Email:</label> */}
               <input
                 className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
                 id="userName"
@@ -205,7 +231,6 @@ const SignUp = () => {
               ) : null}
             </div>
             <div className="w-full">
-              {/* <label htmlFor="email">Email:</label> */}
               <input
                 className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
                 id="country"
@@ -220,7 +245,6 @@ const SignUp = () => {
               ) : null}
             </div>
             <div className="w-full">
-              {/* <label htmlFor="email">Email:</label> */}
               <input
                 className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
                 id="province"
@@ -235,7 +259,6 @@ const SignUp = () => {
               ) : null}
             </div>
             <div className="w-full">
-              {/* <label htmlFor="email">Email:</label> */}
               <input
                 className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
                 id="city"
@@ -251,7 +274,6 @@ const SignUp = () => {
             </div>
             {formik.values.accountType === "business" && (
               <div className="w-full">
-                {/* <label htmlFor="email">Email:</label> */}
                 <input
                   className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
                   id="industry"
@@ -267,8 +289,6 @@ const SignUp = () => {
               </div>
             )}
             <div className="relative w-full">
-              {/* <label htmlFor="password">Password:</label> */}
-
               <input
                 className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
                 id="password"
@@ -295,8 +315,6 @@ const SignUp = () => {
               ) : null}
             </div>
             <div className="relative w-full">
-              {/* <label htmlFor="password">Password:</label> */}
-
               <input
                 className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
                 id="ConfirmPassword"

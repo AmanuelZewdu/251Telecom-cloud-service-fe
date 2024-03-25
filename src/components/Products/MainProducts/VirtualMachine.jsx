@@ -319,6 +319,7 @@ const VirtualMachine = () => {
               <RestartAltIcon />
             </button>
           </div>
+
           <TableContainer
             component={Paper}
             style={{
@@ -401,9 +402,12 @@ const VirtualMachine = () => {
                 value={selectedImage}
                 onChange={handleImageChange}
               >
-                {Array.from({ length: 20 }, (_, index) => (
-                  <option key={index + 1} value={index + 1}>
-                    {index + 1}
+                <option value="" disabled hidden>
+                  Select image{" "}
+                </option>
+                {machineImages.map((machineImage, index) => (
+                  <option key={machineImage.id + index}>
+                    {machineImage.name}
                   </option>
                 ))}
               </select>
@@ -466,7 +470,7 @@ const VirtualMachine = () => {
           </div>
         </div>
       </div>
-      <div className="flex sticky flex-col gap-1 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat overflow-hidden">
+      <div className="flex sticky flex-col gap-1 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat overflow-hidden text-left">
         {error && (
           <span className=" text-left text-red-500">
             Please make sure you have selected al available options*
@@ -474,8 +478,9 @@ const VirtualMachine = () => {
         )}
         <div className="background">
           <img
-            src="https://img.freepik.com/free-vector/cloud-connection-abstract-concept-illustration_335657-3873.jpg?t=st=1709288253~exp=1709291853~hmac=ab41542d2428067bbc018ac3e75e724f7ddaf324ca5d52be87a31f4984f449ca&w=826"
-            alt=""
+            className="max-w-full"
+            src={require("../../../shared/images/vmImage.png")}
+            alt="Your Company Logo"
           />
         </div>
         <div className="flex gap-2">
@@ -525,7 +530,7 @@ const VirtualMachine = () => {
             onClick={purchaseHandler}
             style={{
               fontSize: "12px",
-              backgroundColor: "transparent",
+              backgroundColor: "white",
               border: "1px solid #f59e0b",
               color: "#f59e0b",
             }}

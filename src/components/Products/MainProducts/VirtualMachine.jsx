@@ -100,7 +100,7 @@ const VirtualMachine = () => {
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
       window.dispatchEvent(new Event("storage"));
       setError(false);
-      setVMNameError(true);
+      setVMNameError(false);
       setIsItemAdded(true);
       setTimeout(() => {
         setIsItemAdded(false);
@@ -230,8 +230,7 @@ const VirtualMachine = () => {
 
     const memoryValue = (memory / 1024) * 0.00375;
 
-    const totalPrice = (vcpusPrice + memoryValue) * 730;
-
+    const totalPrice = Math.round((vcpusPrice + memoryValue) * 730);
     return `$${totalPrice}`;
   };
 

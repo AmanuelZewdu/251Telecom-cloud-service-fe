@@ -18,6 +18,7 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import services from "../../../Services/services";
 import TablePagination from "@mui/material/TablePagination";
 import CircularProgress from "@mui/material/CircularProgress";
+import PurchaseItemData from "../../PurchaseItemData/PurchaseItemData";
 
 const VirtualMachine = () => {
   const [vmName, setVmName] = useState("");
@@ -26,6 +27,7 @@ const VirtualMachine = () => {
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
   const [error, setError] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
   const [vmNameError, setVMNameError] = useState(false);
   const [isItemAdded, setIsItemAdded] = useState(false);
   const [instanceTypes, setInstanceTypes] = useState([]);
@@ -115,7 +117,7 @@ const VirtualMachine = () => {
       setInstanceTypes(response);
       setLoading(false);
     } catch (error) {
-      setError(error);
+      setFetchError(true);
     } finally {
     }
   };
@@ -237,6 +239,12 @@ const VirtualMachine = () => {
   return (
     <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left font-montserrat">
       <h1 className="text-2xl tracking-wide">Virtual Machine</h1>
+      {fetchError && (
+        <p>
+          "Oops! Something went wrong while fetching instance types. Please try
+          again later."
+        </p>
+      )}
       <details className="open:bg-white dark:open:bg-gray-100 p-2 open:shadow-lg  rounded-md">
         <summary className="text-sm leading-6 text-slate-900 select-none">
           What is VM?
@@ -468,7 +476,7 @@ const VirtualMachine = () => {
           </div>
         </div>
       </div>
-      <div className="flex sticky flex-col gap-1 rounded-sm w-full bottom-0 bg-white shadow-[0px_-10px_12px_0px_#edf2f7] border border-primary-light p-4 font-montserrat overflow-hidden text-left">
+      <PurchaseItemData>
         {error && (
           <span className=" text-left text-red-500">
             Please make sure you have selected all available options*
@@ -537,7 +545,7 @@ const VirtualMachine = () => {
             Add to Cart
           </Button>
         </div>
-      </div>
+      </PurchaseItemData>
       {isItemAdded && (
         <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/10">
           <div className="border border-green-500 bg-white p-3 mx-auto rounded-md shadow-md flex items-center justify-center gap-2 mt-8 animate-bounce">

@@ -13,8 +13,9 @@ const getInstanceType = async () => {
         return response.data;
       }
     })
-    .catch((err) => {
+    .catch((error) => {
       console.log("can't fetch instances");
+      throw error;
     });
 };
 

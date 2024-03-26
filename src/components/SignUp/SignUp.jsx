@@ -135,7 +135,7 @@ const SignUp = () => {
               <div className="w-full">
                 <input
                   className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
-                    formik.errors.companyName
+                    formik.touched.companyName && formik.errors.companyName
                       ? "border-red-500"
                       : "border-gray-400 "
                   }`}
@@ -154,7 +154,7 @@ const SignUp = () => {
             <div className="w-full">
               <input
                 className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
-                  formik.errors.firstName
+                  formik.touched.firstName && formik.errors.firstName
                     ? "border-red-500"
                     : "border-gray-400 "
                 }`}
@@ -172,7 +172,7 @@ const SignUp = () => {
             <div className="w-full">
               <input
                 className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
-                  formik.errors.middleName
+                  formik.touched.middleName && formik.errors.middleName
                     ? "border-red-500"
                     : "border-gray-400 "
                 }`}
@@ -190,7 +190,9 @@ const SignUp = () => {
             <div className="w-full">
               <input
                 className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none  ${
-                  formik.errors.lastName ? "border-red-500" : "border-gray-400 "
+                  formik.touched.lastName && formik.errors.lastName
+                    ? "border-red-500"
+                    : "border-gray-400 "
                 }`}
                 id="lastName"
                 placeholder="Last name"
@@ -210,7 +212,7 @@ const SignUp = () => {
                 </span>
                 <input
                   className={`w-full bg-transparent p-2 border border-gray-400 rounded-e-sm outline-none  ${
-                    formik.errors.phoneNumber
+                    formik.touched.phoneNumber && formik.errors.phoneNumber
                       ? "border-red-500"
                       : "border-gray-400 "
                   }`}
@@ -229,7 +231,9 @@ const SignUp = () => {
             <div className="w-full">
               <input
                 className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
-                  formik.errors.email ? "border-red-500" : "border-gray-400 "
+                  formik.touched.email && formik.errors.email
+                    ? "border-red-500"
+                    : "border-gray-400 "
                 }`}
                 id="email"
                 placeholder="Email"
@@ -245,7 +249,9 @@ const SignUp = () => {
             <div className="w-full">
               <input
                 className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
-                  formik.errors.userName ? "border-red-500" : "border-gray-400 "
+                  formik.touched.userName && formik.errors.userName
+                    ? "border-red-500"
+                    : "border-gray-400 "
                 }`}
                 id="userName"
                 placeholder="User name"
@@ -261,7 +267,9 @@ const SignUp = () => {
             <div className="w-full">
               <input
                 className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
-                  formik.errors.country ? "border-red-500" : "border-gray-400 "
+                  formik.touched.country && formik.errors.country
+                    ? "border-red-500"
+                    : "border-gray-400 "
                 }`}
                 id="country"
                 placeholder="Country"
@@ -277,7 +285,9 @@ const SignUp = () => {
             <div className="w-full">
               <input
                 className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
-                  formik.errors.province ? "border-red-500" : "border-gray-400 "
+                  formik.touched.province && formik.errors.province
+                    ? "border-red-500"
+                    : "border-gray-400 "
                 }`}
                 id="province"
                 placeholder="Province"
@@ -293,7 +303,9 @@ const SignUp = () => {
             <div className="w-full">
               <input
                 className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
-                  formik.errors.city ? "border-red-500" : "border-gray-400 "
+                  formik.touched.city && formik.errors.city
+                    ? "border-red-500"
+                    : "border-gray-400 "
                 }`}
                 id="city"
                 placeholder="City"
@@ -310,7 +322,7 @@ const SignUp = () => {
               <div className="w-full">
                 <input
                   className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
-                    formik.errors.industry
+                    formik.touched.industry && formik.errors.industry
                       ? "border-red-500"
                       : "border-gray-400 "
                   }`}
@@ -329,7 +341,9 @@ const SignUp = () => {
             <div className="relative w-full">
               <input
                 className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
-                  formik.errors.password ? "border-red-500" : "border-gray-400 "
+                  formik.touched.password && formik.errors.password
+                    ? "border-red-500"
+                    : "border-gray-400 "
                 }`}
                 id="password"
                 placeholder="Password"
@@ -357,6 +371,7 @@ const SignUp = () => {
             <div className="relative w-full">
               <input
                 className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
+                  formik.touched.ConfirmPassword &&
                   formik.errors.ConfirmPassword
                     ? "border-red-500"
                     : "border-gray-400 "

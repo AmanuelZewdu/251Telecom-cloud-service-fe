@@ -153,10 +153,12 @@ const SignUp = () => {
             )}
             <div className="w-full">
               <input
-                className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
+                className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                   formik.touched.firstName && formik.errors.firstName
                     ? "border-red-500"
-                    : "border-gray-400 "
+                    : formik.touched.firstName && !formik.errors.firstName
+                    ? "border-green-500"
+                    : "border-gray-400"
                 }`}
                 id="firstName"
                 placeholder="First name"

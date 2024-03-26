@@ -44,14 +44,14 @@ const CartModal = ({ open, onClose }) => {
 
   const calculateSubtotal = () => {
     const subtotal = cartItems.reduce((total, item) => {
-      const price = parseFloat(item.price.replace(/[^\d.]/g, ""));
+      const price = parseFloat(item.price?.replace(/[^\d.]/g, ""));
       return total + price;
     }, 0);
 
     const additionRepresentation = cartItems.map((item, index) => {
       return index === cartItems.length - 1
-        ? `$${parseFloat(item.price.replace(/[^\d.]/g, ""))}`
-        : `$${parseFloat(item.price.replace(/[^\d.]/g, ""))} + `;
+        ? `$${parseFloat(item.price?.replace(/[^\d.]/g, ""))}`
+        : `$${parseFloat(item.price?.replace(/[^\d.]/g, ""))} + `;
     });
 
     return `${additionRepresentation.join(" ")} = $${subtotal.toFixed(2)}`;
@@ -59,7 +59,7 @@ const CartModal = ({ open, onClose }) => {
 
   const calculateTotal = () => {
     const total = cartItems.reduce((acc, item) => {
-      const price = parseFloat(item.price.replace(/[^\d.]/g, ""));
+      const price = parseFloat(item.price?.replace(/[^\d.]/g, ""));
       return acc + price;
     }, 0);
     return total.toFixed(2);

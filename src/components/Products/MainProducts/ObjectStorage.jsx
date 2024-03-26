@@ -46,17 +46,23 @@ const ObjectStorage = () => {
       setObjNameError(true);
     }
 
+    const existingItems =
+      JSON.parse(localStorage.getItem("purchaseItems")) || [];
+    console.log(existingItems);
+
     if (!billingMode || !selectedDisk || !duration || !durationNumber) {
       setError(true);
     } else {
       const purchaseItems = {
         objName,
         billingMode,
-        selectedDisk,
+        diskType: selectedDisk,
         durationNumber,
         duration,
       };
+      const updatedItems = [...existingItems, purchaseItems];
       alert(JSON.stringify(purchaseItems, null, 2));
+      localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
       setObjNameError(false);
       setError(false);
     }

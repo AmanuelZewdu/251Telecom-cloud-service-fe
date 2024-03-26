@@ -19,6 +19,7 @@ const ObjectStorage = () => {
   const [durationNumber, setDurationNumber] = useState("");
   const [DiskTypes, setDiskTypes] = useState([]);
   const [error, setError] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
 
   const handleDurationChange = (event) => {
     setBillingMode(event.target.value); // this is selected duration period value
@@ -39,6 +40,7 @@ const ObjectStorage = () => {
     } catch (error) {
       console.error(error);
       console.log(error.message);
+      setFetchError(true);
     }
   };
 
@@ -72,6 +74,12 @@ const ObjectStorage = () => {
   return (
     <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left font-montserrat">
       <h1 className="text-2xl tracking-wide">Object Storage</h1>
+      {fetchError && (
+        <p>
+          "Oops! Something went wrong while fetching disk images. Please try
+          again later."
+        </p>
+      )}
       <details className="open:bg-white dark:open:bg-gray-100 p-2 open:shadow-lg  rounded-md">
         <summary className="text-sm leading-6 text-slate-900 select-none">
           What is Object storage?

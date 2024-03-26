@@ -49,7 +49,7 @@ const ProductNav = ({ onSelectComponent }) => {
       {navIsOpen && (
         <div
           onClick={() => setNavIsOpen(handleNav)}
-          className="fixed top-0 left-0 w-full h-screen bg-black/50 "
+          className="fixed top-0 left-0 w-full h-screen bg-black/50 z-10"
         ></div>
       )}
 

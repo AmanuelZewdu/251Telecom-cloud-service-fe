@@ -95,6 +95,7 @@ const VirtualMachine = () => {
         name: vmName,
         imageId: selectedImage,
         price: price,
+        serviceType: "Virtual machine",
         // durationNumber: durationNumber,
         // duration: duration,
       };

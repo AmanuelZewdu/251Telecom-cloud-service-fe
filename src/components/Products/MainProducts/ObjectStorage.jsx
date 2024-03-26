@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { obDescription } from "../../../shared/data/data";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import service from "../../../Services/services";
@@ -13,6 +14,7 @@ const ObjectStorage = () => {
 
   const [objName, setObjName] = useState("");
   const [objNameError, setObjNameError] = useState(false);
+  const [isItemAdded, setIsItemAdded] = useState(false);
   const [billingMode, setBillingMode] = useState("");
   const [selectedDisk, setSelectedDisk] = useState("");
   const [duration, setDuration] = useState("");
@@ -62,12 +64,18 @@ const ObjectStorage = () => {
         diskType: selectedDisk,
         durationNumber,
         duration,
+        serviceType: "Object storage",
       };
       const updatedItems = [...existingItems, purchaseItems];
       alert(JSON.stringify(purchaseItems, null, 2));
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
+      window.dispatchEvent(new Event("storage"));
       setObjNameError(false);
       setError(false);
+      setIsItemAdded(true);
+      setTimeout(() => {
+        setIsItemAdded(false);
+      }, 2000);
     }
   };
 
@@ -273,6 +281,16 @@ const ObjectStorage = () => {
           </Button>
         </div>
       </PurchaseItemData>
+      {isItemAdded && (
+        <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/10">
+          <div className="border border-green-500 bg-white p-3 mx-auto rounded-md shadow-md flex items-center justify-center gap-2 mt-8 animate-bounce">
+            <CheckCircleIcon className="text-green-600" />
+            <p className="text-green-600 text-sm font-medium font-poppins">
+              Item added to the cart!
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

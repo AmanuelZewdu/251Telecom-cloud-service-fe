@@ -144,7 +144,7 @@ const CartModal = ({ open, onClose }) => {
                   color: "#fff",
                 }}
               >
-                <a href="/checkout">Proceed to checkout</a>
+                <a href="/log-in">Proceed to checkout</a>
               </Button>
             )}
           </>

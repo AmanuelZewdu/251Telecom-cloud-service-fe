@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import services from "../../Services/services";
 
 const LogIn = () => {
   const [visible, setVisibile] = useState(false);
@@ -25,8 +26,18 @@ const LogIn = () => {
         .min(8, "Password must be 8 characters or more")
         .required("Password is required*"),
     }),
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      console.log("user credentials=>", values);
+      const response = await services.postLogin(values);
+
+      if (!response) {
+        return;
+      }
+
+      sessionStorage.setItem("loggedIn-user", JSON.stringify(response));
+      console.log("login Response=>", response);
+
+      //alert(JSON.stringify(values, null, 2));
     },
   });
   return (

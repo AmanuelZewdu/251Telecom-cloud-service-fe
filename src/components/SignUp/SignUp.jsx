@@ -33,7 +33,7 @@ const SignUp = () => {
       middleName: "",
       lastName: "",
       companyName: "",
-      phoneNumber: "+251",
+      phoneNumber: "",
       email: "",
       userName: "",
       country: "",
@@ -74,6 +74,8 @@ const SignUp = () => {
         .required("Password confirmation is required*"),
     }),
     onSubmit: async (values, { resetForm }) => {
+      values.phoneNumber = `+251${values.phoneNumber}`;
+
       console.log("data>>>", values);
 
       const userDetail = {

@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import services from "../../Services/services";
 
 const SignUp = () => {
   const [visible, setVisibile] = useState(false);
@@ -12,6 +13,19 @@ const SignUp = () => {
     setVisibile(!visible);
   };
 
+  const checkProduct = () => {
+    return localStorage.getItem("");
+  };
+
+  const isProductSelected = (key) => {
+    try {
+      const value = localStorage.getItem(key);
+      return value !== null;
+    } catch (error) {
+      console.error("Error accessing localStorage:", error);
+      return false;
+    }
+  };
   const formik = useFormik({
     initialValues: {
       accountType: "",
@@ -60,25 +74,23 @@ const SignUp = () => {
         .required("Password confirmation is required*"),
     }),
     onSubmit: async (values, { resetForm }) => {
-      // try {
-      //   const res = await fetch("http://localhost:5000/users", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(values),
-      //   });
+      console.log("data>>>", values);
 
-      //   if (!res.ok) {
-      //     throw new Error("Failed to submit form");
-      //   }
+      const userDetail = {
+        userDetail: {
+          ...values,
+        },
 
-      //   resetForm();
-      //   console.log("Form submitted successful");
-      // } catch (error) {
-      //   console.error("Error:", error);
-      // }
+        isProductSelected: isProductSelected("purchaseItems"),
+      };
+      console.log("formValues==>", userDetail);
+
       alert(JSON.stringify(values, null, 2));
+      const response = await services.postSignUp(userDetail);
+      if (!response) {
+        return;
+      }
+      alert("Sign up Successful!!");
       resetForm();
     },
   });
@@ -195,7 +207,7 @@ const SignUp = () => {
                 id="phoneNumber"
                 placeholder="Phone number"
                 type="number"
-                {...formik.getFieldProps("PhoneNumber")}
+                {...formik.getFieldProps("phoneNumber")}
               />
               {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
                 <div className="text-red-600 text-xs mt-1">

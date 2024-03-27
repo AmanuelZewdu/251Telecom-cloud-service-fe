@@ -1,12 +1,17 @@
 import axios from "axios";
-const API_UR_VMS =
+const API_URL_VMS =
   "https://two51telecom-backend.onrender.com/api/vm-settings/instance-types";
-const API_UR_IMAGES =
+const API_URL_IMAGES =
   "https://two51telecom-backend.onrender.com/api/vm-settings/machine-images";
+const API_URL_SIGN_UP =
+  "https://two51telecom-backend.onrender.com/api/project/create";
+const API_URL_CREATE_ORDER = "https://two51telecom-backend.onrender.com/api/";
+const API_URL_LOGIN =
+  "https://two51telecom-backend.onrender.com/api/auth/signin";
 
 const getInstanceType = async () => {
   return axios
-    .get(API_UR_VMS)
+    .get(API_URL_VMS)
     .then((response) => {
       if (response) {
         // console.log("Instance types==", response.data);
@@ -19,7 +24,7 @@ const getInstanceType = async () => {
 };
 
 const getMachineImages = async () => {
-  return axios.get(API_UR_IMAGES).then((response) => {
+  return axios.get(API_URL_IMAGES).then((response) => {
     if (response) {
       // console.log("IMAGES LIST = ", response.data);
       return response.data;
@@ -27,8 +32,44 @@ const getMachineImages = async () => {
   });
 };
 
+const postSignUp = async (userDetail) => {
+  return axios
+    .post(API_URL_SIGN_UP, userDetail)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.log("can't create user");
+    });
+};
+
+const postCreateOrder = async (orderDetail) => {
+  return axios
+    .post(API_URL_SIGN_UP, orderDetail)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.log("can't create order");
+    });
+};
+
+const postLogin = async (userCredential) => {
+  return axios
+    .post(API_URL_LOGIN, userCredential)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.log("can't login");
+    });
+};
+
 const services = {
   getInstanceType,
   getMachineImages,
+  postSignUp,
+  postCreateOrder,
+  postLogin,
 };
 export default services;

@@ -28,86 +28,8 @@ export const services = [
   },
 ];
 
-// vCPUS for product page
-export const vCPUs = [
-  { name: "1 vCPUs" },
-  { name: "2 vCPUs" },
-  { name: "4 vCPUs" },
-  { name: "8 vCPUs" },
-  { name: "12 vCPUs" },
-  { name: "16 vCPUs" },
-  { name: "24 vCPUs" },
-  { name: "32 vCPUs" },
-  { name: "48 vCPUs" },
-  { name: "64 vCPUs" },
-  { name: "96 vCPUs" },
-];
-
-// Memoru sizes for products page
-export const memories = [
-  { size: "2 GB" },
-  { size: "4 GB" },
-  { size: "8 GB" },
-  { size: "16 GB" },
-  { size: "24 GB" },
-  { size: "32 GB" },
-  { size: "48 GB" },
-  { size: "64 GB" },
-  { size: "96 GB" },
-  { size: "128 GB" },
-  { size: "256 GB" },
-  { size: "384 GB" },
-];
-
-// Prodcts table
-export const headCells = [
-  {
-    id: "name",
-    numeric: false,
-    disablePadding: true,
-    label: "Dessert (100g serving)",
-  },
-  {
-    id: "calories",
-    numeric: true,
-    disablePadding: false,
-    label: "Calories",
-  },
-  {
-    id: "fat",
-    numeric: true,
-    disablePadding: false,
-    label: "Fat (g)",
-  },
-  {
-    id: "carbs",
-    numeric: true,
-    disablePadding: false,
-    label: "Carbs (g)",
-  },
-  {
-    id: "protein",
-    numeric: true,
-    disablePadding: false,
-    label: "Protein (g)",
-  },
-];
-
-export const rows = [
-  { instanceType: "s3.medium.2", vCPUs_memory: "1 vCPUs | 2 GB" },
-  { instanceType: "s3.medium.4", vCPUs_memory: "1 vCPUs | 4 GB" },
-  { instanceType: "s2.large.3", vCPUs_memory: "2 vCPUs | 4 GB" },
-  { instanceType: "s2.large.4", vCPUs_memory: "2 vCPUs | 8 GB" },
-  { instanceType: "s2.xlarge.2", vCPUs_memory: "4 vCPUs | 8 GB" },
-  { instanceType: "s2.xlarge.4", vCPUs_memory: "4 vCPUs| 16 GB" },
-  { instanceType: "s2.2xlarge.21", vCPUs_memory: "4 vCPUs | 16 GB" },
-  { instanceType: "s2.2xlarge.12", vCPUs_memory: "8 vCPUs | 16 GB" },
-  { instanceType: "s2.2xlarge.2", vCPUs_memory: "8 vCPUs | 32 GB" },
-  { instanceType: "s2.4xlarge.2", vCPUs_memory: "16 vCPUs | 32 GB" },
-  { instanceType: "s2.4xlarge.4", vCPUs_memory: "16 vCPUs | 64 GB" },
-  { instanceType: "s2.8xlarge.2", vCPUs_memory: "32 vCPUs | 64 GB" },
-  { instanceType: "s2.8xlarge.4", vCPUs_memory: "32 vCPUs | 128 GB" },
-];
-
 export const vmDescription =
   "Virtual machines represent a cornerstone of modern computinginfrastructure, offering unparalleled flexibility and scalability for a diverse range of applications. Our virtual machine service provides users with the ability to deploy and manage virtualized computing environments effortlessly. Whether you're a small business or a large enterprise, virtual machines empower you to run multiple operating systems and applications on a single physical server, optimizing resource utilization and reducing infrastructure costs. Enjoy seamless migration, robust security features, and reliable performance as you leverage the power of virtualization to streamline your operations and drive innovation. With our virtual machine service, you can confidently scale your computing resources to meet the evolving needs of your business, ensuring maximum efficiency and agility in today's dynamic digital landscape.";
+
+export const obDescription =
+  "Object storage is a groundbreaking approach to data storage that eliminates the limitations of traditional file systems by organizing data as discrete objects, each with its own unique identifier and metadata. This method enables seamless scalability, making it ideal for storing vast amounts of unstructured data such as multimedia files, backups, and archives. Its distributed architecture ensures high availability and durability, making it a reliable solution for mission-critical applications. Object storage's rich metadata capabilities also facilitate advanced data management tasks, empowering organizations to extract valuable insights and streamline workflows.";

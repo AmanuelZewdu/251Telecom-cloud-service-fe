@@ -44,14 +44,14 @@ const CartModal = ({ open, onClose }) => {
 
   const calculateSubtotal = () => {
     const subtotal = cartItems.reduce((total, item) => {
-      const price = parseFloat(item.price.replace(/[^\d.]/g, ""));
+      const price = parseFloat(item.price?.replace(/[^\d.]/g, ""));
       return total + price;
     }, 0);
 
     const additionRepresentation = cartItems.map((item, index) => {
       return index === cartItems.length - 1
-        ? `$${parseFloat(item.price.replace(/[^\d.]/g, ""))}`
-        : `$${parseFloat(item.price.replace(/[^\d.]/g, ""))} + `;
+        ? `$${parseFloat(item.price?.replace(/[^\d.]/g, ""))}`
+        : `$${parseFloat(item.price?.replace(/[^\d.]/g, ""))} + `;
     });
 
     return `${additionRepresentation.join(" ")} = $${subtotal.toFixed(2)}`;
@@ -59,7 +59,7 @@ const CartModal = ({ open, onClose }) => {
 
   const calculateTotal = () => {
     const total = cartItems.reduce((acc, item) => {
-      const price = parseFloat(item.price.replace(/[^\d.]/g, ""));
+      const price = parseFloat(item.price?.replace(/[^\d.]/g, ""));
       return acc + price;
     }, 0);
     return total.toFixed(2);
@@ -87,16 +87,23 @@ const CartModal = ({ open, onClose }) => {
             <ul className="flex mt-4 flex-col gap-2 ">
               {cartItems.map((item, index) => (
                 <li
-                  className="flex bg-gray-50 items-center justify-between p-2 rounded-md shadow-md"
+                  className="relative flex bg-gray-50 items-center justify-between p-2 rounded-md shadow-md"
                   key={index}
                 >
+                  <span className="absolute top-2 right-3 text-sm font text-gray-300">
+                    {item.serviceType}
+                  </span>
                   <div className="flex gap-2 items-center">
                     ({index + 1})
                     <div className="flex flex-col gap-2">
-                      <h4 className="text-xl font-montserrat ">{item.name}</h4>
+                      <h4 className="text-xl font-montserrat ">
+                        {item.name}
+                        {item?.objName}
+                      </h4>
                       <span className="font-light font-poppins">
                         {item.vcpus ? `${item.vcpus} vCPU | ` : ""}
                         {item.memory_mb ? `${item.memory_mb}` : ""}
+                        {item?.diskType}
                       </span>
                       <span className="font-medium  font-poppins">Qty: 1</span>
                       <h2 className="font-light font-poppins">
@@ -137,7 +144,7 @@ const CartModal = ({ open, onClose }) => {
                   color: "#fff",
                 }}
               >
-                <a href="/checkout">Proceed to checkout</a>
+                <a href="/log-in">Proceed to checkout</a>
               </Button>
             )}
           </>

@@ -5,7 +5,8 @@ const API_URL_IMAGES =
   "https://two51telecom-backend.onrender.com/api/vm-settings/machine-images";
 const API_URL_SIGN_UP =
   "https://two51telecom-backend.onrender.com/api/project/create";
-const API_URL_CREATE_ORDER = "https://two51telecom-backend.onrender.com/api/";
+const API_URL_CREATE_ORDER =
+  "https://two51telecom-backend.onrender.com/api/order/";
 const API_URL_LOGIN =
   "https://two51telecom-backend.onrender.com/api/auth/signin";
 
@@ -44,9 +45,13 @@ const postSignUp = async (userDetail) => {
     });
 };
 
-const postCreateOrder = async (orderDetail) => {
+const postCreateOrder = async (orderDetail, access_token) => {
   return axios
-    .post(API_URL_SIGN_UP, orderDetail)
+    .post(API_URL_CREATE_ORDER, orderDetail, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    })
     .then((response) => {
       return response.data;
     })

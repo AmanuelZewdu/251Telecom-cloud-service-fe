@@ -4,13 +4,33 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import vm2 from "../../shared/images/vm2.jpg";
 import ethswitch_logo from "../../shared/images/ethswitch_logo.png";
 import obj2 from "../../shared/images/obj2.webp";
+import service from "../../Services/services";
+
 const PurchaseConfirmation = () => {
   const [cartItems, setCartItems] = useState([]);
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     const totalCartItems =
       JSON.parse(localStorage.getItem("purchaseItems")) || [];
     setCartItems(totalCartItems);
+
+    const loggedInUserString = sessionStorage.getItem("loggedIn-user");
+
+    if (loggedInUserString) {
+      const loggedInUserData = JSON.parse(loggedInUserString);
+
+      const accessToken = loggedInUserData.access_token;
+
+      if (accessToken) {
+        setUserId(accessToken);
+        console.log(accessToken);
+      } else {
+        console.error("No access token or not logged in user");
+      }
+    } else {
+      console.error("user data not found in sessionStorage.");
+    }
   }, []);
 
   const removeItem = (indexToRemove) => {
@@ -54,6 +74,52 @@ const PurchaseConfirmation = () => {
   const totalBeforeVat = calculateTotal();
   const vat = vatCalculator(totalBeforeVat);
   const total = parseFloat(vat) + parseFloat(totalBeforeVat);
+
+  // const handleCreateOrder = async () => {
+  //   try {
+  //     const orderDetail = {
+  //       cartItems,
+  //       subtotal: calculateSubtotal(),
+  //       vat: vatCalculator(calculateTotal()),
+  //       total: total,
+  //     };
+
+  //     console.log(orderDetail);
+  //     const response = await service.postCreateOrder(orderDetail, userId);
+
+  //     console.log("Order created:", response);
+  //   } catch (error) {
+  //     console.error("Error creating order:", error);
+  //   }
+  // };
+
+  const handleCreateOrder = async () => {
+    try {
+      const orderItems = cartItems.map((item) => ({
+        name: item.name,
+        "image-id": item.imageId,
+        "disk-size": item.memory_mb,
+        "instance-type": item.instanceName,
+      }));
+      console.log(orderItems.memory_mb);
+      const orderDetail = {
+        duration: 5,
+        order: {
+          vm: orderItems,
+          storage: [],
+          object: [],
+        },
+        total: total,
+      };
+
+      console.log(orderDetail);
+      const response = await service.postCreateOrder(orderDetail, userId);
+
+      console.log("Order created:", response);
+    } catch (error) {
+      console.error("Error creating order:", error);
+    }
+  };
 
   return (
     <div className="flex bg-gray-100 h-full top-[5em]  flex-wrap justify-center relative p-4 w-full">
@@ -125,8 +191,12 @@ const PurchaseConfirmation = () => {
               </h1>
             </div>
           )}
-          <Button sx={{}} className="flex gap-2 h-[3.5em]" variant="contained">
-            {" "}
+          <Button
+            onClick={() => handleCreateOrder()}
+            sx={{}}
+            className="flex gap-2 h-[3.5em]"
+            variant="contained"
+          >
             <span>Pay with </span>
             <img
               src={ethswitch_logo}

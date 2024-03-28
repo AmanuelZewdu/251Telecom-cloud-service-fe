@@ -52,6 +52,7 @@ const VirtualMachine = () => {
   const selectedRowData =
     selectedRow !== null
       ? {
+          instanceName: instanceTypes[selectedRow].name,
           vcpus: instanceTypes[selectedRow].vcpus,
           memory_mb: instanceTypes[selectedRow].memory_mb,
         }
@@ -90,13 +91,14 @@ const VirtualMachine = () => {
         JSON.parse(localStorage.getItem("purchaseItems")) || [];
 
       const purchaseItem = {
+        instanceName: selectedRowData.instanceName,
         vcpus: selectedRowData.vcpus,
         memory_mb: mbToGBConverter(selectedRowData.memory_mb),
         name: vmName,
         imageId: selectedImage,
         price: price,
         serviceType: "Virtual machine",
-        // durationNumber: durationNumber,
+        duration: durationNumber,
         // duration: duration,
       };
       const updatedItems = [...existingItems, purchaseItem];

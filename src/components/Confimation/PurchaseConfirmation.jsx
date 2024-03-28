@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import vm2 from "../../shared/images/vm2.jpg";
 import ethswitch_logo from "../../shared/images/ethswitch_logo.png";
 import obj2 from "../../shared/images/obj2.webp";
@@ -11,6 +12,15 @@ const PurchaseConfirmation = () => {
       JSON.parse(localStorage.getItem("purchaseItems")) || [];
     setCartItems(totalCartItems);
   }, []);
+
+  const removeItem = (indexToRemove) => {
+    const updatedCartItems = cartItems.filter(
+      (_, index) => index !== indexToRemove
+    );
+    setCartItems(updatedCartItems);
+    localStorage.setItem("purchaseItems", JSON.stringify(updatedCartItems));
+    window.dispatchEvent(new Event("storage"));
+  };
 
   const calculateSubtotal = () => {
     const subtotal = cartItems.reduce((total, item) => {
@@ -46,10 +56,14 @@ const PurchaseConfirmation = () => {
   const total = parseFloat(vat) + parseFloat(totalBeforeVat);
 
   return (
-    <div className="flex bg-gray-100 top-[5em] flex-wrap justify-center relative p-4 w-full">
-      <div className="grow max-w-[40em] flex items-center justify-center p-2">
+    <div className="flex bg-gray-100 h-full top-[5em]  flex-wrap justify-center relative p-4 w-full">
+      <div className="grow max-w-[45em] flex items-center justify-center p-2">
         <div className="flex flex-col gap-3 border-2 w-full rounded-md p-4 bg-white drop-shadow-md">
-          <h2 className="text-xl">Cart summary</h2>
+          <div className="flex items-center gap-2">
+            {" "}
+            <ShoppingCartIcon />{" "}
+            <h2 className="text-2xl md:text-xl">Cart summary</h2>
+          </div>
           <hr />
           <ul className="flex flex-col gap-4">
             {cartItems.map((cartItem, index) => (
@@ -73,19 +87,24 @@ const PurchaseConfirmation = () => {
                   )}
 
                   <div className="flex flex-col  text-lg">
-                    <span className="font-poppins">
+                    <span className="font-poppins font-medium">
                       {cartItem.name}
                       {cartItem.objName}
                     </span>
-                    <span className="font-light font-poppins">
+                    <span className="font-light text-sm font-poppins">
                       {cartItem.vcpus ? `${cartItem.vcpus} vCPU | ` : ""}
                       {cartItem.memory_mb ? `${cartItem.memory_mb}` : ""}
                       {cartItem?.diskType}
                     </span>
-                    <span className="font-light">Qty: 1</span>
+                    <span className="font-light text-sm">Qty: 1</span>
                   </div>
                 </div>
-                <span className="text-red-500 cursor-pointer">Remove</span>
+                <span
+                  onClick={() => removeItem(index)}
+                  className="text-red-500 cursor-pointer"
+                >
+                  Remove
+                </span>
               </li>
             ))}
           </ul>
@@ -95,7 +114,8 @@ const PurchaseConfirmation = () => {
                 Items: <span className="font-medium">{cartItems.length}</span>
               </h2>
               <h2 className="flex text-gray-900 font-poppins justify-between">
-                SubTotal: <span className="font-medium">{subtotal}</span>
+                SubTotal:{" "}
+                <span className="font-medium text-right">{subtotal}</span>
               </h2>
               <h2 className="flex text-gray-900 font-poppins justify-between">
                 Vat: <span className="font-medium">{vat}</span>
@@ -116,39 +136,6 @@ const PurchaseConfirmation = () => {
           </Button>
         </div>
       </div>
-      {/* <div className="grow flex items-center justify-center p-2">
-        <div className="flex flex-col gap-3 border-2 w-full rounded-md p-4 bg-white drop-shadow-md">
-        <h2 className="text-xl">Cart summary</h2>
-        <hr />
-        <ul>
-            {cartItems.map((cartItem, index) => (
-            <React.Fragment key={index}>
-                <li className="flex items-center justify-between gap-2">
-                <div className="flex gap-2">
-                    <span>({index + 1})</span>
-                    <div className="flex flex-col font-medium text-lg">
-                    <span>
-                        {cartItem.name}
-                        {cartItem.objName}
-                    </span>
-                    <span className="font-light font-poppins">
-                        {cartItem.vcpus ? `${cartItem.vcpus} vCPU | ` : ""}
-                        {cartItem.memory_mb ? `${cartItem.memory_mb}` : ""}
-                        {cartItem?.diskType}
-                    </span>
-                    <span className="font-light">Qty: 1</span>
-                    </div>
-                </div>
-                <span className="text-red-500">Remove</span>
-                </li>
-                {index !== cartItems.length - 1 && (
-                <hr className="m-2 border-gray-400 w-full" />
-                )}
-            </React.Fragment>
-            ))}
-        </ul>
-        </div>
-    </div> */}
     </div>
   );
 };

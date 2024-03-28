@@ -273,7 +273,9 @@ const VirtualMachine = () => {
               className="border-b w-[13em] outline-none border-gray-400 placeholder:text-gray-400"
             />
             {vmNameError && (
-              <p className="text-xs text-red-500">Please proivde a vm name</p>
+              <p className="text-sm border-l-2 border-red-500 pl-1 text-red-500">
+                Please proivde a vm name
+              </p>
             )}
           </div>
           <div className="flex gap-3 items-center flex-wrap">
@@ -480,7 +482,7 @@ const VirtualMachine = () => {
       </div>
       <PurchaseItemData>
         {error && (
-          <span className=" text-left text-red-500">
+          <span className="border-l-4 border-red-500 rounded-sm pl-2 text-left text-red-500">
             Please make sure you have selected all available options*
           </span>
         )}

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CloseIcon from "@mui/icons-material/Close";
 import vm2 from "../../shared/images/vm2.jpg";
 import ethswitch_logo from "../../shared/images/ethswitch_logo.png";
 import obj2 from "../../shared/images/obj2.webp";
@@ -10,7 +12,7 @@ const PurchaseConfirmation = () => {
   const [cartItems, setCartItems] = useState([]);
   const [userId, setUserId] = useState("");
   const [duration, setDuration] = useState();
-
+  const [successMessage, setSuccessMessage] = useState(false);
   useEffect(() => {
     const totalCartItems =
       JSON.parse(localStorage.getItem("purchaseItems")) || [];
@@ -101,7 +103,10 @@ const PurchaseConfirmation = () => {
       };
 
       const response = await service.postCreateOrder(orderDetail, userId);
-
+      if (response.userId) {
+        setSuccessMessage(true);
+      }
+      console.log(response.status);
       console.log("Order created:", response);
     } catch (error) {
       console.error("Error creating order:", error);
@@ -109,7 +114,7 @@ const PurchaseConfirmation = () => {
   };
 
   return (
-    <div className="flex bg-gray-100 h-full top-[5em]  flex-wrap justify-center relative p-4 w-full">
+    <div className="flex bg-gray-100 h-vh top-[5em]  flex-wrap justify-center relative p-4 w-full">
       <div className="grow max-w-[45em] flex items-center justify-center p-2">
         <div className="flex flex-col gap-3 border-2 w-full rounded-md p-4 bg-white drop-shadow-md">
           <div className="flex items-center gap-2">
@@ -198,6 +203,25 @@ const PurchaseConfirmation = () => {
             />
           </Button>
         </div>
+
+        {successMessage && (
+          <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-center bg-black/5 h-full">
+            <div className="fixed border top-[6em] border-green-500 bg-white p-3 rounded-md shadow-md flex items-center justify-center gap-2 ">
+              <CheckCircleIcon className="text-green-600" />
+              <p className="text-green-600 text-sm font-medium font-poppins">
+                An email confirmation has been sent to your registered email
+                address. Thank you for your order!
+              </p>
+              <CloseIcon
+                sx={{
+                  fontSize: "medium",
+                  color: "green",
+                }}
+                onClick={() => setSuccessMessage(false)}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

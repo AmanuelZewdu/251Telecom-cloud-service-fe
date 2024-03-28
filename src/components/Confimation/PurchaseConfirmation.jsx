@@ -9,6 +9,7 @@ import service from "../../Services/services";
 const PurchaseConfirmation = () => {
   const [cartItems, setCartItems] = useState([]);
   const [userId, setUserId] = useState("");
+  const [duration, setDuration] = useState();
 
   useEffect(() => {
     const totalCartItems =
@@ -31,6 +32,10 @@ const PurchaseConfirmation = () => {
     } else {
       console.error("user data not found in sessionStorage.");
     }
+
+    const durations = totalCartItems.map((item) => item.duration);
+    const totalDuration = durations.reduce((acc, curr) => acc + curr, 0);
+    setDuration(totalDuration);
   }, []);
 
   const removeItem = (indexToRemove) => {
@@ -75,24 +80,6 @@ const PurchaseConfirmation = () => {
   const vat = vatCalculator(totalBeforeVat);
   const total = parseFloat(vat) + parseFloat(totalBeforeVat);
 
-  // const handleCreateOrder = async () => {
-  //   try {
-  //     const orderDetail = {
-  //       cartItems,
-  //       subtotal: calculateSubtotal(),
-  //       vat: vatCalculator(calculateTotal()),
-  //       total: total,
-  //     };
-
-  //     console.log(orderDetail);
-  //     const response = await service.postCreateOrder(orderDetail, userId);
-
-  //     console.log("Order created:", response);
-  //   } catch (error) {
-  //     console.error("Error creating order:", error);
-  //   }
-  // };
-
   const handleCreateOrder = async () => {
     try {
       const orderItems = cartItems.map((item) => ({
@@ -100,10 +87,11 @@ const PurchaseConfirmation = () => {
         "image-id": item.imageId,
         "disk-size": item.memory_mb,
         "instance-type": item.instanceName,
+        duration,
       }));
-      console.log(orderItems.memory_mb);
+
       const orderDetail = {
-        duration: 5,
+        duration,
         order: {
           vm: orderItems,
           storage: [],
@@ -112,7 +100,6 @@ const PurchaseConfirmation = () => {
         total: total,
       };
 
-      console.log(orderDetail);
       const response = await service.postCreateOrder(orderDetail, userId);
 
       console.log("Order created:", response);
@@ -184,7 +171,13 @@ const PurchaseConfirmation = () => {
                 <span className="font-medium text-right">{subtotal}</span>
               </h2>
               <h2 className="flex text-gray-900 font-poppins justify-between">
-                Vat: <span className="font-medium">{vat}</span>
+                <p className="flex flex-col">
+                  Vat:{" "}
+                  <span className="text-xs text-gray-500">
+                    15% of your total
+                  </span>{" "}
+                </p>{" "}
+                <span className="font-medium">${vat}</span>
               </h2>
               <h1 className="flex text-gray-900 font-poppins justify-between">
                 Total: <span className="font-medium">${total}/mo</span>

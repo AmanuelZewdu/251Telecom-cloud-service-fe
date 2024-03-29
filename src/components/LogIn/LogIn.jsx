@@ -1,5 +1,6 @@
 import "./logIn.scss";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import CloseIcon from "@mui/icons-material/Close";
 import * as Yup from "yup";
@@ -9,7 +10,8 @@ import services from "../../Services/services";
 
 const LogIn = () => {
   const [visible, setVisibile] = useState(false);
-  const [logInError, setLogInError] = useState(true);
+  const [logInError, setLogInError] = useState(false);
+  const navigate = useNavigate();
 
   const handleVisibility = () => {
     setVisibile(!visible);
@@ -40,7 +42,13 @@ const LogIn = () => {
           console.log("User not found. Please check your credentials.");
           setLogInError(true);
         } else {
-          sessionStorage.setItem("loggedInUser", JSON.stringify(data));
+          sessionStorage.setItem("loggedIn-user", JSON.stringify(data));
+          const cartItem = JSON.parse(localStorage.getItem("purchaseItems"));
+          if (cartItem && cartItem.length > 0) {
+            navigate("/purchase-confirm");
+          } else {
+            navigate("/");
+          }
         }
       } catch (error) {
         console.log(error.message);
@@ -67,7 +75,11 @@ const LogIn = () => {
             {logInError && (
               <p className="flex justify-between items-center text-red-500 border-l-4 border-red-500 p-2 bg-red-50 rounded-sm">
                 User not found. Please check your credentials.
-                <CloseIcon className="cursor-pointer" fontSize="small" />
+                <CloseIcon
+                  onClick={() => setLogInError(false)}
+                  className="cursor-pointer"
+                  fontSize="small"
+                />
               </p>
             )}
             <div className="w-full">

@@ -112,7 +112,7 @@ const PurchaseConfirmation = () => {
   };
 
   return (
-    <div className="flex bg-gray-100 h-vh top-[5em]  flex-wrap justify-center relative p-4 w-full">
+    <div className="flex bg-gray-100 h-svh top-[5em]  flex-wrap justify-center relative p-4 w-full">
       <div className="grow max-w-[45em] flex items-center justify-center p-2">
         <div className="flex flex-col gap-3 border-2 w-full rounded-md p-4 bg-white drop-shadow-md">
           <div className="flex items-center gap-2">

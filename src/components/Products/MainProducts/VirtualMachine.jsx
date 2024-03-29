@@ -22,7 +22,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import PurchaseItemData from "../../PurchaseItemData/PurchaseItemData";
 
 const VirtualMachine = () => {
-  const navigate = useNavigate(0);
+  const navigate = useNavigate();
   const [vmName, setVmName] = useState("");
   const [selectedRow, setSelectedRow] = useState(null);
   const [selectedImage, setSelectedImage] = useState("");

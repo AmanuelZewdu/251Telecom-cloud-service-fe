@@ -203,6 +203,7 @@ const VirtualMachine = () => {
     }
   };
 
+  console.log(selectedImage);
   // this func returns the instance types which are paginated and filtering logic is included in it.
   const filterAndSliceInstanceTypes = () => {
     const filteredInstanceTypes = instanceTypes.filter((instanceType) => {
@@ -418,7 +419,7 @@ const VirtualMachine = () => {
                   Select image{" "}
                 </option>
                 {machineImages.map((machineImage, index) => (
-                  <option key={machineImage.id + index}>
+                  <option key={machineImage.id + index} value={machineImage.id}>
                     {machineImage.name}
                   </option>
                 ))}

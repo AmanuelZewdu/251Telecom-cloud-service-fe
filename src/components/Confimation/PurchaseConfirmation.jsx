@@ -27,7 +27,6 @@ const PurchaseConfirmation = () => {
 
       if (accessToken) {
         setUserId(accessToken);
-        console.log(accessToken);
       } else {
         console.error("No access token or not logged in user");
       }
@@ -106,7 +105,6 @@ const PurchaseConfirmation = () => {
       if (response.userId) {
         setSuccessMessage(true);
       }
-      console.log(response.status);
       console.log("Order created:", response);
     } catch (error) {
       console.error("Error creating order:", error);

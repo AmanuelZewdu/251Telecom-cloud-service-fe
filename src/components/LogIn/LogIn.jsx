@@ -1,6 +1,7 @@
 import "./logIn.scss";
 import { useState } from "react";
 import { useFormik } from "formik";
+import CloseIcon from "@mui/icons-material/Close";
 import * as Yup from "yup";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -8,7 +9,7 @@ import services from "../../Services/services";
 
 const LogIn = () => {
   const [visible, setVisibile] = useState(false);
-  const [logInError, setLogInError] = useState(false);
+  const [logInError, setLogInError] = useState(true);
 
   const handleVisibility = () => {
     setVisibile(!visible);
@@ -37,9 +38,9 @@ const LogIn = () => {
         const { data, statusCode } = await services.postLogin(values);
         if (statusCode === 404 || statusCode === 401) {
           console.log("User not found. Please check your credentials.");
+          setLogInError(true);
         } else {
           sessionStorage.setItem("loggedInUser", JSON.stringify(data));
-          console.log("Logged in user data: ", data);
         }
       } catch (error) {
         console.log(error.message);
@@ -63,6 +64,12 @@ const LogIn = () => {
             onSubmit={formik.handleSubmit}
             className="flex flex-col gap-4 text-black"
           >
+            {logInError && (
+              <p className="flex justify-between items-center text-red-500 border-l-4 border-red-500 p-2 bg-red-50 rounded-sm">
+                User not found. Please check your credentials.
+                <CloseIcon fontSize="small" />
+              </p>
+            )}
             <div className="w-full">
               {/* <label htmlFor="email">Email:</label> */}
               <input

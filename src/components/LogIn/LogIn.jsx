@@ -20,7 +20,10 @@ const LogIn = () => {
     },
     validationSchema: Yup.object({
       email: Yup.string()
-        .email("Invalid email address")
+        .matches(
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+          "Invalid email address"
+        )
         .required("Email address is required*"),
       password: Yup.string()
         .min(8, "Password must be 8 characters or more")
@@ -60,7 +63,13 @@ const LogIn = () => {
             <div className="w-full">
               {/* <label htmlFor="email">Email:</label> */}
               <input
-                className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
+                className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
+                  formik.touched.email && formik.errors.email
+                    ? "border-red-500"
+                    : formik.touched.email && !formik.errors.email
+                    ? "border-green-500"
+                    : "border-gray-400"
+                }`}
                 id="email"
                 placeholder="Email"
                 type="email"
@@ -76,7 +85,13 @@ const LogIn = () => {
               {/* <label htmlFor="password">Password:</label> */}
 
               <input
-                className="w-full bg-transparent p-2 border border-gray-400 rounded-sm"
+                className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
+                  formik.touched.password && formik.errors.password
+                    ? "border-red-500"
+                    : formik.touched.password && !formik.errors.password
+                    ? "border-green-500"
+                    : "border-gray-400"
+                }`}
                 id="password"
                 placeholder="Password"
                 type={visible ? "text" : "password"}

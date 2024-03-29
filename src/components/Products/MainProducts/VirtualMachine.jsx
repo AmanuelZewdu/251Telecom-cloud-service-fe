@@ -40,8 +40,25 @@ const VirtualMachine = () => {
 
   // side effect that fetches the instance types
   useEffect(() => {
-    fetchInstanceType();
-    fetchMachineImages();
+    const cachedInstanceTypes = JSON.parse(
+      sessionStorage.getItem("cachedInstanceTypes")
+    );
+    const cachedMachineImages = JSON.parse(
+      sessionStorage.getItem("cachedMachineImages")
+    );
+
+    if (cachedInstanceTypes) {
+      setInstanceTypes(cachedInstanceTypes);
+      setLoading(false);
+    } else {
+      fetchInstanceType();
+    }
+
+    if (cachedMachineImages) {
+      setMachineImages(cachedMachineImages);
+    } else {
+      fetchMachineImages();
+    }
   }, []);
 
   // Selecting table row function starts here
@@ -119,6 +136,7 @@ const VirtualMachine = () => {
       const response = await services.getInstanceType();
       setInstanceTypes(response);
       setLoading(false);
+      sessionStorage.setItem("cachedInstanceTypes", JSON.stringify(response));
     } catch (error) {
       setFetchError(true);
     } finally {
@@ -129,6 +147,7 @@ const VirtualMachine = () => {
     try {
       const response = await services.getMachineImages();
       setMachineImages(response);
+      sessionStorage.setItem("cachedMachineImages", JSON.stringify(response));
     } catch (error) {
       console.log(error);
       console.log(error.message);
@@ -202,7 +221,6 @@ const VirtualMachine = () => {
       memorySelect.value = "";
     }
   };
-
   // this func returns the instance types which are paginated and filtering logic is included in it.
   const filterAndSliceInstanceTypes = () => {
     const filteredInstanceTypes = instanceTypes.filter((instanceType) => {
@@ -418,7 +436,7 @@ const VirtualMachine = () => {
                   Select image{" "}
                 </option>
                 {machineImages.map((machineImage, index) => (
-                  <option key={machineImage.id + index}>
+                  <option key={machineImage.id + index} value={machineImage.id}>
                     {machineImage.name}
                   </option>
                 ))}
@@ -426,11 +444,11 @@ const VirtualMachine = () => {
             </div>
           </div>
           <div className="mt-4 flex gap-4 items-center">
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center">
               <label>Duration:</label>
               <select
                 name="duration"
-                className="w-[8em] p-2 bg-gray-100 rounded-md"
+                className="w-[7em] p-2 bg-gray-100 rounded-md"
                 value={durationNumber}
                 onChange={handleDurationNumChange}
               >

@@ -8,6 +8,7 @@ import services from "../../Services/services";
 
 const LogIn = () => {
   const [visible, setVisibile] = useState(false);
+  const [logInError, setLogInError] = useState(false);
 
   const handleVisibility = () => {
     setVisibile(!visible);
@@ -31,16 +32,18 @@ const LogIn = () => {
     }),
     onSubmit: async (values) => {
       console.log("user credentials=>", values);
-      const response = await services.postLogin(values);
 
-      if (!response) {
-        return;
+      try {
+        const { data, statusCode } = await services.postLogin(values);
+        if (statusCode === 404 || statusCode === 401) {
+          console.log("User not found. Please check your credentials.");
+        } else {
+          sessionStorage.setItem("loggedInUser", JSON.stringify(data));
+          console.log("Logged in user data: ", data);
+        }
+      } catch (error) {
+        console.log(error.message);
       }
-
-      sessionStorage.setItem("loggedIn-user", JSON.stringify(response));
-      console.log("login Response=>", response);
-
-      //alert(JSON.stringify(values, null, 2));
     },
   });
   return (

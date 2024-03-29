@@ -67,7 +67,7 @@ const LogIn = () => {
             {logInError && (
               <p className="flex justify-between items-center text-red-500 border-l-4 border-red-500 p-2 bg-red-50 rounded-sm">
                 User not found. Please check your credentials.
-                <CloseIcon fontSize="small" />
+                <CloseIcon className="cursor-pointer" fontSize="small" />
               </p>
             )}
             <div className="w-full">

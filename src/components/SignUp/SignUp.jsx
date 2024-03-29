@@ -55,7 +55,10 @@ const SignUp = () => {
       }),
       phoneNumber: Yup.string().required("Phone number is required*"),
       email: Yup.string()
-        .email("Invalid email address")
+        .matches(
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+          "Invalid email address"
+        )
         .required("Email address is required*"),
       userName: Yup.string().required("User name name is required*"),
       country: Yup.string().required("Country name is required*"),
@@ -190,7 +193,9 @@ const SignUp = () => {
                 className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                   formik.touched.middleName && formik.errors.middleName
                     ? "border-red-500"
-                    : "border-gray-400 "
+                    : formik.touched.middleName && !formik.errors.middleName
+                    ? "border-green-500"
+                    : "border-gray-400"
                 }`}
                 id="middleName"
                 placeholder="Middle name"
@@ -205,10 +210,12 @@ const SignUp = () => {
             </div>
             <div className="w-full">
               <input
-                className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none  ${
+                className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                   formik.touched.lastName && formik.errors.lastName
                     ? "border-red-500"
-                    : "border-gray-400 "
+                    : formik.touched.lastName && !formik.errors.lastName
+                    ? "border-green-500"
+                    : "border-gray-400"
                 }`}
                 id="lastName"
                 placeholder="Last name"
@@ -227,10 +234,12 @@ const SignUp = () => {
                   +251
                 </span>
                 <input
-                  className={`w-full bg-transparent p-2 border border-gray-400 rounded-e-sm outline-none  ${
+                  className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                     formik.touched.phoneNumber && formik.errors.phoneNumber
                       ? "border-red-500"
-                      : "border-gray-400 "
+                      : formik.touched.phoneNumber && !formik.errors.phoneNumber
+                      ? "border-green-500"
+                      : "border-gray-400"
                   }`}
                   id="phoneNumber"
                   placeholder="Phone number"
@@ -246,10 +255,12 @@ const SignUp = () => {
             </div>
             <div className="w-full">
               <input
-                className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
+                className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                   formik.touched.email && formik.errors.email
                     ? "border-red-500"
-                    : "border-gray-400 "
+                    : formik.touched.email && !formik.errors.email
+                    ? "border-green-500"
+                    : "border-gray-400"
                 }`}
                 id="email"
                 placeholder="Email"
@@ -264,10 +275,12 @@ const SignUp = () => {
             </div>
             <div className="w-full">
               <input
-                className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
+                className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                   formik.touched.userName && formik.errors.userName
                     ? "border-red-500"
-                    : "border-gray-400 "
+                    : formik.touched.userName && !formik.errors.userName
+                    ? "border-green-500"
+                    : "border-gray-400"
                 }`}
                 id="userName"
                 placeholder="User name"
@@ -282,10 +295,12 @@ const SignUp = () => {
             </div>
             <div className="w-full">
               <input
-                className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
+                className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                   formik.touched.country && formik.errors.country
                     ? "border-red-500"
-                    : "border-gray-400 "
+                    : formik.touched.country && !formik.errors.country
+                    ? "border-green-500"
+                    : "border-gray-400"
                 }`}
                 id="country"
                 placeholder="Country"
@@ -300,10 +315,12 @@ const SignUp = () => {
             </div>
             <div className="w-full">
               <input
-                className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
+                className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                   formik.touched.province && formik.errors.province
                     ? "border-red-500"
-                    : "border-gray-400 "
+                    : formik.touched.province && !formik.errors.province
+                    ? "border-green-500"
+                    : "border-gray-400"
                 }`}
                 id="province"
                 placeholder="Province"
@@ -318,10 +335,12 @@ const SignUp = () => {
             </div>
             <div className="w-full">
               <input
-                className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
+                className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                   formik.touched.city && formik.errors.city
                     ? "border-red-500"
-                    : "border-gray-400 "
+                    : formik.touched.city && !formik.errors.city
+                    ? "border-green-500"
+                    : "border-gray-400"
                 }`}
                 id="city"
                 placeholder="City"
@@ -337,10 +356,12 @@ const SignUp = () => {
             {formik.values.accountType === "business" && (
               <div className="w-full">
                 <input
-                  className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
+                  className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                     formik.touched.industry && formik.errors.industry
                       ? "border-red-500"
-                      : "border-gray-400 "
+                      : formik.touched.industry && !formik.errors.industry
+                      ? "border-green-500"
+                      : "border-gray-400"
                   }`}
                   id="industry"
                   placeholder="Industry type"
@@ -356,10 +377,12 @@ const SignUp = () => {
             )}
             <div className="relative w-full">
               <input
-                className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
+                className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                   formik.touched.password && formik.errors.password
                     ? "border-red-500"
-                    : "border-gray-400 "
+                    : formik.touched.password && !formik.errors.password
+                    ? "border-green-500"
+                    : "border-gray-400"
                 }`}
                 id="password"
                 placeholder="Password"
@@ -386,11 +409,14 @@ const SignUp = () => {
             </div>
             <div className="relative w-full">
               <input
-                className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
+                className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                   formik.touched.ConfirmPassword &&
                   formik.errors.ConfirmPassword
                     ? "border-red-500"
-                    : "border-gray-400 "
+                    : formik.touched.ConfirmPassword &&
+                      !formik.errors.ConfirmPassword
+                    ? "border-green-500"
+                    : "border-gray-400"
                 }`}
                 id="ConfirmPassword"
                 placeholder="ConfirmPassword"

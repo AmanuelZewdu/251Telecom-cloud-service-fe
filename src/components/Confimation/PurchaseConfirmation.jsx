@@ -189,7 +189,7 @@ const PurchaseConfirmation = () => {
           )}
           <Button
             onClick={() => handleCreateOrder()}
-            sx={{}}
+            disabled={cartItems.length === 0}
             className="flex gap-2 h-[3.5em]"
             variant="contained"
           >

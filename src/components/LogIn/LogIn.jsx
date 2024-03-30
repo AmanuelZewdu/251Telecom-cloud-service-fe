@@ -11,6 +11,7 @@ import services from "../../Services/services";
 const LogIn = () => {
   const [visible, setVisibile] = useState(false);
   const [logInError, setLogInError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleVisibility = () => {
@@ -37,13 +38,16 @@ const LogIn = () => {
       console.log("user credentials=>", values);
 
       try {
+        setLoading(true);
         const { data, statusCode } = await services.postLogin(values);
         if (statusCode !== 200) {
           console.log("User not found. Please check your credentials.");
           setLogInError(true);
+          setLoading(false);
         } else {
           sessionStorage.setItem("loggedIn-user", JSON.stringify(data));
           const cartItem = JSON.parse(localStorage.getItem("purchaseItems"));
+          setLoading(false);
           if (cartItem && cartItem.length > 0) {
             navigate("/purchase-confirm");
           } else {
@@ -52,6 +56,7 @@ const LogIn = () => {
         }
       } catch (error) {
         console.log(error.message);
+        setLoading(false);
       }
     },
   });
@@ -138,11 +143,16 @@ const LogIn = () => {
               ) : null}
             </div>
             <button
-              className="flex justify-center items-center gap-2 w-full rounded-sm bg-primary-medium p-2 text-white hover:bg-primary-light"
+              className={`flex justify-center items-center gap-2 w-full rounded-sm  p-2 text-white  ${
+                loading
+                  ? "bg-primary-medium/50 cursor-wait"
+                  : "bg-primary-medium hover:bg-primary-light"
+              }`}
               type="submit"
+              disabled={loading}
             >
-              Log in
-              <div className="loader"></div>
+              {loading ? "Logging in" : "Log in"}
+              {loading && <div className="loader"></div>}
             </button>
           </form>
           <div className="relative flex flex-col-reverse md:flex-row justify-between gap-2">

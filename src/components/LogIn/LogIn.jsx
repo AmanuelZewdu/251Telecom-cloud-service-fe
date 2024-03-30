@@ -70,7 +70,7 @@ const LogIn = () => {
       </div>
       <div className="flex-grow max-w-[30em] max-h-[30em] bg-white rounded-sm">
         <div className="flex flex-col gap-4 p-6">
-          <h1 className="text-xl font-medium text-gray-700">LOGIN</h1>
+          <h1 className="text-xl font-medium text-[#050505]">LOGIN</h1>
           <hr className="border border-black/30" />
           <form
             onSubmit={formik.handleSubmit}
@@ -87,7 +87,9 @@ const LogIn = () => {
               </p>
             )}
             <div className="w-full">
-              {/* <label htmlFor="email">Email:</label> */}
+              <label htmlFor="email" className="text-gray-900">
+                Email address:
+              </label>
               <input
                 className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                   formik.touched.email && formik.errors.email
@@ -108,8 +110,9 @@ const LogIn = () => {
               ) : null}
             </div>
             <div className="relative w-full">
-              {/* <label htmlFor="password">Password:</label> */}
-
+              <label htmlFor="password" className="text-gray-900">
+                Password:
+              </label>
               <input
                 className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                   formik.touched.password && formik.errors.password

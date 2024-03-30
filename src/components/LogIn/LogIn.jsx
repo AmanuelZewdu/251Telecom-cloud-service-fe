@@ -41,7 +41,6 @@ const LogIn = () => {
         setLoading(true);
         const { data, statusCode } = await services.postLogin(values);
         if (statusCode !== 200) {
-          console.log("User not found. Please check your credentials.");
           setLogInError(true);
           setLoading(false);
         } else {
@@ -79,7 +78,7 @@ const LogIn = () => {
           >
             {logInError && (
               <p className="flex justify-between items-center text-red-500 border-l-4 border-red-500 p-2 bg-red-50 rounded-sm">
-                User not found. Please check your credentials.
+                Unauthorized. Please login with correct credentials.
                 <CloseIcon
                   onClick={() => setLogInError(false)}
                   className="cursor-pointer"

@@ -38,7 +38,7 @@ const LogIn = () => {
 
       try {
         const { data, statusCode } = await services.postLogin(values);
-        if (statusCode === 404 || statusCode === 401) {
+        if (statusCode !== 200) {
           console.log("User not found. Please check your credentials.");
           setLogInError(true);
         } else {
@@ -138,10 +138,11 @@ const LogIn = () => {
               ) : null}
             </div>
             <button
-              className="w-full rounded-sm bg-primary-medium p-2 text-white hover:bg-primary-light"
+              className="flex justify-center items-center gap-2 w-full rounded-sm bg-primary-medium p-2 text-white hover:bg-primary-light"
               type="submit"
             >
               Log in
+              <div className="loader"></div>
             </button>
           </form>
           <div className="relative flex flex-col-reverse md:flex-row justify-between gap-2">

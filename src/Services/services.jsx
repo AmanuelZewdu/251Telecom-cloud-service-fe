@@ -4,7 +4,7 @@ const API_URL_VMS =
 const API_URL_IMAGES =
   "https://two51telecom-backend.onrender.com/api/vm-settings/machine-images";
 const API_URL_SIGN_UP =
-  "https://two51telecom-backend.onrender.com/api/project/create";
+  "https://two51telecom-backend.onrender.com/api/auth/signup";
 const API_URL_CREATE_ORDER =
   "https://two51telecom-backend.onrender.com/api/order/";
 const API_URL_LOGIN =

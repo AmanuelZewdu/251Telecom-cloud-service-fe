@@ -26,6 +26,7 @@ const VirtualMachine = () => {
   const [vmName, setVmName] = useState("");
   const [selectedRow, setSelectedRow] = useState(null);
   const [selectedImage, setSelectedImage] = useState("");
+  const [selectedImageName, setSelectedImageName] = useState("");
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
   const [error, setError] = useState(false);
@@ -87,6 +88,8 @@ const VirtualMachine = () => {
 
   const handleImageChange = (event) => {
     setSelectedImage(event.target.value); // this is selected image string
+    const selectedImage = event.target.selectedIndex;
+    setSelectedImageName(event.target.options[selectedImage].text);
   };
 
   const addToCartHandler = (redirectUser) => {
@@ -538,7 +541,7 @@ const VirtualMachine = () => {
         </div>
         <div className="flex gap-2">
           <h3 className="">Selected image:</h3>
-          <span>{selectedImage || "-"}</span>
+          <span>{selectedImageName || "-"}</span>
         </div>
         <div className="flex gap-2">
           <h3 className="">Duration:</h3>

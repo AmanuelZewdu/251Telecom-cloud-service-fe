@@ -129,12 +129,12 @@ const LogIn = () => {
               {visible ? (
                 <VisibilityIcon
                   onClick={handleVisibility}
-                  className="absolute top-5 right-3 transform -translate-y-1/2 text-gray-500"
+                  className="absolute top-11 right-3 transform -translate-y-1/2 text-gray-500"
                 />
               ) : (
                 <VisibilityOffIcon
                   onClick={handleVisibility}
-                  className="absolute top-5 right-3 transform -translate-y-1/2 text-gray-500"
+                  className="absolute top-11 right-3 transform -translate-y-1/2 text-gray-500"
                 />
               )}
 

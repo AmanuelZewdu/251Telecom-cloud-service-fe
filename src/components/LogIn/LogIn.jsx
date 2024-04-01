@@ -1,6 +1,8 @@
 import "./logIn.scss";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import CloseIcon from "@mui/icons-material/Close";
 import * as Yup from "yup";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -8,6 +10,9 @@ import services from "../../Services/services";
 
 const LogIn = () => {
   const [visible, setVisibile] = useState(false);
+  const [logInError, setLogInError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleVisibility = () => {
     setVisibile(!visible);
@@ -31,16 +36,27 @@ const LogIn = () => {
     }),
     onSubmit: async (values) => {
       console.log("user credentials=>", values);
-      const response = await services.postLogin(values);
 
-      if (!response) {
-        return;
+      try {
+        setLoading(true);
+        const { data, statusCode } = await services.postLogin(values);
+        if (statusCode !== 200) {
+          setLogInError(true);
+          setLoading(false);
+        } else {
+          sessionStorage.setItem("loggedIn-user", JSON.stringify(data));
+          const cartItem = JSON.parse(localStorage.getItem("purchaseItems"));
+          setLoading(false);
+          if (cartItem && cartItem.length > 0) {
+            navigate("/purchase-confirm");
+          } else {
+            navigate("/");
+          }
+        }
+      } catch (error) {
+        console.log(error.message);
+        setLoading(false);
       }
-
-      sessionStorage.setItem("loggedIn-user", JSON.stringify(response));
-      console.log("login Response=>", response);
-
-      //alert(JSON.stringify(values, null, 2));
     },
   });
   return (
@@ -54,14 +70,26 @@ const LogIn = () => {
       </div>
       <div className="flex-grow max-w-[30em] max-h-[30em] bg-white rounded-sm">
         <div className="flex flex-col gap-4 p-6">
-          <h1 className="text-xl font-medium text-gray-700">LOGIN</h1>
+          <h1 className="text-xl font-medium text-[#050505]">LOGIN</h1>
           <hr className="border border-black/30" />
           <form
             onSubmit={formik.handleSubmit}
             className="flex flex-col gap-4 text-black"
           >
+            {logInError && (
+              <p className="flex justify-between items-center text-red-500 border-l-4 border-red-500 p-2 bg-red-50 rounded-sm">
+                Unauthorized. Please login with correct credentials.
+                <CloseIcon
+                  onClick={() => setLogInError(false)}
+                  className="cursor-pointer"
+                  fontSize="small"
+                />
+              </p>
+            )}
             <div className="w-full">
-              {/* <label htmlFor="email">Email:</label> */}
+              <label htmlFor="email" className="text-gray-900">
+                Email address:
+              </label>
               <input
                 className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                   formik.touched.email && formik.errors.email
@@ -82,8 +110,9 @@ const LogIn = () => {
               ) : null}
             </div>
             <div className="relative w-full">
-              {/* <label htmlFor="password">Password:</label> */}
-
+              <label htmlFor="password" className="text-gray-900">
+                Password:
+              </label>
               <input
                 className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
                   formik.touched.password && formik.errors.password
@@ -100,12 +129,12 @@ const LogIn = () => {
               {visible ? (
                 <VisibilityIcon
                   onClick={handleVisibility}
-                  className="absolute top-5 right-3 transform -translate-y-1/2 text-gray-500"
+                  className="absolute top-11 right-3 transform -translate-y-1/2 text-gray-500"
                 />
               ) : (
                 <VisibilityOffIcon
                   onClick={handleVisibility}
-                  className="absolute top-5 right-3 transform -translate-y-1/2 text-gray-500"
+                  className="absolute top-11 right-3 transform -translate-y-1/2 text-gray-500"
                 />
               )}
 
@@ -116,10 +145,16 @@ const LogIn = () => {
               ) : null}
             </div>
             <button
-              className="w-full rounded-sm bg-primary-medium p-2 text-white hover:bg-primary-light"
+              className={`flex justify-center items-center gap-2 w-full rounded-sm  p-2 text-white  ${
+                loading
+                  ? "bg-primary-medium/50 cursor-wait"
+                  : "bg-primary-medium hover:bg-primary-light"
+              }`}
               type="submit"
+              disabled={loading}
             >
-              Log in
+              {loading ? "Logging in" : "Log in"}
+              {loading && <div className="loader"></div>}
             </button>
           </form>
           <div className="relative flex flex-col-reverse md:flex-row justify-between gap-2">

@@ -1,6 +1,7 @@
 import "./mainProducts.scss";
 import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { vmDescription } from "../../../shared/data/data.js";
 import * as React from "react";
 import Table from "@mui/material/Table";
@@ -21,6 +22,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import PurchaseItemData from "../../PurchaseItemData/PurchaseItemData";
 
 const VirtualMachine = () => {
+  const navigate = useNavigate();
   const [vmName, setVmName] = useState("");
   const [selectedRow, setSelectedRow] = useState(null);
   const [selectedImage, setSelectedImage] = useState("");
@@ -87,9 +89,10 @@ const VirtualMachine = () => {
     setSelectedImage(event.target.value); // this is selected image string
   };
 
-  const purchaseHandler = () => {
+  const addToCartHandler = (redirectUser) => {
     if (!vmName) {
       setVMNameError(true);
+      return;
     }
     if (
       !vmName ||
@@ -99,6 +102,7 @@ const VirtualMachine = () => {
       !duration
     ) {
       setError(true);
+      return;
     } else {
       const price = priceCalculator(
         selectedRowData.vcpus,
@@ -127,7 +131,14 @@ const VirtualMachine = () => {
       setTimeout(() => {
         setIsItemAdded(false);
       }, 2000);
-      alert(JSON.stringify(updatedItems, null, 2));
+      if (redirectUser) {
+        const userIsLoggedIn = sessionStorage.getItem("loggedIn-user");
+        if (userIsLoggedIn) {
+          navigate("/purchase-confirm");
+        } else {
+          navigate("/log-in");
+        }
+      }
     }
   };
 
@@ -551,13 +562,12 @@ const VirtualMachine = () => {
             }}
             className="w-[7em] md:w-[10em]"
             variant="contained"
-            href="/log-in"
-            onClick={purchaseHandler}
+            onClick={() => addToCartHandler(true)}
           >
             Buy
           </Button>
           <Button
-            onClick={purchaseHandler}
+            onClick={() => addToCartHandler(false)}
             style={{
               fontSize: "12px",
               backgroundColor: "white",

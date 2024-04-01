@@ -61,14 +61,16 @@ const postCreateOrder = async (orderDetail, access_token) => {
 };
 
 const postLogin = async (userCredential) => {
-  return axios
-    .post(API_URL_LOGIN, userCredential)
-    .then((response) => {
-      return response.data;
-    })
-    .catch((err) => {
-      console.log("can't login");
-    });
+  try {
+    const response = await axios.post(API_URL_LOGIN, userCredential);
+    return { data: response.data, statusCode: response.status };
+  } catch (error) {
+    if (error.response) {
+      return { error: error.response.data, statusCode: error.response.status };
+    } else {
+      throw new Error("Network error occurred.");
+    }
+  }
 };
 
 const services = {

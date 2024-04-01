@@ -77,9 +77,7 @@ const SignUp = () => {
         .required("Password confirmation is required*"),
     }),
     onSubmit: async (values, { resetForm }) => {
-      values.phoneNumber = `+251${values.phoneNumber}`;
-
-      console.log("data>>>", values);
+      values.phoneNumber = `251${values.phoneNumber}`;
 
       const userDetail = {
         userDetail: {
@@ -88,9 +86,8 @@ const SignUp = () => {
 
         isProductSelected: isProductSelected("purchaseItems"),
       };
-      console.log("formValues==>", userDetail);
 
-      alert(JSON.stringify(values, null, 2));
+      //alert(JSON.stringify(values, null, 2));
       const response = await services.postSignUp(userDetail);
       if (!response) {
         return;

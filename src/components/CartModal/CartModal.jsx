@@ -68,6 +68,15 @@ const CartModal = ({ open, onClose }) => {
   const subtotal = calculateSubtotal();
   const total = calculateTotal();
 
+  function redirectHandler() {
+    const isUserLoggedIn = JSON.parse(sessionStorage.getItem("loggedIn-user"));
+    if (isUserLoggedIn) {
+      window.location.href = "/purchase-confirm";
+    } else {
+      window.location.href = "/log-in";
+    }
+  }
+
   return (
     <div
       className={`fixed right-0 z-50  ${
@@ -143,8 +152,9 @@ const CartModal = ({ open, onClose }) => {
                   padding: "0.5em",
                   color: "#fff",
                 }}
+                onClick={() => redirectHandler()}
               >
-                <a href="/purchase-confirm">Proceed to checkout</a>
+                Proceed to checkout
               </Button>
             )}
           </>

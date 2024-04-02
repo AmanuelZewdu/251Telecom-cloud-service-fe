@@ -1,0 +1,45 @@
+/* HTML: <div class="loader"></div> */
+.waitLoader {
+  width: 180px;
+  height: 100px;
+  color: #269af2;
+  --c: radial-gradient(farthest-side, currentColor 96%, #0000);
+  background: var(--c) 100% 100% /30% 60%, var(--c) 70% 0 /50% 100%,
+    var(--c) 0 100% /36% 68%, var(--c) 27% 18% /26% 40%,
+    linear-gradient(currentColor 0 0) bottom/67% 58%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.waitLoader:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  opacity: 0.4;
+  animation: l7 1s infinite;
+}
+@keyframes l7 {
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* HTML: <div class="loader"></div> */
+.waitingSpinner {
+  width: 10px;
+  padding: 11px;
+  border-radius: 50%;
+  background: #16a34a;
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
+  }
+}

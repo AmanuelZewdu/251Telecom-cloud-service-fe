@@ -8,6 +8,7 @@ import LogIn from "./components/LogIn/LogIn";
 import SignUp from "./components/SignUp/SignUp";
 import VmPurchase from "./components/Products/VmPurchase";
 import PurchaseConfirmation from "./components/Confimation/PurchaseConfirmation";
+import WaitPage from "./components/WaitPage/WaitPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
                 path="/purchase-confirm"
                 element={<PurchaseConfirmation />}
               />
+              <Route path="/wait" element={<WaitPage />} />
               <Route path="log-in" element={<LogIn />} />
               <Route path="/sign-up" element={<SignUp />} />
             </Route>

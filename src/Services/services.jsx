@@ -4,8 +4,7 @@ const API_URL_VMS =
 const API_URL_IMAGES =
   "https://two51telecom-backend.onrender.com/vm-settings/machine-images";
 const API_URL_SIGN_UP = "https://two51telecom-backend.onrender.com/auth/signup";
-const API_URL_CREATE_ORDER =
-  "https://two51telecom-backend.onrender.com/api/order/";
+const API_URL_CREATE_ORDER = "https://two51telecom-backend.onrender.com/order/";
 const API_URL_LOGIN = "https://two51telecom-backend.onrender.com/auth/signin";
 
 const getInstanceType = async () => {

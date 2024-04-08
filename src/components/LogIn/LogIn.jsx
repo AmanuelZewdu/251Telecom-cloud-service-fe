@@ -154,7 +154,7 @@ const LogIn = () => {
               disabled={loading}
             >
               {loading ? "Logging in" : "Log in"}
-              {loading && <div className="loader"></div>}
+              {loading && <div className="login-Loader"></div>}
             </button>
           </form>
           <div className="relative flex flex-col-reverse md:flex-row justify-between gap-2">

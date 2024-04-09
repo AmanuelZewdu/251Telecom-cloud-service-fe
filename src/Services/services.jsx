@@ -1,11 +1,9 @@
 import axios from "axios";
-const API_URL_VMS =
-  "https://two51telecom-backend.onrender.com/vm-settings/instance-types";
-const API_URL_IMAGES =
-  "https://two51telecom-backend.onrender.com/vm-settings/machine-images";
-const API_URL_SIGN_UP = "https://two51telecom-backend.onrender.com/auth/signup";
-const API_URL_CREATE_ORDER = "https://two51telecom-backend.onrender.com/order/";
-const API_URL_LOGIN = "https://two51telecom-backend.onrender.com/auth/signin";
+const API_URL_VMS = "https://api.cloud251.com/vm-settings/instance-types";
+const API_URL_IMAGES = "https://api.cloud251.com/vm-settings/machine-images";
+const API_URL_SIGN_UP = "https://api.cloud251.com/auth/signup";
+const API_URL_CREATE_ORDER = "https://api.cloud251.com/order/";
+const API_URL_LOGIN = "https://api.cloud251.com/auth/signin";
 
 const getInstanceType = async () => {
   return axios

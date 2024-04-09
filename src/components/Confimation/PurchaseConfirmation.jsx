@@ -80,6 +80,7 @@ const PurchaseConfirmation = () => {
   const totalBeforeVat = calculateTotal();
   const vat = vatCalculator(totalBeforeVat);
   const total = parseFloat(vat) + parseFloat(totalBeforeVat);
+  const etSwitchTotal = total * 100;
 
   const handleCreateOrder = async () => {
     try {
@@ -98,14 +99,15 @@ const PurchaseConfirmation = () => {
           storage: [],
           object: [],
         },
-        total: total,
+        total: etSwitchTotal,
       };
 
       const response = await service.postCreateOrder(orderDetail, userId);
-      if (response.userId) {
+      if (response.order.userId) {
         setSuccessMessage(true);
+        console.log("Order created:", response);
+        window.open(response.paymentURL.formUrl);
       }
-      console.log("Order created:", response);
     } catch (error) {
       console.error("Error creating order:", error);
     }

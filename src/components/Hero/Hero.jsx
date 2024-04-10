@@ -11,11 +11,11 @@ const HeroButton = styled(Button)({
 
 const Hero = () => {
   return (
-    <div className="hero-wrapper w-full relative bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center h-svh">
+    <div className="hero-wrapper font-montserrat w-full relative bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center h-svh">
       {/* <div className="absolute bg-black opacity-5 w-full h-svh "></div> */}
 
       <div className="relative flex flex-col p-2 text-center items-center justify-center">
-        <h1 className="text leading-none  p-2 rounded-lg text-primary-blue font-medium">
+        <h1 className="text leading-none  p-2 rounded-lg text-primary-blue font-semibold">
           Your <span className="text-animation font-bold">Data</span> Our
           <span className="text-animation font-bold"> Priority.</span>
         </h1>

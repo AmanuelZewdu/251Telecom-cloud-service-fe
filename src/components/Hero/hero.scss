@@ -7,12 +7,7 @@
 }
 
 .text-animation {
-  background: linear-gradient(
-    to right,
-    rgb(119, 206, 250),
-    #1267a9 90%,
-    #26a9e0
-  );
+  background: linear-gradient(to right, rgb(162, 219, 248), #1267a9, #7ed6fc);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

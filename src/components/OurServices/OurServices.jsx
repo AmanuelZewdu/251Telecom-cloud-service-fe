@@ -32,7 +32,7 @@ const Services = () => {
                 />
               </div>
               <div className="bg-gray-50  text-left gap-3 flex flex-col p-4">
-                <h2 className="text-xl font-montserrat">
+                <h2 className="text-xl font-montserrat border-b border-primary-blue w-fit">
                   {service.serviceName}
                 </h2>
                 <div

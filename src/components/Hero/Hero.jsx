@@ -44,7 +44,7 @@ const Hero = () => {
         </div>
       </div>
       <KeyboardDoubleArrowDownIcon
-        className="absolute animate-bounce bottom-[1em] text-primary-blue"
+        className="absolute animate-bounce bottom-0 text-primary-blue"
         sx={{ fontSize: 62 }}
       />
       <CallUs />

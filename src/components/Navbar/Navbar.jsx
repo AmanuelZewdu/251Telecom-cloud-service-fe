@@ -66,7 +66,7 @@ const Navbar = () => {
       )}
 
       <nav
-        className={`fixed w-full lg:w-4/6 lg:top-[2em] lg:rounded-full bg-white/30 backdrop-blur-3xl flex justify-between items-center p-3 px-5 xl:px-[3rem] shadow-md z-10`}
+        className={`fixed w-full lg:w-5/6 lg:top-[2em] lg:rounded-full bg-black/5 backdrop-blur-sm flex justify-between items-center p-3 px-5 xl:px-[3rem] shadow-md z-10`}
       >
         {/* This is the logo */}
         <div className="max-w-[4em]">
@@ -96,13 +96,15 @@ const Navbar = () => {
             >
               <ShoppingCartIcon className="cursor-pointer" />
               <span className="absolute -right-2 -top-2 flex items-center justify-center bg-red-600 rounded-full cursor-pointer cartCounter">
-                {cartItemsCount}
+                <span className="text-[#f5f5f5]">{cartItemsCount}</span>
               </span>
             </li>
           </ul>
-          <a className="relative nav-hover" href="/log-in">
-            Log in
-          </a>
+          <div className="flex place-content-center p-2 w-[7em] bg-primary-blue rounded-full cursor-pointer hover:bg-[#f5f5f5] text-[#f5f5f5] hover:text-primary-blue transition-all duration-300 ease-in-out hover:shadow-lg">
+            <a className="relative " href="/log-in">
+              LOG IN
+            </a>
+          </div>
         </div>
 
         {/* This is the nav that's displayed when the screen is less than mid */}
@@ -111,7 +113,7 @@ const Navbar = () => {
             <MenuIcon sx={{ fontSize: 32 }} onClick={handleNav} />
           </div>
           <div
-            className={`slider md:hidden fixed gap-4 bg-amber-500 top-0 right-0 cursor-pointer transition-transform w-full duration-500 ease-in-out text-white  
+            className={`slider md:hidden fixed gap-4 bg-primary-blue/90 top-0 right-0 cursor-pointer transition-transform w-full duration-500 ease-in-out text-[#f5f5f5]  
         ${navIsOpen ? "translate-y-20" : "-translate-y-full"}
         flex flex-col p-4 items-center`}
           >
@@ -131,11 +133,13 @@ const Navbar = () => {
               >
                 <ShoppingCartIcon className="cursor-pointer" />
                 <span className="absolute -right-2 -top-2 flex items-center justify-center bg-red-600 rounded-full cartCounter">
-                  {cartItemsCount}
+                  <span className="text[#f5f5f5]">{cartItemsCount}</span>
                 </span>
               </li>
             </ul>
-            <a href="/log-in">Log in</a>
+            <a href="/log-in" className="font-semibold">
+              LOG IN
+            </a>
           </div>
         </div>
       </nav>

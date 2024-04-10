@@ -17,26 +17,27 @@ const Services = () => {
           {services.map((service) => (
             <div
               key={service.id}
-              className="border-2 border-gray-200 rounded-lg flex flex-col items-center justify-between max-w-[20em] 
+              className="border-2 border-gray-200 rounded-lg flex flex-col items-center justify-between max-w-[22em] 
               transition-all duration-500 ease-in-out
               shadow-lg
               hover:shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)]
               hover:scale-105 overflow-hidden 
               "
             >
-              <div className="w-full max-h-[15em] overflow-hidden">
+              <div className="w-full  max-h-[15em] overflow-hidden">
                 <img
                   className="w-full h-full object-cover hover:scale-110 transition-all duration-300 ease-in-out"
                   src={service.image}
                   alt="service"
                 />
               </div>
-              <div className="bg-gray-50 flex flex-col p-4">
+              <div className="bg-gray-50  text-left gap-3 flex flex-col p-4">
                 <h2 className="text-xl font-montserrat">
                   {service.serviceName}
                 </h2>
                 <div
-                  className="font-light
+                  className="text-sm xl:font-light
+                   tracking-wider
                 "
                 >
                   {service.description}

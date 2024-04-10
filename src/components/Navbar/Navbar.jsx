@@ -66,10 +66,10 @@ const Navbar = () => {
       )}
 
       <nav
-        className={`fixed w-full lg:w-5/6 lg:top-[2em] lg:rounded-full bg-white/30 backdrop-blur-3xl flex justify-between items-center p-3 px-5 xl:px-[3rem] shadow-md z-10`}
+        className={`fixed w-full lg:w-4/6 lg:top-[2em] lg:rounded-full bg-white/30 backdrop-blur-3xl flex justify-between items-center p-3 px-5 xl:px-[3rem] shadow-md z-10`}
       >
         {/* This is the logo */}
-        <div className="max-w-[4.5em]">
+        <div className="max-w-[4em]">
           <a href="/">
             <img className="max-w-full" src={logo} alt=" Company Logo" />
           </a>
@@ -77,7 +77,10 @@ const Navbar = () => {
 
         {/* This is the nav that's displayed when the screen is greater than mid */}
         <div className="hidden md:flex w-full justify-end items-center gap-4 text-[#17629d]">
-          <ul className="flex justify-end gap-4" style={{ listStyle: "none" }}>
+          <ul
+            className="flex justify-end gap-4 font-medium"
+            style={{ listStyle: "none" }}
+          >
             <li className="relative nav-hover">
               <a href="/">Home</a>
             </li>

@@ -1,6 +1,7 @@
 import "./services.scss";
 import { services } from "../../shared/data/data.js";
 import { Button } from "@mui/material";
+
 const Services = () => {
   return (
     <div>
@@ -14,24 +15,23 @@ const Services = () => {
         </div>
         <div className="w-full p-3 flex items-stretch justify-center flex-wrap gap-8">
           {services.map((service) => (
-            <a
-              href={service.path}
+            <div
               key={service.id}
-              className="borderborder-gray-200 rounded-lg flex flex-col items-center justify-between p-4 gap-2 max-w-[22em] 
+              className="border-2 border-gray-200 rounded-lg flex flex-col items-center justify-between max-w-[20em] 
               transition-all duration-500 ease-in-out
               shadow-lg
               hover:shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)]
-              hover:scale-105  
+              hover:scale-105 overflow-hidden 
               "
             >
-              <div className="w-[10em]">
+              <div className="w-full max-h-[15em] overflow-hidden">
                 <img
-                  className="mix-blend-color-burn"
+                  className="w-full h-full object-cover hover:scale-110 transition-all duration-300 ease-in-out"
                   src={service.image}
                   alt="service"
                 />
               </div>
-              <div className="flex flex-col gap-3">
+              <div className="bg-gray-50 flex flex-col p-4">
                 <h2 className="text-xl font-montserrat">
                   {service.serviceName}
                 </h2>
@@ -61,7 +61,7 @@ const Services = () => {
                   </Button>
                 </div>
               </div>
-            </a>
+            </div>
           ))}
         </div>
       </div>

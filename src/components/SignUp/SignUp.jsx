@@ -98,17 +98,10 @@ const SignUp = () => {
   });
 
   return (
-    <div className="w-full flex h-full items-center justify-center p-2 signup">
-      <div className="hidden w-[30em] lg:flex overflow-hidden">
-        <img
-          className="h-full w-full"
-          src={require("../../shared/images/heroRightImage.png")}
-          alt=""
-        />
-      </div>
-      <div className="mt-[7.5em]  flex-grow max-w-[30em] bg-white rounded-sm">
+    <div className="w-full font-montserrat flex items-center justify-center p-2 signup">
+      <div className="mt-[8em] mb-[3em]  flex-grow max-w-[40em] bg-white rounded-md shadow-2xl">
         <div className="flex flex-col gap-4 p-6">
-          <h1 className="text-xl font-medium text-gray-700">SIGN UP</h1>
+          <h1 className="text-xl text-gray-700">SIGN UP</h1>
           <hr className="border border-black/30" />
           <div className="flex items-center gap-4">
             <div>

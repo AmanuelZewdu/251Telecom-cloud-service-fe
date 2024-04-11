@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CartModal from "../CartModal/CartModal";
-
+import logo from "../../shared/images/cloud251Logo.png";
 const Navbar = () => {
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -56,7 +56,7 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className="flex justify-center">
       {/* This is the black overlay */}
       {navIsOpen && (
         <div
@@ -66,24 +66,21 @@ const Navbar = () => {
       )}
 
       <nav
-        className={`fixed w-full flex justify-between items-center z-20 p-3 xl:px-[10rem] mx-auto shadow-xl bg-amber-500 ${
-          scrolled ? "bg-amber-500/80 backdrop-blur-sm" : ""
-        }`}
+        className={`fixed w-full lg:w-5/6 lg:top-[2em] lg:rounded-full bg-black/5 backdrop-blur-sm flex justify-between items-center p-3 px-5 xl:px-[3rem] shadow-md z-10`}
       >
         {/* This is the logo */}
-        <div className="w-[250px]">
+        <div className="max-w-[4em]">
           <a href="/">
-            <img
-              className="max-w-full"
-              src={require("../../shared/images/251Logo.png")}
-              alt="Your Company Logo"
-            />
+            <img className="max-w-full" src={logo} alt=" Company Logo" />
           </a>
         </div>
 
         {/* This is the nav that's displayed when the screen is greater than mid */}
-        <div className="hidden md:flex w-full justify-end items-center gap-4 text-white">
-          <ul className="flex justify-end gap-4" style={{ listStyle: "none" }}>
+        <div className="hidden md:flex w-full justify-end items-center gap-4 text-[#17629d]">
+          <ul
+            className="flex justify-end gap-4 font-medium"
+            style={{ listStyle: "none" }}
+          >
             <li className="relative nav-hover">
               <a href="/">Home</a>
             </li>
@@ -99,22 +96,24 @@ const Navbar = () => {
             >
               <ShoppingCartIcon className="cursor-pointer" />
               <span className="absolute -right-2 -top-2 flex items-center justify-center bg-red-600 rounded-full cursor-pointer cartCounter">
-                {cartItemsCount}
+                <span className="text-[#f5f5f5]">{cartItemsCount}</span>
               </span>
             </li>
           </ul>
-          <a className="relative nav-hover" href="/log-in">
-            Log in
-          </a>
+          <div className="flex place-content-center p-2 w-[7em] bg-primary-blue rounded-full cursor-pointer hover:bg-[#f5f5f5] text-[#f5f5f5] hover:text-primary-blue transition-all duration-300 ease-in-out hover:shadow-lg">
+            <a className="relative " href="/log-in">
+              LOG IN
+            </a>
+          </div>
         </div>
 
         {/* This is the nav that's displayed when the screen is less than mid */}
         <div className="">
-          <div className="md:hidden text-white">
+          <div className="md:hidden text-primary-blue">
             <MenuIcon sx={{ fontSize: 32 }} onClick={handleNav} />
           </div>
           <div
-            className={`slider fixed gap-4 bg-amber-500 top-0 right-0 cursor-pointer transition-transform w-full duration-500 ease-in-out text-white  
+            className={`slider md:hidden fixed gap-4 bg-primary-blue/90 top-0 right-0 cursor-pointer transition-transform w-full duration-500 ease-in-out text-[#f5f5f5]  
         ${navIsOpen ? "translate-y-20" : "-translate-y-full"}
         flex flex-col p-4 items-center`}
           >
@@ -134,11 +133,13 @@ const Navbar = () => {
               >
                 <ShoppingCartIcon className="cursor-pointer" />
                 <span className="absolute -right-2 -top-2 flex items-center justify-center bg-red-600 rounded-full cartCounter">
-                  {cartItemsCount}
+                  <span className="text[#f5f5f5]">{cartItemsCount}</span>
                 </span>
               </li>
             </ul>
-            <a href="/log-in">Log in</a>
+            <a href="/log-in" className="font-semibold">
+              LOG IN
+            </a>
           </div>
         </div>
       </nav>

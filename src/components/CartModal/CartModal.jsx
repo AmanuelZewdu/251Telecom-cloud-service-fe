@@ -150,7 +150,7 @@ const CartModal = ({ open, onClose }) => {
               <Button
                 variant="contained"
                 style={{
-                  backgroundColor: "#f59e0b",
+                  backgroundColor: "#BC68B2",
                   padding: "0.5em",
                   color: "#fff",
                 }}

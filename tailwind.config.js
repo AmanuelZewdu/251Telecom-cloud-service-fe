@@ -7,11 +7,9 @@ module.exports = {
         "hero-BackgroundImage": "url('./src/shared/images/HEROBACKGROUND.jpg)",
       },
       colors: {
-        "primary-dark": "#d28602",
-        "primary-medium": "#f59e0b",
-        "primary-light": "#f6ae31",
         "primary-blue": "#17629d",
         "secondary-blue": "#26a9e0",
+        "button-color": "#BC68B2",
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],

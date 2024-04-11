@@ -9,7 +9,7 @@ const Services = () => {
         <div className="flex flex-col gap-4 items-center">
           <h1 className="text-3xl font-montserrat">
             Our{" "}
-            <span className="relative text-primary-light line">services</span>{" "}
+            <span className="relative text-button-color line">services</span>{" "}
           </h1>
           <p className="font-light">Here are services we are offering </p>
         </div>
@@ -42,17 +42,17 @@ const Services = () => {
                 >
                   {service.description}
                 </div>
-                <div className="mt-4">
+                <div className="">
                   <Button
                     variant="outlined"
                     className="w-full "
                     sx={{
-                      borderColor: "#f59e0b",
-                      color: "#f59e0b",
+                      borderColor: "#BC68B2",
+                      color: "#BC68B2",
                       fontWeight: "semibold",
                       "&:hover": {
                         borderColor: "transparent",
-                        backgroundColor: "#f6ae31",
+                        backgroundColor: "#BC68B2",
                         color: "#fff",
                       },
                     }}

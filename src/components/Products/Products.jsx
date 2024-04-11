@@ -18,7 +18,7 @@ const Products = () => {
         <div className="flex flex-col gap-4 place-items-center">
           <h1 className="text-4xl text-primary-blue font-semibold">
             Our{" "}
-            <span className="relative text-primary-light line">services</span>
+            <span className="relative text-button-color line">services</span>
           </h1>
           <span className="text-primary-blue text-lg">
             Explore our range of quality services tailored just for you.

@@ -60,7 +60,7 @@ const LogIn = () => {
     },
   });
   return (
-    <div className="w-full flex h-svh items-center justify-center p-2 login">
+    <div className="w-full font-montserrat flex h-svh items-center justify-center p-2 login">
       <div className="hidden w-[30em] lg:flex overflow-hidden">
         <img
           className="h-full w-full"
@@ -70,7 +70,7 @@ const LogIn = () => {
       </div>
       <div className="flex-grow max-w-[30em] max-h-[30em] bg-white rounded-sm">
         <div className="flex flex-col gap-4 p-6">
-          <h1 className="text-xl font-medium text-[#050505]">LOGIN</h1>
+          <h1 className="text-xl font-medium text-gray-700">LOGIN</h1>
           <hr className="border border-black/30" />
           <form
             onSubmit={formik.handleSubmit}
@@ -147,8 +147,8 @@ const LogIn = () => {
             <button
               className={`flex justify-center items-center gap-2 w-full rounded-sm  p-2 text-white  ${
                 loading
-                  ? "bg-primary-medium/50 cursor-wait"
-                  : "bg-primary-medium hover:bg-primary-light"
+                  ? "bg-button-color/50 cursor-wait"
+                  : "bg-button-color hover:bg-button-color"
               }`}
               type="submit"
               disabled={loading}

@@ -133,7 +133,7 @@ const ObjectStorage = () => {
                 <button
                   className={`${
                     billingMode === "yearly/monthly"
-                      ? "bg-primary-medium text-white"
+                      ? "bg-button-color text-white"
                       : "bg-slate-200 text-gray-500"
                   } px-2 text-sm rounded-l-md md:text-base`}
                   onClick={() => setBillingMode("yearly/monthly")}
@@ -143,7 +143,7 @@ const ObjectStorage = () => {
                 <button
                   className={`${
                     billingMode === "pay-per-use"
-                      ? "bg-primary-medium text-white"
+                      ? "bg-button-color text-white"
                       : "bg-slate-200 text-gray-500"
                   } px-2 py-1 text-sm rounded-r-md md:text-base border-gray-400 border-s`}
                   onClick={() => setBillingMode("pay-per-use")}
@@ -201,7 +201,7 @@ const ObjectStorage = () => {
                 <button
                   className={`${
                     duration === "month"
-                      ? "bg-primary-medium text-white"
+                      ? "bg-button-color text-white"
                       : "bg-slate-200 text-gray-500"
                   } p-1 text-sm w-[5em] rounded-l-md md:text-base`}
                   onClick={() => setDuration("month")}
@@ -211,7 +211,7 @@ const ObjectStorage = () => {
                 <button
                   className={`${
                     duration === "year"
-                      ? "bg-primary-medium text-white"
+                      ? "bg-button-color text-white"
                       : "bg-slate-200 text-gray-500"
                   } p-1 text-sm w-[5em] rounded-r-md md:text-base border-gray-400 border-s`}
                   onClick={() => setDuration("year")}
@@ -259,7 +259,7 @@ const ObjectStorage = () => {
             onClick={purchaseHandler}
             style={{
               fontSize: "12px",
-              backgroundColor: "#f59e0b",
+              backgroundColor: "#BC68B2",
             }}
             className="w-[7em] md:w-[10em]"
             variant="contained"
@@ -272,8 +272,8 @@ const ObjectStorage = () => {
             style={{
               fontSize: "12px",
               backgroundColor: "white",
-              border: "1px solid #f59e0b",
-              color: "#f59e0b",
+              border: "1px solid #BC68B2",
+              color: "#BC68B2",
             }}
             variant="contained"
           >

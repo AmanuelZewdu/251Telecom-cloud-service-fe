@@ -42,7 +42,7 @@ const Services = () => {
                 >
                   {service.description}
                 </div>
-                <div className="mt-4">
+                <div className="">
                   <Button
                     variant="outlined"
                     className="w-full "

@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import services from "../../Services/services";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const [visible, setVisibile] = useState(false);
@@ -99,9 +100,9 @@ const SignUp = () => {
 
   return (
     <div className="w-full font-montserrat flex items-center justify-center p-2 signup">
-      <div className="mt-[8em] mb-[3em]  flex-grow max-w-[40em] bg-white rounded-md shadow-2xl">
+      <div className="mt-[8em] mb-[3em] flex-grow max-w-[40em] bg-white rounded-md shadow-2xl">
         <div className="flex flex-col gap-4 p-6">
-          <h1 className="text-xl text-gray-700">SIGN UP</h1>
+          <h1 className="text-xl font-medium text-gray-700">SIGN UP</h1>
           <hr className="border border-black/30" />
           <div className="flex items-center gap-4">
             <div>
@@ -430,13 +431,13 @@ const SignUp = () => {
           <div className="flex flex-col-reverse md:flex-row justify-between gap-2">
             <div className="flex gap-2">
               <p className="">Already have an account?</p>
-              <a href="/log-in" className="text-blue-700">
+              <Link to="/log-in" className="text-blue-700">
                 Log in
-              </a>
+              </Link>
             </div>
-            <a href="/forgot-password" className="text-gray-500">
+            <Link to="/forgot-password" className="text-gray-500">
               Forgot password?
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -428,7 +428,7 @@ const SignUp = () => {
               ) : null}
             </div>
             <button
-              className="w-full rounded-sm bg-primary-medium p-2 text-white hover:bg-primary-light"
+              className="w-full rounded-sm bg-button-color p-2 text-white hover:bg-button-color"
               type="submit"
             >
               Sign up

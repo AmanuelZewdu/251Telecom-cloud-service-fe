@@ -18,7 +18,7 @@ function CallUs() {
 
   return (
     <div
-      className={`absolute right-[1em] flex items-center justify-center w-[2em] h-[2em] p-7 bg-primary-medium text-white rounded-full bottom-2 md:bottom-4 md:right-3 cursor-pointer hover:p-8 transition-all duration-500 ease-in-out ${
+      className={`absolute right-[1em] flex items-center justify-center w-[2em] h-[2em] p-7 bg-button-color text-white rounded-full bottom-2 md:bottom-4 md:right-3 cursor-pointer hover:p-8 transition-all duration-500 ease-in-out ${
         shaking ? "shake" : ""
       }`}
     >

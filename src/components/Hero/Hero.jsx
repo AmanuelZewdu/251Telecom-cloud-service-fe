@@ -30,9 +30,10 @@ const Hero = () => {
           >
             <HeroButton
               sx={{
-                backgroundColor: "#f59e0b",
+                backgroundColor: "#BC68B2",
                 "&:hover": {
-                  backgroundColor: "#d28602",
+                  backgroundColor: "#fff",
+                  color: "#BC68B2",
                 },
               }}
               variant="contained"

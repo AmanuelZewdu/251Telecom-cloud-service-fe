@@ -484,7 +484,7 @@ const VirtualMachine = () => {
                 <button
                   className={`${
                     duration === "month"
-                      ? "bg-primary-medium text-white"
+                      ? "bg-button-color text-white"
                       : "bg-slate-200 text-gray-500"
                   } p-1 text-sm w-[5em] rounded-l-md md:text-base`}
                   onClick={() => setDuration("month")}
@@ -494,7 +494,7 @@ const VirtualMachine = () => {
                 <button
                   className={`${
                     duration === "year"
-                      ? "bg-primary-medium text-white"
+                      ? "bg-button-color text-white"
                       : "bg-slate-200 text-gray-500"
                   } p-1 text-sm w-[5em] rounded-r-md md:text-base border-gray-400 border-s`}
                   onClick={() => setDuration("year")}
@@ -507,7 +507,7 @@ const VirtualMachine = () => {
           <div className="flex gap-2">
             <label htmlFor="auto_renewal">Auto-Renewal:</label>
             <input
-              className="accent-primary-medium caret-white"
+              className="accent-butbg-button-color caret-white"
               type="checkbox"
               name="auto_renewal"
             />
@@ -561,7 +561,7 @@ const VirtualMachine = () => {
           <Button
             style={{
               fontSize: "12px",
-              backgroundColor: "#f59e0b",
+              backgroundColor: "#BC68B2",
             }}
             className="w-[7em] md:w-[10em]"
             variant="contained"
@@ -574,8 +574,8 @@ const VirtualMachine = () => {
             style={{
               fontSize: "12px",
               backgroundColor: "white",
-              border: "1px solid #f59e0b",
-              color: "#f59e0b",
+              border: "1px solid #BC68B2",
+              color: "#BC68B2",
             }}
             variant="contained"
           >

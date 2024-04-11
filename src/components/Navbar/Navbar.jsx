@@ -100,7 +100,7 @@ const Navbar = () => {
               </span>
             </li>
           </ul>
-          <div className="flex place-content-center p-2 w-[7em] bg-primary-blue rounded-full cursor-pointer hover:bg-[#f5f5f5] text-[#f5f5f5] hover:text-primary-blue transition-all duration-300 ease-in-out hover:shadow-lg">
+          <div className="flex place-content-center p-2 w-[7em] bg-button-color rounded-full cursor-pointer hover:bg-[#f5f5f5] text-[#f5f5f5] hover:text-button-color transition-all duration-300 ease-in-out hover:shadow-lg">
             <a className="relative " href="/log-in">
               LOG IN
             </a>

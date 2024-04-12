@@ -13,16 +13,16 @@ import WaitPage from "./components/WaitPage/WaitPage";
 function App() {
   return (
     <>
-      <div>
-        <Navbar />
-      </div>
       <div className="wrapper">
         <BrowserRouter>
+          <div className="">
+            <Navbar />
+          </div>
           <Routes>
             <Route path="/">
               <Route index element={<Home />} />
               <Route path="console" element={<Console />} />
-              <Route path="products" element={<Products />} />
+              <Route path="/products" element={<Products />} />
               <Route path="virtual-machine" element={<VmPurchase />} />
               <Route
                 path="/purchase-confirm"

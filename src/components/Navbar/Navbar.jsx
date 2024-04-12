@@ -1,5 +1,6 @@
 import "./navbar.scss";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CartModal from "../CartModal/CartModal";
@@ -64,17 +65,15 @@ const Navbar = () => {
           className="fixed top-0 left-0 w-full h-screen bg-black/50 z-10"
         ></div>
       )}
-
       <nav
         className={`fixed w-full lg:w-5/6 lg:top-[2em] lg:rounded-full bg-black/5 backdrop-blur-sm flex justify-between items-center p-3 px-5 xl:px-[3rem] shadow-md z-10`}
       >
         {/* This is the logo */}
         <div className="max-w-[4em]">
-          <a href="/">
+          <Link to="/">
             <img className="max-w-full" src={logo} alt=" Company Logo" />
-          </a>
+          </Link>
         </div>
-
         {/* This is the nav that's displayed when the screen is greater than mid */}
         <div className="hidden md:flex w-full justify-end items-center gap-4 text-[#17629d]">
           <ul
@@ -82,13 +81,13 @@ const Navbar = () => {
             style={{ listStyle: "none" }}
           >
             <li className="relative nav-hover">
-              <a href="/">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li className="relative nav-hover">
-              <a href="/console">Console</a>
+              <Link to="/products">Console</Link>
             </li>
             <li className="relative nav-hover">
-              <a href="/products">Products</a>
+              <Link to="/products">Products</Link>
             </li>
             <li
               onClick={handleCartIconClick}
@@ -101,9 +100,10 @@ const Navbar = () => {
             </li>
           </ul>
           <div className="flex place-content-center p-2 w-[7em] bg-button-color rounded-full cursor-pointer hover:bg-[#f5f5f5] text-[#f5f5f5] hover:text-button-color transition-all duration-300 ease-in-out hover:shadow-lg">
-            <a className="relative " href="/log-in">
+            <Link to="/log-in" className="relative">
+              {" "}
               LOG IN
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -119,13 +119,19 @@ const Navbar = () => {
           >
             <ul className="flex flex-col gap-4 text-center">
               <li className="relative nav-hover">
-                <a href="/">Home</a>
+                <Link onClick={() => handleNav()} to="/">
+                  Home
+                </Link>
               </li>
               <li className="relative nav-hover">
-                <a href="/console">Console</a>
+                <Link onClick={() => handleNav()} to="/products">
+                  Console
+                </Link>
               </li>
               <li className="relative nav-hover">
-                <a href="/products">Products</a>
+                <Link onClick={() => handleNav()} to="/products">
+                  Products
+                </Link>
               </li>
               <li
                 onClick={handleCartIconClick}
@@ -137,9 +143,10 @@ const Navbar = () => {
                 </span>
               </li>
             </ul>
-            <a href="/log-in" className="font-semibold">
+            <Link onClick={() => handleNav()} to="/log-in" className="relative">
+              {" "}
               LOG IN
-            </a>
+            </Link>
           </div>
         </div>
       </nav>

@@ -34,3 +34,38 @@ export const vmDescription =
 
 export const obDescription =
   "Object storage is a groundbreaking approach to data storage that eliminates the limitations of traditional file systems by organizing data as discrete objects, each with its own unique identifier and metadata. This method enables seamless scalability, making it ideal for storing vast amounts of unstructured data such as multimedia files, backups, and archives. Its distributed architecture ensures high availability and durability, making it a reliable solution for mission-critical applications. Object storage's rich metadata capabilities also facilitate advanced data management tasks, empowering organizations to extract valuable insights and streamline workflows.";
+
+export const FAQ = [
+  {
+    id: 0,
+    question: "What performance tier should I choose for my workload?",
+    answer:
+      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+  },
+  {
+    id: 1,
+    question:
+      "How can I monitor the health and performance of my storage resources?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+  },
+  {
+    id: 2,
+    question:
+      "What are the billing and pricing structures for Cloud 251 services?",
+    answer:
+      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+  },
+  {
+    id: 3,
+    question: "Is there a free trial available?",
+    answer:
+      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+  },
+  {
+    id: 4,
+    question: "How can i get help or support if i encounter issues?",
+    answer:
+      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+  },
+];

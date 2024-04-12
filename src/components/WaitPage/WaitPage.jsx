@@ -20,6 +20,7 @@ const WaitPage = () => {
   );
 
   useEffect(() => {
+    const id = getIdFromUrl();
     const timer = setTimeout(() => {
       setMessageIndex((prevIndex) =>
         prevIndex < messages.length - 1 ? prevIndex + 1 : prevIndex
@@ -30,15 +31,15 @@ const WaitPage = () => {
           prev.map((value, index) => (index === messageIndex ? true : value))
         );
       }, 5000);
+
+      getOrderById(id);
     }, 8000);
     return () => clearTimeout(timer);
   }, [messageIndex, messages.length]);
 
-  useEffect(() => {
-    const id = getIdFromUrl();
+  // useEffect(() => {
 
-    getOrderById(id);
-  });
+  // });
 
   const getIdFromUrl = () => {
     const url = new URL(window.location.href);

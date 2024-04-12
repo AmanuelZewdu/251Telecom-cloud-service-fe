@@ -84,7 +84,7 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             <li className="relative nav-hover">
-              <Link to="/products">Console</Link>
+              <Link to="/console">Console</Link>
             </li>
             <li className="relative nav-hover">
               <Link to="/products">Products</Link>
@@ -127,7 +127,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="relative nav-hover">
-                <Link onClick={() => handleNav()} to="/products">
+                <Link onClick={() => handleNav()} to="/console">
                   Console
                 </Link>
               </li>

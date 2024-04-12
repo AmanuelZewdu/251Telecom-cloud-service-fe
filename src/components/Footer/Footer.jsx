@@ -72,7 +72,7 @@ const Footer = () => {
         </ul>
       </div>
       <div className="flex flex-col items-center justify-center gap-2 col-span-2 lg:col-span-1 ">
-        <h3 className="text-lg font-medium">Location information</h3>
+        <h3 className="text-lg font-medium">Contact information</h3>
         <ul className="flex gap-8">
           {contactInfo.map((info) => (
             <li

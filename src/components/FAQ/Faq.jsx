@@ -8,7 +8,7 @@ import { FAQ } from "../../shared/data/data";
 
 export default function AccordionUsage() {
   return (
-    <Box className="relative w-full flex flex-col items-center lg:gap-6 mx-8 font-montserrat p-4 faq">
+    <Box className="relative w-full flex flex-col items-center lg:gap-6 mx-8 font-montserrat p-4 pb-12 faq">
       <div className="flex flex-col text-[#f5f5f5] text-center gap-4 py-4 items-center">
         <h1 className="text-3xl">
           <span className="relative line">FAQ</span>{" "}

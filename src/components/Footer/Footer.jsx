@@ -46,8 +46,8 @@ const Footer = () => {
   ];
 
   return (
-    <div className="w-full grid grid-cols-2 items-start place-items-center lg:grid-cols-4 gap-4 xl:gap-6 bg-gradient-to-br from-button-color via-primary-blue to-secondary-blue text-white pt-12 pb-2 px-2 font-poppins">
-      <div className="col-span-2 lg:col-span-1 flex  gap-3 max-w-[33em] items-center">
+    <div className="w-full grid grid-cols-2 items-start place-items-center lg:grid-cols-5 gap-4 xl:gap-6 bg-gray-200 text-primary-blue pt-12 pb-2 px-2 font-poppins">
+      <div className="col-span-2  flex gap-3 max-w-[30em] xl:ml-[5em] items-center">
         <div className="max-w-[5em]">
           <img src={logo} alt="" />
         </div>

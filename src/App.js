@@ -17,11 +17,11 @@ function App() {
     <>
       <div className="wrapper">
         <BrowserRouter>
-          {/* <div className="">
+          <div className="">
             <Navbar />
-          </div> */}
+          </div>
           <Routes>
-            {/* <Route path="/">
+            <Route path="/">
               <Route index element={<Home />} />
               <Route path="console" element={<Console />} />
               <Route path="/products" element={<Products />} />
@@ -34,7 +34,7 @@ function App() {
               <Route path="/wait" element={<WaitPage />} />
               <Route path="log-in" element={<LogIn />} />
               <Route path="/sign-up" element={<SignUp />} />
-            </Route> */}
+            </Route>
           </Routes>
           <div className="">
             <Footer />

@@ -89,6 +89,9 @@ const Navbar = () => {
             <li className="relative nav-hover">
               <Link to="/products">Products</Link>
             </li>
+            <li>
+              <Link to="/contactUs">Contact Us</Link>
+            </li>
             <li
               onClick={handleCartIconClick}
               className="flex relative nav-hover"
@@ -132,6 +135,9 @@ const Navbar = () => {
                 <Link onClick={() => handleNav()} to="/products">
                   Products
                 </Link>
+              </li>
+              <li>
+                <Link to="/contactUs">Contact Us</Link>
               </li>
               <li
                 onClick={handleCartIconClick}

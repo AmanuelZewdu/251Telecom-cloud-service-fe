@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CircularProgress from "@mui/material/CircularProgress";
 import "./waitPage.scss";
-
+import services from "../../Services/services";
+import { orderStatus } from "../../shared/enums/orderStatus";
 const WaitPage = () => {
   // Define an array of messages
   const messages = [
@@ -11,7 +12,7 @@ const WaitPage = () => {
     "Our servers are hard at work creating your virtual environment. Hang in there!",
     "We expect your virtual machine to be ready shortly. Stay tuned!",
   ];
-
+  const [fetchError, setFetchError] = useState(false);
   const [messageIndex, setMessageIndex] = useState(0);
 
   const [showCheckMarks, setShowCheckMarks] = useState(
@@ -33,6 +34,30 @@ const WaitPage = () => {
     return () => clearTimeout(timer);
   }, [messageIndex, messages.length]);
 
+  useEffect(() => {
+    const id = getIdFromUrl();
+
+    getOrderById(id);
+  });
+
+  const getIdFromUrl = () => {
+    const url = new URL(window.location.href);
+    const searchParams = url.searchParams;
+    const id = searchParams.get("orderId");
+    return id;
+  };
+
+  const getOrderById = async (orderId) => {
+    try {
+      console.log("Id", orderId);
+      const response = await services.getOrderById(orderId);
+
+      console.log("Order===", response);
+    } catch (error) {
+      setFetchError(true);
+    } finally {
+    }
+  };
   return (
     <div className="h-screen flex items-center justify-center p-4 bg-gray-50">
       <div className="relative flex flex-col md:flex-row items-center gap-8 justify-center -mt-[5em]">

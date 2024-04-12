@@ -9,6 +9,7 @@ import SignUp from "./components/SignUp/SignUp";
 import VmPurchase from "./components/Products/VmPurchase";
 import PurchaseConfirmation from "./components/Confimation/PurchaseConfirmation";
 import WaitPage from "./components/WaitPage/WaitPage";
+import ContactUs from "./components/ContactUs/ContactUs";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="console" element={<Console />} />
               <Route path="/products" element={<Products />} />
+              <Route path="/contactUs" element={<ContactUs />} />
               <Route path="virtual-machine" element={<VmPurchase />} />
               <Route
                 path="/purchase-confirm"

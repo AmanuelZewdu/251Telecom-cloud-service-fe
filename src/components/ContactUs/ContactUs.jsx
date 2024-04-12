@@ -15,8 +15,7 @@ const ContactUs = () => {
     },
     validationSchema: Yup.object({
       fullName: Yup.string()
-        .min(8, "fullName must be 8 characters or more")
-        .required("Full name is required*"),
+      .required("Full name is required*"),
       message: Yup.string()
         .min(12, "Message must contain at least 12 characters.")
         .required("This field is required"),
@@ -27,7 +26,9 @@ const ContactUs = () => {
         )
         .required("Email address is required*"),
     }),
-    onSubmit: async (values) => {},
+    onSubmit: async (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
   });
 
   return (

@@ -137,7 +137,9 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/contactUs">Contact Us</Link>
+                <Link to="/contactUs" onClick={() => handleNav()}>
+                  Contact Us
+                </Link>
               </li>
               <li
                 onClick={handleCartIconClick}

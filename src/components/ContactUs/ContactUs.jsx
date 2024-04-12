@@ -50,10 +50,10 @@ const ContactUs = () => {
             Welcome to{" "}
             <span className="bg-gradient-to-r from-primary-blue  via-secondary-blue to-primary-blue text-transparent bg-clip-text font-semibold text-xl">
               Cloud251!
-            </span>
-            , We are located at Meskel flower, Addis Ababa, Ethiopia. Feel free
-            to visit us during our business hours or contact us for any
-            inquiries. We look forward to seeing you!
+            </span>{" "}
+            We are located at Meskel flower, Addis Ababa, Ethiopia. Feel free to
+            visit us during our business hours or contact us for any inquiries.
+            We look forward to seeing you!
           </p>
         </div>
         <div className="w-full flex items-center justify-center xl:justify-start">

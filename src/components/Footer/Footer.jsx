@@ -47,18 +47,18 @@ const Footer = () => {
 
   return (
     <div className="w-full grid grid-cols-2 items-start place-items-center lg:grid-cols-4 gap-4 xl:gap-6 bg-gradient-to-br from-button-color via-primary-blue to-secondary-blue text-white pt-12 pb-2 px-2 font-poppins">
-      <div className="col-span-2 lg:col-span-1 flex gap-2 max-w-[33em] items-center">
+      <div className="col-span-2 lg:col-span-1 flex  gap-3 max-w-[33em] items-center">
         <div className="max-w-[5em]">
           <img src={logo} alt="" />
         </div>
-        <p className="font-light">
+        <p className="font-light text-sm tracking-wider  leading-5">
           Elevating your digital journey with our cloud expertise. Welcome to
           Cloud251, your trusted cloud partner
         </p>
       </div>
       <div className="flex flex-col justify-center items-start">
         <h3 className="text-lg font-medium">Services</h3>
-        <ul className="flex flex-col justify-center gap-1 font-light">
+        <ul className="flex flex-col justify-center gap-1 font-light text-sm">
           {services.map((service) => (
             <li key={service.id}>{service.serviceName}</li>
           ))}
@@ -66,7 +66,7 @@ const Footer = () => {
       </div>
       <div>
         <h3 className="text-lg font-medium">Usefull links</h3>
-        <ul className="flex flex-col gap-1 font-light">
+        <ul className="flex flex-col gap-1 font-light text-sm">
           <li>terms and conditions</li>
           <li>Contact</li>
         </ul>

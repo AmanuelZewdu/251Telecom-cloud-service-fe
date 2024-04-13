@@ -58,8 +58,9 @@ export default function AccordionUsage() {
                         sx={{
                           fontSize: "16px",
                         }}
+                        className="relative top-[0.15em]"
                       />
-                      {answer}
+                      <span>{answer}</span>
                     </li>
                   ))}
                 </ul>

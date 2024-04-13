@@ -1,4 +1,5 @@
 import "./contactUsSection.scss";
+import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 const ContactUsSection = () => {
@@ -14,23 +15,25 @@ const ContactUsSection = () => {
         Do you have any questions? Want to talk to us? Please don't hesitate and
         reachout to us
       </p>
-      <CTA
-        variant="outlined"
-        sx={{
-          borderColor: "#BC68B2",
-          outlineColor: "none",
-          color: "#BC68B2",
-          "&:hover": {
-            backgroundColor: "#BC68B2",
-            color: "#fff",
-            outlineColor: "transparent",
-            borderColor: "transparent",
-          },
-        }}
-        className="shadow-xl"
-      >
-        Contact Us
-      </CTA>
+      <Link to="/contactUs">
+        <CTA
+          variant="outlined"
+          sx={{
+            borderColor: "#BC68B2",
+            outlineColor: "none",
+            color: "#BC68B2",
+            "&:hover": {
+              backgroundColor: "#BC68B2",
+              color: "#fff",
+              outlineColor: "transparent",
+              borderColor: "transparent",
+            },
+          }}
+          className="shadow-xl"
+        >
+          Contact Us
+        </CTA>
+      </Link>
     </div>
   );
 };

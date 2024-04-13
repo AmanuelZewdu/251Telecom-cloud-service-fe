@@ -34,7 +34,13 @@ export default function AccordionUsage() {
             >
               <span className="text-[#f5f5f5]">{faq.question}</span>
             </AccordionSummary>
-            <AccordionDetails>{faq.answer}</AccordionDetails>
+            <AccordionDetails>
+              <ul>
+                {faq.answer.map((answer) => (
+                  <li key={faq.id}>{answer}</li>
+                ))}
+              </ul>
+            </AccordionDetails>
           </Accordion>
         ))}
       </Box>

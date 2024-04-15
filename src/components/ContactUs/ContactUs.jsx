@@ -68,7 +68,7 @@ const ContactUs = () => {
           hesitate to reach out with any questions, comments, or concerns..
         </span>
       </div>
-      <div className="mx-4 flex flex-col xl:flex-row gap-4 xl:gap-0 items-center justify-center">
+      <div className="mx-4 flex flex-col xl:flex-row gap-4 xl:gap-0 xl:mt-12 xl:mb-6 items-center justify-center">
         <div className="relative flex flex-col  xl:self-start items-center w-full gap-4 p-4 justify-center text-center xl:ml-[10em]">
           <div className="max-w-[8em]">
             <img className="w-full" src={logo} alt="" />
@@ -171,18 +171,6 @@ const ContactUs = () => {
               {loading ? "Submitting" : "Submit"}
               {loading && <div className="login-Loader"></div>}
             </button>
-            {/* <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-              <Alert
-                onClose={handleClose}
-                severity="success"
-                variant="filled"
-                sx={{ width: "100%" }}
-              >
-                Thank you for reaching out to us! Your message has been
-                successfully submitted. We will get back to you as soon as
-                possible.
-              </Alert>
-            </Snackbar> */}
           </form>
         </div>
       </div>

@@ -51,8 +51,11 @@ export default function AccordionUsage() {
               </AccordionSummary>
               <AccordionDetails>
                 <ul className="flex flex-col gap-2">
-                  {faq.answer.map((answer) => (
-                    <li key={faq.id} className="flex gap-2 items-baseline">
+                  {faq.answer.map((answer, index) => (
+                    <li
+                      key={faq.id + index}
+                      className="flex gap-2 items-baseline"
+                    >
                       <CheckCircleIcon
                         color="primary"
                         sx={{

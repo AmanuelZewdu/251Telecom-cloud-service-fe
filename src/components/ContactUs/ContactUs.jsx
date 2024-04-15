@@ -2,10 +2,24 @@ import "./contactUs.scss";
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import services from "../../Services/services";
 import logo from "../../shared/images/cloud251Logo.png";
+import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 const ContactUs = () => {
   const [loading, setLoading] = useState(false);
+  const [successOpen, setSuccessOpen] = useState(false);
+
+  const handleOpen = () => {
+    setSuccessOpen(true);
+  };
+
+  const handleClose = () => {
+    setSuccessOpen(false);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -26,12 +40,25 @@ const ContactUs = () => {
         .required("Email address is required*"),
     }),
     onSubmit: async (values) => {
-      alert(JSON.stringify(values, null, 2));
+      setLoading(true);
+      const { data, statusCode } = await services.postContactUs(values);
+      if (!data) {
+        setLoading(false);
+        return;
+      }
+      if (statusCode === 201) {
+        setSuccessOpen(true);
+        setTimeout(() => {
+          setSuccessOpen(false);
+        }, 6000);
+        setLoading(false);
+      }
+      console.log(data);
     },
   });
 
   return (
-    <div className="flex flex-col gap-4 w-full place-content-center font-montserrat mb-8">
+    <div className="flex relative flex-col gap-4 w-full place-content-center font-montserrat mb-8">
       <div className="contactUs w-full flex flex-col place-items-center place-content-end min-h-[19em] p-8 text-center gap-4">
         <h1 className="text-4xl text-primary-blue font-semibold">
           Contact <span className="relative text-button-color line">us</span>
@@ -41,7 +68,7 @@ const ContactUs = () => {
           hesitate to reach out with any questions, comments, or concerns..
         </span>
       </div>
-      <div className="mx-4 flex flex-col xl:flex-row gap-4 xl:gap-0 items-center justify-center">
+      <div className="mx-4 flex flex-col xl:flex-row gap-4 xl:gap-0 xl:mt-12 xl:mb-6 items-center justify-center">
         <div className="relative flex flex-col  xl:self-start items-center w-full gap-4 p-4 justify-center text-center xl:ml-[10em]">
           <div className="max-w-[8em]">
             <img className="w-full" src={logo} alt="" />
@@ -146,6 +173,30 @@ const ContactUs = () => {
             </button>
           </form>
         </div>
+      </div>
+      <div className="flex items-center justify-center w-full">
+        {successOpen && (
+          <Alert
+            className="absolute top-[5em] mx-2 z-10 drop-shadow-md flex items-center"
+            severity="success"
+          >
+            <span className="flex items-center gap-2">
+              Thank you for reaching out to us! Your message has been
+              successfully submitted. We will get back to you as soon as
+              possible.{" "}
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  handleClose();
+                }}
+              >
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            </span>
+          </Alert>
+        )}
       </div>
     </div>
   );

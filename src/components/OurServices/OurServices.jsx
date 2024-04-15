@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 const Services = () => {
   return (
     <div>
-      <div className="txt flex flex-col text-center p-2 gap-6 my-4">
+      <div className="txt flex flex-col text-center p-2 gap-6 my-16">
         <div className="flex flex-col gap-4 items-center">
           <h1 className="text-3xl font-montserrat">
             Our{" "}

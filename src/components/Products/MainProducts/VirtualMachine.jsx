@@ -308,7 +308,7 @@ const VirtualMachine = () => {
             />
             {vmNameError && (
               <p className="text-sm border-l-2 border-red-500 pl-1 text-red-500">
-                Please proivde a vm name
+                Please provide a VM name
               </p>
             )}
           </div>

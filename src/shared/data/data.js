@@ -38,34 +38,45 @@ export const obDescription =
 export const FAQ = [
   {
     id: 0,
-    question: "What performance tier should I choose for my workload?",
-    answer:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+    question: "How can I troubleshoot connectivity or performance issues?",
+    answer: [
+      "Refer to our comprehensive troubleshooting guides and knowledge base for expert ssistance in diagnosing and resolving common issues.",
+      "Reach out to our dedicated support team through email, phone, or the support portal for personalized assistance with any connectivity or performance challenges you encounter.",
+    ],
   },
   {
     id: 1,
-    question:
-      "How can I monitor the health and performance of my storage resources?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+    question: "What performance tier should I choose for my workload?",
+    answer: [
+      "Begin by assessing your workload's performance requirements, taking into account factors like IOPS, throughput, and latency.",
+      "Evaluate our storage performance tiers, such as SSD or HDD, to find the best fit for your workload.",
+      "Keep budget considerations in mind while selecting the appropriate tier to ensure it aligns with your performance needs.",
+    ],
   },
   {
     id: 2,
-    question:
-      "What are the billing and pricing structures for Cloud 251 services?",
-    answer:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+    question: "What security features are available to protect my data?",
+    answer: [
+      "Our platform offers robust security measures to safeguard your data, including encryption options for both data at rest and in transit.",
+      "Utilize our access controls and role-based permissions within the User dashboard to manage user access securely and control permissions to storage resources.",
+    ],
   },
   {
     id: 3,
-    question: "Is there a free trial available?",
-    answer:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+    question:
+      "How can I monitor the health and performance of your storage resources?",
+    answer: [
+      "Take advantage of our monitoring and reporting capabilities available within the management console.",
+      "Track essential metrics such as storage usage, performance indicators, and potential issues through user-friendly dashboards and detailed reports.",
+      "Configure alerts to receive timely notifications for any deviations from expected behavior, enabling proactive management of storage health and performance.",
+    ],
   },
   {
     id: 4,
-    question: "How can i get help or support if i encounter issues?",
-    answer:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+    question:
+      "What are the billing and pricing structures for Cloud 251 services?",
+    answer: [
+      "What are the billing and pricing structures for Cloud 251 services?",
+    ],
   },
 ];

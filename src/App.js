@@ -10,6 +10,7 @@ import VmPurchase from "./components/Products/VmPurchase";
 import PurchaseConfirmation from "./components/Confimation/PurchaseConfirmation";
 import WaitPage from "./components/WaitPage/WaitPage";
 import ContactUs from "./components/ContactUs/ContactUs";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -35,6 +36,9 @@ function App() {
               <Route path="/sign-up" element={<SignUp />} />
             </Route>
           </Routes>
+          <div className="">
+            <Footer />
+          </div>
         </BrowserRouter>
       </div>
     </>

@@ -14,8 +14,7 @@ const ContactUs = () => {
       message: "",
     },
     validationSchema: Yup.object({
-      fullName: Yup.string()
-      .required("Full name is required*"),
+      fullName: Yup.string().required("Full name is required*"),
       message: Yup.string()
         .min(12, "Message must contain at least 12 characters.")
         .required("This field is required"),
@@ -142,7 +141,7 @@ const ContactUs = () => {
               type="submit"
               disabled={loading}
             >
-              {loading ? "Submitting" : "Submut"}
+              {loading ? "Submitting" : "Submit"}
               {loading && <div className="login-Loader"></div>}
             </button>
           </form>

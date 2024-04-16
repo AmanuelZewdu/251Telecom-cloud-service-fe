@@ -40,6 +40,7 @@ const VirtualMachine = () => {
   const [selectedVCPU, setSelectedVCPU] = useState("");
   const [selectedMemory, setSelectedMemory] = useState("");
   const [loading, setLoading] = useState(true);
+  const [selectedRowData, setSelectedRowData] = useState(null);
 
   // side effect that fetches the instance types
   useEffect(() => {
@@ -65,19 +66,21 @@ const VirtualMachine = () => {
   }, []);
 
   // Selecting table row function starts here
-  const handleCheckboxClick = (rowIndex) => {
-    setSelectedRow(rowIndex);
-  };
+  // const handleCheckboxClick = (rowIndex) => {
+  //   setSelectedRow(rowIndex);
 
-  const selectedRowData =
-    selectedRow !== null
-      ? {
-          instanceName: instanceTypes[selectedRow].name,
-          vcpus: instanceTypes[selectedRow].vcpus,
-          memory_mb: instanceTypes[selectedRow].memory_mb,
-        }
-      : null;
+  //   console.log(rowIndex);
+  // };
 
+  // const selectedRowData =
+  //   selectedRow !== null
+  //     ? {
+  //         instanceName: instanceTypes[selectedRow].name,
+  //         vcpus: instanceTypes[selectedRow].vcpus,
+  //         memory_mb: instanceTypes[selectedRow].memory_mb,
+  //       }
+  //     : null;
+  // console.log(selectedRowData);
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
   };
@@ -90,6 +93,10 @@ const VirtualMachine = () => {
     setSelectedImage(event.target.value); // this is selected image string
     const selectedImage = event.target.selectedIndex;
     setSelectedImageName(event.target.options[selectedImage].text);
+  };
+
+  const handleCheckboxClick = (index, instanceType) => {
+    setSelectedRowData(instanceType);
   };
 
   const addToCartHandler = (redirectUser) => {
@@ -400,8 +407,11 @@ const VirtualMachine = () => {
                       <TableCell padding="checkbox">
                         <Checkbox
                           color="primary"
-                          checked={selectedRow === index}
-                          onChange={() => handleCheckboxClick(index)}
+                          // checked={selectedRow === index}
+                          checked={selectedRowData === instanceType} // Check if this row is selected
+                          onChange={() =>
+                            handleCheckboxClick(index, instanceType)
+                          }
                         />
                       </TableCell>
                       <TableCell component="th" scope="row">

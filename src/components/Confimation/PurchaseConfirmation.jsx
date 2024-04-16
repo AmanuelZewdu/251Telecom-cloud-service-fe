@@ -14,6 +14,8 @@ const PurchaseConfirmation = () => {
   const [duration, setDuration] = useState();
   const [successMessage, setSuccessMessage] = useState(false);
   useEffect(() => {
+    const url = new URL(window.location);
+    console.log("Page URL", url);
     const totalCartItems =
       JSON.parse(localStorage.getItem("purchaseItems")) || [];
     setCartItems(totalCartItems);
@@ -86,20 +88,27 @@ const PurchaseConfirmation = () => {
     try {
       const orderItems = cartItems.map((item) => ({
         name: item.name,
-        "image-id": item.imageId,
-        "disk-size": item.memory_mb,
-        "instance-type": item.instanceName,
-        duration,
+        imageId: item.imageId,
+        diskSize: item.memory_mb,
+        instanceType: item.instanceName,
+        vCPU: item.vcpus,
+        RAM: item.memory_mb,
+        volume: {
+          size: 20,
+        },
+        duration: item.duration,
       }));
 
+      const url = new URL(window.location.href).origin + "/wait";
+
       const orderDetail = {
-        duration,
         order: {
           vm: orderItems,
           storage: [],
           object: [],
         },
         total: etSwitchTotal,
+        returnUrl: url.toString(),
       };
 
       const response = await service.postCreateOrder(orderDetail, userId);

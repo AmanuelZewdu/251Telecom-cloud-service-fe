@@ -56,6 +56,20 @@ const postCreateOrder = async (orderDetail, access_token) => {
     });
 };
 
+const getOrderById = async (orderId) => {
+  return axios
+    .get(API_URL_CREATE_ORDER + orderId)
+    .then((response) => {
+      if (response) {
+        return response.data;
+      }
+    })
+    .catch((error) => {
+      console.log("can't fetch order");
+      throw error;
+    });
+};
+
 const postLogin = async (userCredential) => {
   try {
     const response = await axios.post(API_URL_LOGIN, userCredential);
@@ -86,6 +100,7 @@ const services = {
   postSignUp,
   postCreateOrder,
   postLogin,
+  getOrderById,
   postContactUs,
 };
 export default services;

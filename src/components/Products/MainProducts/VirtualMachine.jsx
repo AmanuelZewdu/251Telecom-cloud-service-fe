@@ -24,7 +24,7 @@ import PurchaseItemData from "../../PurchaseItemData/PurchaseItemData";
 const VirtualMachine = () => {
   const navigate = useNavigate();
   const [vmName, setVmName] = useState("");
-  const [selectedRow, setSelectedRow] = useState(null);
+  const [selectedRowData, setSelectedRowData] = useState(null);
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedImageName, setSelectedImageName] = useState("");
   const [duration, setDuration] = useState("");
@@ -65,18 +65,21 @@ const VirtualMachine = () => {
   }, []);
 
   // Selecting table row function starts here
-  const handleCheckboxClick = (rowIndex) => {
-    setSelectedRow(rowIndex);
-  };
+  // const handleCheckboxClick = (rowIndex) => {
+  //   setSelectedRow(rowIndex);
 
-  const selectedRowData =
-    selectedRow !== null
-      ? {
-          instanceName: instanceTypes[selectedRow].name,
-          vcpus: instanceTypes[selectedRow].vcpus,
-          memory_mb: instanceTypes[selectedRow].memory_mb,
-        }
-      : null;
+  //   console.log(rowIndex);
+  // };
+
+  // const selectedRowData =
+  //   selectedRow !== null
+  //     ? {
+  //         instanceName: instanceTypes[selectedRow].name,
+  //         vcpus: instanceTypes[selectedRow].vcpus,
+  //         memory_mb: instanceTypes[selectedRow].memory_mb,
+  //       }
+  //     : null;
+  // console.log(selectedRowData);
 
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
@@ -92,6 +95,11 @@ const VirtualMachine = () => {
     setSelectedImageName(event.target.options[selectedImage].text);
   };
 
+  const handleCheckboxClick = (index, instanceType) => {
+    setSelectedRowData(instanceType);
+    console.log(instanceType);
+  };
+
   const addToCartHandler = (redirectUser) => {
     if (!vmName) {
       setVMNameError(true);
@@ -99,7 +107,7 @@ const VirtualMachine = () => {
     }
     if (
       !vmName ||
-      selectedRow === null ||
+      selectedRowData === null ||
       !selectedImage ||
       !durationNumber ||
       !duration
@@ -126,6 +134,7 @@ const VirtualMachine = () => {
         // duration: duration,
       };
       const updatedItems = [...existingItems, purchaseItem];
+      console.log(updatedItems);
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
       window.dispatchEvent(new Event("storage"));
       setError(false);
@@ -308,7 +317,7 @@ const VirtualMachine = () => {
             />
             {vmNameError && (
               <p className="text-sm border-l-2 border-red-500 pl-1 text-red-500">
-                Please proivde a vm name
+                Please provide a VM name
               </p>
             )}
           </div>
@@ -400,8 +409,11 @@ const VirtualMachine = () => {
                       <TableCell padding="checkbox">
                         <Checkbox
                           color="primary"
-                          checked={selectedRow === index}
-                          onChange={() => handleCheckboxClick(index)}
+                          // checked={selectedRow === index}
+                          checked={selectedRowData === instanceType} // Check if this row is selected
+                          onChange={() =>
+                            handleCheckboxClick(index, instanceType)
+                          }
                         />
                       </TableCell>
                       <TableCell component="th" scope="row">

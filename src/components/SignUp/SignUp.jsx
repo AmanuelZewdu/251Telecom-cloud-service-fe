@@ -30,6 +30,8 @@ const SignUp = () => {
   const formik = useFormik({
     initialValues: {
       accountType: "",
+      TINNumber: "",
+      specificAddress: "",
       firstName: "",
       middleName: "",
       lastName: "",
@@ -46,6 +48,12 @@ const SignUp = () => {
     },
     validationSchema: Yup.object().shape({
       accountType: Yup.string().required("Please choose account type*"),
+      TINNumber: Yup.number("TIN number must be in numbers").required(
+        "TIN number is required"
+      ),
+      specificAddress: Yup.string().required(
+        "Specific address is required. Example - Piassa, Summit"
+      ),
       firstName: Yup.string().required("First name is required*"),
       middleName: Yup.string().required("Middle name is required*"),
       lastName: Yup.string().required("Last name is required*"),
@@ -72,6 +80,10 @@ const SignUp = () => {
       }),
       password: Yup.string()
         .min(8, "Password must be 8 characters or more")
+        .matches(
+          /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,}$/,
+          "Oops! It seems like there's a hiccup with your password. Remember, it should be at least 8 characters long and include a mix of letters, numbers, and special characters. Double-check and try again!"
+        )
         .required("Password is required*"),
       ConfirmPassword: Yup.string()
         .oneOf([Yup.ref("password"), null], "Passwords must match")
@@ -87,8 +99,8 @@ const SignUp = () => {
 
         isProductSelected: isProductSelected("purchaseItems"),
       };
-
-      //alert(JSON.stringify(values, null, 2));
+      console.log("clicked");
+      alert(JSON.stringify(userDetail, null, 2));
       const response = await services.postSignUp(userDetail);
       if (!response) {
         return;
@@ -139,26 +151,6 @@ const SignUp = () => {
             onSubmit={formik.handleSubmit}
             className="flex flex-col gap-4 text-black"
           >
-            {formik.values.accountType === "business" && (
-              <div className="w-full">
-                <input
-                  className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
-                    formik.touched.companyName && formik.errors.companyName
-                      ? "border-red-500"
-                      : "border-gray-400 "
-                  }`}
-                  id="companyName"
-                  placeholder="Company name"
-                  type="text"
-                  {...formik.getFieldProps("companyName")}
-                />
-                {formik.touched.companyName && formik.errors.companyName ? (
-                  <div className="text-red-600 text-xs mt-1">
-                    {formik.errors.companyName}
-                  </div>
-                ) : null}
-              </div>
-            )}
             <div className="w-full">
               <input
                 className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
@@ -219,6 +211,49 @@ const SignUp = () => {
                 </div>
               ) : null}
             </div>
+            {formik.values.accountType === "business" && (
+              <div className="w-full">
+                <input
+                  className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
+                    formik.touched.companyName && formik.errors.companyName
+                      ? "border-red-500"
+                      : "border-gray-400 "
+                  }`}
+                  id="companyName"
+                  placeholder="Company name"
+                  type="text"
+                  {...formik.getFieldProps("companyName")}
+                />
+                {formik.touched.companyName && formik.errors.companyName ? (
+                  <div className="text-red-600 text-xs mt-1">
+                    {formik.errors.companyName}
+                  </div>
+                ) : null}
+              </div>
+            )}
+            {formik.values.accountType === "business" && (
+              <div className="w-full">
+                <input
+                  className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
+                    formik.touched.TINNumber && formik.errors.TINNumber
+                      ? "border-red-500"
+                      : formik.touched.TINNumber && !formik.errors.TINNumber
+                      ? "border-green-500"
+                      : "border-gray-400"
+                  }`}
+                  id="TINNumber"
+                  placeholder="Tin number"
+                  type="text"
+                  {...formik.getFieldProps("TINNumber")}
+                />
+                {formik.values.TINNumber}
+                {formik.touched.TINNumber && formik.errors.TINNumber ? (
+                  <div className="text-red-600 text-xs mt-1">
+                    {formik.errors.TINNumber}
+                  </div>
+                ) : null}
+              </div>
+            )}
             <div className="w-full ">
               <div className="flex items-center">
                 <span className="border border-gray-400 rounded-s-sm p-2 bg-gray-300 text-gray-500">
@@ -261,26 +296,6 @@ const SignUp = () => {
               {formik.touched.email && formik.errors.email ? (
                 <div className="text-red-600 text-xs mt-1">
                   {formik.errors.email}
-                </div>
-              ) : null}
-            </div>
-            <div className="w-full">
-              <input
-                className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
-                  formik.touched.userName && formik.errors.userName
-                    ? "border-red-500"
-                    : formik.touched.userName && !formik.errors.userName
-                    ? "border-green-500"
-                    : "border-gray-400"
-                }`}
-                id="userName"
-                placeholder="User name"
-                type="text"
-                {...formik.getFieldProps("userName")}
-              />
-              {formik.touched.userName && formik.errors.userName ? (
-                <div className="text-red-600 text-xs mt-1">
-                  {formik.errors.userName}
                 </div>
               ) : null}
             </div>
@@ -344,6 +359,30 @@ const SignUp = () => {
                 </div>
               ) : null}
             </div>
+            <div className="w-full">
+              <input
+                className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
+                  formik.touched.specificAddress &&
+                  formik.errors.specificAddress
+                    ? "border-red-500"
+                    : formik.touched.specificAddress &&
+                      !formik.errors.specificAddress
+                    ? "border-green-500"
+                    : "border-gray-400"
+                }`}
+                id="specificAddress"
+                placeholder="Specific address"
+                type="text"
+                {...formik.getFieldProps("specificAddress")}
+              />
+              {formik.values.specificAddress}
+              {formik.touched.specificAddress &&
+              formik.errors.specificAddress ? (
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.specificAddress}
+                </div>
+              ) : null}
+            </div>
             {formik.values.accountType === "business" && (
               <div className="w-full">
                 <input
@@ -366,6 +405,26 @@ const SignUp = () => {
                 ) : null}
               </div>
             )}
+            <div className="w-full">
+              <input
+                className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
+                  formik.touched.userName && formik.errors.userName
+                    ? "border-red-500"
+                    : formik.touched.userName && !formik.errors.userName
+                    ? "border-green-500"
+                    : "border-gray-400"
+                }`}
+                id="userName"
+                placeholder="User name"
+                type="text"
+                {...formik.getFieldProps("userName")}
+              />
+              {formik.touched.userName && formik.errors.userName ? (
+                <div className="text-red-600 text-xs mt-1">
+                  {formik.errors.userName}
+                </div>
+              ) : null}
+            </div>
             <div className="relative w-full">
               <input
                 className={`w-full bg-transparent p-2 border rounded-sm outline-none ${

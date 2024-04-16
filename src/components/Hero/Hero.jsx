@@ -3,6 +3,7 @@ import "./hero.scss";
 import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
+import { Link } from "react-router-dom";
 const HeroButton = styled(Button)({
   textTransform: "none",
   fontSize: "1em",
@@ -24,8 +25,8 @@ const Hero = () => {
           possibilities. Experience innovation, tailored for you
         </p>
         <div className="p-2">
-          <a
-            href="/products
+          <Link
+            to="/products
             "
           >
             <HeroButton
@@ -41,7 +42,7 @@ const Hero = () => {
             >
               Lets get started ...
             </HeroButton>
-          </a>
+          </Link>
         </div>
       </div>
       <KeyboardDoubleArrowDownIcon

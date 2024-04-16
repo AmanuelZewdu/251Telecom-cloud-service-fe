@@ -4,6 +4,7 @@ const API_URL_IMAGES = "https://api.cloud251.com/vm-settings/machine-images";
 const API_URL_SIGN_UP = "https://api.cloud251.com/auth/signup";
 const API_URL_CREATE_ORDER = "https://api.cloud251.com/order/";
 const API_URL_LOGIN = "https://api.cloud251.com/auth/signin";
+const API_URL_CONTACTUS = "https://api.cloud251.com/miscallaneous/contact";
 
 const getInstanceType = async () => {
   return axios
@@ -82,6 +83,17 @@ const postLogin = async (userCredential) => {
   }
 };
 
+const postContactUs = async (userMessage) => {
+  try {
+    const response = await axios.post(API_URL_CONTACTUS);
+    return { data: response.data, statusCode: response.status };
+  } catch (error) {
+    if (error.response) {
+      return { error: error.response.data, statusCode: error.response.status };
+    }
+  }
+};
+
 const services = {
   getInstanceType,
   getMachineImages,
@@ -89,5 +101,6 @@ const services = {
   postCreateOrder,
   postLogin,
   getOrderById,
+  postContactUs,
 };
 export default services;

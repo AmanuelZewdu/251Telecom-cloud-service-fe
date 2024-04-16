@@ -83,11 +83,14 @@ const Navbar = () => {
             <li className="relative nav-hover">
               <Link to="/">Home</Link>
             </li>
-            <li className="relative nav-hover">
-              <Link to="/products">Console</Link>
-            </li>
+            {/* <li className="relative nav-hover">
+              <Link to="/console">Console</Link>
+            </li> */}
             <li className="relative nav-hover">
               <Link to="/products">Products</Link>
+            </li>
+            <li>
+              <Link to="/contactUs">Contact Us</Link>
             </li>
             <li
               onClick={handleCartIconClick}
@@ -123,14 +126,19 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-              <li className="relative nav-hover">
-                <Link onClick={() => handleNav()} to="/products">
+              {/* <li className="relative nav-hover">
+                <Link onClick={() => handleNav()} to="/console">
                   Console
                 </Link>
-              </li>
+              </li> */}
               <li className="relative nav-hover">
                 <Link onClick={() => handleNav()} to="/products">
                   Products
+                </Link>
+              </li>
+              <li>
+                <Link to="/contactUs" onClick={() => handleNav()}>
+                  Contact Us
                 </Link>
               </li>
               <li

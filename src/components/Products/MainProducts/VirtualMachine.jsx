@@ -24,7 +24,7 @@ import PurchaseItemData from "../../PurchaseItemData/PurchaseItemData";
 const VirtualMachine = () => {
   const navigate = useNavigate();
   const [vmName, setVmName] = useState("");
-  const [selectedRow, setSelectedRow] = useState(null);
+  const [selectedRowData, setSelectedRowData] = useState(null);
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedImageName, setSelectedImageName] = useState("");
   const [duration, setDuration] = useState("");
@@ -40,7 +40,6 @@ const VirtualMachine = () => {
   const [selectedVCPU, setSelectedVCPU] = useState("");
   const [selectedMemory, setSelectedMemory] = useState("");
   const [loading, setLoading] = useState(true);
-  const [selectedRowData, setSelectedRowData] = useState(null);
 
   // side effect that fetches the instance types
   useEffect(() => {
@@ -81,6 +80,7 @@ const VirtualMachine = () => {
   //       }
   //     : null;
   // console.log(selectedRowData);
+
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
   };
@@ -97,6 +97,7 @@ const VirtualMachine = () => {
 
   const handleCheckboxClick = (index, instanceType) => {
     setSelectedRowData(instanceType);
+    console.log(instanceType);
   };
 
   const addToCartHandler = (redirectUser) => {
@@ -106,7 +107,7 @@ const VirtualMachine = () => {
     }
     if (
       !vmName ||
-      selectedRow === null ||
+      selectedRowData === null ||
       !selectedImage ||
       !durationNumber ||
       !duration
@@ -133,6 +134,7 @@ const VirtualMachine = () => {
         // duration: duration,
       };
       const updatedItems = [...existingItems, purchaseItem];
+      console.log(updatedItems);
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
       window.dispatchEvent(new Event("storage"));
       setError(false);

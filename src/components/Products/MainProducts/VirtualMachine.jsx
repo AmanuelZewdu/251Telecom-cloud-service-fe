@@ -31,6 +31,7 @@ const VirtualMachine = () => {
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
   const [diskSize, setDiskSize] = useState(null);
+  const [volume, setVolume] = useState("");
   const [error, setError] = useState(false);
   const [fetchError, setFetchError] = useState(false);
   const [vmNameError, setVMNameError] = useState(false);
@@ -65,23 +66,6 @@ const VirtualMachine = () => {
       fetchMachineImages();
     }
   }, []);
-
-  // Selecting table row function starts here
-  // const handleCheckboxClick = (rowIndex) => {
-  //   setSelectedRow(rowIndex);
-
-  //   console.log(rowIndex);
-  // };
-
-  // const selectedRowData =
-  //   selectedRow !== null
-  //     ? {
-  //         instanceName: instanceTypes[selectedRow].name,
-  //         vcpus: instanceTypes[selectedRow].vcpus,
-  //         memory_mb: instanceTypes[selectedRow].memory_mb,
-  //       }
-  //     : null;
-  // console.log(selectedRowData);
 
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
@@ -142,6 +126,9 @@ const VirtualMachine = () => {
         serviceType: "Virtual machine",
         duration: durationNumber,
         diskSize,
+        volume: {
+          size: volume,
+        },
         // duration: duration,
       };
       const updatedItems = [...existingItems, purchaseItem];
@@ -456,9 +443,9 @@ const VirtualMachine = () => {
             />
           </TableContainer>
         </div>
-        <div className="border shadow-md flex text-left flex-col p-4 gap-6">
-          <div className="mt-4 flex flex-col w-ful">
-            <h4 className="text-lg font-medium font-poppins">
+        <div className="border shadow-md flex text-left flex-col p-4 gap-2">
+          <div className="flex flex-col w-ful">
+            <h4 className="text-lg mb-2 font-medium font-poppins">
               Image Management
             </h4>
             <div className="flex items-center gap-2">
@@ -536,6 +523,26 @@ const VirtualMachine = () => {
             />
           </div>
         </div>
+        <div className="border shadow-md flex text-left flex-col p-4 gap-2">
+          <h2 className="text-lg font-medium font-poppins">
+            Volume management
+          </h2>
+          <div className="flex gap-2">
+            <label htmlFor="volume">
+              Volume size <span className="text-sm text-gray-500">(in GB)</span>
+            </label>
+            <input
+              title="You can name it whatever you want"
+              placeholder="Volume size"
+              type="number"
+              name="volume"
+              id="volume"
+              value={volume}
+              onChange={(e) => setVolume(e.target.value)}
+              className="border-b w-[8em] outline-none border-gray-400  placeholder:text-gray-400"
+            />
+          </div>
+        </div>
       </div>
       <PurchaseItemData>
         {error && (
@@ -565,6 +572,10 @@ const VirtualMachine = () => {
         <div className="flex gap-2">
           <h3 className="">Selected image:</h3>
           <span>{selectedImageName || "-"}</span>
+        </div>
+        <div className="flex gap-2">
+          <h3 className="">Volume size:</h3>
+          <span>{volume ? `${volume} GB` : "-"}</span>
         </div>
         <div className="flex gap-2">
           <h3 className="">Duration:</h3>

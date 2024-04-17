@@ -96,7 +96,7 @@ const PurchaseConfirmation = () => {
         vCPU: item.vcpus,
         RAM: parseFloat(item.memory_mb.split(" ")[0]),
         volume: {
-          size: 20,
+          size: item.volume,
         },
         duration: item.duration,
       }));

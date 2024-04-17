@@ -92,12 +92,10 @@ const PurchaseConfirmation = () => {
         name: item.name,
         imageId: item.imageId,
         diskSize: item.diskSize,
-        instanceType: item.instanceName,
+        instanceType: item.name,
         vCPU: item.vcpus,
         RAM: parseFloat(item.memory_mb.split(" ")[0]),
-        volume: {
-          size: item.volume,
-        },
+        volume: item.volume,
         duration: item.duration,
       }));
       console.log(orderItems);

@@ -31,7 +31,7 @@ const VirtualMachine = () => {
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
   const [diskSize, setDiskSize] = useState(null);
-  const [volume, setVolume] = useState("");
+  const [volume, setVolume] = useState(null);
   const [error, setError] = useState(false);
   const [fetchError, setFetchError] = useState(false);
   const [vmNameError, setVMNameError] = useState(false);
@@ -117,7 +117,7 @@ const VirtualMachine = () => {
         JSON.parse(localStorage.getItem("purchaseItems")) || [];
 
       const purchaseItem = {
-        instanceName: selectedRowData.instanceName,
+        instanceName: selectedRowData.name,
         vcpus: selectedRowData.vcpus,
         memory_mb: mbToGBConverter(selectedRowData.memory_mb),
         name: vmName,
@@ -127,10 +127,11 @@ const VirtualMachine = () => {
         duration: durationNumber,
         diskSize,
         volume: {
-          size: volume,
+          size: parseInt(volume),
         },
         // duration: duration,
       };
+      console.log(volume);
       const updatedItems = [...existingItems, purchaseItem];
       console.log(updatedItems);
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));

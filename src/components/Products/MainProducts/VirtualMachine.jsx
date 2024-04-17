@@ -283,7 +283,7 @@ const VirtualMachine = () => {
 
   return (
     <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left font-montserrat">
-      <h1 className="text-2xl tracking-wide">Virtual Machine</h1>
+      <h1 className="text-2xl tracking-wide ">Virtual Machine</h1>
       {fetchError && (
         <p>
           "Oops! Something went wrong while fetching instance types. Please try
@@ -454,11 +454,16 @@ const VirtualMachine = () => {
               <label>Image:</label>
               <select
                 name="image"
-                className="w-[12em] p-2 bg-gray-100 rounded-md"
+                className="w-[12em] p-1.5 bg-gray-100 rounded-md "
                 value={selectedImage}
                 onChange={handleImageChange}
               >
-                <option value="" disabled hidden>
+                <option
+                  value=""
+                  className="first:text-red-500 "
+                  disabled
+                  hidden
+                >
                   Select image{" "}
                 </option>
                 {machineImages.map((machineImage, index) => (
@@ -469,15 +474,19 @@ const VirtualMachine = () => {
               </select>
             </div>
           </div>
+
           <div className="mt-4 flex gap-4 items-center">
             <div className="flex gap-2 items-center">
               <label>Duration:</label>
               <select
                 name="duration"
-                className="w-[7em] p-2 bg-gray-100 rounded-md"
+                className="w-[8em] p-1.5 bg-gray-100 rounded-md before:content"
                 value={durationNumber}
                 onChange={handleDurationNumChange}
               >
+                <option value="" disabled hidden>
+                  Select duration{" "}
+                </option>
                 {Array.from({ length: 12 }, (_, index) => (
                   <option key={index + 1} value={index + 1}>
                     {index + 1}

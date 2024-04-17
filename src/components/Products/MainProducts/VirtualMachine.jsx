@@ -103,6 +103,7 @@ const VirtualMachine = () => {
       !vmName ||
       selectedRowData === null ||
       !selectedImage ||
+      !volume ||
       !durationNumber ||
       !duration
     ) {

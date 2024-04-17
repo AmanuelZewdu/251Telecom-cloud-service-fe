@@ -13,6 +13,7 @@ const PurchaseConfirmation = () => {
   const [userId, setUserId] = useState("");
   const [duration, setDuration] = useState();
   const [successMessage, setSuccessMessage] = useState(false);
+
   useEffect(() => {
     const url = new URL(window.location);
     console.log("Page URL", url);

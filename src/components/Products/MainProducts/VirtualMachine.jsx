@@ -20,6 +20,7 @@ import services from "../../../Services/services";
 import TablePagination from "@mui/material/TablePagination";
 import CircularProgress from "@mui/material/CircularProgress";
 import PurchaseItemData from "../../PurchaseItemData/PurchaseItemData";
+import { number } from "yup";
 
 const VirtualMachine = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const VirtualMachine = () => {
   const [selectedImageName, setSelectedImageName] = useState("");
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
+  const [diskSize, setDiskSize] = useState(null);
   const [error, setError] = useState(false);
   const [fetchError, setFetchError] = useState(false);
   const [vmNameError, setVMNameError] = useState(false);
@@ -90,9 +92,17 @@ const VirtualMachine = () => {
   };
 
   const handleImageChange = (event) => {
-    setSelectedImage(event.target.value); // this is selected image string
-    const selectedImage = event.target.selectedIndex;
-    setSelectedImageName(event.target.options[selectedImage].text);
+    const selectedImageId = event.target.value;
+    setSelectedImage(event.target.value);
+    const selectedImageIndex = event.target.selectedIndex;
+    setSelectedImageName(event.target.options[selectedImageIndex].text);
+
+    const selectedImageObj = machineImages.find(
+      (image) => image.id === selectedImageId
+    );
+    if (selectedImageObj) {
+      setDiskSize(selectedImageObj.total_size_gb);
+    }
   };
 
   const handleCheckboxClick = (index, instanceType) => {
@@ -131,6 +141,7 @@ const VirtualMachine = () => {
         price: price,
         serviceType: "Virtual machine",
         duration: durationNumber,
+        diskSize,
         // duration: duration,
       };
       const updatedItems = [...existingItems, purchaseItem];

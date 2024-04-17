@@ -13,13 +13,15 @@ const PurchaseConfirmation = () => {
   const [userId, setUserId] = useState("");
   const [duration, setDuration] = useState();
   const [successMessage, setSuccessMessage] = useState(false);
+
   useEffect(() => {
     const url = new URL(window.location);
     console.log("Page URL", url);
     const totalCartItems =
       JSON.parse(localStorage.getItem("purchaseItems")) || [];
     setCartItems(totalCartItems);
-
+    const disk = totalCartItems.map((cartItem) => cartItem.diskSize);
+    console.log(disk);
     const loggedInUserString = sessionStorage.getItem("loggedIn-user");
 
     if (loggedInUserString) {
@@ -89,16 +91,14 @@ const PurchaseConfirmation = () => {
       const orderItems = cartItems.map((item) => ({
         name: item.name,
         imageId: item.imageId,
-        diskSize: item.memory_mb,
-        instanceType: item.instanceName,
+        diskSize: item.diskSize,
+        instanceType: item.name,
         vCPU: item.vcpus,
-        RAM: item.memory_mb,
-        volume: {
-          size: 20,
-        },
+        RAM: parseFloat(item.memory_mb.split(" ")[0]),
+        volume: item.volume,
         duration: item.duration,
       }));
-
+      console.log(orderItems);
       const url = new URL(window.location.href).origin + "/wait";
 
       const orderDetail = {

@@ -4,14 +4,23 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import services from "../../Services/services";
 import logo from "../../shared/images/cloud251Logo.png";
-import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import { pink } from "@mui/material/colors";
 
 const ContactUs = () => {
   const [loading, setLoading] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+  };
+
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const handleOpen = () => {
     setSuccessOpen(true);
@@ -26,6 +35,7 @@ const ContactUs = () => {
       email: "",
       fullName: "",
       message: "",
+      isEnterprise: false,
     },
     validationSchema: Yup.object({
       fullName: Yup.string().required("Full name is required*"),
@@ -41,6 +51,7 @@ const ContactUs = () => {
     }),
     onSubmit: async (values) => {
       setLoading(true);
+      values.isEnterprise = isChecked;
       const { data, statusCode } = await services.postContactUs(values);
       if (!data) {
         setLoading(false);
@@ -53,7 +64,9 @@ const ContactUs = () => {
         }, 6000);
         setLoading(false);
       }
+      alert(JSON.stringify(values, 2, null));
       console.log(data);
+      console.log(values);
     },
   });
 
@@ -159,6 +172,25 @@ const ContactUs = () => {
                 </div>
               ) : null}
             </div>
+            <div className="flex items-center w-full">
+              <Checkbox
+                checked={formik.values.enterprise}
+                onChange={handleCheckboxChange}
+                {...label}
+                sx={{
+                  color: "#BC68B2",
+                  "&.Mui-checked": {
+                    color: "#BC68B2",
+                  },
+                  marginLeft: "-0.6em",
+                }}
+                name="enterprise"
+              />
+              <label htmlFor="enterprise">
+                Looking to be as an enterprise level user
+              </label>
+            </div>
+
             <button
               className={`flex justify-center items-center gap-2 w-full rounded-md p-2 text-white shadow-lg ${
                 loading
@@ -168,7 +200,14 @@ const ContactUs = () => {
               type="submit"
               disabled={loading}
             >
-              {loading ? "Submitting" : "Submit"}
+              {loading && isChecked
+                ? "Submitting as an enterprise"
+                : loading && !isChecked
+                ? "Submitting"
+                : isChecked
+                ? "Submit as enterprise"
+                : "Submit"}
+
               {loading && <div className="login-Loader"></div>}
             </button>
           </form>

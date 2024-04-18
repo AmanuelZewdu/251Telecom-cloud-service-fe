@@ -35,7 +35,7 @@ const ContactUs = () => {
       email: "",
       fullName: "",
       message: "",
-      isEnterpriseUser: false,
+      isEnterprise: false,
     },
     validationSchema: Yup.object({
       fullName: Yup.string().required("Full name is required*"),
@@ -51,7 +51,7 @@ const ContactUs = () => {
     }),
     onSubmit: async (values) => {
       setLoading(true);
-      values.isEnterpriseUser = isChecked;
+      values.isEnterprise = isChecked;
       const { data, statusCode } = await services.postContactUs(values);
       if (!data) {
         setLoading(false);

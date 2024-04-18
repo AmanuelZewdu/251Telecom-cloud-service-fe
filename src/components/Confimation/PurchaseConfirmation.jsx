@@ -115,8 +115,9 @@ const PurchaseConfirmation = () => {
       if (response.order.userId) {
         setSuccessMessage(true);
         console.log("Order created:", response);
-        // window.open(response.paymentURL.formUrl);
+        //window.open(response.paymentURL.formUrl);
         window.location.href = response.paymentURL.formUrl;
+        localStorage.removeItem("purchaseItems");
       }
     } catch (error) {
       console.error("Error creating order:", error);

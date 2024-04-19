@@ -6,13 +6,21 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import services from "../../Services/services";
 import { Link } from "react-router-dom";
+import Checkbox from "@mui/material/Checkbox";
 
 const SignUp = () => {
   const [visible, setVisibile] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+  };
 
   const handleVisibility = () => {
     setVisibile(!visible);
   };
+
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const checkProduct = () => {
     return localStorage.getItem("");
@@ -480,6 +488,30 @@ const SignUp = () => {
                 </div>
               ) : null}
             </div>
+            <div className="flex items-center w-full">
+              <Checkbox
+                size="small"
+                checked={formik.values.enterprise}
+                onChange={handleCheckboxChange}
+                {...label}
+                sx={{
+                  color: "#BC68B2",
+                  "&.Mui-checked": {
+                    color: "#BC68B2",
+                  },
+                  marginLeft: "-0.6em",
+                }}
+                name="enterprise"
+              />
+              <a
+                href="/terms-conditions"
+                target="_blank"
+                className="text-blue-600 underline text-sm"
+              >
+                By signing up, you agree to our terms and conditions.{" "}
+              </a>
+            </div>
+
             <button
               className="w-full rounded-sm bg-button-color p-2 text-white hover:bg-button-color"
               type="submit"

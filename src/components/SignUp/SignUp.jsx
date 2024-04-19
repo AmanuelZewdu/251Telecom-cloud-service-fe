@@ -127,7 +127,7 @@ const SignUp = () => {
           <div className="flex items-center gap-4">
             <div>
               <input
-                className="mr-2"
+                className="mr-2 accent-button-color"
                 type="radio"
                 id="personal"
                 name="accountType"
@@ -139,7 +139,7 @@ const SignUp = () => {
             </div>
             <div>
               <input
-                className="mr-2"
+                className="mr-2 accent-button-color"
                 type="radio"
                 id="business"
                 name="accountType"
@@ -491,7 +491,7 @@ const SignUp = () => {
             <div className="flex items-center w-full">
               <Checkbox
                 size="small"
-                checked={formik.values.enterprise}
+                checked={isChecked}
                 onChange={handleCheckboxChange}
                 {...label}
                 sx={{
@@ -513,7 +513,12 @@ const SignUp = () => {
             </div>
 
             <button
-              className="w-full rounded-sm bg-button-color p-2 text-white hover:bg-button-color"
+              className={`w-full rounded-sm p-2 text-white ${
+                isChecked
+                  ? "bg-button-color"
+                  : "cursor-not-allowed bg-button-color/50"
+              }`}
+              disabled={!isChecked}
               type="submit"
             >
               Sign up

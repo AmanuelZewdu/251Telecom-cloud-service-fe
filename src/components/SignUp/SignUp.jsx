@@ -503,13 +503,12 @@ const SignUp = () => {
                 }}
                 name="enterprise"
               />
-              <a
-                href="/terms-conditions"
-                target="_blank"
+              <Link
+                to="/terms-conditions"
                 className="text-blue-600 underline text-sm"
               >
                 By signing up, you agree to our terms and conditions.{" "}
-              </a>
+              </Link>
             </div>
 
             <button

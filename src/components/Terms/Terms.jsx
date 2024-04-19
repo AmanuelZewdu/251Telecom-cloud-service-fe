@@ -2,8 +2,8 @@ import "./terms.scss";
 
 const Terms = () => {
   return (
-    <div className="w-full font-montserrat flex items-center justify-center p-2 main">
-      <div className="container relative mx-auto mt-[8em] mb-[1em] rounded-md bg-white text-gray-700">
+    <div className="w-full font-montserrat flex items-center justify-center p-3 main">
+      <div className="container relative mx-auto mt-[6em] xl:mt-[8em] mb-[1em] rounded-md bg-white text-gray-700">
         <h1 className="text-primary-blue">Cloud 251 Terms of Service</h1>
         <p>
           <strong>Last Updated:</strong> April 17, 2024

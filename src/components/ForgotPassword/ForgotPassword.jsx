@@ -1,10 +1,8 @@
 import "./forgotPassword.scss";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import CloseIcon from "@mui/icons-material/Close";
 import * as Yup from "yup";
-import services from "../../Services/services";
 import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {

@@ -12,6 +12,8 @@ import WaitPage from "./components/WaitPage/WaitPage";
 import ContactUs from "./components/ContactUs/ContactUs";
 import Footer from "./components/Footer/Footer";
 import Terms from "./components/Terms/Terms";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import Reset from "./components/Reset/Reset";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
               <Route path="/wait" element={<WaitPage />} />
               <Route path="log-in" element={<LogIn />} />
               <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/password-reset" element={<Reset />} />
               <Route path="/terms-conditions" element={<Terms />} />
             </Route>
           </Routes>

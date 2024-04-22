@@ -12,7 +12,7 @@ const getInstanceType = async () => {
     .then((response) => {
       if (response) {
         // console.log("Instance types==", response.data);
-        return response.data;
+        return { data: response.data, statusCode: response.status };
       }
     })
     .catch((error) => {

@@ -18,7 +18,7 @@ const ContactUsSection = () => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center bg gap-8 p-4 py-12 font-montserrat">
-      <div className="flex flex-col gap-8 xl:gap-2 xl:flex-row xl:max-w-[80em] ">
+      <div className="flex flex-col  xl:gap-2 xl:flex-row xl:max-w-[80em] ">
         <p className="flex flex-col font-montserrat font-semibold gap-2 text-3xl xl:text-4xl bg-gradient-to-br from-primary-blue to-secondary-blue  text-transparent bg-clip-text text-center xl:text-left">
           Do you have any questions? <span> Want to talk to us?</span>
           <span className="">Please don't hesitate and reach out to us</span>

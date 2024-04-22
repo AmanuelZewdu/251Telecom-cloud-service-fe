@@ -7,9 +7,7 @@ import logo from "../../shared/images/cloud251Logo.png";
 import Alert from "@mui/material/Alert";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { pink } from "@mui/material/colors";
 
 const ContactUs = () => {
   const [loading, setLoading] = useState(false);

@@ -6,13 +6,21 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import services from "../../Services/services";
 import { Link } from "react-router-dom";
+import Checkbox from "@mui/material/Checkbox";
 
 const SignUp = () => {
   const [visible, setVisibile] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+  };
 
   const handleVisibility = () => {
     setVisibile(!visible);
   };
+
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const checkProduct = () => {
     return localStorage.getItem("");
@@ -119,7 +127,7 @@ const SignUp = () => {
           <div className="flex items-center gap-4">
             <div>
               <input
-                className="mr-2"
+                className="mr-2 accent-button-color"
                 type="radio"
                 id="personal"
                 name="accountType"
@@ -131,7 +139,7 @@ const SignUp = () => {
             </div>
             <div>
               <input
-                className="mr-2"
+                className="mr-2 accent-button-color"
                 type="radio"
                 id="business"
                 name="accountType"
@@ -480,8 +488,36 @@ const SignUp = () => {
                 </div>
               ) : null}
             </div>
+            <div className="flex items-center w-full">
+              <Checkbox
+                size="small"
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+                {...label}
+                sx={{
+                  color: "#BC68B2",
+                  "&.Mui-checked": {
+                    color: "#BC68B2",
+                  },
+                  marginLeft: "-0.6em",
+                }}
+                name="enterprise"
+              />
+              <Link
+                to="/terms-conditions"
+                className="text-blue-600 underline text-sm"
+              >
+                By signing up, you agree to our terms and conditions.{" "}
+              </Link>
+            </div>
+
             <button
-              className="w-full rounded-sm bg-button-color p-2 text-white hover:bg-button-color"
+              className={`w-full rounded-sm p-2 text-white ${
+                isChecked
+                  ? "bg-button-color"
+                  : "cursor-not-allowed bg-button-color/50"
+              }`}
+              disabled={!isChecked}
               type="submit"
             >
               Sign up

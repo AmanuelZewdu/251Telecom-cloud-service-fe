@@ -1,0 +1,25 @@
+.main {
+  background: url("../../shared/images/productsBg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.container {
+  border: 1px solid gray;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  max-width: 800px;
+  padding: 1.5em;
+}
+h1,
+h2 {
+  font-weight: 600;
+  font-size: 1.3em;
+}
+h2 {
+  margin-top: 20px;
+}
+p {
+  margin-bottom: 20px;
+}

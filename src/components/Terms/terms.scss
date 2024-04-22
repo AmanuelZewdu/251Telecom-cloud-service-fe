@@ -12,14 +12,17 @@
   max-width: 800px;
   padding: 1.5em;
 }
-h1,
-h2 {
+
+.container h1,
+.container h2 {
   font-weight: 600;
   font-size: 1.3em;
 }
-h2 {
+
+.containerh h2 {
   margin-top: 20px;
 }
-p {
+
+.container p {
   margin-bottom: 20px;
 }

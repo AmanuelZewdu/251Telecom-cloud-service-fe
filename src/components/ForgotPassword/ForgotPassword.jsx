@@ -34,6 +34,7 @@ const ForgotPassword = () => {
       marginTop: "5em",
     },
   });
+
   const formik = useFormik({
     initialValues: {
       email: "",

@@ -102,6 +102,11 @@ const Reset = () => {
         <div className="flex flex-col gap-4 p-6">
           <h1 className="text-xl font-medium text-gray-700">Reset</h1>
           <hr className="border border-black/30" />
+          <p className="font-light font-poppins text-sm tracking-wider leading-6 text-gray-600">
+            Please remember to choose a strong password that contains a mix of
+            letters, numbers, and special characters for increased security.
+            <span className="text-red-500 font-semibold">*</span>
+          </p>
           <form
             onSubmit={formik.handleSubmit}
             className="flex flex-col gap-4 text-black"

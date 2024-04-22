@@ -3,12 +3,37 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import CloseIcon from "@mui/icons-material/Close";
 import * as Yup from "yup";
+import services from "../../Services/services";
 import { Link } from "react-router-dom";
+import Snackbar from "@mui/material/Snackbar";
+import { styled } from "@mui/material/styles";
+import Button from "@mui/material/Button";
 
 const ForgotPassword = () => {
   const [forgotPasswordError, setForgotPasswordError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [state, setState] = useState({
+    open: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+  const { vertical, horizontal, open } = state;
 
+  const handleClick = (newState) => () => {
+    console.log("called");
+    setState({ ...newState, open: true });
+  };
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
+
+  const MySnackbar = styled(Snackbar)({
+    "& .MuiSnackbarContent-root": {
+      backgroundColor: "#17629d",
+      marginTop: "5em",
+    },
+  });
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -22,7 +47,18 @@ const ForgotPassword = () => {
         .required("Email address is required*"),
     }),
     onSubmit: async (values) => {
-      console.log("email=>", values);
+      setLoading(true);
+      try {
+        setLoading(true);
+        const { data, statusCode } = await services.getInstanceType(values);
+        if (statusCode === 200) {
+          setLoading(false);
+          handleClick({ vertical: "top", horizontal: "center" })();
+          console.log(data);
+        }
+      } catch (error) {
+        console.error("Error occured", error);
+      }
     },
   });
   return (
@@ -101,6 +137,14 @@ const ForgotPassword = () => {
           </div>
         </div>
       </div>
+      <MySnackbar
+        anchorOrigin={{ vertical, horizontal }}
+        open={open}
+        onClose={handleClose}
+        message="We've sent a password reset link to your email! Please check your inbox to continue."
+        key={vertical + horizontal}
+        n
+      />
     </div>
   );
 };

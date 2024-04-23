@@ -90,7 +90,7 @@ const Reset = () => {
     },
   });
   return (
-    <div className="w-full font-montserrat flex h-screen items-center justify-center p-4 reset">
+    <div className="w-full font-montserrat flex h-screen items-center justify-center p-4 resetContainer">
       <div className="hidden w-[30em] lg:flex overflow-hidden">
         <img
           className="h-full w-full"

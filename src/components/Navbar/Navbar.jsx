@@ -98,14 +98,17 @@ const Navbar = () => {
       {/* This is the black overlay */}
       {navIsOpen && (
         <div
-          onClick={() => setNavIsOpen(!navIsOpen)}
+          onClick={() => {
+            setNavIsOpen(!navIsOpen);
+            setOpen(false);
+          }}
           className="fixed top-0 left-0 w-full h-screen bg-black/50 z-10"
         ></div>
       )}
       {open && (
         <div
           onClick={() => setOpen(false)}
-          className="fixed top-0 left-0 w-full h-screen bg-black/5 z-10"
+          className="hidden md:fixed top-0 left-0 w-full h-screen bg-black/5 z-10"
         ></div>
       )}
       <nav
@@ -149,8 +152,8 @@ const Navbar = () => {
               className="flex relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
             >
               <ShoppingCartIcon className="cursor-pointer" />
-              <span className="absolute -right-2 -top-2 flex items-center justify-center bg-red-600 rounded-full cursor-pointer cartCounter">
-                <span className="text-[#f5f5f5]">{cartItemsCount}</span>
+              <span className="absolute -right-0 -top-2 flex items-center justify-center bg-red-600 rounded-full cursor-pointer cartCounter">
+                <span className="text-[#f5f5f5] text-sm">{cartItemsCount}</span>
               </span>
             </li>
           </ul>
@@ -240,10 +243,47 @@ const Navbar = () => {
                 </span>
               </li>
             </ul>
-            <Link onClick={() => handleNav()} to="/log-in" className="relative">
-              {" "}
-              LOG IN
-            </Link>
+            {isUserLoggedIn ? (
+              <div className="relative overflow-hidden flex flex-col items-center justify-center font-medium">
+                <PersonIcon
+                  className="hover:bg-gray-300  rounded-full w-[6em] p-1"
+                  fontSize="large"
+                  style={{ transition: "background-color 0.3s ease-in-out" }}
+                  onClick={() => setOpen(!open)}
+                />
+                <div
+                  className={` drop-shadow-md rounded-md transition-all duration-300 ease-in-out ${
+                    open ? "h-[5.2em]" : " h-0"
+                  }`}
+                >
+                  <ul className="flex flex-col cursor-pointer">
+                    <li
+                      onClick={handleLogOut}
+                      className="hover:bg-gray-100 p-2 px-4 flex gap-2"
+                    >
+                      {" "}
+                      <LogoutIcon />
+                      <span>Log out</span>{" "}
+                    </li>
+                    <hr />
+                    <li className="hover:bg-gray-100 p-2 px-4 flex gap-2">
+                      {" "}
+                      <LogoutIcon />
+                      <span>Log out</span>{" "}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <Link
+                onClick={() => handleNav()}
+                to="/log-in"
+                className="relative"
+              >
+                {" "}
+                LOG IN
+              </Link>
+            )}
           </div>
         </div>
       </nav>

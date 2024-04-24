@@ -5,7 +5,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CartModal from "../CartModal/CartModal";
 import logo from "../../shared/images/cloud251Logo.png";
+import PersonIcon from "@mui/icons-material/Person";
+import LogoutIcon from "@mui/icons-material/Logout";
+
 const Navbar = () => {
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [open, setOpen] = useState(false);
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [cartItemsCount, setCartItemsCount] = useState(0);
@@ -23,6 +28,31 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const checkLoggedInUser = () => {
+      const loggedInUser = JSON.parse(sessionStorage.getItem("loggedIn-user"));
+      setIsUserLoggedIn(!!loggedInUser);
+    };
+
+    checkLoggedInUser();
+
+    const handleStorageChange = () => {
+      checkLoggedInUser();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
+  //   if (loggedInUser) {
+  //     SetIsUserLoggedIn(true);
+  //   } else {
+  //     SetIsUserLoggedIn(false);
+  //   }
+  // }, [sessionStorage.getItem("loggedIn-user")]);
   // useEffect(() => {
   //   const cartItems = JSON.parse(localStorage.getItem("purchaseItems")) || [];
   //   setCartItemsCount(cartItems.length);
@@ -80,21 +110,21 @@ const Navbar = () => {
             className="flex justify-end gap-4 font-medium"
             style={{ listStyle: "none" }}
           >
-            <li className="relative nav-hover">
+            <li className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
               <Link to="/">Home</Link>
             </li>
-            {/* <li className="relative nav-hover">
+            {/* <li className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
               <Link to="/console">Console</Link>
             </li> */}
-            <li className="relative nav-hover">
+            <li className="relative hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
               <Link to="/products">Products</Link>
             </li>
-            <li>
+            <li className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
               <Link to="/contactUs">Contact Us</Link>
             </li>
             <li
               onClick={handleCartIconClick}
-              className="flex relative nav-hover"
+              className="flex relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
             >
               <ShoppingCartIcon className="cursor-pointer" />
               <span className="absolute -right-2 -top-2 flex items-center justify-center bg-red-600 rounded-full cursor-pointer cartCounter">
@@ -102,12 +132,42 @@ const Navbar = () => {
               </span>
             </li>
           </ul>
-          <div className="flex place-content-center p-2 w-[7em] bg-button-color rounded-full cursor-pointer hover:bg-[#f5f5f5] text-[#f5f5f5] hover:text-button-color transition-all duration-300 ease-in-out hover:shadow-lg">
-            <Link to="/log-in" className="relative">
-              {" "}
-              LOG IN
-            </Link>
-          </div>
+          {isUserLoggedIn ? (
+            <div className="relative  font-medium">
+              <PersonIcon
+                className="hover:bg-gray-300  rounded-full w-[6em] p-1"
+                fontSize="large"
+                style={{ transition: "background-color 0.3s ease-in-out" }}
+                onClick={() => setOpen(!open)}
+              />
+              <div
+                className={`absolute top-[2.2em] bg-white w-[10em] right-0 overflow-hidden drop-shadow-md rounded-md transition-all duration-300 ease-in-out ${
+                  open ? "h-[5.2em]" : " h-0"
+                }`}
+              >
+                <ul className="flex flex-col cursor-pointer">
+                  <li className="hover:bg-gray-100 p-2 px-4 flex gap-2">
+                    {" "}
+                    <LogoutIcon />
+                    <span>Log out</span>{" "}
+                  </li>
+                  <hr />
+                  <li className="hover:bg-gray-100 p-2 px-4 flex gap-2">
+                    {" "}
+                    <LogoutIcon />
+                    <span>Log out</span>{" "}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          ) : (
+            <button className="flex place-content-center p-2 w-[7em] bg-button-color rounded-full cursor-pointer hover:bg-[#f5f5f5] text-[#f5f5f5] hover:text-button-color transition-all duration-300 ease-in-out hover:shadow-lg">
+              <Link to="/log-in" className="relative">
+                {" "}
+                LOG IN
+              </Link>
+            </button>
+          )}
         </div>
 
         {/* This is the nav that's displayed when the screen is less than mid */}
@@ -121,29 +181,33 @@ const Navbar = () => {
         flex flex-col p-4 items-center`}
           >
             <ul className="flex flex-col gap-4 text-center">
-              <li className="relative nav-hover">
+              <li className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
                 <Link onClick={() => handleNav()} to="/">
                   Home
                 </Link>
               </li>
-              {/* <li className="relative nav-hover">
+              {/* <li className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
                 <Link onClick={() => handleNav()} to="/console">
                   Console
                 </Link>
               </li> */}
-              <li className="relative nav-hover">
+              <li className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
                 <Link onClick={() => handleNav()} to="/products">
                   Products
                 </Link>
               </li>
               <li>
-                <Link to="/contactUs" onClick={() => handleNav()}>
+                <Link
+                  to="/contactUs"
+                  onClick={() => handleNav()}
+                  className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
+                >
                   Contact Us
                 </Link>
               </li>
               <li
                 onClick={handleCartIconClick}
-                className="flex relative nav-hover items-center w-fit m-auto justify-center cursor-pointer"
+                className="flex relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out items-center w-fit m-auto justify-center cursor-pointer"
               >
                 <ShoppingCartIcon className="cursor-pointer" />
                 <span className="absolute -right-2 -top-2 flex items-center justify-center bg-red-600 rounded-full cartCounter">

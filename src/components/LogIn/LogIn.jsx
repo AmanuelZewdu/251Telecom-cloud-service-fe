@@ -47,6 +47,7 @@ const LogIn = () => {
         } else {
           sessionStorage.setItem("loggedIn-user", JSON.stringify(data));
           const cartItem = JSON.parse(localStorage.getItem("purchaseItems"));
+          window.dispatchEvent(new Event("storage"));
           setLoading(false);
           if (cartItem && cartItem.length > 0) {
             navigate("/purchase-confirm");

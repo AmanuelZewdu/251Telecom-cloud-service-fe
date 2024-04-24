@@ -20,8 +20,6 @@ const PurchaseConfirmation = () => {
     const totalCartItems =
       JSON.parse(localStorage.getItem("purchaseItems")) || [];
     setCartItems(totalCartItems);
-    const disk = totalCartItems.map((cartItem) => cartItem.diskSize);
-    console.log("diks", disk);
     const loggedInUserString = sessionStorage.getItem("loggedIn-user");
 
     if (loggedInUserString) {

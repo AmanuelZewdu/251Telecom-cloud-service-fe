@@ -86,6 +86,12 @@ const Navbar = () => {
     setIsCartModalOpen(false);
   };
 
+  const handleLogOut = () => {
+    setOpen(false);
+    sessionStorage.removeItem("loggedIn-user");
+    window.dispatchEvent(new Event("storage"));
+  };
+
   return (
     <div className="flex justify-center">
       {/* This is the black overlay */}
@@ -93,6 +99,12 @@ const Navbar = () => {
         <div
           onClick={() => setNavIsOpen(!navIsOpen)}
           className="fixed top-0 left-0 w-full h-screen bg-black/50 z-10"
+        ></div>
+      )}
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          className="fixed top-0 left-0 w-full h-screen bg-black/5 z-10"
         ></div>
       )}
       <nav
@@ -146,7 +158,10 @@ const Navbar = () => {
                 }`}
               >
                 <ul className="flex flex-col cursor-pointer">
-                  <li className="hover:bg-gray-100 p-2 px-4 flex gap-2">
+                  <li
+                    onClick={handleLogOut}
+                    className="hover:bg-gray-100 p-2 px-4 flex gap-2"
+                  >
                     {" "}
                     <LogoutIcon />
                     <span>Log out</span>{" "}

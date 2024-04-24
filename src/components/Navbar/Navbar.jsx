@@ -1,6 +1,6 @@
 import "./navbar.scss";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CartModal from "../CartModal/CartModal";
@@ -15,6 +15,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [cartItemsCount, setCartItemsCount] = useState(0);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -91,6 +92,8 @@ const Navbar = () => {
     setOpen(false);
     sessionStorage.removeItem("loggedIn-user");
     window.dispatchEvent(new Event("storage"));
+    navigate("/");
+    setNavIsOpen(false);
   };
 
   return (

@@ -20,7 +20,6 @@ import services from "../../../Services/services";
 import TablePagination from "@mui/material/TablePagination";
 import CircularProgress from "@mui/material/CircularProgress";
 import PurchaseItemData from "../../PurchaseItemData/PurchaseItemData";
-import { number } from "yup";
 
 const VirtualMachine = () => {
   const navigate = useNavigate();
@@ -132,7 +131,6 @@ const VirtualMachine = () => {
         },
         // duration: duration,
       };
-      console.log(volume);
       const updatedItems = [...existingItems, purchaseItem];
       console.log(updatedItems);
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
@@ -156,10 +154,10 @@ const VirtualMachine = () => {
 
   const fetchInstanceType = async () => {
     try {
-      const response = await services.getInstanceType();
-      setInstanceTypes(response);
+      const { data } = await services.getInstanceType();
+      setInstanceTypes(data);
       setLoading(false);
-      sessionStorage.setItem("cachedInstanceTypes", JSON.stringify(response));
+      sessionStorage.setItem("cachedInstanceTypes", JSON.stringify(data));
     } catch (error) {
       setFetchError(true);
     } finally {

@@ -20,7 +20,6 @@ const ForgotPassword = () => {
   const { vertical, horizontal, open } = state;
 
   const handleClick = (newState) => () => {
-    console.log("called");
     setState({ ...newState, open: true });
   };
 
@@ -51,11 +50,10 @@ const ForgotPassword = () => {
       setLoading(true);
       try {
         setLoading(true);
-        const { data, statusCode } = await services.getInstanceType(values);
+        const { statusCode } = await services.getInstanceType(values);
         if (statusCode === 200) {
           setLoading(false);
           handleClick({ vertical: "top", horizontal: "center" })();
-          console.log(data);
         }
       } catch (error) {
         console.error("Error occured", error);
@@ -144,7 +142,6 @@ const ForgotPassword = () => {
         onClose={handleClose}
         message="We've sent a password reset link to your email! Please check your inbox to continue."
         key={vertical + horizontal}
-        n
       />
     </div>
   );

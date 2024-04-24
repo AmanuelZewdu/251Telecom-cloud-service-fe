@@ -126,6 +126,7 @@ const VirtualMachine = () => {
         serviceType: "Virtual machine",
         duration: durationNumber,
         diskSize,
+        imageType: selectedImageName,
         volume: {
           size: parseInt(volume),
         },
@@ -280,8 +281,9 @@ const VirtualMachine = () => {
   };
 
   return (
-    <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left font-montserrat">
-      <h1 className="text-2xl tracking-wide ">Virtual Machine</h1>
+    <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left font-poppins">
+      <h1 className="text-2xl  font-medium text-slate-800">Virtual Machine</h1>
+      {selectedImageName}
       {fetchError && (
         <p>
           "Oops! Something went wrong while fetching instance types. Please try
@@ -292,7 +294,7 @@ const VirtualMachine = () => {
         <summary className="text-sm leading-6 text-slate-900 select-none">
           What is VM?
         </summary>
-        <p className="mt-3 text-sm leading-7 text-slate-900">{vmDescription}</p>
+        <p className="mt-3 text-sm leading-7 text-slate-500">{vmDescription}</p>
       </details>
       <div className="flex flex-col gap-4">
         <div className="border shadow-md flex text-left flex-col p-4 gap-2">

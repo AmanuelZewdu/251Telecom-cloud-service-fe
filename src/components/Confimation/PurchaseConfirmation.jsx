@@ -157,12 +157,16 @@ const PurchaseConfirmation = () => {
                     {cartItem.name}
                     {cartItem.objName}
                   </span>
-                  <span className="font-light text-sm font-poppins">
+                  <span className="text-gray-500 text-sm font-poppins">
                     {cartItem.vcpus ? `${cartItem.vcpus} vCPU | ` : ""}
                     {cartItem.memory_mb ? `${cartItem.memory_mb}` : ""}
                     {cartItem?.diskType}
                   </span>
-                  <span className="font-light text-sm">Qty: 1</span>
+                  <span className="text-gray-500 text-sm">
+                    {cartItem.volume.size
+                      ? `${cartItem.volume.size} GB volume`
+                      : ""}
+                  </span>
                 </div>
               </div>
               <span

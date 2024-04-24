@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@mui/material";
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 const CartModal = ({ open, onClose }) => {
   const [cartItems, setCartItems] = useState([]);
@@ -86,16 +87,16 @@ const CartModal = ({ open, onClose }) => {
       } transition-transform duration-500 h-screen`}
     >
       <div className="cartModal flex flex-col w-[20em] md:min-w-[26em] bg-white h-full p-4 gap-4 overflow-y-auto">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg text-[#111111] font-poppins">Your Cart</h2>
-          <button className="text-[#111111]" onClick={onClose}>
+        <div className="flex items-center font-montserrat font-medium text-primary-blue justify-between">
+          <h2 className="text-2xl">Your Cart</h2>
+          <button className="" onClick={onClose}>
             <CloseIcon />
           </button>
         </div>
         <hr />
         {cartItems.length > 0 ? (
           <>
-            <ul className="flex mt-4 flex-col gap-2 ">
+            <ul className="flex mt-4 flex-col gap-2 font-montserrat">
               {cartItems.map((item, index) => (
                 <li
                   className="relative flex bg-gray-50 items-center justify-between p-2 rounded-md shadow-md"
@@ -106,22 +107,24 @@ const CartModal = ({ open, onClose }) => {
                   </span>
                   <div className="flex gap-2 items-center">
                     ({index + 1})
-                    <div className="flex flex-col gap-2">
-                      <h4 className="text-xl font-montserrat ">
+                    <div className="flex flex-col gap-1">
+                      <h4 className="text-xl font-medium text-[#1a1a1a]">
                         {item.name}
                         {item?.objName}
                       </h4>
-                      <span className="font-light font-poppins">
+                      <span className="tracking-wide text-sm font-medium text-gray-400">
                         {item.vcpus ? `${item.vcpus} vCPU | ` : ""}
                         {item.memory_mb ? `${item.memory_mb}` : ""}
                         {item?.diskType}
                       </span>
-                      <span className="font-medium  font-poppins">Qty: 1</span>
-                      <h2 className="font-light font-poppins">
+                      <span className="tracking-wide text-sm font-medium text-gray-400">
+                        {item.volume.size
+                          ? `${item.volume.size} GB volume`
+                          : ""}
+                      </span>
+                      <h2 className="text-sm tracking-wide font-medium text-gray-400">
                         Price:{" "}
-                        <span className="font-medium text-sm font-poppins">
-                          {item.price}
-                        </span>
+                        <span className="text-[#1a1a1a]">{item.price}</span>
                       </h2>
                     </div>
                   </div>
@@ -154,6 +157,7 @@ const CartModal = ({ open, onClose }) => {
             {cartItems.length > 0 && (
               <Button
                 variant="contained"
+                className="flex items-center justify-center gap-2 hover:bg-green-400"
                 style={{
                   backgroundColor: "#BC68B2",
                   padding: "0.5em",
@@ -161,7 +165,7 @@ const CartModal = ({ open, onClose }) => {
                 }}
                 onClick={() => redirectHandler()}
               >
-                Proceed to checkout
+                Proceed to checkout <ArrowRightAltIcon />
               </Button>
             )}
           </>

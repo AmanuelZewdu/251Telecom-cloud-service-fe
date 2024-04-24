@@ -80,6 +80,7 @@ const Navbar = () => {
   const handleCartIconClick = () => {
     setIsCartModalOpen(true);
     setNavIsOpen(false);
+    setOpen(false);
   };
 
   const closeCartModal = () => {
@@ -122,16 +123,25 @@ const Navbar = () => {
             className="flex justify-end gap-4 font-medium"
             style={{ listStyle: "none" }}
           >
-            <li className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
+            <li
+              onClick={() => setOpen(false)}
+              className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
+            >
               <Link to="/">Home</Link>
             </li>
             {/* <li className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
               <Link to="/console">Console</Link>
             </li> */}
-            <li className="relative hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
+            <li
+              onClick={() => setOpen(false)}
+              className="relative hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
+            >
               <Link to="/products">Products</Link>
             </li>
-            <li className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
+            <li
+              onClick={() => setOpen(false)}
+              className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
+            >
               <Link to="/contactUs">Contact Us</Link>
             </li>
             <li

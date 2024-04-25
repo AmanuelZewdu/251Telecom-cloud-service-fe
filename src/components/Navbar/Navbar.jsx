@@ -111,7 +111,7 @@ const Navbar = () => {
       {open && (
         <div
           onClick={() => setOpen(false)}
-          className="hidden md:fixed top-0 left-0 w-full h-screen bg-black/5 z-10"
+          className="fixed top-0 left-0 w-full h-screen bg-black/5 z-20"
         ></div>
       )}
       <nav

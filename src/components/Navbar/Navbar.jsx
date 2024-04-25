@@ -192,12 +192,13 @@ const Navbar = () => {
               </div>
             </div>
           ) : (
-            <button className="flex place-content-center p-2 w-[7em] bg-button-color rounded-full cursor-pointer hover:bg-[#f5f5f5] text-[#f5f5f5] hover:text-button-color transition-all duration-300 ease-in-out hover:shadow-lg">
-              <Link to="/log-in" className="relative">
-                {" "}
-                LOG IN
-              </Link>
-            </button>
+            <Link
+              to="/log-in"
+              className="relative flex place-content-center p-2 w-[7em] bg-button-color rounded-full cursor-pointer hover:bg-[#f5f5f5] text-[#f5f5f5] hover:text-button-color transition-all duration-300 ease-in-out hover:shadow-lg"
+            >
+              {" "}
+              LOG IN
+            </Link>
           )}
         </div>
 

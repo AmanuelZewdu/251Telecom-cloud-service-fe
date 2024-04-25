@@ -5,15 +5,13 @@ import { Button } from "@mui/material";
 const Services = () => {
   return (
     <div>
-      <div className="txt flex flex-col text-center p-2 gap-6 my-16 font-montserrat">
-        <div className="flex flex-col gap-6 items-center font-semibold">
-          <h1 className="text-3xl text-primary-blue">
+      <div className="txt flex flex-col text-center p-2 gap-6 my-16">
+        <div className="flex flex-col gap-4 items-center">
+          <h1 className="text-3xl font-montserrat text-primary-blue">
             Our{" "}
             <span className="relative text-button-color line">services</span>{" "}
           </h1>
-          <p className="text-xl font-light font-poppins md:text-base text-gray-600">
-            Here are services we are offering{" "}
-          </p>
+          <p className="font-light">Here are services we are offering </p>
         </div>
         <div className="w-full p-3 flex items-stretch justify-center flex-wrap gap-8">
           {services.map((service) => (

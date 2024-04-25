@@ -11,7 +11,7 @@ const Services = () => {
             Our{" "}
             <span className="relative text-button-color line">services</span>{" "}
           </h1>
-          <p className="font-light text-gray-800 font-poppins">
+          <p className="text-gray-600 font-poppins">
             Here are services we are offering{" "}
           </p>
         </div>

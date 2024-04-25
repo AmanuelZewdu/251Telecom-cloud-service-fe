@@ -28,7 +28,7 @@ export default function AccordionUsage() {
           <h1 className="text-3xl">
             <span className="relative font-semibold line">FAQ</span>{" "}
           </h1>
-          <p className=" font-poppins">
+          <p className="font-poppins">
             Here you can find the most frequently asked questions
           </p>
         </div>

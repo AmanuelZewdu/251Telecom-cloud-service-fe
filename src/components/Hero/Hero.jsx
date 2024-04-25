@@ -18,8 +18,8 @@ const Hero = () => {
 
       <div className="relative flex flex-col p-2 text-center items-center justify-center">
         <h1 className="text leading-none  p-2 rounded-lg text-primary-blue font-bold">
-          Your <span className="text-animation font-extrabold">Data</span> Our
-          <span className="text-animation font-extrabold"> Priority.</span>
+          Your <span className="text-animation ">Data</span> Our
+          <span className="text-animation "> Priority.</span>
         </h1>
         <p className="max-w-[31em] text-lg text-primary-blue p-2 ml-3">
           Elevate your digital journey with us. Seamless solutions, limitless

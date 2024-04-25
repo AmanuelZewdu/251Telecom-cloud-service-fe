@@ -62,7 +62,7 @@ const LogIn = () => {
     },
   });
   return (
-    <div className="w-full font-montserrat flex h-screen items-center justify-center p-4 login">
+    <div className="w-full flex h-screen items-center justify-center p-4 font-poppins login">
       <div className="hidden w-[30em] lg:flex overflow-hidden">
         <img
           className="h-full w-full"
@@ -72,7 +72,9 @@ const LogIn = () => {
       </div>
       <div className="flex-grow max-w-[30em] max-h-[30em] bg-white rounded-sm shadow-2xl">
         <div className="flex flex-col gap-4 p-6">
-          <h1 className="text-xl font-medium text-gray-700">LOGIN</h1>
+          <h1 className="text-xl font-poppins font-semibold text-primary-blue">
+            LOG IN
+          </h1>
           <hr className="border border-black/30" />
           <form
             onSubmit={formik.handleSubmit}
@@ -89,7 +91,7 @@ const LogIn = () => {
               </p>
             )}
             <div className="w-full">
-              <label htmlFor="email" className="text-gray-900">
+              <label htmlFor="email" className="text-gray-600 font-poppins">
                 Email address:
               </label>
               <input
@@ -112,7 +114,7 @@ const LogIn = () => {
               ) : null}
             </div>
             <div className="relative w-full">
-              <label htmlFor="password" className="text-gray-900">
+              <label htmlFor="password" className="text-gray-600 font-poppins">
                 Password:
               </label>
               <input
@@ -147,7 +149,7 @@ const LogIn = () => {
               ) : null}
             </div>
             <button
-              className={`flex justify-center items-center gap-2 w-full rounded-sm  p-2 text-white  ${
+              className={`flex justify-center items-center gap-2 w-full rounded-sm  p-2 text-white font-poppins font-medium  ${
                 loading
                   ? "bg-button-color/50 cursor-wait"
                   : "bg-button-color hover:bg-button-color"

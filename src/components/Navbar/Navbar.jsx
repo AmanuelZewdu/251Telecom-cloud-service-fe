@@ -111,7 +111,7 @@ const Navbar = () => {
       {open && (
         <div
           onClick={() => setOpen(false)}
-          className="fixed top-0 left-0 w-full h-screen bg-black/5 z-20"
+          className="fixed top-0 left-0 w-full h-screen bg-black/5 z-10"
         ></div>
       )}
       <nav
@@ -169,14 +169,14 @@ const Navbar = () => {
                 onClick={() => setOpen(!open)}
               />
               <div
-                className={`absolute top-[2.2em] bg-white w-[10em] right-0 overflow-hidden drop-shadow-md rounded-md transition-all duration-300 ease-in-out ${
+                className={`absolute top-[2.2em] bg-white hover:bg-gray-50 w-[10em] right-0 overflow-hidden drop-shadow-md rounded-md transition-all duration-300 ease-in-out  ${
                   open ? "h-[3em] flex items-center" : "h-0 "
                 }`}
               >
                 <ul className="flex flex-col cursor-pointer">
                   <li
                     onClick={handleLogOut}
-                    className={`hover:bg-gray-100 px-4 flex gap-2 ${
+                    className={`px-4 flex gap-2 ${
                       open ? "opacity-100" : "opacity-0"
                     }`}
                   >

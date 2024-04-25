@@ -170,20 +170,16 @@ const Navbar = () => {
               />
               <div
                 className={`absolute top-[2.2em] bg-white w-[10em] right-0 overflow-hidden drop-shadow-md rounded-md transition-all duration-300 ease-in-out ${
-                  open ? "h-[5.2em]" : " h-0"
+                  open ? "h-[3em] flex items-center" : "h-0 "
                 }`}
               >
                 <ul className="flex flex-col cursor-pointer">
                   <li
                     onClick={handleLogOut}
-                    className="hover:bg-gray-100 p-2 px-4 flex gap-2"
+                    className={`hover:bg-gray-100 px-4 flex gap-2 ${
+                      open ? "opacity-100" : "opacity-0"
+                    }`}
                   >
-                    {" "}
-                    <LogoutIcon />
-                    <span>Log out</span>{" "}
-                  </li>
-                  <hr />
-                  <li className="hover:bg-gray-100 p-2 px-4 flex gap-2">
                     {" "}
                     <LogoutIcon />
                     <span>Log out</span>{" "}
@@ -265,12 +261,6 @@ const Navbar = () => {
                       onClick={handleLogOut}
                       className="hover:bg-gray-100 p-2 px-4 flex gap-2"
                     >
-                      {" "}
-                      <LogoutIcon />
-                      <span>Log out</span>{" "}
-                    </li>
-                    <hr />
-                    <li className="hover:bg-gray-100 p-2 px-4 flex gap-2">
                       {" "}
                       <LogoutIcon />
                       <span>Log out</span>{" "}

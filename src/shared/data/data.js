@@ -16,7 +16,7 @@ export const services = [
     image: objectStorage,
     serviceName: "Object storage",
     description:
-      "Store, access, and manage your data effortlessly with our reliable object storage solution. Enjoy high durability, low latency, and unlimited scalability, ensuring your critical information is always available when you need it most.",
+      "Store, access, and manage your data effortlessly with our reliable object storage solution. Enjoy high durability, low latency, and scalability, ensuring your critical information is always available when you need it most.",
     path: "/object-storage",
   },
   {

@@ -26,9 +26,9 @@ export default function AccordionUsage() {
       <Box className="relative w-full flex flex-col items-center lg:gap-6 mx-8 font-montserrat p-4 pb-12 faq">
         <div className="flex flex-col text-[#f5f5f5] text-center gap-4 py-4 items-center">
           <h1 className="text-3xl">
-            <span className="relative line">FAQ</span>{" "}
+            <span className="relative font-semibold line">FAQ</span>{" "}
           </h1>
-          <p className="">
+          <p className="font-poppins">
             Here you can find the most frequently asked questions
           </p>
         </div>
@@ -45,16 +45,17 @@ export default function AccordionUsage() {
                   paddingX: "1em",
                   paddingY: "0.5em",
                 }}
-                // className="shadow-xl"
               >
-                <span className="text-[#f5f5f5]">{faq.question}</span>
+                <span className="text-[#f5f5f5] font-poppins font-medium">
+                  {faq.question}
+                </span>
               </AccordionSummary>
               <AccordionDetails>
-                <ul className="flex flex-col gap-2">
+                <ul className="flex flex-col gap-3">
                   {faq.answer.map((answer, index) => (
                     <li
                       key={faq.id + index}
-                      className="flex gap-2 items-baseline"
+                      className="flex gap-2 font-montserrat items-baseline"
                     >
                       <CheckCircleIcon
                         color="primary"

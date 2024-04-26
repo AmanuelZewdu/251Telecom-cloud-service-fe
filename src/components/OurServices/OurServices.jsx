@@ -6,12 +6,14 @@ const Services = () => {
   return (
     <div>
       <div className="txt flex flex-col text-center p-2 gap-6 my-16">
-        <div className="flex flex-col gap-4 items-center">
-          <h1 className="text-3xl font-montserrat">
+        <div className="flex flex-col gap-6 items-center">
+          <h1 className="text-3xl font-montserrat font-semibold text-primary-blue">
             Our{" "}
             <span className="relative text-button-color line">services</span>{" "}
           </h1>
-          <p className="font-light">Here are services we are offering </p>
+          <p className="text-gray-600 font-poppins">
+            Here are services we are offering{" "}
+          </p>
         </div>
         <div className="w-full p-3 flex items-stretch justify-center flex-wrap gap-8">
           {services.map((service) => (
@@ -24,7 +26,7 @@ const Services = () => {
               hover:scale-105 overflow-hidden 
               "
             >
-              <div className="w-full  max-h-[15em] overflow-hidden">
+              <div className="w-full max-h-[15em] overflow-hidden">
                 <img
                   className="w-full h-full object-cover hover:scale-110 transition-all duration-300 ease-in-out"
                   src={service.image}
@@ -32,12 +34,12 @@ const Services = () => {
                 />
               </div>
               <div className="card-center relative bg-gray-50 text-left gap-3 flex flex-col p-4">
-                <h2 className="text-xl font-montserrat border-b border-primary-blue w-fit">
+                <h2 className="text-2xl xl:text-xl border-b border-primary-blue w-fit font-poppins">
                   {service.serviceName}
                 </h2>
                 <div
-                  className="text-sm xl:font-light
-                   tracking-wider
+                  className="xl:font-light
+                   tracking-wider text-gray-800
                 "
                 >
                   {service.description}

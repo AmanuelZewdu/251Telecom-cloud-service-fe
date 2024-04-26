@@ -1,15 +1,21 @@
 import "./navbar.scss";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CartModal from "../CartModal/CartModal";
 import logo from "../../shared/images/cloud251Logo.png";
+import PersonIcon from "@mui/icons-material/Person";
+import LogoutIcon from "@mui/icons-material/Logout";
+
 const Navbar = () => {
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [open, setOpen] = useState(false);
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [cartItemsCount, setCartItemsCount] = useState(0);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +29,31 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const checkLoggedInUser = () => {
+      const loggedInUser = JSON.parse(sessionStorage.getItem("loggedIn-user"));
+      setIsUserLoggedIn(!!loggedInUser);
+    };
+
+    checkLoggedInUser();
+
+    const handleStorageChange = () => {
+      checkLoggedInUser();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
+  //   if (loggedInUser) {
+  //     SetIsUserLoggedIn(true);
+  //   } else {
+  //     SetIsUserLoggedIn(false);
+  //   }
+  // }, [sessionStorage.getItem("loggedIn-user")]);
   // useEffect(() => {
   //   const cartItems = JSON.parse(localStorage.getItem("purchaseItems")) || [];
   //   setCartItemsCount(cartItems.length);
@@ -50,10 +81,19 @@ const Navbar = () => {
   const handleCartIconClick = () => {
     setIsCartModalOpen(true);
     setNavIsOpen(false);
+    setOpen(false);
   };
 
   const closeCartModal = () => {
     setIsCartModalOpen(false);
+  };
+
+  const handleLogOut = () => {
+    setOpen(false);
+    sessionStorage.removeItem("loggedIn-user");
+    window.dispatchEvent(new Event("storage"));
+    navigate("/");
+    setNavIsOpen(false);
   };
 
   return (
@@ -61,8 +101,17 @@ const Navbar = () => {
       {/* This is the black overlay */}
       {navIsOpen && (
         <div
-          onClick={() => setNavIsOpen(!navIsOpen)}
+          onClick={() => {
+            setNavIsOpen(!navIsOpen);
+            setOpen(false);
+          }}
           className="fixed top-0 left-0 w-full h-screen bg-black/50 z-10"
+        ></div>
+      )}
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          className="fixed top-0 left-0 w-full h-screen bg-black/5 z-10"
         ></div>
       )}
       <nav
@@ -80,34 +129,73 @@ const Navbar = () => {
             className="flex justify-end gap-4 font-medium"
             style={{ listStyle: "none" }}
           >
-            <li className="relative nav-hover">
+            <li
+              onClick={() => setOpen(false)}
+              className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
+            >
               <Link to="/">Home</Link>
             </li>
-            {/* <li className="relative nav-hover">
+            {/* <li className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
               <Link to="/console">Console</Link>
             </li> */}
-            <li className="relative nav-hover">
+            <li
+              onClick={() => setOpen(false)}
+              className="relative hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
+            >
               <Link to="/products">Products</Link>
             </li>
-            <li>
+            <li
+              onClick={() => setOpen(false)}
+              className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
+            >
               <Link to="/contactUs">Contact Us</Link>
             </li>
             <li
               onClick={handleCartIconClick}
-              className="flex relative nav-hover"
+              className="flex relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
             >
               <ShoppingCartIcon className="cursor-pointer" />
-              <span className="absolute -right-2 -top-2 flex items-center justify-center bg-red-600 rounded-full cursor-pointer cartCounter">
-                <span className="text-[#f5f5f5]">{cartItemsCount}</span>
+              <span className="absolute -right-0 -top-2 flex items-center justify-center bg-red-600 rounded-full cursor-pointer cartCounter">
+                <span className="text-[#f5f5f5] text-sm">{cartItemsCount}</span>
               </span>
             </li>
           </ul>
-          <div className="flex place-content-center p-2 w-[7em] bg-button-color rounded-full cursor-pointer hover:bg-[#f5f5f5] text-[#f5f5f5] hover:text-button-color transition-all duration-300 ease-in-out hover:shadow-lg">
-            <Link to="/log-in" className="relative">
+          {isUserLoggedIn ? (
+            <div className="relative  font-medium">
+              <PersonIcon
+                className="hover:bg-gray-300  rounded-full w-[6em] p-1"
+                fontSize="large"
+                style={{ transition: "background-color 0.3s ease-in-out" }}
+                onClick={() => setOpen(!open)}
+              />
+              <div
+                className={`absolute top-[2.2em] bg-white hover:bg-gray-50 w-[10em] right-0 overflow-hidden drop-shadow-md rounded-md transition-all duration-300 ease-in-out  ${
+                  open ? "h-[3em] flex items-center" : "h-0 "
+                }`}
+              >
+                <ul className="flex flex-col cursor-pointer">
+                  <li
+                    onClick={handleLogOut}
+                    className={`px-4 flex gap-2 ${
+                      open ? "opacity-100" : "opacity-0"
+                    }`}
+                  >
+                    {" "}
+                    <LogoutIcon />
+                    <span>Log out</span>{" "}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          ) : (
+            <Link
+              to="/log-in"
+              className="relative flex place-content-center p-2 w-[7em] bg-button-color rounded-full cursor-pointer hover:bg-[#f5f5f5] text-[#f5f5f5] hover:text-button-color transition-all duration-300 ease-in-out hover:shadow-lg"
+            >
               {" "}
               LOG IN
             </Link>
-          </div>
+          )}
         </div>
 
         {/* This is the nav that's displayed when the screen is less than mid */}
@@ -121,29 +209,33 @@ const Navbar = () => {
         flex flex-col p-4 items-center`}
           >
             <ul className="flex flex-col gap-4 text-center">
-              <li className="relative nav-hover">
+              <li className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
                 <Link onClick={() => handleNav()} to="/">
                   Home
                 </Link>
               </li>
-              {/* <li className="relative nav-hover">
+              {/* <li className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
                 <Link onClick={() => handleNav()} to="/console">
                   Console
                 </Link>
               </li> */}
-              <li className="relative nav-hover">
+              <li className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
                 <Link onClick={() => handleNav()} to="/products">
                   Products
                 </Link>
               </li>
               <li>
-                <Link to="/contactUs" onClick={() => handleNav()}>
+                <Link
+                  to="/contactUs"
+                  onClick={() => handleNav()}
+                  className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
+                >
                   Contact Us
                 </Link>
               </li>
               <li
                 onClick={handleCartIconClick}
-                className="flex relative nav-hover items-center w-fit m-auto justify-center cursor-pointer"
+                className="flex relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out items-center w-fit m-auto justify-center cursor-pointer"
               >
                 <ShoppingCartIcon className="cursor-pointer" />
                 <span className="absolute -right-2 -top-2 flex items-center justify-center bg-red-600 rounded-full cartCounter">
@@ -151,10 +243,41 @@ const Navbar = () => {
                 </span>
               </li>
             </ul>
-            <Link onClick={() => handleNav()} to="/log-in" className="relative">
-              {" "}
-              LOG IN
-            </Link>
+            {isUserLoggedIn ? (
+              <div className="relative overflow-hidden flex flex-col items-center justify-center font-medium">
+                <PersonIcon
+                  className="hover:bg-gray-300  rounded-full w-[6em] p-1"
+                  fontSize="large"
+                  style={{ transition: "background-color 0.3s ease-in-out" }}
+                  onClick={() => setOpen(!open)}
+                />
+                <div
+                  className={` drop-shadow-md rounded-md transition-all duration-300 ease-in-out ${
+                    open ? "h-[5.2em]" : " h-0"
+                  }`}
+                >
+                  <ul className="flex flex-col cursor-pointer">
+                    <li
+                      onClick={handleLogOut}
+                      className="hover:bg-gray-100 p-2 px-4 flex gap-2"
+                    >
+                      {" "}
+                      <LogoutIcon />
+                      <span>Log out</span>{" "}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <Link
+                onClick={() => handleNav()}
+                to="/log-in"
+                className="relative"
+              >
+                {" "}
+                LOG IN
+              </Link>
+            )}
           </div>
         </div>
       </nav>

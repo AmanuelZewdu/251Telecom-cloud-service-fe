@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import { Link } from "react-router-dom";
+
 const HeroButton = styled(Button)({
   textTransform: "none",
   fontSize: "1em",
@@ -16,11 +17,11 @@ const Hero = () => {
       {/* <div className="absolute bg-black opacity-5 w-full h-svh "></div> */}
 
       <div className="relative flex flex-col p-2 text-center items-center justify-center">
-        <h1 className="text leading-none  p-2 rounded-lg text-primary-blue font-semibold">
-          Your <span className="text-animation font-bold">Data</span> Our
-          <span className="text-animation font-bold"> Priority.</span>
+        <h1 className="text leading-none  p-2 rounded-lg text-primary-blue font-bold">
+          Your <span className="text-animation ">Data</span> Our
+          <span className="text-animation "> Priority.</span>
         </h1>
-        <p className="max-w-[30em] text-lg text-primary-blue p-2 ml-3">
+        <p className="max-w-[31em] text-lg text-primary-blue p-2 ml-3">
           Elevate your digital journey with us. Seamless solutions, limitless
           possibilities. Experience innovation, tailored for you
         </p>

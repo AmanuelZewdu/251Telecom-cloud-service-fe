@@ -47,7 +47,7 @@ const Footer = () => {
 
   return (
     <div className="w-full grid grid-cols-2 items-start place-items-center lg:grid-cols-5 gap-4 xl:gap-6 bg-gray-200 text-primary-blue pt-12 pb-2 px-2 font-poppins">
-      <div className="col-span-2  flex gap-3 max-w-[30em] xl:ml-[5em] items-center">
+      <div className="col-span-2 px-4 xl:p-2 flex gap-3 max-w-[27em] xl:ml-[5em] items-center">
         <div className="max-w-[5em]">
           <img src={logo} alt="" />
         </div>
@@ -73,7 +73,7 @@ const Footer = () => {
       </div>
       <div className="flex flex-col items-center justify-center gap-2 col-span-2 lg:col-span-1 ">
         <h3 className="text-lg font-medium">Contact information</h3>
-        <ul className="flex gap-8">
+        <ul className="flex gap-4">
           {contactInfo.map((info) => (
             <li
               className="reflect hover:scale-125 transition-all duration-300 ease-in-out"

@@ -20,8 +20,6 @@ const PurchaseConfirmation = () => {
     const totalCartItems =
       JSON.parse(localStorage.getItem("purchaseItems")) || [];
     setCartItems(totalCartItems);
-    const disk = totalCartItems.map((cartItem) => cartItem.diskSize);
-    console.log(disk);
     const loggedInUserString = sessionStorage.getItem("loggedIn-user");
 
     if (loggedInUserString) {
@@ -125,7 +123,7 @@ const PurchaseConfirmation = () => {
   };
 
   return (
-    <div className="flex min-h-svh p-4 pt-[8em] bg-gray-100 flex-wrap justify-center relative w-full ">
+    <div className="flex p-4 pt-[8em] bg-gray-50 flex-wrap justify-center relative w-full">
       <div className="flex h-fit max-w-[40em] flex-col gap-3 border-2 w-full rounded-md p-4 bg-white  drop-shadow-md">
         <div className="flex items-center gap-2">
           {" "}
@@ -159,12 +157,16 @@ const PurchaseConfirmation = () => {
                     {cartItem.name}
                     {cartItem.objName}
                   </span>
-                  <span className="font-light text-sm font-poppins">
+                  <span className="text-gray-500 text-sm font-poppins">
                     {cartItem.vcpus ? `${cartItem.vcpus} vCPU | ` : ""}
                     {cartItem.memory_mb ? `${cartItem.memory_mb}` : ""}
                     {cartItem?.diskType}
                   </span>
-                  <span className="font-light text-sm">Qty: 1</span>
+                  <span className="text-gray-500 text-sm">
+                    {cartItem.volume.size
+                      ? `${cartItem.volume.size} GB volume`
+                      : ""}
+                  </span>
                 </div>
               </div>
               <span

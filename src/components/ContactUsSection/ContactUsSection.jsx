@@ -17,10 +17,10 @@ const ContactUsSection = () => {
   });
 
   return (
-    <div className="w-full flex flex-col items-center justify-center bg gap-8 p-4 py-12 font-montserrat">
-      <div className="flex flex-col  xl:gap-2 xl:flex-row xl:max-w-[80em] ">
-        <p className="flex flex-col font-montserrat font-semibold gap-2 text-3xl xl:text-4xl bg-gradient-to-br from-primary-blue to-secondary-blue  text-transparent bg-clip-text text-center xl:text-left">
-          Do you have any questions? <span> Want to talk to us?</span>
+    <div className="w-full flex flex-col items-center justify-center bg gap-8 p-4 py-12 ">
+      <div className="flex flex-col gap-5 xl:gap-2 xl:flex-row xl:max-w-[70em] ">
+        <p className="flex flex-col font-bold gap-2 text-3xl xl:text-4xl bg-gradient-to-br from-primary-blue to-secondary-blue font-poppins text-transparent bg-clip-text text-center xl:text-left">
+          Do you have any questions?
           <span className="">Please don't hesitate and reach out to us</span>
         </p>
         <div className="flex flex-col gap-4 max-w-[40em] text-center xl:text-left mx-auto xl:ml-[5em]">

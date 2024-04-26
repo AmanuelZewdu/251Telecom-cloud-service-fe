@@ -119,10 +119,12 @@ const SignUp = () => {
   });
 
   return (
-    <div className="w-full font-montserrat flex items-center justify-center p-2 signup">
+    <div className="w-full font-poppins flex items-center justify-center p-2 signup">
       <div className="mt-[8em] mb-[3em] flex-grow max-w-[40em] bg-white rounded-md shadow-2xl">
         <div className="flex flex-col gap-4 p-6">
-          <h1 className="text-xl font-medium text-gray-700">SIGN UP</h1>
+          <h1 className="text-xl font-poppins font-semibold text-primary-blue">
+            SIGN UP
+          </h1>
           <hr className="border border-black/30" />
           <div className="flex items-center gap-4">
             <div>
@@ -135,7 +137,9 @@ const SignUp = () => {
                 checked={formik.values.accountType === "personal"}
                 onChange={formik.handleChange}
               />
-              <label htmlFor="personal">Personal</label>
+              <label htmlFor="personal" className="text-gray-600">
+                Personal
+              </label>
             </div>
             <div>
               <input
@@ -147,7 +151,9 @@ const SignUp = () => {
                 checked={formik.values.accountType === "business"}
                 onChange={formik.handleChange}
               />
-              <label htmlFor="business">Business</label>
+              <label htmlFor="business" className="text-gray-600">
+                Business
+              </label>
             </div>
             {formik.touched.accountType && formik.errors.accountType ? (
               <div className="text-red-600 text-xs mt-1">

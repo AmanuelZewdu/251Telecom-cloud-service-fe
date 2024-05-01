@@ -5,6 +5,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CloseIcon from "@mui/icons-material/Close";
 import vm2 from "../../shared/images/vm2.jpg";
 import ethswitch_logo from "../../shared/images/ethswitch_logo.png";
+import santimPay_logo from "../../shared/images/santimPay.png";
 import obj2 from "../../shared/images/obj2.webp";
 import service from "../../Services/services";
 
@@ -202,15 +203,34 @@ const PurchaseConfirmation = () => {
             </h1>
           </div>
         )}
-        <Button
-          onClick={() => handleCreateOrder()}
-          disabled={cartItems.length === 0}
-          className="flex gap-2 h-[3.5em]"
-          variant="contained"
-        >
-          <span>Pay with </span>
-          <img src={ethswitch_logo} className="w-[10em]" alt="et switch logo" />
-        </Button>
+        <div className="w-full flex flex-col items-center gap-4">
+          <Button
+            onClick={() => handleCreateOrder()}
+            disabled={cartItems.length === 0}
+            className="w-full flex gap-2 h-[3.5em]"
+            variant="contained"
+          >
+            <span>Pay with </span>
+            <img
+              src={santimPay_logo}
+              className="w-[4em]"
+              alt="et switch logo"
+            />
+          </Button>
+          <Button
+            onClick={() => handleCreateOrder()}
+            disabled={cartItems.length === 0}
+            className="w-full flex gap-2 h-[3.5em]"
+            variant="contained"
+          >
+            <span>Pay with </span>
+            <img
+              src={ethswitch_logo}
+              className="w-[10em]"
+              alt="et switch logo"
+            />
+          </Button>
+        </div>
       </div>
 
       {successMessage && (

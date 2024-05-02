@@ -11,18 +11,16 @@ const ContactUsSection = () => {
   ];
 
   const CTA = styled(Button)({
-    textTransform: "none",
-    fontSize: "1em",
-    fontWeight: "semi-bold",
+    fontFamily: "Inter",
   });
 
   return (
-    <div className="w-full flex flex-col items-center justify-center bg gap-8 p-4 py-12 ">
+    <div className="w-full font-Inter flex flex-col items-center justify-center bg gap-8 p-4 py-12 ">
       <div className="flex flex-col gap-5 xl:gap-2 xl:flex-row xl:max-w-[70em] ">
-        <p className="flex flex-col font-bold gap-2 text-3xl xl:text-4xl bg-gradient-to-br from-primary-blue to-secondary-blue font-poppins text-transparent bg-clip-text text-center xl:text-left">
-          Do you have any questions?
+        <div className="flex flex-col font-bold gap-2 text-3xl xl:text-4xl bg-gradient-to-br from-primary-blue to-secondary-blue text-transparent bg-clip-text text-center xl:text-left">
+          <span>Do you have any questions?</span>
           <span className="">Please don't hesitate and reach out to us</span>
-        </p>
+        </div>
         <div className="flex flex-col gap-4 max-w-[40em] text-center xl:text-left mx-auto xl:ml-[5em]">
           <h2 className="text-gray-600 text-xl">
             For businesses seeking advanced cloud capabilities tailored to your
@@ -40,7 +38,6 @@ const ContactUsSection = () => {
                   sx={{
                     fontSize: "16px",
                   }}
-                  className="relativ"
                 />
                 {list.text}
               </li>
@@ -62,7 +59,7 @@ const ContactUsSection = () => {
               borderColor: "transparent",
             },
           }}
-          className="shadow-xl"
+          className="shadow-lg"
         >
           Contact Us
         </CTA>

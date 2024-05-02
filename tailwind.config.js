@@ -15,6 +15,7 @@ module.exports = {
         montserrat: ["Montserrat", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
         Inter: ["Inter", "sans-serif"],
+        DMSans: ["DM Sans", "sans-serif"],
       },
     },
   },

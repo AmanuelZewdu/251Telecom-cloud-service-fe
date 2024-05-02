@@ -14,7 +14,7 @@ const Products = () => {
 
   return (
     <div className="w-full flex flex-col relative border-3">
-      <div className="products-bg font-montserrat min-h-[17em] flex items-end justify-center text-center p-8">
+      <div className="products-bg font-Inter min-h-[17em] flex items-end justify-center text-center p-8">
         <div className="flex flex-col gap-4 place-items-center">
           <h1 className="text-4xl text-primary-blue font-semibold">
             Our{" "}

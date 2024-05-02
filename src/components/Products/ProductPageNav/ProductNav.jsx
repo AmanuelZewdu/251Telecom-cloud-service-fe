@@ -59,7 +59,7 @@ const ProductNav = ({ onSelectComponent }) => {
   };
 
   return (
-    <div className="h-full">
+    <div className="h-full font-Inter">
       {/* This is the black overlay */}
       {navIsOpen && (
         <div
@@ -72,7 +72,7 @@ const ProductNav = ({ onSelectComponent }) => {
       <div
         className={`fixed top-0 h-screen w-3/5 flex flex-col gap-4 pt-[2em] items-center text-center bg-white z-10 transition-all duration-500 ease-in-out px-2 ${
           navIsOpen ? "translate-x-0" : "-translate-x-full"
-        } font-montserrat`}
+        }`}
       >
         <div className="max-w-[5em] mx-auto flex place-items-center">
           <img className="w-full" src={logo} alt="" />
@@ -81,7 +81,7 @@ const ProductNav = ({ onSelectComponent }) => {
         <ul className="flex flex-col items-start gap-5">
           {links.map((link, index) => (
             <li
-              className={`relative flex items-center justify-between gap-2 text-[#343434] cursor-pointer border-b-2 border-transparent text-xl ${
+              className={`relative flex items-center justify-between gap-2 text-light-black cursor-pointer border-b-2 border-transparent text-xl ${
                 index === activeLink ? "active-link" : ""
               }`}
               key={index}
@@ -110,12 +110,12 @@ const ProductNav = ({ onSelectComponent }) => {
       {/* This is the nav that's displayed when the screen is greater than mid */}
       <div
         className="relative hidden md:flex 
-       w-[12em] border justify-center h-full pt-4 font-montserrat"
+       w-[12em] border justify-center h-full pt-4"
       >
         <ul className="relative flex flex-col items-start gap-4">
           {links.map((link, index) => (
             <li
-              className={`relative flex gap-2 items-center justify-between cursor-pointer border-b-2 border-transparent text-[#343434] text-lg ${
+              className={`relative flex gap-2 items-center justify-between cursor-pointer border-b-2 border-transparent text-light-black text-lg ${
                 index === activeLink ? "active-link" : ""
               }`}
               key={index}

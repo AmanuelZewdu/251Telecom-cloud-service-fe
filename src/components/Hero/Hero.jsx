@@ -13,7 +13,7 @@ const HeroButton = styled(Button)({
 
 const Hero = () => {
   return (
-    <div className="hero-wrapper font-montserrat w-full relative bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center h-svh">
+    <div className="hero-wrapper font-Inter w-full relative bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center h-svh">
       {/* <div className="absolute bg-black opacity-5 w-full h-svh "></div> */}
 
       <div className="relative flex flex-col p-2 text-center items-center justify-center">
@@ -37,9 +37,10 @@ const Hero = () => {
                   backgroundColor: "#fff",
                   color: "#BC68B2",
                 },
+                fontFamily: "Inter",
               }}
               variant="contained"
-              className=""
+              className="font-Inter"
             >
               Lets get started ...
             </HeroButton>

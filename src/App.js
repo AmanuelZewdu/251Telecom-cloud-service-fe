@@ -26,16 +26,16 @@ function App() {
           <Routes>
             <Route path="/">
               <Route index element={<Home />} />
-              <Route path="console" element={<Console />} />
+              <Route path="/console" element={<Console />} />
               <Route path="/products" element={<Products />} />
               <Route path="/contactUs" element={<ContactUs />} />
-              <Route path="virtual-machine" element={<VmPurchase />} />
+              <Route path="/virtual-machine" element={<VmPurchase />} />
               <Route
                 path="/purchase-confirm"
                 element={<PurchaseConfirmation />}
               />
               <Route path="/wait" element={<WaitPage />} />
-              <Route path="log-in" element={<LogIn />} />
+              <Route path="/log-in" element={<LogIn />} />
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/password-reset" element={<Reset />} />

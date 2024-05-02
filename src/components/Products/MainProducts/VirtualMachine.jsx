@@ -281,8 +281,10 @@ const VirtualMachine = () => {
   };
 
   return (
-    <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left font-poppins">
-      <h1 className="text-2xl  font-medium text-slate-800">Virtual Machine</h1>
+    <div className="font-Inter w-full p-2 mt-4 md:p-8 text-center flex flex-col gap-4 md:text-left ">
+      <h1 className="text-4xl text-center text-transparent bg-clip-text xl:w-fit font-bold bg-gradient-to-r from-primary-blue via-button-color to-secondary-blue">
+        Virtual Machine
+      </h1>
       {selectedImageName}
       {fetchError && (
         <p>
@@ -290,15 +292,15 @@ const VirtualMachine = () => {
           again later."
         </p>
       )}
-      <details className="open:bg-white dark:open:bg-gray-100 p-2 open:shadow-lg  rounded-md">
-        <summary className="text-sm leading-6 text-slate-900 select-none">
-          What is VM?
-        </summary>
-        <p className="mt-3 text-sm leading-7 text-slate-500">{vmDescription}</p>
+      <details className="open:bg-white dark:open:bg-gray-100 p-4 open:shadow-lg rounded-md">
+        <summary className="text-sm leading-6 select-none">What is VM?</summary>
+        <p className="mt-3 text-start leading-7 text-slate-500">
+          {vmDescription}
+        </p>
       </details>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 text-light-black ">
         <div className="border shadow-md flex text-left flex-col p-4 gap-2">
-          <h2 className="text-lg font-medium font-poppins">Product details</h2>
+          <h2 className="text-xl font-medium">Product details</h2>
           <div className="flex items-start">
             <h4>
               Product type: <span className="font-medium">Virtual Machine</span>
@@ -447,9 +449,7 @@ const VirtualMachine = () => {
         </div>
         <div className="border shadow-md flex text-left flex-col p-4 gap-2">
           <div className="flex flex-col w-ful">
-            <h4 className="text-lg mb-2 font-medium font-poppins">
-              Image Management
-            </h4>
+            <h4 className="text-lg mb-2 font-medium ">Image Management</h4>
             <div className="flex items-center gap-2">
               <label>Image:</label>
               <select
@@ -535,9 +535,7 @@ const VirtualMachine = () => {
           </div>
         </div>
         <div className="border shadow-md flex text-left flex-col p-4 gap-2">
-          <h2 className="text-lg font-medium font-poppins">
-            Volume management
-          </h2>
+          <h2 className="text-lg font-medium ">Volume management</h2>
           <div className="flex gap-2">
             <label htmlFor="volume">
               Volume size <span className="text-sm text-gray-500">(in GB)</span>
@@ -632,7 +630,7 @@ const VirtualMachine = () => {
         <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/10">
           <div className="border border-green-500 bg-white p-3 mx-auto rounded-md shadow-md flex items-center justify-center gap-2 mt-8 animate-bounce">
             <CheckCircleIcon className="text-green-600" />
-            <p className="text-green-600 text-sm font-medium font-poppins">
+            <p className="text-green-600 text-sm font-medium ">
               Item added to the cart!
             </p>
           </div>

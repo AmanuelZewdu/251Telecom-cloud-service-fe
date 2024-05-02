@@ -10,6 +10,7 @@ module.exports = {
         "primary-blue": "#17629d",
         "secondary-blue": "#26a9e0",
         "button-color": "#BC68B2",
+        "light-black": "#404040",
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],

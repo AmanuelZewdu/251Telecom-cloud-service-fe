@@ -97,7 +97,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="flex font-Inter justify-center">
       {/* This is the black overlay */}
       {navIsOpen && (
         <div
@@ -110,7 +110,10 @@ const Navbar = () => {
       )}
       {open && (
         <div
-          onClick={() => setOpen(false)}
+          onClick={() => {
+            setNavIsOpen(!navIsOpen);
+            setOpen(false);
+          }}
           className="fixed top-0 left-0 w-full h-screen bg-black/5 z-10"
         ></div>
       )}
@@ -252,8 +255,8 @@ const Navbar = () => {
                   onClick={() => setOpen(!open)}
                 />
                 <div
-                  className={` drop-shadow-md rounded-md transition-all duration-300 ease-in-out ${
-                    open ? "h-[5.2em]" : " h-0"
+                  className={`mt-3 drop-shadow-md rounded-md transition-all duration-300 ease-in-out ${
+                    open ? "h-[2.6em]" : " h-0"
                   }`}
                 >
                   <ul className="flex flex-col cursor-pointer">

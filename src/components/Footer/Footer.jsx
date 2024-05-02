@@ -74,7 +74,7 @@ const Footer = () => {
         </div>
         <div className="-mt-1 col-span-2 md:col-span-1 flex flex-col items-center md:items-start">
           <h3 className="text-lg font-medium">Contact information</h3>
-          <ul className="flex gap-4">
+          <ul className="flex gap-6">
             {contactInfo.map((info) => (
               <li
                 className="reflect hover:scale-125 transition-all duration-300 ease-in-out"

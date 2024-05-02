@@ -7,6 +7,8 @@ import Navbar from "../src/components/Navbar/Navbar";
 import LogIn from "./components/LogIn/LogIn";
 import SignUp from "./components/SignUp/SignUp";
 import VmPurchase from "./components/Products/VmPurchase";
+import ObjArrPurchase from "./components/Products/ObjStoragePurchase";
+import ArrStoragePurchase from "./components/Products/ArrStoragePurchase";
 import PurchaseConfirmation from "./components/Confimation/PurchaseConfirmation";
 import WaitPage from "./components/WaitPage/WaitPage";
 import ContactUs from "./components/ContactUs/ContactUs";
@@ -30,6 +32,8 @@ function App() {
               <Route path="/products" element={<Products />} />
               <Route path="/contactUs" element={<ContactUs />} />
               <Route path="/virtual-machine" element={<VmPurchase />} />
+              <Route path="/object-storage" element={<ObjArrPurchase />} />
+              <Route path="/array-storage" element={<ArrStoragePurchase />} />
               <Route
                 path="/purchase-confirm"
                 element={<PurchaseConfirmation />}

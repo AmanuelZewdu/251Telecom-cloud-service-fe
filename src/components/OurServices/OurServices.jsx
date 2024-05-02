@@ -1,6 +1,7 @@
 import "./services.scss";
 import { services } from "../../shared/data/data.js";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   return (
@@ -45,23 +46,25 @@ const Services = () => {
                   {service.description}
                 </div>
                 <div className="">
-                  <Button
-                    variant="outlined"
-                    className="w-full "
-                    sx={{
-                      borderColor: "#BC68B2",
-                      color: "#BC68B2",
-                      fontWeight: "semibold",
-                      "&:hover": {
-                        borderColor: "transparent",
-                        backgroundColor: "#BC68B2",
-                        color: "#fff",
-                      },
-                    }}
-                  >
-                    {" "}
-                    <a href={service.path}>Purchase</a>
-                  </Button>
+                  <Link to={service.path}>
+                    <Button
+                      variant="outlined"
+                      className="w-full "
+                      sx={{
+                        borderColor: "#BC68B2",
+                        color: "#BC68B2",
+                        fontWeight: "semibold",
+                        "&:hover": {
+                          borderColor: "transparent",
+                          backgroundColor: "#BC68B2",
+                          color: "#fff",
+                        },
+                      }}
+                    >
+                      {" "}
+                      Purchase
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>

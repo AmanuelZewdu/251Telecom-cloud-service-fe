@@ -36,8 +36,6 @@ const LogIn = () => {
         .required("Password is required*"),
     }),
     onSubmit: async (values) => {
-      console.log("user credentials=>", values);
-
       try {
         setLoading(true);
         const { data, statusCode } = await services.postLogin(values);

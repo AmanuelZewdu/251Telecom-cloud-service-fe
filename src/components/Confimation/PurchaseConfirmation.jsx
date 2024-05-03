@@ -121,21 +121,21 @@ const PurchaseConfirmation = () => {
   };
 
   return (
-    <div className="flex p-4 pt-[8em] bg-gray-50 min-h-svh flex-wrap justify-center relative w-full">
-      <div className="flex mt-0 xl:mt-[5em] h-fit max-w-[40em] flex-col gap-3 border-2 w-full rounded-md p-4 bg-white drop-shadow-md">
-        <div className="flex items-center gap-2">
+    <div className="flex p-4 pt-[8em] font-Inter bg-gray-50 min-h-svh flex-wrap justify-center relative w-full">
+      <div className=" flex mt-0 xl:mt-[5em] h-fit max-w-[40em] flex-col gap-3 border-2 w-full rounded-md p-4 bg-white drop-shadow-md">
+        <div className="text-primary-blue flex items-center gap-2">
           {" "}
-          <ShoppingCartIcon />{" "}
-          <h2 className="text-2xl md:text-xl">Cart summary</h2>
+          <ShoppingCartIcon className="" />{" "}
+          <h2 className="text-2xl md:text-xl font-medium">Cart summary</h2>
         </div>
         <hr />
-        <ul className="flex flex-col gap-4">
+        <ul className="flex flex-col gap-4 text-light-black">
           {cartItems.map((cartItem, index) => (
             <li
               key={index}
-              className="relative flex items-end justify-between gap-2 border-b p-4"
+              className="relative flex items-end justify-between gap-2 border-b py-4"
             >
-              <span className="absolute top-2 right-3 text-sm font text-gray-300">
+              <span className="absolute top-4 right-3 text-sm font text-gray-300">
                 {cartItem.serviceType}
               </span>
               <div className="flex gap-2">
@@ -150,12 +150,12 @@ const PurchaseConfirmation = () => {
                   </div>
                 )}
 
-                <div className="flex flex-col  text-lg">
-                  <span className="font-poppins font-medium">
+                <div className="flex flex-col text-lg">
+                  <span className=" font-medium">
                     {cartItem.name}
                     {cartItem.objName}
                   </span>
-                  <span className="text-gray-500 text-sm font-poppins">
+                  <span className="text-gray-500 text-sm ">
                     {cartItem.vcpus ? `${cartItem.vcpus} vCPU | ` : ""}
                     {cartItem.memory_mb ? `${cartItem.memory_mb}` : ""}
                     {cartItem?.diskType}
@@ -169,7 +169,7 @@ const PurchaseConfirmation = () => {
               </div>
               <span
                 onClick={() => removeItem(index)}
-                className="text-red-500 cursor-pointer"
+                className="flex items-center text-sm text-red-600 hover:bg-red-200 transition-colors duration-300 ease-in-out rounded-[4px] px-2 py-1 cursor-pointer"
               >
                 Remove
               </span>
@@ -178,16 +178,16 @@ const PurchaseConfirmation = () => {
         </ul>
         {cartItems.length > 0 && (
           <div className="flex flex-col gap-2">
-            <h2 className="flex text-[#050505] font-poppins justify-between">
+            <h2 className="flex text-[#050505]  justify-between">
               Items: <span className="font-medium">{cartItems.length}</span>
             </h2>
             <hr />
-            <h2 className="flex text-[#050505] font-poppins justify-between">
+            <h2 className="flex text-[#050505]  justify-between">
               SubTotal:{" "}
               <span className="font-medium text-right">{subtotal}</span>
             </h2>
             <hr />
-            <h2 className="flex text-[#050505] font-poppins justify-between">
+            <h2 className="flex text-[#050505]  justify-between">
               <p className="flex flex-col">
                 Vat:{" "}
                 <span className="text-xs text-gray-500">15% of your total</span>{" "}
@@ -195,7 +195,7 @@ const PurchaseConfirmation = () => {
               <span className="font-medium">${vat}</span>
             </h2>
             <hr />
-            <h1 className="flex text-[#050505] font-poppins justify-between">
+            <h1 className="flex text-[#050505]  justify-between">
               Total: <span className="font-medium">${total}/mo</span>
             </h1>
           </div>
@@ -237,7 +237,7 @@ const PurchaseConfirmation = () => {
         >
           <div className="fixed border top-[5em] border-green-500 z-50  bg-white p-3 mx-4 rounded-md shadow-md flex items-center justify-center gap-2 ">
             <CheckCircleIcon className="text-green-600" />
-            <p className="text-green-600 text-sm font-medium font-poppins">
+            <p className="text-green-600 text-sm font-medium ">
               An email confirmation has been sent to your registered email
               address. Thank you for your order!
             </p>

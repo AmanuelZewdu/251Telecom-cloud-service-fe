@@ -60,10 +60,7 @@ const WaitPage = () => {
 
   const getOrderById = async (orderId) => {
     try {
-      console.log("Id", orderId);
       const response = await services.getOrderById(orderId);
-
-      console.log("Order===", response);
       return response;
     } catch (error) {
       setFetchError(true);

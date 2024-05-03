@@ -16,7 +16,6 @@ const getInstanceType = async () => {
       }
     })
     .catch((error) => {
-      console.log("can't fetch instances");
       throw error;
     });
 };
@@ -37,7 +36,7 @@ const postSignUp = async (userDetail) => {
       return response.data;
     })
     .catch((err) => {
-      console.log("can't create user");
+      throw new Error(err.message);
     });
 };
 
@@ -52,7 +51,7 @@ const postCreateOrder = async (orderDetail, access_token) => {
       return response.data;
     })
     .catch((err) => {
-      console.log("can't create order");
+      throw new Error(err);
     });
 };
 
@@ -65,7 +64,6 @@ const getOrderById = async (orderId) => {
       }
     })
     .catch((error) => {
-      console.log("can't fetch order");
       throw error;
     });
 };

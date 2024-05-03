@@ -63,8 +63,6 @@ const ContactUs = () => {
         setLoading(false);
       }
       alert(JSON.stringify(values, 2, null));
-      console.log(data);
-      console.log(values);
     },
   });
 

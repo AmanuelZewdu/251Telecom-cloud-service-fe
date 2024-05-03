@@ -4,10 +4,11 @@ import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@mui/material";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import { Link, useNavigate } from "react-router-dom";
 
 const CartModal = ({ open, onClose }) => {
   const [cartItems, setCartItems] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const handleStorageChange = () => {
       const updatedCartItems =
@@ -72,10 +73,11 @@ const CartModal = ({ open, onClose }) => {
   function redirectHandler() {
     const isUserLoggedIn = JSON.parse(sessionStorage.getItem("loggedIn-user"));
     if (isUserLoggedIn) {
-      window.location.href = "/purchase-confirm";
+      navigate("/purchase-confirm");
     } else {
-      window.location.href = "/log-in";
+      navigate("/log-in");
     }
+    onClose();
   }
 
   return (

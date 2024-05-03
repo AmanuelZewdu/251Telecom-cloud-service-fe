@@ -111,7 +111,7 @@ const Navbar = () => {
       {open && (
         <div
           onClick={() => {
-            setNavIsOpen(!navIsOpen);
+            setNavIsOpen(false);
             setOpen(false);
           }}
           className="fixed top-0 left-0 w-full h-screen bg-black/5 z-10"
@@ -134,7 +134,7 @@ const Navbar = () => {
           >
             <li
               onClick={() => setOpen(false)}
-              className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
+              className="relative hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
             >
               <Link to="/">Home</Link>
             </li>

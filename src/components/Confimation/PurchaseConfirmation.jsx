@@ -17,7 +17,6 @@ const PurchaseConfirmation = () => {
 
   useEffect(() => {
     const url = new URL(window.location);
-    console.log("Page URL", url);
     const totalCartItems =
       JSON.parse(localStorage.getItem("purchaseItems")) || [];
     setCartItems(totalCartItems);
@@ -97,7 +96,6 @@ const PurchaseConfirmation = () => {
         volume: item.volume,
         duration: item.duration,
       }));
-      console.log(orderItems);
       const url = new URL(window.location.href).origin + "/wait";
 
       const orderDetail = {
@@ -113,7 +111,6 @@ const PurchaseConfirmation = () => {
       const response = await service.postCreateOrder(orderDetail, userId);
       if (response.order.userId) {
         setSuccessMessage(true);
-        console.log("Order created:", response);
         //window.open(response.paymentURL.formUrl);
         window.location.href = response.paymentURL.formUrl;
         localStorage.removeItem("purchaseItems");
@@ -124,8 +121,8 @@ const PurchaseConfirmation = () => {
   };
 
   return (
-    <div className="flex p-4 pt-[8em] bg-gray-50 flex-wrap justify-center relative w-full">
-      <div className="flex h-fit max-w-[40em] flex-col gap-3 border-2 w-full rounded-md p-4 bg-white  drop-shadow-md">
+    <div className="flex p-4 pt-[8em] bg-gray-50 min-h-svh flex-wrap justify-center relative w-full">
+      <div className="flex mt-0 xl:mt-[5em] h-fit max-w-[40em] flex-col gap-3 border-2 w-full rounded-md p-4 bg-white drop-shadow-md">
         <div className="flex items-center gap-2">
           {" "}
           <ShoppingCartIcon />{" "}

@@ -26,7 +26,6 @@ const Reset = () => {
   const { vertical, horizontal, open } = state;
 
   const handleClick = (newState) => () => {
-    console.log("called");
     setState({ ...newState, open: true });
   };
 
@@ -59,12 +58,9 @@ const Reset = () => {
     }),
 
     onSubmit: async (values) => {
-      console.log("user credentials=>", values);
-
       try {
         setLoading(true);
         const { data, statusCode } = await services.getInstanceType(values);
-        console.log(data);
         if (statusCode !== 200) {
           localStorage.setItem("loggedIn-user", JSON.stringify(data));
           setSnackbarMessage(

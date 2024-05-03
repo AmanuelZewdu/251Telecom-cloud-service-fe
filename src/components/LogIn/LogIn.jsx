@@ -54,7 +54,6 @@ const LogIn = () => {
           }
         }
       } catch (error) {
-        console.log(error.message);
         setLoading(false);
       }
     },

@@ -46,9 +46,7 @@ function App() {
               <Route path="/terms-conditions" element={<Terms />} />
             </Route>
           </Routes>
-          <div className="">
-            <Footer />
-          </div>
+          <Footer />
         </BrowserRouter>
       </div>
     </>

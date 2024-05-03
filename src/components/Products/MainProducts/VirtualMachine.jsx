@@ -90,7 +90,6 @@ const VirtualMachine = () => {
 
   const handleCheckboxClick = (index, instanceType) => {
     setSelectedRowData(instanceType);
-    console.log(instanceType);
   };
 
   const addToCartHandler = (redirectUser) => {
@@ -130,7 +129,6 @@ const VirtualMachine = () => {
         // duration: duration,
       };
       const updatedItems = [...existingItems, purchaseItem];
-      console.log(updatedItems);
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
       window.dispatchEvent(new Event("storage"));
       setError(false);
@@ -168,8 +166,6 @@ const VirtualMachine = () => {
       setMachineImages(response);
       sessionStorage.setItem("cachedMachineImages", JSON.stringify(response));
     } catch (error) {
-      console.log(error);
-      console.log(error.message);
       setFetchError(true);
     }
   };

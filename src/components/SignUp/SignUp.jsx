@@ -107,7 +107,6 @@ const SignUp = () => {
 
         isProductSelected: isProductSelected("purchaseItems"),
       };
-      console.log("clicked");
       alert(JSON.stringify(userDetail, null, 2));
       const response = await services.postSignUp(userDetail);
       if (!response) {

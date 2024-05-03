@@ -18,6 +18,5 @@ export default function PrivateRoute() {
     };
   }, []);
 
-  console.log(!isUserLoggedIn);
   return isUserLoggedIn ? <Navigate to="/log-in" /> : <Outlet />;
 }

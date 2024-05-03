@@ -139,7 +139,7 @@ const CartModal = ({ open, onClose }) => {
               ))}
             </ul>{" "}
             {cartItems.length > 0 && (
-              <ul className="flex flex-col text-slate-800 gap-2 font-poppins">
+              <ul className="flex font-DMSans flex-col text-slate-800 gap-2">
                 <li>
                   Items: <span className="font-medium">{cartItems.length}</span>
                 </li>
@@ -149,7 +149,10 @@ const CartModal = ({ open, onClose }) => {
                 </li>
                 <hr />
                 <li>
-                  Total: <span className="font-medium">${total}/mo</span>{" "}
+                  Total:{" "}
+                  <span className="font-semibold text-green-700">
+                    ${total}/mo
+                  </span>{" "}
                   <span className="text-xs text-gray-500">
                     (exclusive of VAT)
                   </span>

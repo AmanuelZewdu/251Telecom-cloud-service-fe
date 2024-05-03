@@ -190,13 +190,16 @@ const PurchaseConfirmation = () => {
             <h2 className="flex text-[#050505]  justify-between">
               <p className="flex flex-col">
                 Vat:{" "}
-                <span className="text-xs text-gray-500">15% of your total</span>{" "}
+                <span className="text-xs text-gray-500">
+                  15% of your sub-total
+                </span>{" "}
               </p>{" "}
               <span className="font-medium">${vat}</span>
             </h2>
             <hr />
             <h1 className="flex text-[#050505]  justify-between">
-              Total: <span className="font-medium">${total}/mo</span>
+              Total:{" "}
+              <span className="font-semibold text-green-700">${total}/mo</span>
             </h1>
           </div>
         )}

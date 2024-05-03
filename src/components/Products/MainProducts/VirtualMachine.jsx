@@ -554,7 +554,7 @@ const VirtualMachine = () => {
         <div className="background">
           <img
             className="max-w-full"
-            src={require("../../../shared/images/vmImage.png")}
+            src={require("../../../shared/images/vmImage.webp")}
             alt="Your Company Logo"
           />
         </div>

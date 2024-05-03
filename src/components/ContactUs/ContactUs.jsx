@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import services from "../../Services/services";
-import logo from "../../shared/images/cloud251Logo.png";
+import logo from "../../shared/images/cloud251Logo.webp";
 import Alert from "@mui/material/Alert";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";

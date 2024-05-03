@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../../shared/images/cloud251Logo.png";
+import logo from "../../shared/images/cloud251Logo.webp";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import "./footer.scss";
 import InstagramIcon from "@mui/icons-material/Instagram";

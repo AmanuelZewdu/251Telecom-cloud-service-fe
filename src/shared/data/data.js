@@ -1,6 +1,6 @@
-import VMImage from "../images/VMImage.jpg";
-import objectStorage from "../images/objectStorage.jpg";
-import arrayStorage from "../images/arrayStorage.jpg";
+import VMImage from "../images/VMImage.webp";
+import objectStorage from "../images/objectStorage.webp";
+import arrayStorage from "../images/arrayStorage.webp";
 
 export const services = [
   {

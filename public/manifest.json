@@ -3,18 +3,18 @@
   "name": "Create React App Sample",
   "icons": [
     {
-      "src": "cloud251Logo.png",
+      "src": "cloud251Logo.webp",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "cloud251Logo.png",
-      "type": "image/png",
+      "src": "cloud251Logo.webp",
+      "type": "image/webp",
       "sizes": "192x192"
     },
     {
-      "src": "cloud251Logo.png",
-      "type": "image/png",
+      "src": "cloud251Logo.webp",
+      "type": "image/webp",
       "sizes": "512x512"
     }
   ],

@@ -4,8 +4,8 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CloseIcon from "@mui/icons-material/Close";
 import vm2 from "../../shared/images/vm2.jpg";
-import ethswitch_logo from "../../shared/images/ethswitch_logo.png";
-import santimPay_logo from "../../shared/images/santimPay.png";
+import ethswitch_logo from "../../shared/images/ethswitch_logo.webp";
+import santimPay_logo from "../../shared/images/santimPay.webp";
 import obj2 from "../../shared/images/obj2.webp";
 import service from "../../Services/services";
 

@@ -1,7 +1,7 @@
 import "./productNav.scss";
 import { useState, useEffect } from "react";
 import NotesOutlinedIcon from "@mui/icons-material/NotesOutlined";
-import logo from "../../../shared/images/cloud251Logo.png";
+import logo from "../../../shared/images/cloud251Logo.webp";
 import StorageIcon from "@mui/icons-material/Storage";
 import PermMediaIcon from "@mui/icons-material/PermMedia";
 import FolderCopyIcon from "@mui/icons-material/FolderCopy";

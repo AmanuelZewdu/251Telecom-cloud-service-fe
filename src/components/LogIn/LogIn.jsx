@@ -63,7 +63,7 @@ const LogIn = () => {
       <div className="hidden w-[30em] lg:flex overflow-hidden">
         <img
           className="h-full w-full"
-          src={require("../../shared/images/heroRightImage.png")}
+          src={require("../../shared/images/heroRightImage.webp")}
           alt=""
         />
       </div>

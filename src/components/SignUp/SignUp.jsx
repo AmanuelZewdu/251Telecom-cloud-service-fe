@@ -107,7 +107,6 @@ const SignUp = () => {
 
         isProductSelected: isProductSelected("purchaseItems"),
       };
-      console.log("clicked");
       alert(JSON.stringify(userDetail, null, 2));
       const response = await services.postSignUp(userDetail);
       if (!response) {
@@ -119,10 +118,10 @@ const SignUp = () => {
   });
 
   return (
-    <div className="w-full font-poppins flex items-center justify-center p-2 signup">
+    <div className="w-full font-Inter flex items-center justify-center p-2 signup">
       <div className="mt-[8em] mb-[3em] flex-grow max-w-[40em] bg-white rounded-md shadow-2xl">
         <div className="flex flex-col gap-4 p-6">
-          <h1 className="text-xl font-poppins font-semibold text-primary-blue">
+          <h1 className="text-2xl font-DMSans font-bold text-primary-blue">
             SIGN UP
           </h1>
           <hr className="border border-black/30" />
@@ -531,7 +530,7 @@ const SignUp = () => {
           </form>
           <div className="flex flex-col-reverse md:flex-row justify-between gap-2">
             <div className="flex gap-2">
-              <p className="">Already have an account?</p>
+              <p className="text-light-black">Already have an account?</p>
               <Link to="/log-in" className="text-blue-700">
                 Log in
               </Link>

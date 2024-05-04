@@ -30,7 +30,7 @@ const VirtualMachine = () => {
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
   const [diskSize, setDiskSize] = useState(null);
-  const [volume, setVolume] = useState(null);
+  const [volume, setVolume] = useState("");
   const [error, setError] = useState(false);
   const [fetchError, setFetchError] = useState(false);
   const [vmNameError, setVMNameError] = useState(false);
@@ -66,6 +66,8 @@ const VirtualMachine = () => {
     }
   }, []);
 
+  console.log(volume);
+
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
   };
@@ -90,14 +92,9 @@ const VirtualMachine = () => {
 
   const handleCheckboxClick = (index, instanceType) => {
     setSelectedRowData(instanceType);
-    console.log(instanceType);
   };
 
   const addToCartHandler = (redirectUser) => {
-    if (!vmName) {
-      setVMNameError(true);
-      return;
-    }
     if (
       !vmName ||
       selectedRowData === null ||
@@ -106,6 +103,7 @@ const VirtualMachine = () => {
       !durationNumber ||
       !duration
     ) {
+      setVmName(true);
       setError(true);
       return;
     } else {
@@ -133,7 +131,6 @@ const VirtualMachine = () => {
         // duration: duration,
       };
       const updatedItems = [...existingItems, purchaseItem];
-      console.log(updatedItems);
       localStorage.setItem("purchaseItems", JSON.stringify(updatedItems));
       window.dispatchEvent(new Event("storage"));
       setError(false);
@@ -171,8 +168,6 @@ const VirtualMachine = () => {
       setMachineImages(response);
       sessionStorage.setItem("cachedMachineImages", JSON.stringify(response));
     } catch (error) {
-      console.log(error);
-      console.log(error.message);
       setFetchError(true);
     }
   };
@@ -281,24 +276,25 @@ const VirtualMachine = () => {
   };
 
   return (
-    <div className=" w-full pt-6 text-center flex flex-col gap-4 p-2 md:text-left font-poppins">
-      <h1 className="text-2xl  font-medium text-slate-800">Virtual Machine</h1>
-      {selectedImageName}
+    <div className="font-Inter w-full p-2 mt-4 md:p-6 text-center flex flex-col gap-4 md:text-left ">
+      <h1 className="text-4xl text-center text-transparent bg-clip-text xl:w-fit font-bold bg-gradient-to-r from-primary-blue via-button-color to-secondary-blue">
+        Virtual Machine
+      </h1>
       {fetchError && (
         <p>
           "Oops! Something went wrong while fetching instance types. Please try
           again later."
         </p>
       )}
-      <details className="open:bg-white dark:open:bg-gray-100 p-2 open:shadow-lg  rounded-md">
-        <summary className="text-sm leading-6 text-slate-900 select-none">
-          What is VM?
-        </summary>
-        <p className="mt-3 text-sm leading-7 text-slate-500">{vmDescription}</p>
+      <details className="open:bg-white dark:open:bg-gray-100 p-4 open:shadow-lg rounded-md">
+        <summary className="text-sm leading-6 select-none">What is VM?</summary>
+        <p className="mt-3 text-start leading-7 text-slate-500">
+          {vmDescription}
+        </p>
       </details>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 text-light-black ">
         <div className="border shadow-md flex text-left flex-col p-4 gap-2">
-          <h2 className="text-lg font-medium font-poppins">Product details</h2>
+          <h2 className="text-xl font-medium">Product details</h2>
           <div className="flex items-start">
             <h4>
               Product type: <span className="font-medium">Virtual Machine</span>
@@ -316,7 +312,7 @@ const VirtualMachine = () => {
               className="border-b w-[13em] outline-none border-gray-400 placeholder:text-gray-400"
             />
             {vmNameError && (
-              <p className="text-sm border-l-2 border-red-500 pl-1 text-red-500">
+              <p className="bg-red-100 rounded-sm w-fit py-2 px-3 text-sm border-l-4 border-red-500 pl-1 text-red-500">
                 Please provide a VM name
               </p>
             )}
@@ -447,9 +443,7 @@ const VirtualMachine = () => {
         </div>
         <div className="border shadow-md flex text-left flex-col p-4 gap-2">
           <div className="flex flex-col w-ful">
-            <h4 className="text-lg mb-2 font-medium font-poppins">
-              Image Management
-            </h4>
+            <h4 className="text-lg mb-2 font-medium ">Image Management</h4>
             <div className="flex items-center gap-2">
               <label>Image:</label>
               <select
@@ -535,9 +529,7 @@ const VirtualMachine = () => {
           </div>
         </div>
         <div className="border shadow-md flex text-left flex-col p-4 gap-2">
-          <h2 className="text-lg font-medium font-poppins">
-            Volume management
-          </h2>
+          <h2 className="text-lg font-medium ">Volume management</h2>
           <div className="flex gap-2">
             <label htmlFor="volume">
               Volume size <span className="text-sm text-gray-500">(in GB)</span>
@@ -557,24 +549,24 @@ const VirtualMachine = () => {
       </div>
       <PurchaseItemData>
         {error && (
-          <span className="border-l-4 border-red-500 rounded-sm pl-2 text-left text-red-500">
+          <span className="bg-red-100 rounded-sm w-fit py-2 px-3 text-sm border-l-4 border-red-500 pl-1 text-red-500">
             Please make sure you have selected all available options*
           </span>
         )}
         <div className="background">
           <img
             className="max-w-full"
-            src={require("../../../shared/images/vmImage.png")}
+            src={require("../../../shared/images/vmImage2.webp")}
             alt="Your Company Logo"
           />
         </div>
         <div className="flex gap-2">
           <h3 className="">VM type:</h3>
-          <span>
+          <span className="text-black/85 font-medium">
             {selectedRowData?.vcpus ? `${selectedRowData.vcpus} vCPU` : ""}
           </span>
           -
-          <span>
+          <span className="text-black/85 font-medium">
             {selectedRowData?.memory_mb
               ? `${mbToGBConverter(selectedRowData.memory_mb)}`
               : ""}
@@ -582,16 +574,24 @@ const VirtualMachine = () => {
         </div>
         <div className="flex gap-2">
           <h3 className="">Selected image:</h3>
-          <span>{selectedImageName || "-"}</span>
+          <span className="text-black/85 font-medium">
+            {selectedImageName || "-"}
+          </span>
         </div>
         <div className="flex gap-2">
           <h3 className="">Volume size:</h3>
-          <span>{volume ? `${volume} GB` : "-"}</span>
+          <span className="text-black/85 font-medium">
+            {volume ? `${volume} GB` : "-"}
+          </span>
         </div>
         <div className="flex gap-2">
           <h3 className="">Duration:</h3>
-          <span>{durationNumber ? durationNumber : "-"}</span>
-          <span>{duration ? duration : "-"}</span>
+          <span className="text-black/85 font-medium">
+            {durationNumber ? durationNumber : "-"}
+          </span>
+          <span className="text-black/85 font-medium">
+            {duration ? duration : "-"}
+          </span>
         </div>
         <div className="flex gap-2">
           <h3>Price:</h3>
@@ -632,7 +632,7 @@ const VirtualMachine = () => {
         <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/10">
           <div className="border border-green-500 bg-white p-3 mx-auto rounded-md shadow-md flex items-center justify-center gap-2 mt-8 animate-bounce">
             <CheckCircleIcon className="text-green-600" />
-            <p className="text-green-600 text-sm font-medium font-poppins">
+            <p className="text-green-600 text-sm font-medium ">
               Item added to the cart!
             </p>
           </div>

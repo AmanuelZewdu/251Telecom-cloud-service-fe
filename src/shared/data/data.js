@@ -1,6 +1,6 @@
-import VMImage from "../images/VMImage.jpg";
-import objectStorage from "../images/objectStorage.jpg";
-import arrayStorage from "../images/arrayStorage.jpg";
+import VMImage from "../images/VMImage.webp";
+import objectStorage from "../images/objectStorage.webp";
+import arrayStorage from "../images/arrayStorage.webp";
 
 export const services = [
   {
@@ -24,7 +24,7 @@ export const services = [
     image: arrayStorage,
     serviceName: "Array storage",
     description:
-      "Maximize efficiency and performance with our array storage service, designed to handle vast amounts of data with ease. Our array storage solution provides unmatched reliability and speed for your storage needs.",
+      "Maximize efficiency and performance with our array storage service, designed to handle vast amounts of data with ease. Our array storage solution provides unmatched reliability, reselience and speed for your storage needs.",
     path: "/array-storage",
   },
 ];

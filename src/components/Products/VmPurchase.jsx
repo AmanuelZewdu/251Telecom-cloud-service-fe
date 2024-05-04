@@ -1,22 +1,21 @@
-import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import HomeIcon from "@mui/icons-material/Home";
 import VirtualMachine from "./MainProducts/VirtualMachine";
+import { Link } from "react-router-dom";
 
 const VmPurchase = () => {
   return (
-    <div className="relative w-full top-[5em] flex font-poppins">
-      <div className="absolute left-4 top-6 flex items-center gap-1 md:top-3 md:left-1 xl:top-[4em] xl:left-4">
-        <KeyboardBackspaceIcon sx={{ fontSize: 22, color: "gray" }} />
-        <a
-          href="/
-        "
-        >
-          <span className="text-sm md:text-sm text-gray-600">
-            <span className="hidden md:inline-block">back to</span> home
-          </span>
-        </a>
-      </div>
-      <div className="w-full md:mt-8 xl:mt-[1.35m] max-w-[60em] mx-auto">
-        <VirtualMachine />
+    <div className="relative w-full mt-[6em] xl:mt-[7em] flex font-Inter">
+      <div className="w-fit mx-auto ">
+        <div className=" w-full text-primary-blue flex px-5 items-center gap-2 xl:mt-[2em]">
+          <Link to="/">
+            <HomeIcon sx={{ fontSize: 22 }} />
+          </Link>
+          <span className="mt-0.5">/</span>
+          <h2 className="text-sm mt-1 underline">Virtual Machine</h2>
+        </div>
+        <div className="w-full relative -my-[0.8em] mx-auto">
+          <VirtualMachine />
+        </div>
       </div>
     </div>
   );

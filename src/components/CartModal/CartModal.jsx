@@ -4,10 +4,11 @@ import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@mui/material";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import { Link, useNavigate } from "react-router-dom";
 
 const CartModal = ({ open, onClose }) => {
   const [cartItems, setCartItems] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const handleStorageChange = () => {
       const updatedCartItems =
@@ -72,23 +73,24 @@ const CartModal = ({ open, onClose }) => {
   function redirectHandler() {
     const isUserLoggedIn = JSON.parse(sessionStorage.getItem("loggedIn-user"));
     if (isUserLoggedIn) {
-      window.location.href = "/purchase-confirm";
+      navigate("/purchase-confirm");
     } else {
-      window.location.href = "/log-in";
+      navigate("/log-in");
     }
+    onClose();
   }
 
   return (
     <div
-      className={`fixed right-0 z-50  ${
+      className={`fixed right-0 z-50 font-Inter  ${
         open
           ? "translate-x-0 shadow-[0px_0px_18px_2px_#c9c9c9]"
           : "translate-x-full"
       } transition-transform duration-500 h-screen`}
     >
       <div className="cartModal flex flex-col w-[20em] md:min-w-[26em] bg-white h-full p-4 gap-4 overflow-y-auto">
-        <div className="flex items-center font-montserrat font-medium text-primary-blue justify-between">
-          <h2 className="text-2xl">Your Cart</h2>
+        <div className="flex items-center font-medium text-primary-blue justify-between">
+          <h2 className="text-2xl font-medium">Your Cart</h2>
           <button className="" onClick={onClose}>
             <CloseIcon />
           </button>
@@ -96,7 +98,7 @@ const CartModal = ({ open, onClose }) => {
         <hr />
         {cartItems.length > 0 ? (
           <>
-            <ul className="flex mt-4 flex-col gap-2 font-montserrat">
+            <ul className="flex mt-4 flex-col gap-2">
               {cartItems.map((item, index) => (
                 <li
                   className="relative flex bg-gray-50 items-center justify-between p-2 rounded-md shadow-md"
@@ -108,7 +110,7 @@ const CartModal = ({ open, onClose }) => {
                   <div className="flex gap-2 items-center">
                     ({index + 1})
                     <div className="flex flex-col gap-1">
-                      <h4 className="text-xl font-medium text-[#1a1a1a]">
+                      <h4 className="text-xl font-medium text-light-black">
                         {item.name}
                         {item?.objName}
                       </h4>
@@ -124,7 +126,7 @@ const CartModal = ({ open, onClose }) => {
                       </span>
                       <h2 className="text-sm tracking-wide font-medium text-gray-400">
                         Price:{" "}
-                        <span className="text-[#1a1a1a]">{item.price}</span>
+                        <span className="text-light-black">{item.price}</span>
                       </h2>
                     </div>
                   </div>
@@ -137,7 +139,7 @@ const CartModal = ({ open, onClose }) => {
               ))}
             </ul>{" "}
             {cartItems.length > 0 && (
-              <ul className="flex flex-col text-slate-800 gap-2 font-poppins">
+              <ul className="flex font-DMSans flex-col text-slate-800 gap-2">
                 <li>
                   Items: <span className="font-medium">{cartItems.length}</span>
                 </li>
@@ -147,7 +149,10 @@ const CartModal = ({ open, onClose }) => {
                 </li>
                 <hr />
                 <li>
-                  Total: <span className="font-medium">${total}/mo</span>{" "}
+                  Total:{" "}
+                  <span className="font-semibold text-green-700">
+                    ${total}/mo
+                  </span>{" "}
                   <span className="text-xs text-gray-500">
                     (exclusive of VAT)
                   </span>

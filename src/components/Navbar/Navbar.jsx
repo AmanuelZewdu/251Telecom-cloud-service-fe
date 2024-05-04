@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CartModal from "../CartModal/CartModal";
-import logo from "../../shared/images/cloud251Logo.png";
+import logo from "../../shared/images/cloud251Logo.webp";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 
@@ -97,7 +97,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="flex font-Inter justify-center">
       {/* This is the black overlay */}
       {navIsOpen && (
         <div
@@ -110,7 +110,10 @@ const Navbar = () => {
       )}
       {open && (
         <div
-          onClick={() => setOpen(false)}
+          onClick={() => {
+            setNavIsOpen(false);
+            setOpen(false);
+          }}
           className="fixed top-0 left-0 w-full h-screen bg-black/5 z-10"
         ></div>
       )}
@@ -131,7 +134,7 @@ const Navbar = () => {
           >
             <li
               onClick={() => setOpen(false)}
-              className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
+              className="relative hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
             >
               <Link to="/">Home</Link>
             </li>
@@ -252,8 +255,8 @@ const Navbar = () => {
                   onClick={() => setOpen(!open)}
                 />
                 <div
-                  className={` drop-shadow-md rounded-md transition-all duration-300 ease-in-out ${
-                    open ? "h-[5.2em]" : " h-0"
+                  className={`mt-3 drop-shadow-md rounded-md transition-all duration-300 ease-in-out ${
+                    open ? "h-[2.6em]" : " h-0"
                   }`}
                 >
                   <ul className="flex flex-col cursor-pointer">

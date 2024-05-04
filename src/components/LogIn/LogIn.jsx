@@ -36,8 +36,6 @@ const LogIn = () => {
         .required("Password is required*"),
     }),
     onSubmit: async (values) => {
-      console.log("user credentials=>", values);
-
       try {
         setLoading(true);
         const { data, statusCode } = await services.postLogin(values);
@@ -56,30 +54,26 @@ const LogIn = () => {
           }
         }
       } catch (error) {
-        console.log(error.message);
         setLoading(false);
       }
     },
   });
   return (
-    <div className="w-full flex h-screen items-center justify-center p-4 font-poppins login">
+    <div className="w-full font-Inter flex h-screen items-center justify-center p-4  login">
       <div className="hidden w-[30em] lg:flex overflow-hidden">
         <img
           className="h-full w-full"
-          src={require("../../shared/images/heroRightImage.png")}
+          src={require("../../shared/images/heroRightImage.webp")}
           alt=""
         />
       </div>
       <div className="flex-grow max-w-[30em] max-h-[30em] bg-white rounded-sm shadow-2xl">
         <div className="flex flex-col gap-4 p-6">
-          <h1 className="text-xl font-poppins font-semibold text-primary-blue">
+          <h1 className="text-2xl font-DMSans font-bold text-primary-blue">
             LOG IN
           </h1>
           <hr className="border border-black/30" />
-          <form
-            onSubmit={formik.handleSubmit}
-            className="flex flex-col gap-4 text-black"
-          >
+          <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
             {logInError && (
               <p className="flex justify-between items-center text-red-500 border-l-4 border-red-500 p-2 bg-red-50 rounded-sm">
                 Unauthorized. Please login with correct credentials.
@@ -91,7 +85,7 @@ const LogIn = () => {
               </p>
             )}
             <div className="w-full">
-              <label htmlFor="email" className="text-gray-600 font-poppins">
+              <label htmlFor="email" className="text-gray-600 ">
                 Email address:
               </label>
               <input
@@ -114,7 +108,7 @@ const LogIn = () => {
               ) : null}
             </div>
             <div className="relative w-full">
-              <label htmlFor="password" className="text-gray-600 font-poppins">
+              <label htmlFor="password" className="text-gray-600 ">
                 Password:
               </label>
               <input
@@ -149,7 +143,7 @@ const LogIn = () => {
               ) : null}
             </div>
             <button
-              className={`flex justify-center items-center gap-2 w-full rounded-sm  p-2 text-white font-poppins font-medium  ${
+              className={`flex justify-center items-center gap-2 w-full rounded-sm  p-2 text-white  font-medium  ${
                 loading
                   ? "bg-button-color/50 cursor-wait"
                   : "bg-button-color hover:bg-button-color"
@@ -163,7 +157,7 @@ const LogIn = () => {
           </form>
           <div className="relative flex flex-col-reverse md:flex-row justify-between gap-2">
             <div className="flex gap-2">
-              <p className="">Don't have an account?</p>
+              <p className="text-light-black">Don't have an account?</p>
               <Link to="/sign-up" className="text-blue-700">
                 Sign up
               </Link>

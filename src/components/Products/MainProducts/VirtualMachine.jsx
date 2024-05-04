@@ -30,7 +30,7 @@ const VirtualMachine = () => {
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
   const [diskSize, setDiskSize] = useState(null);
-  const [volume, setVolume] = useState(null);
+  const [volume, setVolume] = useState("");
   const [error, setError] = useState(false);
   const [fetchError, setFetchError] = useState(false);
   const [vmNameError, setVMNameError] = useState(false);
@@ -65,6 +65,8 @@ const VirtualMachine = () => {
       fetchMachineImages();
     }
   }, []);
+
+  console.log(volume);
 
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
@@ -554,7 +556,7 @@ const VirtualMachine = () => {
         <div className="background">
           <img
             className="max-w-full"
-            src={require("../../../shared/images/vmImage.webp")}
+            src={require("../../../shared/images/vmImage2.webp")}
             alt="Your Company Logo"
           />
         </div>

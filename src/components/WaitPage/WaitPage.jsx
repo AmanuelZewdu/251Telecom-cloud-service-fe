@@ -68,7 +68,7 @@ const WaitPage = () => {
     }
   };
   return (
-    <div className="h-screen flex items-center justify-center p-4 bg-gray-50">
+    <div className="h-screen font-DMSans flex items-center justify-center p-4 bg-gray-50">
       <div className="relative flex flex-col md:flex-row items-center gap-8 justify-center -mt-[5em]">
         <div className="waitLoader mr-4"></div>
         <ul className="flex flex-col gap-4 items-start">
@@ -89,9 +89,7 @@ const WaitPage = () => {
                   />
                 </div>
               )}
-              <span className="font-poppins text-sm xl:text-xl text-gray-600">
-                {message}
-              </span>
+              <span className="xl:text-xl text-gray-600">{message}</span>
             </li>
           ))}
         </ul>

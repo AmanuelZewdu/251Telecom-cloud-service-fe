@@ -276,7 +276,7 @@ const VirtualMachine = () => {
   };
 
   return (
-    <div className="font-Inter w-full p-2 mt-4 md:p-6 text-center flex flex-col gap-4 md:text-left ">
+    <div className="font-Inter w-full p-2 mt-4 md:p-6 text-center flex flex-col gap-2 md:text-left ">
       <h1 className="text-4xl text-center text-transparent bg-clip-text xl:w-fit font-bold bg-gradient-to-r from-primary-blue via-button-color to-secondary-blue">
         Virtual Machine
       </h1>
@@ -286,7 +286,7 @@ const VirtualMachine = () => {
           again later."
         </p>
       )}
-      <details className="open:bg-white dark:open:bg-gray-100 p-4 open:shadow-lg rounded-md">
+      <details className="open:bg-white dark:open:bg-gray-100 p-4 open:shadow-lg rounded-md -mt-2">
         <summary className="text-sm leading-6 select-none">What is VM?</summary>
         <p className="mt-3 text-start leading-7 text-slate-500">
           {vmDescription}

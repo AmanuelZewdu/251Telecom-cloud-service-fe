@@ -121,8 +121,8 @@ const PurchaseConfirmation = () => {
   };
 
   return (
-    <div className="flex p-4 pt-[8em] font-Inter bg-gray-50 min-h-svh flex-wrap justify-center relative w-full">
-      <div className=" flex mt-0 xl:mt-[5em] h-fit max-w-[40em] flex-col gap-3 border-2 w-full rounded-md p-4 bg-white drop-shadow-md">
+    <div className="flex p-4 bg-gray-50 min-h-svh flex-wrap items-center justify-center relative w-full">
+      <div className="lg:mt-[6em] flex h-fit max-w-[40em] flex-col gap-3 border-2 w-full rounded-md p-4 bg-white drop-shadow-md">
         <div className="text-primary-blue flex items-center gap-2">
           {" "}
           <ShoppingCartIcon className="" />{" "}
@@ -217,7 +217,7 @@ const PurchaseConfirmation = () => {
               alt="et switch logo"
             />
           </Button>
-          <Button
+          {/* <Button
             onClick={() => handleCreateOrder()}
             disabled={cartItems.length === 0}
             className="w-full flex gap-2 h-[3.5em]"
@@ -229,7 +229,7 @@ const PurchaseConfirmation = () => {
               className="w-[10em]"
               alt="et switch logo"
             />
-          </Button>
+          </Button> */}
         </div>
       </div>
 

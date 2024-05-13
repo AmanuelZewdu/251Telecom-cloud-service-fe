@@ -68,8 +68,12 @@ const Footer = () => {
         <div className="flex flex-col gap-1">
           <h3 className="text-lg font-semibold">Usefull links</h3>
           <ul className="flex flex-col underline justify-center gap-1 w-[10em]">
-            <li>terms and conditions</li>
-            <li>Contact</li>
+            <li className="cursor-pointer">
+              <Link to="/terms-conditions">terms and conditions</Link>
+            </li>
+            <li className="cursor-pointer">
+              <Link to="/contactUs">Contact</Link>
+            </li>
           </ul>
         </div>
         <div className="-mt-1 col-span-2 md:col-span-1 flex flex-col items-center md:items-start">

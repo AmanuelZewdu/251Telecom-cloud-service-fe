@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const VmPurchase = () => {
   return (
     <div className="relative w-full mt-[6em] xl:mt-[7em] flex font-Inter">
-      <div className="w-fit mx-auto ">
-        <div className=" w-full text-primary-blue flex px-5 items-center gap-2 xl:mt-[2em]">
+      <div className="mx-auto w-full max-w-screen-xl">
+        <div className="w-full text-primary-blue flex px-5 items-center gap-2 xl:mt-[2em]">
           <Link to="/">
             <HomeIcon sx={{ fontSize: 22 }} />
           </Link>

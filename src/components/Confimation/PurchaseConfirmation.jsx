@@ -217,7 +217,7 @@ const PurchaseConfirmation = () => {
               alt="et switch logo"
             />
           </Button>
-          <Button
+          {/* <Button
             onClick={() => handleCreateOrder()}
             disabled={cartItems.length === 0}
             className="w-full flex gap-2 h-[3.5em]"
@@ -229,7 +229,7 @@ const PurchaseConfirmation = () => {
               className="w-[10em]"
               alt="et switch logo"
             />
-          </Button>
+          </Button> */}
         </div>
       </div>
 

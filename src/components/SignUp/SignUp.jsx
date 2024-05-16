@@ -56,9 +56,26 @@ const SignUp = () => {
     },
     validationSchema: Yup.object().shape({
       accountType: Yup.string().required("Please choose account type*"),
-      TINNumber: Yup.number("TIN number must be in numbers").required(
-        "TIN number is required"
-      ),
+      // TINNumber: Yup.number("TIN number must be in numbers").required(
+      //   "TIN number is required"
+      // ),
+      TINNumber: Yup.string().when("accountType", {
+        is: "business",
+        then: () => Yup.string().required("TIN is required*"),
+        otherwise: () => Yup.string().notRequired(),
+      }),
+      // TINNumber: Yup.string().test(
+      //   "tin-required",
+      //   "TIN is required for business accounts",
+      //   function (value) {
+      //     const accountType = this.parent.accountType;
+
+      //     if (accountType === "business") {
+      //       return value !== undefined && value !== null && value.length > 0;
+      //     }
+      //     return true;
+      //   }
+      // ),
       specificAddress: Yup.string().required(
         "Specific address is required. Example - Piassa, Summit"
       ),
@@ -70,6 +87,18 @@ const SignUp = () => {
         then: () => Yup.string().required("Company name is required*"),
         otherwise: () => Yup.string().notRequired(),
       }),
+      // companyName: Yup.string().test(
+      //   "company-name-required",
+      //   "Company name is required for business accounts",
+      //   function (value) {
+      //     const accountType = this.parent.accountType;
+
+      //     if (accountType === "business") {
+      //       return value !== undefined && value !== null && value.length > 0;
+      //     }
+      //     return true; // Return true for other account types
+      //   }
+      // ),
       phoneNumber: Yup.string().required("Phone number is required*"),
       email: Yup.string()
         .matches(
@@ -224,7 +253,7 @@ const SignUp = () => {
                 </div>
               ) : null}
             </div>
-            {formik.values.accountType === "business" && (
+            {formik.values.accountType === "business" ? (
               <div className="w-full">
                 <input
                   className={`w-full bg-transparent p-2 border border-gray-400 rounded-sm outline-none ${
@@ -243,8 +272,8 @@ const SignUp = () => {
                   </div>
                 ) : null}
               </div>
-            )}
-            {formik.values.accountType === "business" && (
+            ) : null}
+            {formik.values.accountType === "business" ? (
               <div className="w-full">
                 <input
                   className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
@@ -266,7 +295,7 @@ const SignUp = () => {
                   </div>
                 ) : null}
               </div>
-            )}
+            ) : null}
             <div className="w-full ">
               <div className="flex items-center">
                 <span className="border border-gray-400 rounded-s-sm p-2 bg-gray-300 text-gray-500">
@@ -396,7 +425,7 @@ const SignUp = () => {
                 </div>
               ) : null}
             </div>
-            {formik.values.accountType === "business" && (
+            {formik.values.accountType === "business" ? (
               <div className="w-full">
                 <input
                   className={`w-full bg-transparent p-2 border rounded-sm outline-none ${
@@ -417,7 +446,7 @@ const SignUp = () => {
                   </div>
                 ) : null}
               </div>
-            )}
+            ) : null}
             <div className="w-full">
               <input
                 className={`w-full bg-transparent p-2 border rounded-sm outline-none ${

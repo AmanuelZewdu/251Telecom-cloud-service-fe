@@ -1,10 +1,13 @@
 import axios from "axios";
-const API_URL_VMS = "https://api.cloud251.com/vm-settings/instance-types";
-const API_URL_IMAGES = "https://api.cloud251.com/vm-settings/machine-images";
-const API_URL_SIGN_UP = "https://api.cloud251.com/auth/signup";
-const API_URL_CREATE_ORDER = "https://api.cloud251.com/order/";
-const API_URL_LOGIN = "https://api.cloud251.com/auth/signin";
-const API_URL_CONTACTUS = "https://api.cloud251.com/miscallaneous/contact";
+
+const APP_BASE_URL = process.env.REACT_APP_BASE_API_URL_ORIGINAL;
+const API_URL_VMS = APP_BASE_URL + "vm-settings/instance-types";
+const API_URL_IMAGES = APP_BASE_URL + "vm-settings/machine-images";
+const API_URL_SIGN_UP = APP_BASE_URL + "auth/signup";
+const API_URL_CREATE_ORDER = APP_BASE_URL + "order/";
+const API_URL_LOGIN = APP_BASE_URL + "auth/signin";
+const API_URL_CONTACTUS = APP_BASE_URL + "miscallaneous/contact";
+const API_URL_EXCHANGE = APP_BASE_URL + "rate";
 
 const getInstanceType = async () => {
   return axios
@@ -71,12 +74,23 @@ const getOrderById = async (orderId) => {
 const postLogin = async (userCredential) => {
   try {
     const response = await axios.post(API_URL_LOGIN, userCredential);
+    console.log("login===>", response);
     return { data: response.data, statusCode: response.status };
   } catch (error) {
     if (error.response) {
       return { error: error.response.data, statusCode: error.response.status };
     } else {
       throw new Error("Network error occurred.");
+    }
+  }
+};
+const getDollarExchange = async (dollar) => {
+  try {
+    const response = await axios.post(API_URL_EXCHANGE, dollar);
+    return response;
+  } catch (error) {
+    if (error.response) {
+      return { error: error.response.data, statusCode: error.response.status };
     }
   }
 };
@@ -100,5 +114,6 @@ const services = {
   postLogin,
   getOrderById,
   postContactUs,
+  getDollarExchange,
 };
 export default services;

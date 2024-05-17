@@ -42,6 +42,7 @@ const VirtualMachine = () => {
   const [selectedVCPU, setSelectedVCPU] = useState("");
   const [selectedMemory, setSelectedMemory] = useState("");
   const [loading, setLoading] = useState(true);
+  const [priceInBirr, setPriceInBirr] = useState();
 
   // side effect that fetches the instance types
   useEffect(() => {
@@ -267,12 +268,26 @@ const VirtualMachine = () => {
     if (!vcpus || !memory) {
       return "-";
     }
-    const vcpusPrice = vcpus * 0.035;
+    const vcpusPrice = vcpus * 22.356;
 
-    const memoryValue = (memory / 1024) * 0.00375;
+    const memoryValue = (memory / 1024) * 2.394;
 
-    const totalPrice = Math.round((vcpusPrice + memoryValue) * 730);
-    return `$${totalPrice}`;
+    const volumePrice = volume * 0.14;
+
+    const totalPrice = vcpusPrice + memoryValue + volumePrice;
+    const dollar = {
+      dollar: totalPrice,
+    };
+    calculateDollar(dollar);
+
+    return `$${priceInBirr}`;
+  };
+
+  const calculateDollar = async (dollar) => {
+    const response = await services.getDollarExchange(dollar);
+
+    const x = response?.data?.totalInETB;
+    setPriceInBirr(x);
   };
 
   return (

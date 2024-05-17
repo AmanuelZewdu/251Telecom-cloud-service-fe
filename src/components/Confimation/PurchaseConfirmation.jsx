@@ -56,13 +56,7 @@ const PurchaseConfirmation = () => {
       return total + price;
     }, 0);
 
-    const additionRepresentation = cartItems.map((item, index) => {
-      return index === cartItems.length - 1
-        ? `$${parseFloat(item.price?.replace(/[^\d.]/g, ""))}`
-        : `$${parseFloat(item.price?.replace(/[^\d.]/g, ""))} + `;
-    });
-
-    return `${additionRepresentation.join(" ")} = $${subtotal.toFixed(2)}`;
+    return ` ${subtotal.toFixed(3)}`;
   };
 
   const calculateTotal = () => {
@@ -82,7 +76,7 @@ const PurchaseConfirmation = () => {
   const totalBeforeVat = calculateTotal();
   const vat = vatCalculator(totalBeforeVat);
   const total = parseFloat(vat) + parseFloat(totalBeforeVat);
-  const etSwitchTotal = total * 100;
+  const etSwitchTotal = Number(subtotal);
 
   const handleCreateOrder = async () => {
     try {
@@ -104,6 +98,7 @@ const PurchaseConfirmation = () => {
           storage: [],
           object: [],
         },
+        paymentMethodId: 2,
         total: etSwitchTotal,
         returnUrl: url.toString(),
       };
@@ -112,7 +107,7 @@ const PurchaseConfirmation = () => {
       if (response.order.userId) {
         setSuccessMessage(true);
         //window.open(response.paymentURL.formUrl);
-        window.location.href = response.paymentURL.formUrl;
+        window.location.href = response.paymentURL;
         localStorage.removeItem("purchaseItems");
       }
     } catch (error) {
@@ -181,11 +176,11 @@ const PurchaseConfirmation = () => {
             <h2 className="flex text-[#050505]  justify-between">
               Items: <span className="font-medium">{cartItems.length}</span>
             </h2>
-            <hr />
+            {/* <hr />
             <h2 className="flex text-[#050505]  justify-between">
               SubTotal:{" "}
               <span className="font-medium text-right">{subtotal}</span>
-            </h2>
+            </h2> */}
             <hr />
             <h2 className="flex text-[#050505]  justify-between">
               <p className="flex flex-col">
@@ -194,12 +189,14 @@ const PurchaseConfirmation = () => {
                   15% of your sub-total
                 </span>{" "}
               </p>{" "}
-              <span className="font-medium">${vat}</span>
+              <span className="font-medium">ETB {vat}</span>
             </h2>
             <hr />
             <h1 className="flex text-[#050505]  justify-between">
               Total:{" "}
-              <span className="font-semibold text-green-700">${total}/mo</span>
+              <span className="font-semibold text-green-700">
+                ETB {subtotal}/mo
+              </span>
             </h1>
           </div>
         )}

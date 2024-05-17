@@ -52,7 +52,7 @@ const Footer = () => {
           <div className="max-w-[5em]">
             <img src={logo} alt="cloud251 logo" />
           </div>
-          <p className="xl:text-[14px]">
+          <p className="">
             Elevating your digital journey with our cloud expertise. Welcome to
             Cloud251, your trusted cloud partner
           </p>

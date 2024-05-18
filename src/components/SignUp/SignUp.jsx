@@ -7,10 +7,14 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import services from "../../Services/services";
 import { Link } from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const SignUp = () => {
   const [visible, setVisibile] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [signUpSuccess, setSignUpSuccess] = useState(false);
+  const [signUpError, setSignUpError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
@@ -127,22 +131,43 @@ const SignUp = () => {
         .required("Password confirmation is required*"),
     }),
     onSubmit: async (values, { resetForm }) => {
-      values.phoneNumber = `251${values.phoneNumber}`;
+      try {
+        setLoading(true);
+        values.phoneNumber = `251${values.phoneNumber}`;
 
-      const userDetail = {
-        userDetail: {
-          ...values,
-        },
+        const userDetail = {
+          userDetail: {
+            ...values,
+          },
 
-        isProductSelected: isProductSelected("purchaseItems"),
-      };
-      // alert(JSON.stringify(userDetail, null, 2));
-      const response = await services.postSignUp(userDetail);
-      if (!response) {
-        return;
+          isProductSelected: isProductSelected("purchaseItems"),
+        };
+        // alert(JSON.stringify(userDetail, null, 2));
+        const { data, statusCode } = await services.postSignUp(userDetail);
+        if (!data) {
+          return;
+        }
+        if (statusCode === 201) {
+          setSignUpSuccess(true);
+          setTimeout(() => {
+            setSignUpSuccess(false);
+          }, 3000);
+          resetForm();
+          setLoading(false);
+        } else {
+          setSignUpError(true);
+          setTimeout(() => {
+            setSignUpError(false);
+          }, 3000);
+          setLoading(false);
+        }
+      } catch (error) {
+        setSignUpError(true);
+        setTimeout(() => {
+          setSignUpError(false);
+        }, 3000);
+        setLoading(false);
       }
-      alert("Sign up Successful!!");
-      resetForm();
     },
   });
 
@@ -545,15 +570,16 @@ const SignUp = () => {
             </div>
 
             <button
-              className={`w-full rounded-sm p-2 text-white ${
+              className={`w-full flex justify-center items-center gap-2 rounded-sm p-2 text-white ${
                 isChecked
                   ? "bg-button-color"
                   : "cursor-not-allowed bg-button-color/50"
               }`}
-              disabled={!isChecked}
+              disabled={!isChecked || loading}
               type="submit"
             >
-              Sign up
+              {loading ? "Signing up" : "Sign up"}
+              {loading && <div className="login-Loader"></div>}
             </button>
           </form>
           <div className="flex flex-col-reverse md:flex-row justify-between gap-2">
@@ -569,6 +595,29 @@ const SignUp = () => {
           </div>
         </div>
       </div>
+      {signUpSuccess && (
+        <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/10">
+          <div className="border border-green-500 bg-white p-3 mx-auto rounded-md shadow-md flex items-center justify-center gap-2 mt-8 animate-bounce">
+            <CheckCircleIcon className="text-green-600" />
+            <p className="text-green-600 text-sm font-medium ">
+              Welcome! Your sign-up was successful. We've sent you an email to
+              verify your account. Please check your inbox and verify your email
+              to complete the registration.
+            </p>
+          </div>
+        </div>
+      )}
+      {signUpError && (
+        <div className="fixed px-4 inset-0 z-50 flex items-start justify-center bg-black/10">
+          <div className="border border-red-300 bg-white p-3 mx-auto rounded-md shadow-md flex items-center justify-center gap-2 mt-8 animate-bounce">
+            <CheckCircleIcon className="text-red-500" />
+            <p className="text-red-500 text-sm font-medium ">
+              We're sorry, but there was an error with your sign-up. Please try
+              again.
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

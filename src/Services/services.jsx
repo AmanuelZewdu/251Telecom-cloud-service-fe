@@ -36,7 +36,7 @@ const postSignUp = async (userDetail) => {
   return axios
     .post(API_URL_SIGN_UP, userDetail)
     .then((response) => {
-      return response.data;
+      return { data: response.data, statusCode: response.status };
     })
     .catch((err) => {
       throw new Error(err.message);

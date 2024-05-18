@@ -71,12 +71,12 @@ export const FAQ = [
       "Configure alerts to receive timely notifications for any deviations from expected behavior, enabling proactive management of storage health and performance.",
     ],
   },
-  {
-    id: 4,
-    question:
-      "What are the billing and pricing structures for Cloud 251 services?",
-    answer: [
-      "What are the billing and pricing structures for Cloud 251 services?",
-    ],
-  },
+  // {
+  //   id: 4,
+  //   question:
+  //     "What are the billing and pricing structures for Cloud 251 services?",
+  //   answer: [
+  //     "What are the billing and pricing structures for Cloud 251 services?",
+  //   ],
+  // },
 ];

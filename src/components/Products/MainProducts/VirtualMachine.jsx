@@ -67,8 +67,6 @@ const VirtualMachine = () => {
     }
   }, []);
 
-  console.log(volume);
-
   const handleDurationNumChange = (event) => {
     setDurationNumber(event.target.value); // This is duration time in numbers
   };

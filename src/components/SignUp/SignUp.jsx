@@ -417,7 +417,6 @@ const SignUp = () => {
                 type="text"
                 {...formik.getFieldProps("specificAddress")}
               />
-              {formik.values.specificAddress}
               {formik.touched.specificAddress &&
               formik.errors.specificAddress ? (
                 <div className="text-red-600 text-xs mt-1">

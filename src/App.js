@@ -16,6 +16,7 @@ import Footer from "./components/Footer/Footer";
 import Terms from "./components/Terms/Terms";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Reset from "./components/Reset/Reset";
+import PaymentError from "./components/PaymentError/PaymentError";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
                 path="/purchase-confirm"
                 element={<PurchaseConfirmation />}
               />
+              <Route path="/payment-error" element={<PaymentError />} />
               <Route path="/wait" element={<WaitPage />} />
               <Route path="/log-in" element={<LogIn />} />
               <Route path="/sign-up" element={<SignUp />} />

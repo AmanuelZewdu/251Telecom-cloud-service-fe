@@ -74,7 +74,7 @@ const getOrderById = async (orderId) => {
 const postLogin = async (userCredential) => {
   try {
     const response = await axios.post(API_URL_LOGIN, userCredential);
-    console.log("login===>", response);
+    // console.log("login===>", response);
     return { data: response.data, statusCode: response.status };
   } catch (error) {
     if (error.response) {

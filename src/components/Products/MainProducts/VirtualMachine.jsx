@@ -274,20 +274,19 @@ const VirtualMachine = () => {
 
     const volumePrice = volume * 0.14;
 
-    const totalPrice = vcpusPrice + memoryValue + volumePrice;
+    const totalPrice =
+      (vcpusPrice + memoryValue + volumePrice) * durationNumber;
     const dollar = {
       dollar: totalPrice,
     };
-    calculateDollar(dollar);
+    const priceInETB = calculateDollar(dollar).toFixed(3);
 
-    return `$${priceInBirr}`;
+    return `$${priceInETB}`;
   };
 
-  const calculateDollar = async (dollar) => {
-    const response = await services.getDollarExchange(dollar);
-
-    const x = response?.data?.totalInETB;
-    setPriceInBirr(x);
+  const calculateDollar = (dollar) => {
+    //const response = await services.getDollarExchange(dollar);
+    return dollar.dollar * 56.9757;
   };
 
   return (

@@ -7,7 +7,6 @@ const ContactUsSection = () => {
   const lists = [
     { id: 0, text: "Load balancing capabilities" },
     { id: 1, text: "Auto-Scaler access" },
-    { id: 2, text: "And something koy" },
   ];
 
   const CTA = styled(Button)({

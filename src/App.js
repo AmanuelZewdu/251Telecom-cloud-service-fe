@@ -36,7 +36,7 @@ function App() {
               <Route path="/object-storage" element={<ObjArrPurchase />} />
               <Route path="/array-storage" element={<ArrStoragePurchase />} />
               <Route
-                path="/purchase-confirm"
+                path="/purchase-confirm/:access_token"
                 element={<PurchaseConfirmation />}
               />
               <Route path="/payment-error" element={<PaymentError />} />

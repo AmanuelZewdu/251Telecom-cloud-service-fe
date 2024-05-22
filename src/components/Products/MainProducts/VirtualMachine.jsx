@@ -279,7 +279,7 @@ const VirtualMachine = () => {
     };
     const priceInETB = calculateDollar(dollar).toFixed(3);
 
-    return `$${priceInETB}`;
+    return `${priceInETB}`;
   };
 
   const calculateDollar = (dollar) => {
@@ -608,6 +608,7 @@ const VirtualMachine = () => {
         <div className="flex gap-2">
           <h3>Price:</h3>
           <span className="font-semibold">
+            ETB{" "}
             {priceCalculator(
               selectedRowData?.vcpus,
               selectedRowData?.memory_mb

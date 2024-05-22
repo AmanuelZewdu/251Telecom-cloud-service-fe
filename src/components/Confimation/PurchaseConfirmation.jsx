@@ -69,7 +69,7 @@ const PurchaseConfirmation = () => {
 
   const vatCalculator = (total) => {
     const vat = (total * 15) / 100;
-    return vat;
+    return vat.toFixed(3);
   };
 
   const subtotal = calculateSubtotal();

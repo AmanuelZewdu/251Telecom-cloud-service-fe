@@ -121,7 +121,7 @@ const VirtualMachine = () => {
         imageId: selectedImage,
         price: price,
         serviceType: "Virtual machine",
-        duration: durationNumber,
+        duration: duration === "year" ? durationNumber * 12 : durationNumber,
         diskSize,
         imageType: selectedImageName,
         volume: {
@@ -271,15 +271,25 @@ const VirtualMachine = () => {
     const memoryValue = (memory / 1024) * 2.394;
 
     const volumePrice = volume * 0.14;
+    if (duration === "year") {
+      const totalPrice =
+        (vcpusPrice + memoryValue + volumePrice) * durationNumber * 12;
+      const dollar = {
+        dollar: totalPrice,
+      };
+      const priceInETB = calculateDollar(dollar).toFixed(3);
 
-    const totalPrice =
-      (vcpusPrice + memoryValue + volumePrice) * durationNumber;
-    const dollar = {
-      dollar: totalPrice,
-    };
-    const priceInETB = calculateDollar(dollar).toFixed(3);
+      return `${priceInETB}`;
+    } else {
+      const totalPrice =
+        (vcpusPrice + memoryValue + volumePrice) * durationNumber;
+      const dollar = {
+        dollar: totalPrice,
+      };
+      const priceInETB = calculateDollar(dollar).toFixed(3);
 
-    return `${priceInETB}`;
+      return `${priceInETB}`;
+    }
   };
 
   const calculateDollar = (dollar) => {

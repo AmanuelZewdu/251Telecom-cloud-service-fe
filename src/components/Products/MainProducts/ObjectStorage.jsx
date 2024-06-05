@@ -298,6 +298,7 @@
 
 import Lottie from "react-lottie";
 import * as animationData from "../../../shared/webDev.json";
+import { obDescription } from "../../../shared/data/data.js";
 
 const ObjectStorage = () => {
   const defaultOptions = {
@@ -311,7 +312,7 @@ const ObjectStorage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="mt-[4em] md:mt-[7em] flex flex-col items-center justify-center gap-2">
+      {/* <div className="mt-[4em] md:mt-[7em] flex flex-col items-center justify-center gap-2">
         <h1 className="text-3xl font-Inter font-bold text-primary-blue">
           Under Development
         </h1>
@@ -319,6 +320,14 @@ const ObjectStorage = () => {
       </div>
       <div>
         <Lottie options={defaultOptions} className="w-[10em]" />
+      </div> */}
+      <div>
+        <h1 className="text-4xl mb-6 pb-4 text-center text-transparent bg-clip-text xl:w-fit font-bold bg-gradient-to-r from-primary-blue via-button-color to-secondary-blue">
+          Object Storage
+        </h1>
+        <p className="mt-4 text-start leading-7 text-slate-500">
+          {obDescription}
+        </p>
       </div>
     </div>
   );

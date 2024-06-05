@@ -35,6 +35,8 @@ export const vmDescription =
 export const obDescription =
   "Object storage is a groundbreaking approach to data storage that eliminates the limitations of traditional file systems by organizing data as discrete objects, each with its own unique identifier and metadata. This method enables seamless scalability, making it ideal for storing vast amounts of unstructured data such as multimedia files, backups, and archives. Its distributed architecture ensures high availability and durability, making it a reliable solution for mission-critical applications. Object storage's rich metadata capabilities also facilitate advanced data management tasks, empowering organizations to extract valuable insights and streamline workflows.";
 
+export const arStorage =
+  "Array storage, is a system for storing data that uses multiple hard drives or solid state drives instead of just one.  These drives are bundled together and managed by a central system, allowing for much larger storage capacity than a single drive.";
 export const FAQ = [
   {
     id: 0,

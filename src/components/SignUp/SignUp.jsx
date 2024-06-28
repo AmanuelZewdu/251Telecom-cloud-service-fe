@@ -313,7 +313,7 @@ const SignUp = () => {
                   type="text"
                   {...formik.getFieldProps("TINNumber")}
                 />
-                {formik.values.TINNumber}
+
                 {formik.touched.TINNumber && formik.errors.TINNumber ? (
                   <div className="text-red-600 text-xs mt-1">
                     {formik.errors.TINNumber}

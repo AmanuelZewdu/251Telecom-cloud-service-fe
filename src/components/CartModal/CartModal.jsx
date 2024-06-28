@@ -151,11 +151,9 @@ const CartModal = ({ open, onClose }) => {
                 <li>
                   Total:{" "}
                   <span className="font-semibold text-green-700">
-                    ${total}/mo
+                    ETB {total}/mo
                   </span>{" "}
-                  <span className="text-xs text-gray-500">
-                    (exclusive of VAT)
-                  </span>
+                  <span className="text-xs text-gray-500">(including VAT)</span>
                 </li>
               </ul>
             )}

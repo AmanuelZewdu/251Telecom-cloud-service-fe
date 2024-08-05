@@ -294,7 +294,7 @@ const VirtualMachine = () => {
 
   const calculateDollar = (dollar) => {
     //const response = await services.getDollarExchange(dollar);
-    return dollar.dollar * 56.9757;
+    return dollar.dollar;
   };
 
   return (
@@ -618,7 +618,7 @@ const VirtualMachine = () => {
         <div className="flex gap-2">
           <h3>Price:</h3>
           <span className="font-semibold">
-            ETB{" "}
+            USD{" "}
             {priceCalculator(
               selectedRowData?.vcpus,
               selectedRowData?.memory_mb

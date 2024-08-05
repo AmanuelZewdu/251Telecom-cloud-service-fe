@@ -195,7 +195,7 @@ const PurchaseConfirmation = () => {
             <h1 className="flex text-[#050505]  justify-between">
               Total:{" "}
               <span className="font-semibold text-green-700">
-                ETB {subtotal}/mo
+                 USD {subtotal}/mo
               </span>
             </h1>
           </div>

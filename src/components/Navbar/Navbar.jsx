@@ -138,6 +138,13 @@ const Navbar = () => {
             >
               <Link to="/">Home</Link>
             </li>
+
+            <li
+              onClick={() => setOpen(false)}
+              className="relative hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out"
+            >
+              <Link to="/aboutus">About Us</Link>
+            </li>
             {/* <li className="relative  hover:bg-gray-300 py-1 px-2 rounded-md transition-color duration-300 ease-in-out">
               <Link to="/console">Console</Link>
             </li> */}

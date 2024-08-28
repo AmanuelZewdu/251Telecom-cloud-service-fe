@@ -3,7 +3,7 @@ import PlatformImage from '../../shared/images/arrayStorage.webp'
 const OurPlatform = () => {
   return (
    <section className="ourplatform-wrapper">
-    <div className="ourplatform-container flex-col p-2 px-44   my-16">
+    <div className="ourplatform-container flex-col p-2  px-20 lg:px-44   my-16">
     <h1 className="text-3xl font-Inter font-semibold text-primary-blue p-4">
         Our Platform
           </h1>

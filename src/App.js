@@ -17,6 +17,7 @@ import Terms from "./components/Terms/Terms";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Reset from "./components/Reset/Reset";
 import PaymentError from "./components/PaymentError/PaymentError";
+import AboutUs from "./components/AboutUs/AboutUs";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Routes>
             <Route path="/">
               <Route index element={<Home />} />
+              <Route path="/aboutus" element={<AboutUs/>} />
               <Route path="/console" element={<Console />} />
               <Route path="/products" element={<Products />} />
               <Route path="/contactUs" element={<ContactUs />} />

@@ -46,7 +46,7 @@ const Footer = () => {
   ];
 
   return (
-    <div className="bg-gray-200 font-Inter text-primary-blue">
+    <div className="bg-gray-200 font-Inter text-primary-blue z-10">
       <div className="relative grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-y-8 max-w-7xl mx-auto p-4 py-10 mb-6 xl:mb-0 xl:p-12">
         <div className="col-span-2 justify-items-start flex gap-2">
           <div className="max-w-[5em]">

@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Console from "./components/Console/Console";
 import Products from "./components/Products/Products";
-import Navbar from "../src/components/Navbar/Navbar";
 import LogIn from "./components/LogIn/LogIn";
 import SignUp from "./components/SignUp/SignUp";
 import VmPurchase from "./components/Products/VmPurchase";
@@ -12,25 +11,23 @@ import ArrStoragePurchase from "./components/Products/ArrStoragePurchase";
 import PurchaseConfirmation from "./components/Confimation/PurchaseConfirmation";
 import WaitPage from "./components/WaitPage/WaitPage";
 import ContactUs from "./components/ContactUs/ContactUs";
-import Footer from "./components/Footer/Footer";
 import Terms from "./components/Terms/Terms";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import Reset from "./components/Reset/Reset";
 import PaymentError from "./components/PaymentError/PaymentError";
 import AboutUs from "./components/AboutUs/AboutUs";
+import { Biro251Home } from "./components/Biro251/Biro251Home";
+import { Layout } from "./Layout";
 
 function App() {
   return (
     <>
       <div className="wrapper">
         <BrowserRouter>
-          <div className="">
-            <Navbar />
-          </div>
           <Routes>
-            <Route path="/">
+            <Route path="/" Component={Layout}>
               <Route index element={<Home />} />
-              <Route path="/aboutus" element={<AboutUs/>} />
+              <Route path="/aboutus" element={<AboutUs />} />
               <Route path="/console" element={<Console />} />
               <Route path="/products" element={<Products />} />
               <Route path="/contactUs" element={<ContactUs />} />
@@ -49,8 +46,8 @@ function App() {
               <Route path="/password-reset" element={<Reset />} />
               <Route path="/terms-conditions" element={<Terms />} />
             </Route>
+            <Route path="/biro251" element={<Biro251Home />} />
           </Routes>
-          <Footer />
         </BrowserRouter>
       </div>
     </>

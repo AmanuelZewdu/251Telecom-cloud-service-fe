@@ -41,7 +41,7 @@ export const Cards = () => (
     viewport={{ amount: 0.5, once: true }}
     className="max-w-screen-lg mx-auto"
   >
-    <div className="flex gap-4 sm:gap-8 md:gap-12 py-4 justify-center">
+    <div className="flex gap-4 flex-col sm:flex-row sm:gap-8 md:gap-12 py-4 px-4 justify-center">
       {offers.map((offer, index) => (
         <CustomCard key={index} {...offer} />
       ))}

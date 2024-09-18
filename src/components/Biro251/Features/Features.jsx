@@ -23,7 +23,7 @@ export const Features = () => {
       className="bg-gradient-to-br from-indigo-900 via-violet-800 to-fuchsia-800 p-4 sm:p-8"
     >
       <div className="max-w-screen-lg mx-auto">
-        <div className="flex gap-4 sm:gap-6 md:gap-8 py-4 justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 py-4 justify-center">
           {features.map((offer, index) => (
             <CustomCard key={index} {...offer} rootRef={rootRef} />
           ))}

@@ -1,40 +1,12 @@
 import { useState } from "react";
 import { pricing } from "./pricing";
-import {
-  Box,
-  Button,
-  Paper,
-  Radio,
-  Stack,
-  ToggleButton,
-  ToggleButtonGroup,
-  toggleButtonGroupClasses,
-} from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { CheckCircle, ShoppingCartTwoTone } from "@mui/icons-material";
+import { Button, Stack } from "@mui/material";
+import { ShoppingCartTwoTone } from "@mui/icons-material";
 import { motion } from "framer-motion";
-
-const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
-  [`& .${toggleButtonGroupClasses.grouped}`]: {
-    margin: theme.spacing(0.5),
-    border: 0,
-    borderRadius: 20,
-    padding: "6px 16px",
-    textTransform: "capitalize",
-    fontWeight: "semibold",
-    [`&.${toggleButtonGroupClasses.disabled}`]: {
-      border: 0,
-    },
-  },
-  [`& .${toggleButtonGroupClasses.middleButton},& .${toggleButtonGroupClasses.lastButton}`]:
-    {
-      marginLeft: -1,
-      borderLeft: "1px solid transparent",
-    },
-}));
+import { PlanToggle } from "./PlanToggle";
 
 export const Pricing = () => {
-  const [option, setOpetion] = useState("business");
+  const [option, setOption] = useState("business");
 
   const colors = ["bg-zinc-500", "bg-green-500", "bg-yellow-500"];
 
@@ -46,37 +18,12 @@ export const Pricing = () => {
         className="flex flex-col  gap-2 sm:gap-4 items-center"
       >
         <h1 className="text-3xl text-primary-blue text-center">Pricing</h1>
-        <Paper
-          elevation={0}
-          sx={(theme) => ({
-            border: 0,
-            borderRadius: 20,
-            width: "fit-content",
-            display: "flex",
-            border: `1px solid ${theme.palette.divider}`,
-            flexWrap: "wrap",
-          })}
-        >
-          <StyledToggleButtonGroup
-            color="success"
-            value={option}
-            exclusive
-            onChange={(e, option) => setOpetion(option)}
-            aria-label="pricing option"
-          >
-            <ToggleButton disableRipple value="business" aria-label="business">
-              Business
-            </ToggleButton>
-            <ToggleButton disableRipple value="personal" aria-label="personal">
-              Personal
-            </ToggleButton>
-          </StyledToggleButtonGroup>
-        </Paper>
+        <PlanToggle option={option} setOption={setOption} />
       </motion.div>
 
       <motion.div
         animate={{ transition: { staggerChildren: 0.5 } }}
-        className="grid grid-cols-3 mt-2 gap-4 sm:gap-6 md:gap-8 py-4 justify-center transition-all ease-in-out"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-4 mt-2 gap-4 sm:gap-6 md:gap-8 py-4 justify-center transition-all ease-in-out"
       >
         {pricing[option].map(({ title, price, features, popular }, index) => (
           <motion.div

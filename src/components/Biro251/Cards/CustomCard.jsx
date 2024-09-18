@@ -13,7 +13,7 @@ export const CustomCard = ({
     <motion.div
       initial={{ y: -20 }}
       whileInView={{ y: 0 }}
-      className="px-8 p-4 rounded-lg shadow-sm hover:shadow-lg bg-white transition-all min-h-80 max-w-96"
+      className="px-8 p-4 rounded-lg shadow-sm hover:shadow-lg bg-white transition-all min-h-80 max-w-80 flex-grow"
     >
       <div className="flex flex-col justify-between h-full">
         <div className="space-y-2 items-start">

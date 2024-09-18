@@ -18,6 +18,8 @@ import PaymentError from "./components/PaymentError/PaymentError";
 import AboutUs from "./components/AboutUs/AboutUs";
 import { Biro251Home } from "./components/Biro251/Biro251Home";
 import { Layout } from "./Layout";
+import { Biro251Layout } from "./components/Biro251/Biro251Layout";
+import { Purchase } from "./components/Biro251/Signup/Signup";
 
 function App() {
   return (
@@ -46,7 +48,10 @@ function App() {
               <Route path="/password-reset" element={<Reset />} />
               <Route path="/terms-conditions" element={<Terms />} />
             </Route>
-            <Route path="/biro251" element={<Biro251Home />} />
+            <Route Component={Biro251Layout}>
+              <Route path="/biro251" element={<Biro251Home />} />
+              <Route path="/biro251/purchase" element={<Purchase />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </div>

@@ -3,7 +3,9 @@ import logo from "../../shared/images/cloud251Logo.webp";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import "./footer.scss";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import TelegramIcon from "@mui/icons-material/Telegram";
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import TwitterIcon from '@mui/icons-material/Twitter';
+
 import EmailIcon from "@mui/icons-material/Email";
 
 const Footer = () => {
@@ -30,20 +32,48 @@ const Footer = () => {
     {
       id: 0,
       icon: <LocalPhoneIcon />,
+      link: '+251940793142"', 
     },
     {
       id: 1,
       icon: <EmailIcon />,
+      link: 'hello@cloud251.com', 
     },
     {
       id: 2,
-      icon: <TelegramIcon />,
+      icon: <LinkedInIcon />, 
+      link: 'https://www.linkedin.com/company/cloud251/', 
     },
     {
       id: 3,
       icon: <InstagramIcon />,
+      link: 'https://www.instagram.com/_cloud251',
+    },
+    {
+      id: 4,
+      icon: <TwitterIcon />,
+      link: 'https://x.com/cloud_251', 
     },
   ];
+
+  // const contactInfo = [
+  //   {
+  //     id: 0,
+  //     icon: <LocalPhoneIcon />,
+  //   },
+  //   {
+  //     id: 1,
+  //     icon: <EmailIcon />,
+  //   },
+  //   {
+  //     id: 2,
+  //     icon: <TelegramIcon />,
+  //   },
+  //   {
+  //     id: 3,
+  //     icon: <InstagramIcon />,
+  //   },
+  // ];
 
   return (
     <div className="bg-gray-200 font-Inter text-primary-blue z-10">
@@ -79,14 +109,16 @@ const Footer = () => {
         <div className="-mt-1 col-span-2 md:col-span-1 flex flex-col items-center md:items-start">
           <h3 className="text-lg font-medium">Contact information</h3>
           <ul className="flex gap-6">
-            {contactInfo.map((info) => (
-              <li
-                className="reflect hover:scale-125 transition-all duration-300 ease-in-out"
-                key={info.id}
-              >
-                {info.icon}
-              </li>
-            ))}
+          {contactInfo.map((info) => (
+  <li
+    className="reflect hover:scale-125 transition-all duration-300 ease-in-out"
+    key={info.id}
+  >
+    <a href={info.link} target={info.link.startsWith('mailto:') ? '_self' : '_blank'} rel="noopener noreferrer">
+      {info.icon}
+    </a>
+  </li>
+))}
           </ul>
         </div>
       </div>

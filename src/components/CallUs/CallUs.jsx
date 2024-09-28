@@ -22,7 +22,7 @@ function CallUs() {
         shaking ? "shake" : ""
       }`}
     >
-      <a href="tel:+251913701596">
+      <a href="tel:+251940793142">
         <LocalPhoneIcon sx={{ fontWeight: "bold", fontSize: 32 }} />
       </a>
     </div>

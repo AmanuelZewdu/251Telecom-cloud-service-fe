@@ -18,71 +18,71 @@ const SecurityCompliance = () => {
         <div className="image-container relative group w-full flex flex-col items-center justify-center rounded-lg p-8 gap-4 border border-solid border-r-white hover:border-blue-500 transition-all duration-300">
   <img src={Soc1} alt="array" className="w-full" />
 
-  <div className="flex flex-col items-center h-0 justify-center opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
+  {/* <div className="flex flex-col items-center h-0 justify-center opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
     <h3 className="text-lg font-bold text-center font-Inter text-primary-blue">ISO Certified</h3>
     <p className="text-sm text-gray-500 text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta ab</p>
-  </div>
+  </div> */}
 </div>
 
   <div className="image-container  group w-full flex flex-col items-center justify-center rounded-lg p-8 gap-4 border border-solid border-r-white hover:border-blue-500 transition-all duration-300">
     <img src={Isoo27017} alt="array" className="w-full" />
 
-    <div className="overflow-hidden h-0 opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
+    {/* <div className="overflow-hidden h-0 opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
       <h3 className="text-lg font-bold text-center font-Inter text-primary-blue">ISO Certified</h3>
       <p className="text-sm text-gray-500 text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta ab</p>
-    </div>
+    </div> */}
   </div>
 
   <div className="image-container   group w-full flex flex-col items-center justify-center rounded-lg p-8 gap-4 border border-solid border-r-white hover:border-blue-500 transition-all duration-300">
     <img src={Isoo27018} alt="array" className="w-full" />
 
-    <div className="overflow-hidden h-0 opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
+    {/* <div className="overflow-hidden h-0 opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
       <h3 className="text-lg font-bold text-center font-Inter text-primary-blue">ISO Certified</h3>
       <p className="text-sm text-gray-500 text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta ab</p>
-    </div>
+    </div> */}
   </div>
 
   <div className="image-container  group w-full flex flex-col items-center justify-center rounded-lg p-8 gap-4 border border-solid border-r-white hover:border-blue-500 transition-all duration-300">
     <img src={Isoo27001} alt="array" className="w-full" />
 
-    <div className="overflow-hidden h-0 opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
+    {/* <div className="overflow-hidden h-0 opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
       <h3 className="text-lg font-bold text-center font-Inter text-primary-blue">ISO Certified</h3>
       <p className="text-sm text-gray-500 text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta ab</p>
-    </div>
+    </div> */}
   </div>
 
           <div className="image-container  group w-full flex flex-col items-center justify-center rounded-lg p-8 gap-4 border border-solid border-r-white hover:border-blue-500 transition-all duration-300">
     <img src={Isoo27701} alt="array" className="w-full" />
 
-    <div className="overflow-hidden h-0 opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
+    {/* <div className="overflow-hidden h-0 opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
       <h3 className="text-lg font-bold text-center font-Inter text-primary-blue">ISO Certified</h3>
       <p className="text-sm text-gray-500 text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta ab</p>
-    </div>
+    </div> */}
   </div>
   <div className="image-container  group w-full flex flex-col items-center justify-center rounded-lg p-8 gap-4 border border-solid border-r-white hover:border-blue-500 transition-all duration-300">
     <img src={Soc2} alt="array" className="w-full" />
 
-    <div className="overflow-hidden h-0 opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
+    {/* <div className="overflow-hidden h-0 opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
       <h3 className="text-lg font-bold text-center font-Inter text-primary-blue">ISO Certified</h3>
       <p className="text-sm text-gray-500 text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta ab</p>
-    </div>
+    </div> */}
   </div>
   <div className="image-container  group w-full flex flex-col items-center justify-center rounded-lg p-8 gap-4 border border-solid border-r-white hover:border-blue-500 transition-all duration-300">
     <img src={Hipaa} alt="array" className="w-full" />
 
-    <div className="overflow-hidden h-0 opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
+    {/* <div className="overflow-hidden h-0 opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
       <h3 className="text-lg font-bold text-center font-Inter text-primary-blue">ISO Certified</h3>
       <p className="text-sm text-gray-500 text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta ab</p>
-    </div>
+    </div> */}
   </div>
 
   <div className="image-container  group w-full flex flex-col items-center justify-center rounded-lg p-8 gap-4 border border-solid border-r-white hover:border-blue-500 transition-all duration-300">
     <img src={Gdpr} alt="array" className="w-full" />
 
-    <div className="overflow-hidden h-0 opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
+    {/* <div className="overflow-hidden h-0 opacity-0 transition-opacity duration-300 group-hover:h-auto group-hover:opacity-100">
       <h3 className="text-lg font-bold text-center font-Inter text-primary-blue">ISO Certified</h3>
       <p className="text-sm text-gray-500 text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta ab</p>
-    </div>
+    </div> */}
   </div>
         
 

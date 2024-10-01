@@ -34,20 +34,20 @@ const WhyChooseUs = () => {
  <h1 className='text-3xl font-Inter text-center lg:text-start font-semibold text-primary-blue p-4'>Why Choose Us</h1>
    <div className='whychooseus-card-container text-[#f5f5f5] grid grid-cols-1 lg:grid-cols-2 p-4 justify-between gap-16'>
       <Card direction="left">
-        <h4 className='text-2xl'>Online Pronouncement of Service</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quis officiis nam deserunt consequatur suscipit. Magnam nesciunt quisquam animi aliquam commodi veniam, nihil dolores voluptate pariatur qui, tempora at veritatis</p>
+        <h4 className='text-2xl'>Advanced Cloud Console</h4>
+        <p>Our cloud console offers a powerful and feature-rich experience, providing users with enhanced control and efficiency.</p>
       </Card>
       <Card direction="right">
-        <h4 className='text-2xl'>Online Pronouncement of Service</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quis officiis nam deserunt consequatur suscipit. Magnam nesciunt quisquam animi aliquam commodi veniam, nihil dolores voluptate pariatur qui, tempora at veritatis</p>
+        <h4 className='text-2xl'>Local Currency Payments</h4>
+        <p>We offer premier cloud services with the convenience of payment in Ethiopian Birr (ETB), making transactions easier for local businesses.</p>
       </Card>
       <Card direction="left">
-        <h4 className='text-2xl'>Online Pronouncement of Service</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quis officiis nam deserunt consequatur suscipit. Magnam nesciunt quisquam animi aliquam commodi veniam, nihil dolores voluptate pariatur qui, tempora at veritatis</p>
+        <h4 className='text-2xl'>Data Sovereignty and Security</h4>
+        <p>We ensure data sovereignty by storing all data within Ethiopia at a Tier 3 data center (Raxio), adhering to the highest security standards.</p>
       </Card>
       <Card direction="right">
-        <h4 className='text-2xl'>Online Pronouncement of Service</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quis officiis nam deserunt consequatur suscipit. Magnam nesciunt quisquam animi aliquam commodi veniam, nihil dolores voluptate pariatur qui, tempora at veritatis</p>
+        <h4 className='text-2xl'>Seamless Online Payments</h4>
+        <p>Our customers can manage payments entirely online, eliminating the need for physical visits to our office, saving time and resources.</p>
       </Card>
     </div>
     </div>

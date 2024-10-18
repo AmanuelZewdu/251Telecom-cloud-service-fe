@@ -266,11 +266,11 @@ const VirtualMachine = () => {
     if (!vcpus || !memory) {
       return "-";
     }
-    const vcpusPrice = vcpus * 22.356;
+    const vcpusPrice = vcpus * 17.29;
 
-    const memoryValue = (memory / 1024) * 2.394;
+    const memoryValue = (memory / 1024) * 1.85;
 
-    const volumePrice = volume * 0.14;
+    const volumePrice = volume * 0.108;
     if (duration === "year") {
       const totalPrice =
         (vcpusPrice + memoryValue + volumePrice) * durationNumber * 12;

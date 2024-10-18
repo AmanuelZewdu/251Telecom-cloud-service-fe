@@ -9,7 +9,9 @@ const OurMission = () => {
       </div>
       <div className="ourmission-left flex-col w-[100%]">
       <h1 className="text-3xl font-Inter font-semibold text-primary-blue py-2"> Our Mission</h1>  
-       <p className='pt-4 tracking-wide text-black/80 leading-normal text-sm font-Inter'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio voluptate sint nesciunt enim debitis inventore, sapiente, placeat obcaecati recusandae ad facere necessitatibus vitae magni, itaque quam aspernatur tenetur fuga accusantium!</p>
+       <p className='pt-4 tracking-wide text-black/80 leading-normal text-sm font-Inter'>Bridge the data divide and empower Ethiopians with information access,
+fostering a culture of innovation, where data and infrastructure are
+fiercely protected.</p>
 </div>
     </div>
 </section>

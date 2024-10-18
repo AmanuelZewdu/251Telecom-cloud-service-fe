@@ -62,7 +62,7 @@ const ContactUs = () => {
         }, 6000);
         setLoading(false);
       }
-      alert(JSON.stringify(values, 2, null));
+      // alert(JSON.stringify(values, 2, null));
     },
   });
 

@@ -189,7 +189,7 @@ const PurchaseConfirmation = () => {
                   15% of your sub-total
                 </span>{" "}
               </p>{" "}
-              <span className="font-medium">ETB {vat}</span>
+              <span className="font-medium">{vat}</span>
             </h2>
             <hr />
             <h1 className="flex text-[#050505]  justify-between">

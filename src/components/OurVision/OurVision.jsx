@@ -9,7 +9,10 @@ const OurVision = () => {
          
          <div className="ourvision-left flex-col w-[100%]">
       <h1 className="text-3xl font-Inter font-semibold text-primary-blue py-2"> Our Vision</h1>  
-       <p className='pt-4 tracking-wide text-black/80 leading-normal text-sm font-Inter'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio voluptate sint nesciunt enim debitis inventore, sapiente, placeat obcaecati recusandae ad facere necessitatibus vitae magni, itaque quam aspernatur tenetur fuga accusantium!</p>
+       <p className='pt-4 tracking-wide text-black/80 leading-normal text-sm font-Inter'>Unleash Ethiopia's
+Potential in a Secure
+Cloud. Drive a Flourishing
+Digital Future.</p>
 </div>
 
     <div className="ourvision-right w-[100%] flex-col flex ">

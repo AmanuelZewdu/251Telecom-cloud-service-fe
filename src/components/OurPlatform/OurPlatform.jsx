@@ -12,8 +12,8 @@ const OurPlatform = () => {
             <img src={PlatformImage} alt="platformimage" />
         </div>
         <div className="ourplatform-middle-right flex-col flex align-middle gap-4  mt-4 w-[100%] lg:w-[100%] lg:ml-20 ">
-            <h1 className='text-primary-blue text-2xl font-bold'>Zadara Cloud</h1>
-            <p className='tracking-wide text-black/80 leading-normal text-sm font-Inter' >Zadara Cloud is a comprehensive, enterprise-grade cloud storage and computing platform designed to provide scalable, high-performance, and secure infrastructure services. It offers businesses fully managed storage, compute, and networking solutions that can be deployed both on-premises and in the cloud. </p>
+            <h1 className='text-primary-blue text-2xl font-bold'>Cloud 251</h1>
+            <p className='tracking-wide text-black/80 leading-normal text-sm font-Inter' >Cloud 251 is a comprehensive, enterprise-grade cloud storage and computing platform designed to provide scalable, high-performance, and secure infrastructure services. It offers businesses fully managed storage, compute, and networking solutions that can be deployed both on-premises and in the cloud. </p>
             {/* <p className='tracking-wide text-black/80 leading-normal text-sm font-Inter'>perspiciatis aperiam repellat adipisci quas ducimus eligendi tempora est maiores deleniti ipsum laboriosam, omnis autem.</p>
             <p className='tracking-wide text-black/80 leading-normal text-sm font-Inter'>perspiciatis aperiam repellat adipisci quas ducimus eligendi tempora est maiores deleniti ipsum laboriosam, omnis autem.</p> */}
             

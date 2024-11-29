@@ -45,11 +45,11 @@ const ProductNav = ({ onSelectComponent }) => {
       name: "Object storage",
       component: "ObjectStorage",
     },
-    {
-      icon: <FolderCopyIcon />,
-      name: "Array storage",
-      component: "ArrayStorage",
-    },
+    // {
+    //   icon: <FolderCopyIcon />,
+    //   name: "Array storage",
+    //   component: "ArrayStorage",
+    // },
   ];
 
   const handleComponentClick = (componentName, index) => {

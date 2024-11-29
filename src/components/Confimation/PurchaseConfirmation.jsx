@@ -52,7 +52,7 @@ const PurchaseConfirmation = () => {
 
   const calculateSubtotal = () => {
     const subtotal = cartItems.reduce((total, item) => {
-      const price = parseFloat(item.price?.replace(/[^\d.]/g, ""));
+      const price = item.price;
       return total + price;
     }, 0);
 
@@ -61,7 +61,7 @@ const PurchaseConfirmation = () => {
 
   const calculateTotal = () => {
     const total = cartItems.reduce((acc, item) => {
-      const price = parseFloat(item.price?.replace(/[^\d.]/g, ""));
+      const price = item.price;
       return acc + price;
     }, 0);
     return total.toFixed(2);
@@ -78,7 +78,7 @@ const PurchaseConfirmation = () => {
   const total = parseFloat(vat) + parseFloat(totalBeforeVat);
   const etSwitchTotal = Number(subtotal);
 
-  const handleCreateOrder = async () => {
+  const handleCreateOrder = async (paymentMethodId) => {
     try {
       const orderItems = cartItems.map((item) => ({
         name: item.name,
@@ -98,7 +98,7 @@ const PurchaseConfirmation = () => {
           storage: [],
           object: [],
         },
-        paymentMethodId: 2,
+        paymentMethodId: paymentMethodId,
         total: etSwitchTotal,
         returnUrl: url.toString(),
       };
@@ -195,14 +195,14 @@ const PurchaseConfirmation = () => {
             <h1 className="flex text-[#050505]  justify-between">
               Total:{" "}
               <span className="font-semibold text-green-700">
-                 USD {subtotal}/mo
+                 ETB {subtotal}/mo
               </span>
             </h1>
           </div>
         )}
         <div className="w-full flex flex-col items-center gap-4">
           <Button
-            onClick={() => handleCreateOrder()}
+            onClick={() => handleCreateOrder(2)}
             disabled={cartItems.length === 0}
             className="w-full flex gap-2 h-[3.5em]"
             variant="contained"
@@ -215,7 +215,7 @@ const PurchaseConfirmation = () => {
             />
           </Button>
           {/* <Button
-            onClick={() => handleCreateOrder()}
+            onClick={() => handleCreateOrder(1)}
             disabled={cartItems.length === 0}
             className="w-full flex gap-2 h-[3.5em]"
             variant="contained"

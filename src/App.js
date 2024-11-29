@@ -48,10 +48,10 @@ function App() {
               <Route path="/password-reset" element={<Reset />} />
               <Route path="/terms-conditions" element={<Terms />} />
             </Route>
-            <Route Component={Biro251Layout}>
+            {/* <Route Component={Biro251Layout}>
               <Route path="/biro251" element={<Biro251Home />} />
               <Route path="/biro251/purchase" element={<Purchase />} />
-            </Route>
+            </Route> */}
           </Routes>
         </BrowserRouter>
       </div>

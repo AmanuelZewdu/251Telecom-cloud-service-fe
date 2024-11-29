@@ -27,6 +27,7 @@ const VirtualMachine = () => {
   const [selectedRowData, setSelectedRowData] = useState(null);
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedImageName, setSelectedImageName] = useState("");
+  const [selectedImageDefaultDisk, setSelectedImageDefaultDisk] = useState("");
   const [duration, setDuration] = useState("");
   const [durationNumber, setDurationNumber] = useState("");
   const [diskSize, setDiskSize] = useState(null);
@@ -43,6 +44,7 @@ const VirtualMachine = () => {
   const [selectedMemory, setSelectedMemory] = useState("");
   const [loading, setLoading] = useState(true);
   const [priceInBirr, setPriceInBirr] = useState();
+  const [etbAmount, setETBAmount] = useState(null);
 
   // side effect that fetches the instance types
   useEffect(() => {
@@ -79,7 +81,9 @@ const VirtualMachine = () => {
     const selectedImageId = event.target.value;
     setSelectedImage(event.target.value);
     const selectedImageIndex = event.target.selectedIndex;
+  
     setSelectedImageName(event.target.options[selectedImageIndex].text);
+    setSelectedImageDefaultDisk(filterBlockDeviceMappingById(machineImages,event.target.value))
 
     const selectedImageObj = machineImages.find(
       (image) => image.id === selectedImageId
@@ -88,6 +92,11 @@ const VirtualMachine = () => {
       setDiskSize(selectedImageObj.total_size_gb);
     }
   };
+
+  const filterBlockDeviceMappingById=(data, id)=> {
+    const item = data.find(entry => entry.id === id);
+    return item ? item.block_device_mapping[0].volume_size_gib : [];
+  }
 
   const handleCheckboxClick = (index, instanceType) => {
     setSelectedRowData(instanceType);
@@ -262,39 +271,81 @@ const VirtualMachine = () => {
     return slicedInstanceTypes;
   };
 
+  // const priceCalculator = (vcpus, memory, volume, duration, durationNumber) => {
+    
+  //   if (!vcpus || !memory) {
+  //     return "-";
+  //   }
+  
+  //   const vcpusPrice = vcpus * 19.16;
+  //   const memoryValue = (memory / 1024) * 2.05;
+  //   const volumePrice = volume * 0.12;
+  
+  //   let totalPrice;
+  //   if (duration === "year") {
+  //     totalPrice = (vcpusPrice + memoryValue + volumePrice) * durationNumber * 12;
+  //   } else {
+  //     totalPrice = (vcpusPrice + memoryValue + volumePrice) * durationNumber;
+  //   }
+  
+  //   const dollar = {
+  //     dollar: totalPrice,
+  //   };
+  // console.log("dollar",dollar);
+  //   // Call the handleConversion function here
+  //   const priceInETB = handleConversion(dollar.dollar)
+  // //console.log("price in ETB==>",priceInETB);
+
+  //   return `${priceInETB}`;
+  // };
+
   const priceCalculator = (vcpus, memory) => {
     if (!vcpus || !memory) {
       return "-";
     }
-    const vcpusPrice = vcpus * 17.29;
+    const vcpusPrice = vcpus * 19.16;
 
-    const memoryValue = (memory / 1024) * 1.85;
+    const memoryValue = (memory / 1024) * 2.05;
 
-    const volumePrice = volume * 0.108;
+    const volumePrice = volume * 0.12;
     if (duration === "year") {
       const totalPrice =
         (vcpusPrice + memoryValue + volumePrice) * durationNumber * 12;
       const dollar = {
         dollar: totalPrice,
       };
-      const priceInETB = calculateDollar(dollar).toFixed(3);
-
-      return `${priceInETB}`;
+      const priceInETB = handleConversion(dollar);
+      
+      return etbAmount;
     } else {
       const totalPrice =
         (vcpusPrice + memoryValue + volumePrice) * durationNumber;
       const dollar = {
         dollar: totalPrice,
       };
-      const priceInETB = calculateDollar(dollar).toFixed(3);
+      const priceInETB = handleConversion(dollar);
+      console.log("Price in ETB=",etbAmount);
 
-      return `${priceInETB}`;
+      return etbAmount;
+    }
+  };
+
+  const handleConversion = async (dollar) => {
+    try {
+      const response = await services.getDollarExchange(dollar);
+      setETBAmount(response);
+      setError(null);
+  
+      return response;
+    } catch (error) {
+      console.error("Error fetching exchange rate:", error);
+      setError(error.message || "Failed to retrieve exchange rate.");
     }
   };
 
   const calculateDollar = (dollar) => {
     //const response = await services.getDollarExchange(dollar);
-    return dollar.dollar;
+    return dollar.dollar *125;
   };
 
   return (
@@ -489,6 +540,11 @@ const VirtualMachine = () => {
                 ))}
               </select>
             </div>
+            {selectedImageDefaultDisk && (
+  <div className="mt-2 text-sm text-gray-600">
+    Default Disk: {selectedImageDefaultDisk} GB
+  </div>
+)}
           </div>
 
           <div className="mt-4 flex gap-4 items-center">
@@ -569,87 +625,107 @@ const VirtualMachine = () => {
           </div>
         </div>
       </div>
-      <PurchaseItemData>
+      <PurchaseItemData className="w-[100px]" >
         {error && (
-          <span className="bg-red-100 rounded-sm w-fit py-2 px-3 text-sm border-l-4 border-red-500 pl-1 text-red-500">
+         <span className="bg-red-100 rounded-sm w-[300px] py-2 px-3 text-sm border-l-4 border-red-500 pl-1 text-red-500">
+
             Please make sure you have selected all available options*
           </span>
         )}
-        <div className="background">
-          <img
-            className="max-w-full"
-            src={require("../../../shared/images/vmImage2.webp")}
-            alt="Your Company Logo"
-          />
-        </div>
-        <div className="flex gap-2">
-          <h3 className="">VM type:</h3>
-          <span className="text-black/85 font-medium">
-            {selectedRowData?.vcpus ? `${selectedRowData.vcpus} vCPU` : ""}
-          </span>
-          -
-          <span className="text-black/85 font-medium">
-            {selectedRowData?.memory_mb
-              ? `${mbToGBConverter(selectedRowData.memory_mb)}`
-              : ""}
-          </span>
-        </div>
-        <div className="flex gap-2">
-          <h3 className="">Selected image:</h3>
-          <span className="text-black/85 font-medium">
-            {selectedImageName || "-"}
-          </span>
-        </div>
-        <div className="flex gap-2">
-          <h3 className="">Volume size:</h3>
-          <span className="text-black/85 font-medium">
-            {volume ? `${volume} GB` : "-"}
-          </span>
-        </div>
-        <div className="flex gap-2">
-          <h3 className="">Duration:</h3>
-          <span className="text-black/85 font-medium">
-            {durationNumber ? durationNumber : "-"}
-          </span>
-          <span className="text-black/85 font-medium">
-            {duration ? duration : "-"}
-          </span>
-        </div>
-        <div className="flex gap-2">
-          <h3>Price:</h3>
-          <span className="font-semibold">
-            USD{" "}
-            {priceCalculator(
-              selectedRowData?.vcpus,
-              selectedRowData?.memory_mb
-            )}
-          </span>
-        </div>
-        <div className="flex gap-4 items-center z-50">
-          <Button
-            style={{
-              fontSize: "12px",
-              backgroundColor: "#BC68B2",
-            }}
-            className="w-[7em] md:w-[10em]"
-            variant="contained"
-            onClick={() => addToCartHandler(true)}
-          >
-            Buy
-          </Button>
-          <Button
-            onClick={() => addToCartHandler(false)}
-            style={{
-              fontSize: "12px",
-              backgroundColor: "white",
-              border: "1px solid #BC68B2",
-              color: "#BC68B2",
-            }}
-            variant="contained"
-          >
-            Add to Cart
-          </Button>
-        </div>
+  
+  <div className="flex flex-wrap justify-between gap-4">
+  <div className="w-full sm:w-auto">
+    <div className="flex flex-wrap gap-2">
+      <h3>VM type:</h3>
+      <span className="text-black/85 font-medium">
+        {selectedRowData?.vcpus ? `${selectedRowData.vcpus} vCPU` : ""}
+      </span>
+      -
+      <span className="text-black/85 font-medium">
+        {selectedRowData?.memory_mb
+          ? `${mbToGBConverter(selectedRowData.memory_mb)}`
+          : ""}
+      </span>
+    </div>
+    <div className="flex flex-wrap gap-2">
+      <h3>Selected image:</h3>
+      <span className="text-black/85 font-medium">
+        {selectedImageName || "-"}
+      </span>
+    </div>
+  </div>
+
+  <div className="w-full sm:w-auto">
+    <div className="flex flex-wrap gap-2">
+      <h3>Volume size:</h3>
+      <span className="text-black/85 font-medium">
+        {volume ? `${volume} GB` : "-"}
+      </span>
+    </div>
+    <div className="flex flex-wrap gap-2">
+      <h3>Duration:</h3>
+      <span className="text-black/85 font-medium">
+        {durationNumber || "-"}
+      </span>
+      <span className="text-black/85 font-medium">
+        {duration || "-"}
+      </span>
+    </div>
+  </div>
+
+  <div className="w-full sm:w-auto">
+    <div className="flex flex-wrap gap-2">
+      <h3>Price:</h3>
+      <span className="font-semibold">
+        ETB{" "}
+        {priceCalculator(selectedRowData?.vcpus, selectedRowData?.memory_mb)}
+      </span>
+    </div>
+  </div>
+
+  <div className="w-full sm:w-auto flex gap-4 items-center">
+    <Button
+      style={{
+        fontSize: "12px",
+        backgroundColor: "#BC68B2",
+      }}
+      className="w-[6em] md:w-[8em]"
+      variant="contained"
+      onClick={() => addToCartHandler(true)}
+    >
+      Buy
+    </Button>
+    <Button
+      onClick={() => addToCartHandler(false)}
+      style={{
+        fontSize: "12px",
+        backgroundColor: "white",
+        border: "1px solid #BC68B2",
+        color: "#BC68B2",
+      }}
+      variant="contained"
+    >
+      Add to Cart
+    </Button>
+  </div>
+
+  <div className="w-full sm:w-auto text-center">
+    <div className="background flex justify-center items-center">
+      <img
+        src={require("../../../shared/images/vmImage2.webp")}
+        alt="Your Company Logo"
+        className="max-w-full h-auto"
+      />
+    </div>
+  </div>
+</div>
+
+
+
+     
+     
+        
+      
       </PurchaseItemData>
       {isItemAdded && (
         <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/10">

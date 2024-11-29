@@ -10,6 +10,7 @@ export const services = [
     description:
       "Experience seamless cloud computing with our virtual machine service, offering scalable and flexible solutions tailored to your needs. Harness the power of virtualization to optimize your workflow and boost productivity.",
     path: "/virtual-machine",
+   
   },
   {
     id: 2,
@@ -19,14 +20,14 @@ export const services = [
       "Store, access, and manage your data effortlessly with our reliable object storage solution. Enjoy high durability, low latency, and scalability, ensuring your critical information is always available when you need it most.",
     path: "/object-storage",
   },
-  {
-    id: 3,
-    image: arrayStorage,
-    serviceName: "Array storage",
-    description:
-      "Maximize efficiency and performance with our array storage service, designed to handle vast amounts of data with ease. Our array storage solution provides unmatched reliability, reselience and speed for your storage needs.",
-    path: "/array-storage",
-  },
+  // {
+  //   id: 3,
+  //   image: arrayStorage,
+  //   serviceName: "Array storage",
+  //   description:
+  //     "Maximize efficiency and performance with our array storage service, designed to handle vast amounts of data with ease. Our array storage solution provides unmatched reliability, reselience and speed for your storage needs.",
+  //   path: "/array-storage",
+  // },
 ];
 
 export const vmDescription =

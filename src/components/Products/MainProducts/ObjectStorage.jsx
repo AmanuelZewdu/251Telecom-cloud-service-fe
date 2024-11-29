@@ -323,8 +323,9 @@ const ObjectStorage = () => {
       </div> */}
       <div>
         <h1 className="text-4xl mb-6 pb-4 text-center text-transparent bg-clip-text xl:w-fit font-bold bg-gradient-to-r from-primary-blue via-button-color to-secondary-blue">
-          Object Storage
+          Object Storage Coming Soon
         </h1>
+      
         <p className="mt-4 text-start leading-7 text-slate-500">
           {obDescription}
         </p>

@@ -17,7 +17,7 @@ const Home = () => {
       <WhyChooseUs />
       <SecurityCompliance />
       <OurPartners />
-      <MarketingHero />
+      {/* <MarketingHero /> */}
       <Faq />
       <ContactUsSection />
     </div>

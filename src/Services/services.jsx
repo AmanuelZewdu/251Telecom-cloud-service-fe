@@ -32,6 +32,8 @@ const getMachineImages = async () => {
   });
 };
 
+
+
 const postSignUp = async (userDetail) => {
   return axios
     .post(API_URL_SIGN_UP, userDetail)
@@ -87,7 +89,7 @@ const postLogin = async (userCredential) => {
 const getDollarExchange = async (dollar) => {
   try {
     const response = await axios.post(API_URL_EXCHANGE, dollar);
-    return response;
+    return response.data.totalInETB;
   } catch (error) {
     if (error.response) {
       return { error: error.response.data, statusCode: error.response.status };

@@ -44,27 +44,63 @@ const CartModal = ({ open, onClose }) => {
     window.dispatchEvent(new Event("storage"));
   };
 
+  // const calculateSubtotal = () => {
+  //   console.log("Items",cartItems);
+  //   const subtotal = cartItems.reduce((total, item) => {
+  //     const price = parseFloat(item.price?.replace(/[^\d.]/g, ""));
+  //     return total + price;
+  //   }, 0);
+
+  //   const additionRepresentation = cartItems.map((item, index) => {
+  //     return index === cartItems.length - 1
+  //       ? `$${parseFloat(item.price?.replace(/[^\d.]/g, ""))}`
+  //       : `$${parseFloat(item.price?.replace(/[^\d.]/g, ""))} + `;
+  //   });
+
+  //   return `${additionRepresentation.join(" ")} = $${subtotal.toFixed(2)}`;
+  // };
+
+
   const calculateSubtotal = () => {
+    console.log("Items", cartItems);
+  
     const subtotal = cartItems.reduce((total, item) => {
-      const price = parseFloat(item.price?.replace(/[^\d.]/g, ""));
+      // Check if item.price is a string, number, or null/undefined
+      let price = 0;
+      if (typeof item.price === 'string') {
+        // Remove non-numeric characters and convert to float
+        price = item.price;
+      } else if (typeof item.price === 'number') {
+        price = item.price; // If price is already a number, just use it
+      }
+  
       return total + price;
     }, 0);
-
+  
     const additionRepresentation = cartItems.map((item, index) => {
+      let priceString = '';
+  
+      // Check if item.price is a string, number, or null/undefined
+      if (typeof item.price === 'string') {
+        priceString = `${parseFloat(item.price.replace(/[^\d.]/g, ""))}`;
+      } else if (typeof item.price === 'number') {
+        priceString = `${item.price}`;
+      }
+  
       return index === cartItems.length - 1
-        ? `$${parseFloat(item.price?.replace(/[^\d.]/g, ""))}`
-        : `$${parseFloat(item.price?.replace(/[^\d.]/g, ""))} + `;
+        ? priceString
+        : `${priceString} + `;
     });
-
-    return `${additionRepresentation.join(" ")} = $${subtotal.toFixed(2)}`;
+  
+    return `${additionRepresentation.join(" ")} = ${subtotal}`;
   };
-
+  
   const calculateTotal = () => {
     const total = cartItems.reduce((acc, item) => {
-      const price = parseFloat(item.price?.replace(/[^\d.]/g, ""));
+      const price = item.price;
       return acc + price;
     }, 0);
-    return total.toFixed(2);
+    return total;
   };
 
   const subtotal = calculateSubtotal();
@@ -151,7 +187,7 @@ const CartModal = ({ open, onClose }) => {
                 <li>
                   Total:{" "}
                   <span className="font-semibold text-green-700">
-                    USD {total}/mo
+                    ETB {total}/mo
                   </span>{" "}
                   <span className="text-xs text-gray-500">(including VAT)</span>
                 </li>

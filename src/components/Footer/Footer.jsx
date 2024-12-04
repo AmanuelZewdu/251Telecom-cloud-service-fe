@@ -22,10 +22,10 @@ const Footer = () => {
       id: 2,
       serviceName: <Link to="/virtual-machine">Object storage</Link>,
     },
-    {
-      id: 3,
-      serviceName: <Link to="/virtual-machine">Array storage</Link>,
-    },
+    // {
+    //   id: 3,
+    //   serviceName: <Link to="/virtual-machine">Array storage</Link>,
+    // },
   ];
 
   const contactInfo = [

@@ -7,6 +7,8 @@ import CartModal from "../CartModal/CartModal";
 import logo from "../../shared/images/cloud251Logo.webp";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+
 
 const Navbar = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -96,6 +98,10 @@ const Navbar = () => {
     setNavIsOpen(false);
   };
 
+  const handleRequestSupport = () => {
+    window.open("https://support.cloud251.com/", "_blank");
+  };
+
   return (
     <div className="flex font-Inter justify-center">
       {/* This is the black overlay */}
@@ -179,8 +185,8 @@ const Navbar = () => {
                 onClick={() => setOpen(!open)}
               />
               <div
-                className={`absolute top-[2.2em] bg-white hover:bg-gray-50 w-[10em] right-0 overflow-hidden drop-shadow-md rounded-md transition-all duration-300 ease-in-out  ${
-                  open ? "h-[3em] flex items-center" : "h-0 "
+                className={`absolute top-[2.2em] bg-white hover:bg-gray-50 w-[12em] right-0 overflow-hidden drop-shadow-md rounded-md transition-all duration-300 ease-in-out  ${
+                  open ? "h-[4em] flex items-center" : "h-0 "
                 }`}
               >
                 <ul className="flex flex-col cursor-pointer">
@@ -194,6 +200,15 @@ const Navbar = () => {
                     <LogoutIcon />
                     <span>Log out</span>{" "}
                   </li>
+                  <li
+    onClick={handleRequestSupport} 
+    className={`px-4 flex gap-2 ${
+      open ? "opacity-100" : "opacity-0"
+    }`}
+  >
+    <SupportAgentIcon /> 
+    <span>Support</span>
+  </li>
                 </ul>
               </div>
             </div>
